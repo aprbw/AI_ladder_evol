@@ -1,0 +1,6 @@
+workflow_id,workflow_name,g0_lvl,g0_hrs,g1_lvl,g1_hrs,g2_lvl,g2_hrs,g3_lvl,g3_hrs,g4_lvl,g4_hrs,g5_lvl,g5_hrs,total_hrs_saved,deflation_mechanism
+math_reasoning,Multi-Step Math & Logic Reasoning,5,2000,4,600,2,50,2,25,1,0,1,0,2000,RLVR test-time compute (G3-L6 -> G4-L1 o1/R1) & auto-routers absorbed manual CoT wrappers into built-in 0h L1 chat
+multimodal_creation,Multimodal Text + Image + Live UI App Preview,4,600,3,200,2,50,1,0,1,0,1,0,600,Native omni-models (GPT-4o) & sandboxed browser rendering (Claude Artifacts/Canvas) unified tools into 0h L1
+doc_qa_50pdf,Ask Questions Across 50 Private PDFs / Docs,4,600,3,200,3,150,2,30,1,0,1,0,600,128k-2M long context + 90% prompt caching + Projects/NotebookLM replaced custom Python vector-chunking code
+web_research_synthesis,Multi-Website Cited Research Report (50+ Sources),5,2000,4,600,4,500,3,180,2,20,1,0,1980,End-to-end RL browsing agents (OpenAI/Gemini Deep Research) + Socratic elicitation productized multi-hop synthesis into L2 (<50h)
+text_classification,Custom Business Text Classifier / Entity Extractor,3,200,2,40,1,0,1,0,1,0,1,0,200,In-context learning (Gen 1) & RLHF instruction following (Gen 2) eliminated supervised training loops

@@ -1,0 +1,15 @@
+model_id,model_hw_name,release_date,gen_id,input_usd_per_1m,output_usd_per_1m,context_window,training_flops_or_vram,single_task_wh,step_change_capability
+MOD_01,Google GNMT / Gmail Smart Compose (TPU v2),2018-05,G0,0.0,0.0,128 tok,18000000000.0,0.018,Passive inline 3-word completion (<20ms)
+MOD_02,BERT-Large Fine-Tune on 1x NVIDIA V100 (16GB),2018-10,G0,0.08,0.08,512 tok,28000000000.0,0.012,Single-GPU supervised encoder classification
+MOD_03,"OpenAI GPT-3 (davinci 175B, NVIDIA V100/A100)",2020-06,G1,60.0,60.0,"2,049 tok",45000000000.0,1.8,Few-shot completion API ($60/1M tokens)
+MOD_04,"OpenAI Codex (code-cushman-001 12B, Copilot)",2021-06,G1,0.0,0.0,"4,096 tok",65000000000.0,0.18,Inline IDE ghost-text Tab autocomplete
+MOD_05,"OpenAI ChatGPT (gpt-3.5-turbo, A100 80GB)",2023-03,G2,2.0,2.0,"4,096 tok",120000000000.0,0.85,30x price drop vs GPT-3 ($2/1M tokens)
+MOD_06,"OpenAI GPT-4 (8k/32k MoE, A100/H100)",2023-03,G2,30.0,60.0,8k–32k tok,150000000000.0,4.2,Frontier reasoning & function calling
+MOD_07,Meta Llama-2-70B + 4-Bit QLoRA / vLLM (H100),2023-07,G2,0.65,0.8,"4,096 tok",280000000000.0,0.55,Open-weight PagedAttention & single-GPU QLoRA
+MOD_08,OpenAI GPT-4o Omni + Prompt Caching (H100),2024-05,G3,2.5,10.0,128k tok,420000000000.0,0.32,Real-time 320ms voice/vision & 50% price cut
+MOD_09,Anthropic Claude 3.5 Sonnet + 90% Cache (H100),2024-06,G3,3.0,15.0,200k tok,450000000000.0,0.95,"Artifacts live UI, Projects & Cursor Vibe Coding"
+MOD_10,"Google Gemini 1.5 Pro (TPU v5p, 2M Context)",2024-05,G3,1.25,5.0,"2,000k tok",510000000000.0,1.4,50-PDF drag-and-drop long-context workspace
+MOD_11,"DeepSeek-R1 (671B/37B Active MoE, MLA, H800)",2025-01,G4,0.55,2.19,128k tok,850000000000.0,12.5,Open-weight RLVR reasoner (-95% vs o1 API)
+MOD_12,Anthropic Claude Code CLI / Opus 4.6–5.5 (B200),2025-08,G4,3.0,15.0,500k tok,1200000000000.0,45.0,Multi-file terminal harness & SWE-bench Pro
+MOD_13,OpenAI GPT-5.4 Auto-Router & Deep Research (B200),2026-08,G4,1.0,4.0,"1,000k tok",1500000000000.0,18.0,Unified fast/RLVR router & 100-source browsing
+MOD_14,[Speculative] Gen 5 Rubin / Local NPU Mesh,2027-03,G5,0.05,0.2,"10,000k tok",4500000000000.0,0.15,Sub-$0.05/1M reasoning & ambient OS NPU

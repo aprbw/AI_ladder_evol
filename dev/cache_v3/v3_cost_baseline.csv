@@ -1,0 +1,11 @@
+model_or_hardware,release_date,price_per_1m_tokens_usd,context_window,hardware_efficiency,typical_latency_sec
+BERT-Large / T4 GPU,2018-10,0.02 (equiv),512 tokens,0.9e12 FLOP/s/W,0.08
+GPT-3 davinci (175B),2020-06,60.00 / 60.00,"2,049 tokens",1.9e12 FLOP/s/W (A100),2.5
+gpt-3.5-turbo,2023-03,2.00 / 2.00,"4,096 tokens",2.4e12 FLOP/s/W,0.8
+GPT-4 (8k),2023-03,30.00 / 60.00,"8,192 tokens",3.2e12 FLOP/s/W,4.5
+GPT-4 Turbo (128k),2023-11,10.00 / 30.00,"128,000 tokens",4.5e12 FLOP/s/W (H100),2.2
+GPT-4o (Omni),2024-05,5.00 / 15.00 (2.50 cached),"128,000 tokens",6.0e12 FLOP/s/W,0.32
+Claude 3.5 Sonnet (v1/v2),2024-06,3.00 / 15.00 (0.30 cached),"200,000 tokens",6.5e12 FLOP/s/W,0.9
+OpenAI o1 / DeepSeek-R1,2025-01,15.00/60.00 (o1) | 0.55/2.19 (R1),128k-200k tokens,8.8e12 FLOP/s/W (H200/B200),18.0
+Claude Sonnet 4.6 / Gemini 3.5 Flash,2026-02,3.00/15.00 | 0.15/0.60,"1,000,000 tokens",1.2e13 FLOP/s/W,1.1
+GPT-5.4 (xHigh) / Claude Opus 5.5 / Laguna S 2.1,2026-08,2.50/10.00 | 5.00/20.00 | 0.05/0.20,1.1M-2.0M tokens,1.6e13 FLOP/s/W (Blackwell),0.65

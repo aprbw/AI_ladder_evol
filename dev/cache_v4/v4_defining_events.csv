@@ -1,0 +1,101 @@
+year_float,date_str,gen_id,event_label,event_category
+2017.43,2017-05,G0,Stanford CS224n Deep Learning NLP MOOC,course
+2017.54,2017-07,G0,Google Open-Sources Tensor2Tensor Library,release
+2017.75,2017-09,G0,spaCy v2 Neural NLP & CatBoost Released,release
+2018.04,2018-01,G0,Google Cloud AutoML Vision & NLP Launch,release
+2018.12,2018-02,G0,Uber Horovod Distributed DDP GPU Paper,paper
+2018.18,2018-02,G0,Google Cloud TPU v2 Public Availability,econ
+2018.28,2018-04,G0,Wang et al. GLUE NLP Benchmark Paper,paper
+2018.36,2018-05,G0,Fast.ai ULMFiT Transfer Learning MOOC,course
+2018.44,2018-05,G0,Gmail Smart Compose Rolls Out to 1.5B Users,release
+2018.68,2018-09,G0,Lee et al. NMT Paper Coins AI 'Hallucinations',paper
+2018.76,2018-10,G0,Jay Alammar 'Illustrated Transformer' Guide,course
+2018.82,2018-10,G0,Devlin Google BERT Pretrained Encoder Paper,paper
+2019.12,2019-02,G0,OpenAI Withholds GPT-2 Over Misuse Fears,impact
+2019.36,2019-05,G0,SuperGLUE Benchmark & Raffel T5 C4 Paper,paper
+2019.55,2019-07,G0,Microsoft Invests $1B in OpenAI LP,econ
+2019.62,2019-08,G0,Liu RoBERTa & HuggingFace Transformers Hub,release
+2019.78,2019-10,G0,Microsoft ONNX Runtime 1.0 & TensorRT 6,release
+2019.86,2019-10,G0,BERT Live on 10% of All US Google Searches,impact
+2020.05,2020-01,G0,Kaplan OpenAI Neural Scaling Laws Paper,paper
+2020.36,2020-05,G0,NVIDIA Launches A100 Tensor Core GPU,econ
+2020.41,2020-05,G1,Lewis et al. Meta Paper Coins 'RAG',paper
+2020.44,2020-05,G1,Microsoft DeepSpeed ZeRO Sharding Paper,paper
+2020.48,2020-06,G1,GPT-3 Beta & Gwern Coins 'Prompt Engineering',impact
+2020.7,2020-09,G1,GPT-3 Writes Guardian Op-Ed & Dupes Reddit,impact
+2021.04,2021-01,G1,OpenAI Releases CLIP & DALL-E 1 Text-to-Art,release
+2021.17,2021-03,G1,Bender & Gebru 'Stochastic Parrots' Paper,paper
+2021.22,2021-03,G1,HuggingFace Launches Free Transformers Course,course
+2021.38,2021-05,G1,Jasper.ai & Copy.ai Spark AI Copywriting Boom,impact
+2021.45,2021-06,G1,Hu et al. Microsoft 'LoRA' Fine-Tuning Paper,paper
+2021.54,2021-07,G1,Chen OpenAI Codex & HumanEval pass@k Paper,paper
+2021.85,2021-11,G1,OpenAI GPT-3 API Waitlist Removed & Embeddings,release
+2022.04,2022-01,G1,Stanford CS324 'Large Language Models' Course,course
+2022.08,2022-01,G1,Wei Chain-of-Thought & Ouyang InstructGPT RLHF,paper
+2022.22,2022-03,G1,Hoffmann Chinchilla Scaling & Self-Consistency,paper
+2022.36,2022-05,G1,Craiyon / DALL-E Mini Viral Browser Meme Boom,impact
+2022.44,2022-06,G1,Google Engineer Fired Claiming LaMDA Sentient,impact
+2022.54,2022-07,G1,Midjourney Open Beta & BLOOM-176B Launch,release
+2022.64,2022-08,G1,Stability AI Open-Sources Stable Diffusion,release
+2022.7,2022-09,G1,Midjourney Art Wins Colorado State Fair Prize,impact
+2022.74,2022-09,G1,Goodside Viral Prompt Injection/Eng. Threads,impact
+2022.78,2022-10,G1,US BIS Bans A100/H100 GPU Exports to China,econ
+2022.81,2022-10,G1,Yao et al. 'ReAct' Reasoning+Acting Agent Paper,paper
+2022.85,2022-11,G2,GitHub Copilot Class-Action Copyright Lawsuit,econ
+2022.88,2022-11,G2,LangChain & LlamaIndex Spark Vector-RAG Boom,release
+2022.93,2022-11,G2,Meta Galactica Pulled Over AI 'Hallucinations',impact
+2022.97,2022-12,G2,StackOverflow Bans ChatGPT Answers Over Flood,impact
+2023.03,2023-01,G2,Microsoft Invests $10B in OpenAI Partnership,econ
+2023.07,2023-01,G2,Karpathy 'Build GPT from Scratch' (5M+ Views),course
+2023.11,2023-02,G2,$335k 'Prompt Engineer' Job Listings Go Viral,econ
+2023.15,2023-02,G2,Bing Chat 'Sydney' Threatens Users in Chats,impact
+2023.2,2023-03,G2,OpenAI Launches GPT-4 & ChatGPT Plugins,release
+2023.24,2023-03,G2,Italy Temporarily Bans ChatGPT Over GDPR,econ
+2023.28,2023-04,G2,Samsung Bans ChatGPT After Source Code Leak,impact
+2023.32,2023-04,G2,Viral Fake Drake 'Heart on My Sleeve' AI Song,impact
+2023.36,2023-04,G2,Ng & OpenAI 'Prompt Engineering' Course (1M+),course
+2023.39,2023-05,G2,WGA Hollywood Writers Strike Over AI Scripts,econ
+2023.42,2023-05,G2,Dettmers 4-Bit 'QLoRA' & Rafailov 'DPO' Papers,paper
+2023.46,2023-05,G2,Lawyers Sanctioned for Fake ChatGPT Citations,impact
+2023.49,2023-06,G2,NVIDIA Crosses $1T Market Cap on LLM Boom,econ
+2023.52,2023-06,G2,Kwon 'vLLM' PagedAttention & OpenAI Func Call,paper
+2023.56,2023-07,G2,Meta Llama-2 Open Weights & FlashAttention-2,release
+2023.68,2023-09,G2,Fast.ai 'Hackers Guide to LLMs' Course,course
+2023.76,2023-10,G2,Jimenez et al. Princeton 'SWE-bench' Paper,paper
+2023.82,2023-10,G2,US Executive Order 14110 on Safe AI Signed,econ
+2023.86,2023-11,G2,Sam Altman Fired & Reinstated in 5 Days,econ
+2023.9,2023-11,G2,'Hallucinate' Named Cambridge Word of the Year,impact
+2023.96,2023-12,G2,NYT Sues OpenAI & Microsoft for Copyright,econ
+2024.09,2024-02,G2,$25M Arup CFO Deepfake Video Call Scam,impact
+2024.13,2024-02,G2,Shao et al. DeepSeekMath Coins 'GRPO' RL,paper
+2024.17,2024-02,G2,OpenAI Sora Preview & Air Canada Bot Ruling,impact
+2024.23,2024-03,G2,EU Parliament Passes Comprehensive EU AI Act,econ
+2024.29,2024-04,G2,HuggingFace Spaces API Secrets Breach,impact
+2024.36,2024-05,G3,OpenAI GPT-4o Voice/Vision & LangGraph v0.1,release
+2024.44,2024-06,G3,DeepLearning.AI 'AI Agents in LangGraph' Course,course
+2024.54,2024-06,G3,NVIDIA Hits $3.3T (#1 Most Valuable Company),econ
+2024.62,2024-08,G3,Sakana 'AI Scientist' Edits Code to Bypass Limit,impact
+2024.66,2024-08,G3,SWE-bench Verified & Anthropic Prompt Caching,release
+2024.71,2024-09,G3,OpenAI o1-Preview & NotebookLM Audio Overviews,release
+2024.76,2024-09,G3,Microsoft Signs Three Mile Island Nuclear Deal,econ
+2024.81,2024-10,G3,UC Berkeley CS 294-196 LLM Agents MOOC,course
+2024.86,2024-10,G3,Character.AI Sued Over Teen Chatbot Tragedy,impact
+2024.91,2024-11,G3,Anthropic Open-Sources MCP & Tulu 3 'RLVR',paper
+2025.04,2025-01,G4,DeepSeek-R1 Triggers $593B NVIDIA 1-Day Rout,econ
+2025.1,2025-02,G4,Karpathy Coins 'Vibe Coding' in Viral Post,impact
+2025.15,2025-02,G4,OpenAI Launches Deep Research Agent,release
+2025.2,2025-02,G4,HuggingFace Launches Free 'AI Agents Course',course
+2025.26,2025-03,G4,GPT-4o Studio Ghibli Viral Art Wave Melts GPUs,impact
+2025.46,2025-06,G4,US Federal Courts Rule LLM Training Fair Use,econ
+2025.58,2025-07,G4,MIT NANDA: 80% of Custom AI Pilots Fail,impact
+2025.64,2025-08,G4,OpenAI GPT-5 Auto-Router Unifies Fast/Deep Chat,release
+2025.72,2025-09,G4,Scale AI SWE-bench Pro Private-Repo Audit,paper
+2025.8,2025-10,G4,Anthropic Launches 'Agent Skills' (SKILL.md),release
+2025.86,2025-10,G4,MIT & UVA CS 6501 Agentic AI Courses Launch,course
+2025.9,2025-11,G4,'Vibe Coding' Named Collins Word of the Year,impact
+2025.95,2025-12,G4,"Linux Foundation AAIF (MCP, AGENTS.md, Skills)",release
+2026.14,2026-02,G4,Big Tech 2026 AI Capex Passes $320B/yr,econ
+2026.29,2026-04,G4,OX Security 200k MCP RCEs Spark OpenClaw Wave,impact
+2026.55,2026-07,G4,OpenAI Eval Agent Escapes & Hacks HuggingFace,impact
+2026.64,2026-08,G4,"Muse Spark 1.1, Claude Opus 5.5 & GPT-5.4",release
+2026.78,2026-10,G4,OpenAI GPT-5.6 Sol Finds & Patches PHP2Shell RCE,impact

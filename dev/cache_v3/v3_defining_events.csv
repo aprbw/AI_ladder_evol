@@ -1,0 +1,37 @@
+year_float,date_str,gen_id,event_label
+2017.46,2017-06,G0,Vaswani 'Attention Is All You Need'
+2017.75,2017-09,G0,spaCy v2 Neural NLP & Weld
+2018.12,2018-02,G0,ELMo Contextual Embeddings
+2018.42,2018-05,G0,EU GDPR Enforced & Google Duplex Demo
+2018.79,2018-10,G0,Google BERT & HF pytorch-pretrained-bert
+2019.15,2019-02,G0,OpenAI GPT-2 (1.5B) 'Too Dangerous'
+2019.58,2019-07,G0,RoBERTa & ONNX Runtime 1.0
+2019.83,2019-10,G0,BERT Powers 10% of Google US Search
+2020.12,2020-02,G0,Grammarly GECToR Sequence Tagger
+2020.46,2020-06,G1,OpenAI GPT-3 175B API Beta ($60/1M)
+2020.79,2020-10,G1, DeepSpeed ZeRO-3 Sharding Released
+2021.08,2021-01,G1,OpenAI CLIP & DALL-E 1 Multimodal
+2021.48,2021-06,G1,GitHub Copilot Technical Preview (Codex)
+2021.88,2021-11,G1,OpenAI API Waitlist Removed + Fine-Tune CLI
+2022.08,2022-01,G1,InstructGPT RLHF & Wei Chain-of-Thought
+2022.48,2022-06,G1,GitHub Copilot GA (1.2M+ Users) & Midjourney v1
+2022.71,2022-08,G1,Stable Diffusion v1.4 Open-Weight Release
+2022.91,2022-11,G2,ChatGPT (gpt-3.5-turbo) Hits 100M Users in 60d
+2023.21,2023-03,G2,"GPT-4 Launch, LangChain Boom & BloombergGPT"
+2023.42,2023-05,G2,"Dettmers 4-Bit QLoRA, CoEdIT & Mata v. Avianca"
+2023.58,2023-07,G2,Meta Llama-2 Open Weights & vLLM PagedAttention
+2023.87,2023-11,G2,GPT-4 Turbo (128k) & Claude 2.1 (200k)
+2024.21,2024-03,G2,Claude 3 Family & LangGraph v0.1 Cyclic Graphs
+2024.42,2024-05,G3,GPT-4o Omni-Model & EU AI Act Approved
+2024.49,2024-06,G3,Claude 3.5 Sonnet + Artifacts & Cursor Composer
+2024.72,2024-09,G3,NotebookLM Audio Overviews & o1-preview
+2024.9,2024-11,G3,Anthropic Model Context Protocol (MCP) Open Spec
+2025.08,2025-01,G4,DeepSeek-R1 Open RLVR & OpenAI o3-mini
+2025.16,2025-02,G4,Claude Code CLI & OpenAI/Gemini Deep Research
+2025.58,2025-07,G4,MIT NANDA Audit (67% Bought vs 33% Built) & Deep Agents
+2025.94,2025-12,G4,Linux Foundation AAIF (MCP + goose + AGENTS.md)
+2026.29,2026-04,G4,OX Security 200k MCP stdio RCE -> M4 Mac Mini OpenClaw
+2026.62,2026-08,G4,"Muse Spark 1.1 (51.5% SWE-Pro Private), Opus 5.5 & GPT-5.4"
+2026.8,2026-10,G4,TODAY (2026-10-20): v3 AI Ladder Atlas Baseline
+2027.21,2027-03,G5,[Speculative] Gen 5 Crossover: Ambient OS Delegates & A2A Contracts
+2028.08,2028-01,G5,[Speculative] Continuous Nightly On-Policy RLVR Enterprise Flywheels

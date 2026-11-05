@@ -1,0 +1,6 @@
+workflow_key,workflow_name,G0_level,G0_hours,G1_level,G1_hours,G2_level,G2_hours,G3_level,G3_hours,G4_level,G4_hours,total_hours_saved,tech_mechanism
+math_reasoning,Multi-Step Math & Logic Reasoning,5,1000,3,120,2,25,2,15,1,0,1000,RLVR test-time compute (o1/R1) & auto-routers absorbed manual CoT wrappers into built-in L1 chat
+multimodal_creation,Multimodal Text + Image + Live App Preview,4,400,3,100,2,30,1,0,1,0,400,Native omni-models (GPT-4o) & sandboxed browser rendering (Claude Artifacts/Canvas) unified tools into L1
+doc_qa_50pdf,Ask Questions Across 50 Private PDFs / Docs,4,350,3,140,3,110,2,15,1,0,350,128k-2M long context + 90% prompt caching + Projects/NotebookLM replaced custom Python chunking code
+web_research_synthesis,Multi-Website Cited Research Report (50+ Sources),5,800,4,350,4,300,3,120,2,12,788,End-to-end RL browsing agents (OpenAI/Gemini Deep Research) productized multi-hop synthesis into L2
+text_classification,Custom Business Text Classifier / Entity Extractor,3,120,2,20,1,0,1,0,1,0,120,In-context learning (Gen 1) & RLHF instruction following (Gen 2) eliminated supervised training loops

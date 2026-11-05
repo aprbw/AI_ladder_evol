@@ -1,0 +1,151 @@
+gen_id,level_id,short_header,encyclopedic_body
+G0,1,Passive Background NLP Widgets (Active GenAI Missing),"• Use Cases & Landmarks: Gmail Smart Compose (May 2018), Google Neural Machine Translate (GNMT), Grammarly browser typo underlines, iOS QuickType
+• User Actions: Typing normal emails/texts; clicking 1-word spellcheck or pressing Tab on fixed 3-word phrase completions (0% freeform prompting)
+• Models & Engines: GNMT LSTM/Transformer hybrid, Grammarly GECToR sequence tagger, n-gram language models
+• Surface & Hardware: Chrome/Safari extension, iOS/Android keyboard, CPU/TPU cloud background inference
+• Core Vocabulary: Autocorrect, spellcheck underline, Smart Reply, language translation bar, predictive text"
+G0,2,Cloud AutoML Consoles & Regex Rule Crafting,"• Use Cases & Landmarks: Google Cloud AutoML Natural Language (Jan 2018), AWS Comprehend console, Zendesk/Salesforce regex ticket routing
+• Techniques & Skills: Uploading 500–5,000 labeled CSV rows, regex lookahead/lookbehind patterns, confidence threshold slider tuning
+• Platforms & Models: Google Cloud AutoML Vision/NLP, AWS Comprehend, Azure LUIS, Dialogflow intent trees
+• Software & Formats: Web admin consoles, Excel/Sheets CSV cleaning, Regex101 debugger, JSON webhook payloads
+• Core Vocabulary: Intent slot, entity list, precision-recall curve, false positive threshold, confusion matrix, webhook"
+G0,3,Classical Python NLP & Tabular Feature Pipelines,"• Use Cases & Landmarks: Customer churn & sentiment pipelines, Kaggle tabular/text competitions, spaCy v2 production entity extraction
+• Techniques & Skills: TF-IDF vectorization, n-gram tokenization, stop-word pruning, k-fold cross-validation, grid search
+• Libraries & Models: scikit-learn (LogisticRegression, RandomForest), XGBoost, LightGBM, spaCy (en_core_web_sm), NLTK, Gensim Word2Vec
+• Software & Hardware: Jupyter Notebook, Anaconda, Pandas DataFrames, multi-core CPU workstation (16–64 GB RAM)
+• Core Vocabulary: TF-IDF, bag-of-words, lemmatization, POS tagging, dependency parse, ROC-AUC, F1 score, GridSearchCV"
+G0,4,Single-GPU Pretrained Encoder Fine-Tuning (BERT / RoBERTa),"• Use Cases & Landmarks: Oct 2018 BERT release, Grammarly GECToR (2020) grammatical error tagging, SQuAD 2.0 extractive QA, legal/medical NER
+• Techniques & Skills: Pretrained checkpoint transfer learning, AdamW linear warmup + decay, gradient clipping, sequence bucketing
+• Models & Repos: Google BERT-base/large, Facebook RoBERTa, DistilBERT, ALBERT, ULMFiT (Fast.ai), HuggingFace pytorch-pretrained-bert
+• Software & Hardware: PyTorch, HuggingFace transformers, Google Colab Pro / single NVIDIA GTX 1080 Ti, V100, or T4 (16 GB VRAM)
+• Core Vocabulary: [CLS] & [SEP] tokens, WordPiece, masked language modeling (MLM), attention mask, fine-tuning head, cross-entropy"
+G0,5,Custom Seq2Seq Pretraining & Quantized ONNX Serving,"• Use Cases & Landmarks: Vaswani Transformer (Jun 2017), Google Search BERT rollout (Oct 2019), high-QPS neural machine translation & ad ranking
+• Techniques & Skills: Custom BPE/SentencePiece vocabulary training, multi-GPU Horovod/DDP all-reduce, FP16/INT8 graph quantization, beam search
+• Models & Frameworks: Transformer-Big, GPT-1/GPT-2 (1.5B), Megatron-LM, Fairseq, Tensor2Tensor, ONNX Runtime, TensorRT
+• Software & Hardware: 8x–64x NVIDIA V100 DGX servers, NVLink, InfiniBand, CUDA/cuDNN, C++ gRPC microservices, Docker/Kubernetes
+• Core Vocabulary: Scaled dot-product attention, multi-head QKV tensors, layer norm, warmup steps, perplexity, ONNX graph optimization"
+G1,1,IDE Ghost-Text Autocomplete & Viral Consumer Web Toys,"• Use Cases & Landmarks: GitHub Copilot Technical Preview (Jun 2021) & GA (Jun 2022, 1.2M devs), Craiyon / DALL-E Mini viral memes, AI Dungeon
+• User Actions: Pressing Tab to accept inline gray ghost-text code completions; typing 3-word noun phrases into viral browser boxes
+• Models & Products: OpenAI Codex (code-cushman-001 12B), DALL-E Mini / Craiyon, GPT-J-6B web demos, Replika early chat
+• Surface & Hardware: VS Code Copilot extension, JetBrains plugin, public web toy URLs (cloud-hosted inference)
+• Core Vocabulary: Ghost text, Tab autocomplete, docstring-to-function, text-to-image prompt box, AI Dungeon adventure"
+G1,2,Few-Shot Completion Prompting & Stop-Sequence Crafting,"• Use Cases & Landmarks: OpenAI GPT-3 Playground (Jun 2020), Jasper.ai & Copy.ai marketing copy, early Midjourney v1–v3 Discord art
+• Techniques & Skills: Designing 3-to-5-shot Input:/Output: completion prefixes, setting stop=['\n', '###'] sequences, tuning temperature
+• Models & Platforms: OpenAI GPT-3 (davinci, curie, babbage, ada), text-davinci-002, Cohere Generate, AI21 Jurassic-1, Midjourney Discord
+• Surface & Tools: OpenAI Web Playground sliders, Notion AI alpha, Discord slash commands (/imagine), PromptBase templates
+• Core Vocabulary: Few-shot exemplars, completion prefix, stop sequence, temperature, top_p nucleus sampling, frequency/presence penalty"
+G1,3,REST API Completion Wrappers & Early Embedding Search,"• Use Cases & Landmarks: Early SaaS copywriting/summarization startups, semantic product search, customer support draft assistants
+• Techniques & Skills: Dynamic prompt template interpolation, token counting (GPT2TokenizerFast), cosine similarity search, rate-limit backoff
+• Models & APIs: OpenAI /v1/completions & /v1/embeddings (text-similarity-davinci-001, text-search-ada), FAISS, early Pinecone (2021)
+• Software & Hardware: Python/Node.js REST SDKs, FastAPI/Flask, PostgreSQL, Redis cache, standard cloud CPU web servers
+• Core Vocabulary: Completion endpoint, prompt injection defense, 2,049-token context ceiling, dense embedding vector, cosine similarity"
+G1,4,"Multi-Step Prompt Chains, Self-Consistency & Cloud Fine-Tune CLI","• Use Cases & Landmarks: Stanford CS324 (Jan 2022), Wei et al. Chain-of-Thought (Jan 2022), GSM8K math solving, custom domain classifiers
+• Techniques & Skills: Multi-call prompt chaining, self-consistency majority voting (pass@20), curating 1,000+ JSONL prompt-completion pairs
+• Models & Tools: code-davinci-002, text-davinci-002, OpenAI Fine-Tuning CLI (openai api fine_tunes.create), Google Flan-T5-XL, EleutherAI GPT-J
+• Software & Hardware: Python async orchestration scripts, Weights & Biases experiment tracking, single A100/V100 GPU or managed cloud CLI
+• Core Vocabulary: In-context learning, Chain-of-Thought (CoT), self-consistency voting, JSONL completion schema, classification suffix"
+G1,5,Distributed Multi-GPU Full-Weight LLM Fine-Tuning (DeepSpeed),"• Use Cases & Landmarks: On-prem enterprise 6B–20B domain models, BigScience BLOOM-176B, EleutherAI GPT-NeoX-20B, Stable Diffusion v1.4 training
+• Techniques & Skills: ZeRO Stage 3 optimizer/gradient/parameter sharding, activation checkpointing, BF16 mixed precision, Slurm cluster ops
+• Models & Frameworks: GPT-NeoX-20B, OPT-30B/66B, BLOOM, Flan-T5-XXL, Microsoft DeepSpeed, Megatron-LM, HuggingFace Accelerate
+• Software & Hardware: Multi-node 8x–64x NVIDIA A100 (40GB/80GB) clusters, 400Gbps InfiniBand, NCCL collectives, PyTorch Distributed
+• Core Vocabulary: ZeRO-3 sharding, model/tensor/pipeline parallelism, CUDA OOM, BF16, gradient accumulation, throughput TFLOP/s/GPU"
+G2,1,Zero-Shot Conversational Web Chat for Q&A & Drafting,"• Use Cases & Landmarks: ChatGPT launch (Nov 30, 2022 -> 100M users in 60 days), homework/essay drafting, email rewrites, Samsung leak ban (Apr 2023)
+• User Actions: Typing natural conversational questions and follow-up edits in a browser chat box with zero formatting or parameters
+• Models & Apps: OpenAI ChatGPT (gpt-3.5-turbo), Microsoft Bing Chat (Sydney), Google Bard (PaLM 2), Anthropic Claude 2 web chat
+• Surface & Hardware: chat.openai.com browser tab, iOS/Android mobile app (free tier, cloud-hosted RLHF inference)
+• Core Vocabulary: Chat thread, regenerate response, hallucination, prompt, ChatGPT, AI detector, conversational follow-up"
+G2,2,"Manual CoT/Role Prompting, Custom GPTs & Discord Image Flags","• Use Cases & Landmarks: Ng & Fulford Prompt Eng course (May 2023), Mata v. Avianca citation sanction, OpenAI Custom GPT Store (Nov 2023), Midjourney v5
+• Techniques & Skills: System role personas ('Act as...'), XML/markdown delimiters, manual 'Let's think step by step', Midjourney parameter flags
+• Models & Platforms: GPT-4 (8k/32k), Claude 2.1, Midjourney v5/v6 Discord bot, DALL-E 3, Perplexity AI early citation search
+• Surface & Tools: ChatGPT Plus ($20/mo), Custom GPT builder + Actions, Discord /imagine (--ar 16:9 --v 5.2 --stylize 250 --no)
+• Core Vocabulary: System prompt, role prompting, Chain-of-Thought trigger, Custom GPT knowledge upload, aspect ratio flag, negative prompt"
+G2,3,DIY Chunked Vector-DB RAG & Function-Calling Internal Bots,"• Use Cases & Landmarks: Internal HR/wiki 'Chat with Your PDFs' bots, Chase LangChain & Liu LlamaIndex courses (2023), OpenAI Function Calling (Jun 2023)
+• Techniques & Skills: RecursiveCharacterTextSplitter (chunk_size=512, overlap=50), HNSW vector indexing, top-k retrieval, JSON function schemas
+• Models & Databases: gpt-3.5-turbo-0613, gpt-4-0613, text-embedding-ada-002, Cohere Rerank, Pinecone, ChromaDB, Weaviate, Milvus, Qdrant
+• Software & Hardware: LangChain, LlamaIndex, Python FastAPI, Streamlit/Gradio UI, Pydantic, cloud API keys ($50–$500/mo)
+• Core Vocabulary: RAG (Retrieval-Augmented Generation), chunking & overlap, vector database, HNSW, top-k cosine similarity, function calling"
+G2,4,Single-GPU 4-Bit QLoRA Fine-Tuning & Early ReAct Agent Loops,"• Use Cases & Landmarks: Dettmers QLoRA (May 2023), Grammarly CoEdIT text editing (May 2023), Meta Llama-2 fine-tuning, viral AutoGPT/BabyAGI loops
+• Techniques & Skills: 4-bit NormalFloat (NF4) double quantization, LoRA rank r/alpha tuning on attention projections, SFTTrainer, LLM-as-a-Judge
+• Models & Libraries: Meta Llama-2 (7B/13B/70B), Mistral-7B, Falcon-40B, Flan-T5-Large (CoEdIT), HuggingFace PEFT, bitsandbytes, TRL, Axolotl
+• Software & Hardware: Single NVIDIA RTX 3090/4090 (24GB) or cloud A100 (40GB/80GB), llama.cpp GGUF, Ollama local runner
+• Core Vocabulary: QLoRA, NF4 quantization, LoRA adapter weights, rank r & lora_alpha, SFT, ReAct (Reason+Act) loop, compounding error (0.9^20)"
+G2,5,Custom Domain Pretraining & High-Throughput vLLM GPU Clusters,"• Use Cases & Landmarks: Kwon et al. vLLM PagedAttention (Jun 2023), Dao FlashAttention-2, BloombergGPT 50B ($3M pretraining), enterprise GPU clusters
+• Techniques & Skills: PagedAttention non-contiguous KV-cache block management, continuous iteration-level batching, tensor parallelism, RLHF PPO
+• Models & Engines: Llama-2-70B, Mixtral-8x7B MoE, BloombergGPT-50B, vLLM, HuggingFace Text Generation Inference (TGI), TensorRT-LLM
+• Software & Hardware: 8x–512x NVIDIA H100 / A100 GPU clusters, NVSwitch, Ray, Triton Inference Server, Prometheus GPU telemetry
+• Core Vocabulary: PagedAttention, KV-cache fragmentation, continuous batching, time-to-first-token (TTFT), inter-token latency (ITL), MoE routing"
+G3,1,Built-In Multimodal Omni-Chat (Voice/Vision/Image) & Live Artifacts,"• Use Cases & Landmarks: OpenAI GPT-4o launch (May 2024), Claude 3.5 Sonnet + Live Artifacts (Jun 2024), ChatGPT Advanced Voice & Canvas (Oct 2024)
+• User Actions: Speaking naturally with 320ms voice latency, pointing phone camera, pasting screenshots, remixing live interactive React/SVG apps in-chat
+• Models & Products: OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet (20240620), Google Gemini 1.5 Flash, Meta Llama 3.1 web chat
+• Surface & Hardware: Default consumer web/mobile app with side-by-side Artifact/Canvas preview pane (0 setup, browser iframe sandbox)
+• Core Vocabulary: Omni-model, Claude Artifact, ChatGPT Canvas, real-time voice mode, camera vision grounding, one-click app remix"
+G3,2,Drag-and-Drop 50-PDF Long-Context Workspaces & Audio Synthesis,"• Use Cases & Landmarks: Claude Projects (Jun 2024, 200k context), Google NotebookLM Audio Overviews viral wave (Sep 2024, 1M–2M context)
+• Techniques & Skills: Curating 20–100 PDFs/docs into persistent project workspaces, writing workspace system instructions, auditing inline citations
+• Models & Platforms: Gemini 1.5 Pro (2M context), Claude 3.5 Sonnet (200k context), GPT-4o (128k context), Google NotebookLM
+• Surface & Tools: Drag-and-drop cloud project folders, Google Drive / Notion direct sync, NotebookLM 2-host podcast studio
+• Core Vocabulary: Long-context window (200k–2M tokens), needle-in-a-haystack, Project Knowledge base, grounded inline citation, Audio Overview"
+G3,3,AI-Native IDE Multi-File Composer & Policy-Guardrailed Enterprise RAG,"• Use Cases & Landmarks: Cursor IDE Composer & .cursorrules boom (mid-2024), Anthropic 90% Prompt Caching (Aug 2024, $0.30/1M), enterprise RBAC bots
+• Techniques & Skills: Multi-file diff orchestration (Cmd+K / Composer), @codebase indexing, hybrid BM25+vector search, SharePoint ACL filtering, Colang rails
+• Models & Stack: Claude 3.5 Sonnet v1/v2, GPT-4o-mini ($0.15/1M), Cursor IDE, Windsurf, NVIDIA NeMo Guardrails, Guardrails AI, Cohere Rerank 3
+• Software & Hardware: Cursor/VS Code fork, .cursorrules, Pinecone/pgvector hybrid index, Redis/Anthropic prompt cache, Okta/Entra RBAC tokens
+• Core Vocabulary: Cursor Composer, @codebase/@file tags, .cursorrules, prompt caching (90% discount), Colang dialog rails, RBAC metadata filter"
+G3,4,Stateful Cyclic Agent Graphs (LangGraph) & HITL Checkpoints,"• Use Cases & Landmarks: LangGraph v0.1/v0.2 production rollout (2024), Anthropic 'Building Effective Agents' (Dec 2024), customer-support state machines
+• Techniques & Skills: Designing explicit cyclic StateGraphs, conditional routing edges, Postgres state checkpointing, human-in-the-loop interrupts, DPO
+• Frameworks & Models: LangGraph, CrewAI, AutoGen v0.4, LlamaIndex Workflows, Claude 3.5 Sonnet, GPT-4o, Direct Preference Optimization (DPO)
+• Software & Hardware: Python StateGraph SDK, PostgreSQL checkpointer, LangSmith / Arize Phoenix trace observability, Docker microservices
+• Core Vocabulary: Cyclic StateGraph, conditional edge, Postgres checkpointer, interrupt_before (HITL), Orchestrator-Workers, Evaluator-Optimizer, DPO"
+G3,5,Multi-Agent Repo Orchestration & Containerized Eval Harnesses,"• Use Cases & Landmarks: SWE-bench Verified benchmark jump (33% -> 49% on Claude 3.5 Sonnet v2, Oct 2024), enterprise CI/CD eval clusters
+• Techniques & Skills: Containerized GitHub repo test-bed orchestration, pass@k execution grading, synthetic preference trajectory generation
+• Models & Harnesses: Claude 3.5 Sonnet v2, OpenAI o1-preview (Sep 2024), SWE-agent, AllHands/OpenDevin, custom vLLM + Docker evaluation farms
+• Software & Hardware: Kubernetes Docker-in-Docker farms, 8x–64x H100 inference clusters, GitHub Actions matrix runners, Braintrust/LangSmith
+• Core Vocabulary: SWE-bench Verified, containerized test harness, pass@k execution verification, trajectory replay, synthetic data flywheel"
+G4,1,Zero-Shot Auto-Thinking Chat (RLVR Router) & Interactive MCP Apps,"• Use Cases & Landmarks: DeepSeek-R1 viral mobile/web wave (Jan 2025), GPT-5 Auto-Router (2025), AAIF Interactive MCP Apps in chat (Dec 2025–2026)
+• User Actions: Asking complex math, coding, legal, or planning questions in plain language; auto-router silently thinks & renders live interactive widgets
+• Models & Products: OpenAI GPT-5 / GPT-5.4 Auto-Router, DeepSeek-R1, Claude Sonnet 4.6 / Opus 4.6, Google Gemini 3.5 Flash
+• Surface & Hardware: Default consumer web/mobile app with automatic thinking-budget routing and embedded MCP App UI cards
+• Core Vocabulary: Auto-thinking router, expandable thought summary, DeepThink toggle, interactive MCP App widget, zero-shot reasoning"
+G4,2,Autonomous Multi-Site Deep Research Scoping & Citation Auditing,"• Use Cases & Landmarks: OpenAI Deep Research (Feb 2025), Gemini Deep Research, Perplexity Deep Research; 15-minute 100-source analyst reports
+• Techniques & Skills: Scoping structured research briefs, setting reasoning effort toggles (low/med/high/xHigh), auditing primary-source citation chains
+• Models & Platforms: OpenAI o3 / GPT-5.4 Deep Research, Gemini 3.5 Deep Research, Claude Research, Perplexity Pro Research
+• Surface & Tools: Built-in Deep Research web panel, multi-hop browser trajectory viewer, exported Markdown/PDF citation tables
+• Core Vocabulary: Research brief scoping, multi-hop autonomous browsing, reasoning effort budget (xHigh), citation provenance audit"
+G4,3,Plug-and-Play MCP Tool Wiring (.mcp.json) & Guardrailed Agentic Bots,"• Use Cases & Landmarks: Linux Foundation AAIF (Dec 9, 2025: MCP + Block goose + AGENTS.md), Salesforce Headless 360 (4.5M MCP calls), 10,000+ MCP servers
+• Techniques & Skills: Configuring .mcp.json servers (stdio/SSE), OAuth 2.1 tool scoping, Llama Guard 3 / NeMo safety rails, $0.10–$0.25 ticket caps
+• Protocols & Stack: Model Context Protocol (MCP), Block goose, OpenAI AGENTS.md, Cursor / Claude Desktop, Llama Guard 3, MCP Atlas benchmark
+• Software & Hardware: .mcp.json config files, Dockerized MCP servers, Postgres/Snowflake/Jira/GitHub MCP connectors, enterprise API gateways
+• Core Vocabulary: .mcp.json, MCP server/client, stdio vs Streamable HTTP/SSE, AAIF, AGENTS.md, tool poisoning defense, bought vs built (76%/24%)"
+G4,4,Autonomous Terminal CLI Coding & Verification Harnesses,"• Use Cases & Landmarks: Anthropic Claude Code CLI launch (Feb 2025), Scale SWE-bench Pro audit (2025–2026), LangChain Deep Agents (Mar 2026)
+• Techniques & Skills: Authoring CLAUDE.md / AGENTS.md repo specs, supervising bash/read/write/edit/glob/grep loops, TDD red-green verification, /compact
+• Models & Harnesses: Claude Code CLI, OpenAI Codex CLI, Block goose, Aider, Claude Opus 4.6 / 5.5 (96% Verified), GPT-5.4, Muse Spark 1.1, Laguna S 2.1
+• Software & Hardware: macOS/Linux terminal shell, local Docker test containers, Git branches, pytest/vitest suites, Terminal-Bench 2.1
+• Core Vocabulary: CLAUDE.md, harness engineering, bash/edit/glob/grep primitives, context compaction (/compact), SWE-bench Pro private gap"
+G4,5,24/7 Dedicated M4 Mac Mini OpenClaw Sandboxes & GRPO RLVR Clusters,"• Use Cases & Landmarks: Apr 2026 OX Security 200k MCP stdio RCE disclosure -> M4 Mac Mini OpenClaw sandbox boom; DeepSeek-R1 GRPO RLVR replication
+• Techniques & Skills: Air-gapping 24/7 agents on dedicated hardware, parallel git worktree subagent swarms, OSWorld GUI grounding, GRPO RLVR training
+• Systems & Models: OpenClaw 24/7 daemon, Computer Use (78.4% OSWorld), DeepSeek-R1 / Qwen3.8-Flash-Next, verl / OpenRLHF GRPO trainers
+• Hardware & Infra: Dedicated physical Apple M4 Mac Mini ($599–$1,200) + Tailscale/VLAN isolation, OR 8x–64x H200/B200 GPU RLVR cluster
+• Core Vocabulary: Dedicated M4 Mac Mini sandbox, OpenClaw daemon, git worktree swarm, OX Security stdio RCE, GRPO, RLVR verifiable rewards"
+G5,1,[Speculative Gen 5] Ambient Cross-App OS Delegation & Persistent Memory,"• Projected Use Cases: OS-level background life/work delegation ('reconcile taxes, rebook flights, synthesize 50 threads') via 1-tap approval cards
+• User Actions: Speaking or typing intent once; OS background daemon coordinates across apps asynchronously with zero app-switching or prompting
+• Projected Models & OS Layers: GPT-6 / Claude 6 / Gemini 4 Ambient OS Router, Apple/Windows/Android native AAIF MCP OS fabric
+• Surface & Hardware: Hybrid on-device NPU (50+ TOPS local privacy memory) + cloud reasoning bursts; persistent cross-app timeline
+• Core Vocabulary: Ambient OS delegate, persistent personal memory graph, asynchronous approval card, zero-prompt background execution"
+G5,2,[Speculative Gen 5] Natural-Language Full-Stack Spec & Async PR Studios,"• Projected Use Cases: Domain analysts & PMs shipping verified multi-table web apps and reviewing async background PRs without opening a terminal
+• Techniques & Skills: Writing structured acceptance rubrics, toggling 1-click OAuth MCP connectors, auditing live staging preview diffs
+• Projected Platforms: Cloud Specification Studios (Next-Gen Cursor Cloud / Replit / Claude Studio), 1-Click AAIF Verified MCP App Store
+• Surface & Tools: Browser specification canvas, auto-generated ephemeral Docker preview URLs, visual state-machine diff inspector
+• Core Vocabulary: Acceptance rubric, async PR queue, ephemeral preview sandbox, no-CLI repo builder, visual behavioral diff"
+G5,3,[Speculative Gen 5] Multi-Agent A2A Contracts & Cryptographic Policy-as-Code,"• Projected Use Cases: Cross-company & cross-department autonomous procurement, compliance, and IT resolution governed by formal SLAs
+• Techniques & Skills: Wiring Agent-to-Agent (A2A) & MCP identity contracts, authoring Cedar/OPA policy-as-code rails, setting FinOps circuit breakers
+• Projected Stack: Linux Foundation AAIF MCP v2 + A2A Protocol, AWS Cedar / Open Policy Agent (OPA), hardware-attested OAuth 2.1 tokens
+• Software & Infra: Enterprise Agent Registry, cryptographic tool-call ledger, shadow-mode counterfactual replay gateway
+• Core Vocabulary: Agent-to-Agent (A2A) contract, Cedar/OPA policy-as-code, cryptographic tool attestation, FinOps circuit breaker, shadow replay"
+G5,4,[Speculative Gen 5] Formal Verifier Harnesses & Digital-Twin Swarm Choreography,"• Projected Use Cases: Refactoring 500k+ line private commercial monoliths & verifying complex distributed systems via 20-agent parallel swarms
+• Techniques & Skills: Designing formal state invariants (Lean 4 / TLA+ / Kani), property-based fuzzing harnesses, digital-twin mock environments
+• Projected Tools & Models: Formal verifier compilers (Lean 4, TLA+, Hypothesis), multi-repo swarm choreographers, sub-$0.05/1M verifier models
+• Software & Hardware: Deterministic simulation containers, parallel git worktree farms, automated mutation-testing clusters
+• Core Vocabulary: Formal verifier harness, Lean 4 / TLA+ invariant, property-based simulation, digital-twin mock, swarm choreography"
+G5,5,[Speculative Gen 5] Continuous On-Policy RLVR Flywheels & Sovereign Clusters,"• Projected Use Cases: Nightly self-improving enterprise/scientific domain models trained continuously on verified daytime agent execution traces
+• Techniques & Skills: Continuous on-policy RLVR/GRPO weight updates, automated curriculum generation, sovereign hardware enclave operations
+• Projected Systems: Continuous RLVR flywheel engines, domain world-model simulators, hardware-enclaved local agent appliances
+• Hardware & Infra: Sovereign multi-node Mac Studio Ultra / NVIDIA Blackwell/Rubin clusters + TPM/Secure Enclave attested sandbox racks
+• Core Vocabulary: Continuous on-policy RLVR, nightly weight distillation, verifiable trajectory flywheel, world-model simulator, sovereign enclave"

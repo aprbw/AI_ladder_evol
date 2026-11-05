@@ -1,0 +1,26 @@
+use_case_id,use_case_name,track,first_appearance,mainstream_crossover,target_surface,mapped_cell_and_note
+UC_01,"Passive Spellcheck, Translation & Smart Compose Widgets",Track A: Direct User (served by Track B ML),2016-11,2018-05,Browser / Email App,G0-L1 (Passive Only; 0h)
+UC_02,No-Code AutoML Tabular/Text Classification & Regex Rules,Track A: Direct Power User,2017-06,2018-01,Cloud Web Console / Spreadsheet,G0-L2 (7-45h)
+UC_03,"Classical NLP Sentiment, NER & Topic Extraction Pipelines",Track A & B: Data Scientist / Product Builder,2017-06,2017-09,Jupyter / Python scikit-learn / spaCy,G0-L3 (50-200h)
+UC_04,Fine-Tuning Pretrained BERT/RoBERTa Encoders on Custom Labels,Track A & B: ML Engineer (e.g. Grammarly GECToR 2020),2018-10,2019-06,PyTorch / HuggingFace GPU Notebook,G0-L4 (200-600h) -> serves L1 users
+UC_05,Custom Seq2Seq/Transformer Pretraining & ONNX Quantized Serving,Track B: Frontier/Enterprise NLP Architect,2017-06,2019-10,Multi-GPU Cluster / C++ ONNX Runtime,G0-L5 (600-2000h)
+UC_06,One-Key IDE Ghost-Text Autocomplete & Consumer Viral Web Boxes,Track A: Direct User (Copilot Tab / Craiyon / AI Dungeon),2021-06,2022-06,VS Code Extension / Consumer Web Box,G1-L1 (0h)
+UC_07,Few-Shot Completion Prompting & Stop-Sequence Formatting,Track A: Playground Power User,2020-06,2021-03,OpenAI Playground / Web Sandbox,G1-L2 (7-45h; sank from G0-L3/L4)
+UC_08,REST API Completion Wrappers & Early Embedding Search,Track B: SaaS Wrapper / Early Internal Bot Builder,2020-06,2021-11,Python REST SDK / Early Vector Index,G1-L3 (50-200h) -> serves L1 users
+UC_09,"Multi-Step Prompt Chains, Self-Consistency & Curated Cloud Fine-Tuning",Track A & B: AI Engineer,2021-12,2022-05,OpenAI Fine-Tune CLI / Python Wrapper,G1-L4 (200-600h)
+UC_10,Distributed Multi-GPU Full-Weight LLM Fine-Tuning (DeepSpeed ZeRO),Track B: Research & Core ML Team,2020-06,2022-03,Multi-Node A100 Cluster / DeepSpeed,G1-L5 (600-2000h)
+UC_11,"Zero-Shot Conversational Text Q&A, Summarization & Drafting",Track A: Mass Consumer / High Schooler (ChatGPT),2022-11,2022-12,Browser / Mobile Chat UI,G2-L1 (0h; sank from G1-L2)
+UC_12,"Manual CoT/Role Prompting, Custom GPTs & Separate Discord Image Gen",Track A: Prompt Crafter (ChatGPT + Midjourney Discord),2022-11,2023-03,Web UI + Discord Flags (--ar --v),G2-L2 (7-45h)
+UC_13,DIY Chunked Vector RAG & Function-Calling Internal Company Chatbots,Track B: Internal Bot & SaaS Integrator (LangChain/Pinecone),2023-03,2023-06,Python SDK + Vector DB + OpenAI Functions,G2-L3 (50-200h) -> serves L1 employees
+UC_14,Single-GPU 4-Bit QLoRA Fine-Tuning (CoEdIT) & Early Agent Loops,Track A & B: ML Engineer (Grammarly CoEdIT 2023 / Llama-2),2023-05,2023-07,Single A100/RTX 4090 + PEFT/bitsandbytes,G2-L4 (200-600h; sank from G1-L5)
+UC_15,Bespoke Corporate Pretraining (BloombergGPT) & High-Throughput vLLM Clusters,Track B: Infra & Foundation Team,2023-03,2023-09,64-512 H100/A100 Cluster + vLLM/TGI,G2-L5 (600-2000h)
+UC_16,Built-In Multimodal Omni-Chat (Text+Image+Vision+Voice) & Live Artifacts,Track A: Casual User (GPT-4o / Claude 3.5 Sonnet Artifacts),2024-05,2024-06,Default Web/Mobile Chat + Artifact Pane,G3-L1 (0h; sank from G2-L2/L3)
+UC_17,Drag-and-Drop 50-PDF Long-Context Workspaces & Audio Synthesis,Track A: Knowledge Worker (NotebookLM / Claude Projects),2024-05,2024-09,200k-2M Project Workspace UI,G3-L2 (7-45h; sank from G2-L3 Vector RAG)
+UC_18,AI-Native IDE Multi-File Composer & Policy-Guardrailed Enterprise RAG Bots,Track A (Cursor Coder) & Track B (NeMo Guardrails + RBAC Bot Builder),2024-05,2024-07,Cursor IDE (.cursorrules) / NeMo Colang + Hybrid RAG,G3-L3 (50-200h) -> serves L1 employees
+UC_19,Stateful Cyclic Agent Graphs (LangGraph) & Human-in-the-Loop Checkpoints,Track B: Agentic Systems Engineer,2024-03,2024-06,LangGraph StateGraph + Postgres Checkpointer,G3-L4 (200-600h)
+UC_20,Enterprise Multi-Agent Evaluation Harnesses & Custom Post-Training (DPO),Track B: Frontier Applied AI Architect,2024-05,2024-10,Multi-GPU DPO + Prompt-Cached Eval Cluster,G3-L5 (600-2000h)
+UC_21,Zero-Shot Auto-Thinking Chat (Router RLVR) & Interactive MCP Apps,Track A: Casual User (GPT-5 Router / Claude 4.5-4.6 / DeepSeek-R1),2025-01,2025-02,Default Auto-Routing Web/Mobile UI,G4-L1 (0h; sank from G2/G3-L2 manual CoT)
+UC_22,Autonomous Multi-Site Deep Research Brief Scoping & Citation Auditing,Track A: Analyst / Researcher (OpenAI/Gemini Deep Research),2025-01,2025-02,Built-In Deep Research Web Panel,G4-L2 (7-45h; sank from G3-L4 custom scraper graphs)
+UC_23,Plug-and-Play MCP Server Wiring (.mcp.json) & Guardrailed Agentic Enterprise Bots,Track A (IDE/Desktop Integrator) & Track B (Enterprise MCP + Llama Guard Bot),2024-11,2025-03,Cursor / Claude Desktop .mcp.json + RBAC/Guardrails,G4-L3 (50-200h; sank from G3-L4 custom API glue)
+UC_24,Autonomous Terminal CLI Coding Harnesses (Claude Code + CLAUDE.md + Docker Tests),Track A & B: Senior SWE / Harness Engineer,2025-02,2025-05,Terminal CLI (bash/edit/git) + Local Docker Suite,G4-L4 (200-600h)
+UC_25,"24/7 Dedicated M4 Mac Mini OpenClaw Sandboxes, Git Worktree Swarms & Custom GRPO RLVR",Track A (Personal Sandbox Architect) & Track B (RLVR Post-Training Team),2025-01,2025-11,Dedicated Apple M4 Mac Mini Sandbox / Multi-GPU GRPO,G4-L5 (600-2000h)
