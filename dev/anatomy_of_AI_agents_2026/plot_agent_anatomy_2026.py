@@ -1509,18 +1509,32 @@ STACK_LAYERS = [
 
 PHI = (1.0 + 5.0 ** 0.5) / 2.0  # Golden Ratio φ ≈ 1.61803398875
 
-LAYER_NAME_2LINE = {
-    1: "PHYSICAL &\nSILICON",
-    2: "ENV, PACKAGES,\nPYTHON & TENSOR",
-    3: "DATA &\nTOKENIZATION",
-    4: "ARCHITECTURE &\nPRE-TRAINING",
-    5: "SUPERVISED\nFINE-TUNING (SFT)",
-    6: "POST-TRAINING\n(RLHF, DPO & RLVR)",
-    7: "TEST-TIME COMPUTE\n& REASONING",
-    8: "CONTEXT, MEMORY,\nTOOLS & MCP",
-    9: "AGENT HARNESS,\nLOOP & GRAPH",
-    10: "MULTI-AGENT\nSWARMS & A2A",
-    11: "RAG & MULTIMODAL\n(EXTERNAL)",
+STAGE_H1_TITLES = {
+    1: "1. Silicon",
+    2: "2. Python",
+    3: "3. Data",
+    4: "4. Pre-Training",
+    5: "5. SFT",
+    6: "6. Post-Training",
+    7: "7. Test-Time",
+    8: "8. Memory & MCP",
+    9: "9. Harness",
+    10: "10. Multi-Agent",
+    11: "RAG & Multimodal",
+}
+
+STAGE_SUBTITLES = {
+    1: "GPU/TPU/NPU · HBM3e/SRAM · CUDA/Triton",
+    2: "brew · uv · conda · pip · PyTorch · JAX",
+    3: "Corpora · BPE/Tiktoken · Dedup & Synth",
+    4: "Transformer · Sparse MoE · Scaling Laws",
+    5: "Instruction Tuning · Packing · LoRA/DoRA",
+    6: "RLHF (PPO/DPO) & Critic-Free RLVR (GRPO)",
+    7: "System-2 <think> CoT · Best-of-N · MCTS",
+    8: "Context · 4-Tier Memory · MCP · SKILL.md",
+    9: "CLAUDE.md · Loop · LangGraph · Harness²",
+    10: "OWC · Swarms · Google A2A · AG-UI",
+    11: "Detached Hybrid/Graph RAG · Vision & Omni",
 }
 
 
@@ -1531,19 +1545,19 @@ def render_desktop_agent_anatomy_megachart():
 
     Strict Unskipped 5-Level Golden Ratio Typographic Hierarchy (φ = 1.61803398875):
       • T = H0 = 10.0 * φ² ≈ 26.18 pt : Main Megachart Title ("ANATOMY OF AI AGENTS 2026")
-      • H1 = H0 / φ        ≈ 16.18 pt : LAYER X badge ("LAYER 1 →" .. "LAYER 10 ★", "⇄ ORGANISM")
-                                        AND 2-line Layer Name ("PHYSICAL & SILICON", etc.)
+      • H1 = H0 / φ        ≈ 16.18 pt : Stage Title ("1. Silicon", "2. Python", ..., "10. Multi-Agent",
+                                        "RAG & Multimodal") + Top-Left "AI AGENT ANATOMY"
       • H2 = H1 / φ        = 10.00 pt : Cell Tier-1 Top-3 Flagship Pills, Masthead Subtitle/Hook/Key,
                                         and Left-Column Row Pillar Titles
       • H3 = H2 / φ        ≈  6.18 pt : Cell Tier-2 Normal Grid Items (2x4 active / 4x1 fail),
-                                        Column Header Descriptions/Bullets, Row Pillar Badges/Descs,
+                                        Column Header Subtitles/Descriptions/Bullets, Row Pillar Badges/Descs,
                                         and Masthead Footnote Strip
       • H4 = H3 / φ        ≈  3.82 pt : Cell Tier-3 Granular Footnote Grid Items (3x4 active / 2x2 fail)
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
     H2 = 10.0000          # 10.0000 pt (Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles)
-    H1 = H2 * PHI         # 16.1803 pt (LAYER X & Layer Name)
+    H1 = H2 * PHI         # 16.1803 pt (1. Silicon, 2. Python, ... H1 Stage Titles)
     H0 = H1 * PHI         # 26.1803 pt (Title T = H0)
     H3 = H2 / PHI         #  6.1803 pt (Cell Tier-2 Normal Grid & Header Descriptions/Bullets)
     H4 = H3 / PHI         #  3.8197 pt (Cell Tier-3 Granular Footnote Grid)
@@ -1581,7 +1595,7 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com · 10-Layer Agent Stack + External RAG/Multimodal (arXiv:2606.24937)",
+        "www.arianprabowo.com · 1. Silicon → 10. Multi-Agent + External RAG/Multimodal (arXiv:2606.24937)",
         fontsize=H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
@@ -1594,9 +1608,9 @@ def render_desktop_agent_anatomy_megachart():
     # Middle Block: H2 Yellow Motivating Hook
     ax.text(
         0.423, hdr_y + hdr_h * 0.58,
-        "What actually runs under an AI agent in 2026? A 10-layer left-to-right stack:\n"
-        "Silicon (L1) → Env/PyTorch (L2) → Data (L3) → Pretrain (L4) → SFT (L5) →\n"
-        "RLVR (L6) → Test-Time (L7) → MCP (L8) → Harness² (L9) → Swarms (L10) + RAG/MM.",
+        "What actually runs under an AI agent in 2026? Trace left to right:\n"
+        "1. Silicon → 2. Python → 3. Data → 4. Pre-Training → 5. SFT →\n"
+        "6. Post-Training → 7. Test-Time → 8. Memory & MCP → 9. Harness → 10. Multi-Agent.",
         fontsize=H2, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.16
     )
@@ -1610,7 +1624,7 @@ def render_desktop_agent_anatomy_megachart():
     # Right Block: H2 Blue 3-Step Key
     ax.text(
         0.766, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10\n"
+        "① TRACE LEFT → RIGHT: Follow 1. Silicon → 10. Multi-Agent\n"
         "② SEPARATE ORGANISM: Far-right = RAG & Multimodal\n"
         "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
         fontsize=H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
@@ -1632,12 +1646,12 @@ def render_desktop_agent_anatomy_megachart():
     )
 
     # -------------------------------------------------------------------------
-    # 2. Horizontal Geometry (Left Pillar Column + 10 Core Layers + 1 Detached Organism)
+    # 2. Horizontal Geometry (Left Pillar Column + 10 Core Stages + 1 Detached Organism)
     # -------------------------------------------------------------------------
     left_x0 = 0.004
     left_w = 0.072
     col_gap = 0.0024
-    org_sep_gap = 0.0096  # Extra visual gap separating Layer 10 from the Separate Organism
+    org_sep_gap = 0.0096  # Extra visual gap separating 10. Multi-Agent from the Separate Organism
     active_x0 = left_x0 + left_w + col_gap
     n_layers = len(STACK_LAYERS)  # 11 total (10 core + 1 external organism)
     layer_col_w = (0.996 - active_x0 - (n_layers - 2) * col_gap - org_sep_gap) / n_layers
@@ -1660,13 +1674,13 @@ def render_desktop_agent_anatomy_megachart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "AI AGENT\nSTACK",
+        "AI AGENT\nANATOMY",
         fontsize=H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
         linespacing=1.02
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.37,
-        "LAYER 1 → LAYER 10",
+        "1. Silicon → 10. Swarms",
         fontsize=H2, fontweight="bold", color="#FEF08A", va="center", ha="center"
     )
     ax.text(
@@ -1692,11 +1706,12 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.add_patch(org_halo)
 
-    # 10 Core Layer Column Headers + 1 Separate Organism Column Header
-    # BOTH `LAYER X` and `Layer Name` are strictly H1 (= H0 / φ)
+    # 10 Core Stage Column Headers + 1 Separate Organism Column Header
+    # Stage Title ("1. Silicon", "2. Python", ...) is strictly H1 (= H0 / φ)
     for l_idx, ly in enumerate(STACK_LAYERS):
         lx = get_col_x(l_idx)
         is_org = bool(ly.get("is_external_organism"))
+        st_num = ly["layer"]
 
         lbox_body = FancyBboxPatch(
             (lx, col_hdr_y), layer_col_w, col_hdr_h,
@@ -1709,7 +1724,7 @@ def render_desktop_agent_anatomy_megachart():
         ax.add_patch(lbox_body)
 
         inset_b = 0.0012
-        banner_h = col_hdr_h * 0.54
+        banner_h = col_hdr_h * 0.52
         lbox_top = FancyBboxPatch(
             (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
             layer_col_w - 2 * inset_b, banner_h,
@@ -1722,45 +1737,23 @@ def render_desktop_agent_anatomy_megachart():
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
         if is_org:
-            badge_label = "⇄ ORGANISM"
+            # Top strip of organism banner: SEPARATE ORGANISM · EXTERNAL badge
             ax.text(
-                lx + 0.0030, b_top_y - banner_h * 0.23,
-                badge_label,
-                fontsize=H1, fontweight="bold", color="#5EEAD4", va="center", ha="left"
-            )
-            ext_pill_w = 0.025
-            ext_pill_h = banner_h * 0.25
-            ext_pill = FancyBboxPatch(
-                (lx + layer_col_w - 0.0028 - ext_pill_w, b_top_y - banner_h * 0.23 - ext_pill_h / 2.0),
-                ext_pill_w, ext_pill_h,
-                boxstyle="round,pad=0.0,rounding_size=0.0018",
-                facecolor="#0F766E", edgecolor="#5EEAD4", linewidth=1.0
-            )
-            ax.add_patch(ext_pill)
-            ax.text(
-                lx + layer_col_w - 0.0028 - ext_pill_w / 2.0,
-                b_top_y - banner_h * 0.23,
-                "EXTERNAL",
-                fontsize=H3, fontweight="bold", color="#CCFBF1", va="center", ha="center"
+                lx + layer_col_w / 2, b_top_y - banner_h * 0.20,
+                "⇄ SEPARATE ORGANISM · EXTERNAL",
+                fontsize=H3, fontweight="bold", color="#5EEAD4", va="center", ha="center"
             )
         else:
-            badge_label = f"{ly['badge']} →" if l_idx < 9 else f"{ly['badge']} ★"
-            ax.text(
-                lx + 0.0032, b_top_y - banner_h * 0.23,
-                badge_label,
-                fontsize=H1, fontweight="bold", color="#FFFFFF", va="center", ha="left"
-            )
-
-            # 10-segment progress bar on top-right of banner for the 10 Core Layers
-            bar_total_w = 0.032
-            bar_gap = 0.0006
+            # Top strip of stage banner: 10-segment progress bar centered across top of banner
+            bar_total_w = layer_col_w - 0.0080
+            bar_gap = 0.0008
             seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.17
-            bar_x_start = lx + layer_col_w - 0.0030 - bar_total_w
-            bar_y = b_top_y - banner_h * 0.23 - seg_h / 2.0
+            seg_h = banner_h * 0.14
+            bar_x_start = lx + 0.0040
+            bar_y = b_top_y - banner_h * 0.20 - seg_h / 2.0
             for b_i in range(10):
                 bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-                is_lit = b_i < ly["layer"]
+                is_lit = b_i < st_num
                 seg_patch = FancyBboxPatch(
                     (bx_i, bar_y), seg_w, seg_h,
                     boxstyle="round,pad=0.0,rounding_size=0.0008",
@@ -1770,22 +1763,24 @@ def render_desktop_agent_anatomy_megachart():
                 )
                 ax.add_patch(seg_patch)
 
-        # Subtle divider between H1 Layer X row and H1 2-line Layer Name
-        ax.plot(
-            [lx + 0.0030, lx + layer_col_w - 0.0030],
-            [b_top_y - banner_h * 0.42, b_top_y - banner_h * 0.42],
-            color="#0D9488" if is_org else "#334155",
-            linewidth=0.8,
-            alpha=0.85
+        # Single-Line Stage Title in H1 (= H0 / φ): "1. Silicon", "2. Python", ...
+        ax.text(
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.56,
+            STAGE_H1_TITLES[st_num],
+            fontsize=H1,
+            fontweight="bold",
+            color="#FEF08A" if is_org else "#FFFFFF",
+            va="center", ha="center"
         )
 
-        # 2-Line Layer Name in H1 (= H0 / φ)
+        # Concise scope subtitle at bottom of banner in H3 (= H0 / φ³)
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.71,
-            LAYER_NAME_2LINE[ly["layer"]],
-            fontsize=H1,
-            fontweight="bold", color="#FEF08A", va="center", ha="center",
-            linespacing=1.00
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.86,
+            STAGE_SUBTITLES[st_num],
+            fontsize=H3,
+            fontweight="bold",
+            color="#5EEAD4" if is_org else "#FEF08A",
+            va="center", ha="center"
         )
 
         # Column Header Body below banner: Description & Bullets in H3 (= H0 / φ³)
@@ -1821,7 +1816,7 @@ def render_desktop_agent_anatomy_megachart():
         )
 
     # -------------------------------------------------------------------------
-    # 3. 4 Architectural Pillar Rows x (10 Core Layer Columns + 1 Organism Column)
+    # 3. 4 Architectural Pillar Rows x (10 Core Stage Columns + 1 Organism Column)
     # -------------------------------------------------------------------------
     top_y = 0.772
     active_row_h = 0.199
@@ -1848,7 +1843,7 @@ def render_desktop_agent_anatomy_megachart():
             "PILLAR 1",
             "CORE PRIMITIVES\n& ARCHITECTURE",
             "Hardware Physics,\nTraining Objectives,\nInference Search &\nAgent Topologies",
-            "• L1–L3: Silicon/Env/Tokens\n• L4–L7: Pretrain/SFT/RLVR/TTC\n• L8–L10: MCP/Harness/Swarms",
+            "• 1–3: Silicon / Python / Data\n• 4–7: Pretrain / SFT / RLVR / TTC\n• 8–10: MCP / Harness / Swarms",
         ),
         "frameworks_stack": (
             "PILLAR 2",
@@ -2181,19 +2176,19 @@ def render_desktop_agent_anatomy_megachart():
 def render_mobile_agent_anatomy_chart():
     """
     Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI — exact 19.5:9 Mobile Landscape)
-    flowing from LEFT to RIGHT (Layers 1 -> 10) + Detached Separate Organism (RAG & Multimodal),
+    flowing from LEFT to RIGHT (1. Silicon -> 10. Multi-Agent) + Detached Separate Organism (RAG & Multimodal),
     scaled proportionally by (26.0 / 46.8 = 5/9) with the same Unskipped Golden Ratio hierarchy:
       • M_H0 = H0 * (26.0 / 46.8) ≈ 14.54 pt : Title
-      • M_H1 = M_H0 / φ           ≈  8.99 pt : LAYER X badge & 2-line Layer Name
+      • M_H1 = M_H0 / φ           ≈  8.99 pt : Stage Title (1. Silicon, 2. Python, ...)
       • M_H2 = M_H1 / φ           ≈  5.56 pt : Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles
-      • M_H3 = M_H2 / φ           ≈  3.43 pt : Cell Tier-2 Normal Items, Header Bullets & Footnote
+      • M_H3 = M_H2 / φ           ≈  3.43 pt : Cell Tier-2 Normal Items, Subtitles & Footnote
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
     M_H2 = 10.0 * (26.0 / 46.8)          #  5.5556 pt (Cell Tier-1 Top-3 Pills, Masthead & Pillar Titles)
-    M_H1 = M_H2 * PHI                    #  8.9891 pt (LAYER X & Layer Name)
+    M_H1 = M_H2 * PHI                    #  8.9891 pt (1. Silicon, 2. Python, ... Stage Title)
     M_H0 = M_H1 * PHI                    # 14.5446 pt (Title T = H0)
-    M_H3 = M_H2 / PHI                    #  3.4335 pt (Cell Tier-2 Items & Header Bullets)
+    M_H3 = M_H2 / PHI                    #  3.4335 pt (Cell Tier-2 Items & Header Subtitles/Bullets)
 
     fig = plt.figure(figsize=(26.0, 12.0), dpi=300, facecolor="#0F172A")
     ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
@@ -2224,7 +2219,7 @@ def render_mobile_agent_anatomy_chart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com · 10-Layer Agent Stack + External RAG/Multimodal (arXiv:2606.24937)",
+        "www.arianprabowo.com · 1. Silicon → 10. Multi-Agent + External RAG/Multimodal (arXiv:2606.24937)",
         fontsize=M_H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
@@ -2235,9 +2230,9 @@ def render_mobile_agent_anatomy_chart():
 
     ax.text(
         0.423, hdr_y + hdr_h * 0.58,
-        "What actually runs under an AI agent in 2026? A 10-layer left-to-right stack:\n"
-        "Silicon (L1) → Env/PyTorch (L2) → Data (L3) → Pretrain (L4) → SFT (L5) →\n"
-        "RLVR (L6) → Test-Time (L7) → MCP (L8) → Harness² (L9) → Swarms (L10) + RAG/MM.",
+        "What actually runs under an AI agent in 2026? Trace left to right:\n"
+        "1. Silicon → 2. Python → 3. Data → 4. Pre-Training → 5. SFT →\n"
+        "6. Post-Training → 7. Test-Time → 8. Memory & MCP → 9. Harness → 10. Multi-Agent.",
         fontsize=M_H2, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.15
     )
@@ -2249,7 +2244,7 @@ def render_mobile_agent_anatomy_chart():
 
     ax.text(
         0.766, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10\n"
+        "① TRACE LEFT → RIGHT: Follow 1. Silicon → 10. Multi-Agent\n"
         "② SEPARATE ORGANISM: Far-right = RAG & Multimodal\n"
         "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
         fontsize=M_H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
@@ -2292,13 +2287,13 @@ def render_mobile_agent_anatomy_chart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "AI AGENT\nSTACK",
+        "AI AGENT\nANATOMY",
         fontsize=M_H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
         linespacing=1.02
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.37,
-        "LAYER 1 → 10",
+        "1. Silicon → 10. Swarms",
         fontsize=M_H2, fontweight="bold", color="#FEF08A", va="center", ha="center"
     )
     ax.text(
@@ -2326,6 +2321,7 @@ def render_mobile_agent_anatomy_chart():
     for l_idx, ly in enumerate(STACK_LAYERS):
         lx = get_col_x(l_idx)
         is_org = bool(ly.get("is_external_organism"))
+        st_num = ly["layer"]
 
         lbox_body = FancyBboxPatch(
             (lx, col_hdr_y), layer_col_w, col_hdr_h,
@@ -2352,42 +2348,20 @@ def render_mobile_agent_anatomy_chart():
         b_top_y = col_hdr_y + col_hdr_h - inset_b
         if is_org:
             ax.text(
-                lx + 0.0028, b_top_y - banner_h * 0.23,
-                "⇄ ORGANISM",
-                fontsize=M_H1, fontweight="bold", color="#5EEAD4", va="center", ha="left"
-            )
-            ext_pill_w = 0.024
-            ext_pill_h = banner_h * 0.25
-            ext_pill = FancyBboxPatch(
-                (lx + layer_col_w - 0.0028 - ext_pill_w, b_top_y - banner_h * 0.23 - ext_pill_h / 2.0),
-                ext_pill_w, ext_pill_h,
-                boxstyle="round,pad=0.0,rounding_size=0.0016",
-                facecolor="#0F766E", edgecolor="#5EEAD4", linewidth=0.8
-            )
-            ax.add_patch(ext_pill)
-            ax.text(
-                lx + layer_col_w - 0.0028 - ext_pill_w / 2.0,
-                b_top_y - banner_h * 0.23,
-                "EXTERNAL",
-                fontsize=M_H3, fontweight="bold", color="#CCFBF1", va="center", ha="center"
+                lx + layer_col_w / 2, b_top_y - banner_h * 0.20,
+                "⇄ SEPARATE ORGANISM · EXTERNAL",
+                fontsize=M_H3, fontweight="bold", color="#5EEAD4", va="center", ha="center"
             )
         else:
-            badge_label = f"{ly['badge']} →" if l_idx < 9 else f"{ly['badge']} ★"
-            ax.text(
-                lx + 0.0030, b_top_y - banner_h * 0.23,
-                badge_label,
-                fontsize=M_H1, fontweight="bold", color="#FFFFFF", va="center", ha="left"
-            )
-
-            bar_total_w = 0.032
+            bar_total_w = layer_col_w - 0.0080
             bar_gap = 0.0006
             seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.17
-            bar_x_start = lx + layer_col_w - 0.0028 - bar_total_w
-            bar_y = b_top_y - banner_h * 0.23 - seg_h / 2.0
+            seg_h = banner_h * 0.14
+            bar_x_start = lx + 0.0040
+            bar_y = b_top_y - banner_h * 0.20 - seg_h / 2.0
             for b_i in range(10):
                 bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-                is_lit = b_i < ly["layer"]
+                is_lit = b_i < st_num
                 seg_patch = FancyBboxPatch(
                     (bx_i, bar_y), seg_w, seg_h,
                     boxstyle="round,pad=0.0,rounding_size=0.0008",
@@ -2397,20 +2371,22 @@ def render_mobile_agent_anatomy_chart():
                 )
                 ax.add_patch(seg_patch)
 
-        ax.plot(
-            [lx + 0.0028, lx + layer_col_w - 0.0028],
-            [b_top_y - banner_h * 0.42, b_top_y - banner_h * 0.42],
-            color="#0D9488" if is_org else "#334155",
-            linewidth=0.65,
-            alpha=0.85
+        ax.text(
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.56,
+            STAGE_H1_TITLES[st_num],
+            fontsize=M_H1,
+            fontweight="bold",
+            color="#FEF08A" if is_org else "#FFFFFF",
+            va="center", ha="center"
         )
 
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.71,
-            LAYER_NAME_2LINE[ly["layer"]],
-            fontsize=M_H1,
-            fontweight="bold", color="#FEF08A", va="center", ha="center",
-            linespacing=1.00
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.86,
+            STAGE_SUBTITLES[st_num],
+            fontsize=M_H3,
+            fontweight="bold",
+            color="#5EEAD4" if is_org else "#FEF08A",
+            va="center", ha="center"
         )
 
         unit_short = textwrap.fill(f"{ly['core_unit']} · {ly['book_ref']}", width=42)
@@ -2565,26 +2541,27 @@ def render_mobile_agent_anatomy_chart():
 
 def write_agent_anatomy_markdown():
     lines = [
-        f"![Anatomy of AI Agents 2026 — 10-Layer Agent Stack + Detached RAG/Multimodal Megachart]({OUT_DEV_PNG.name})",
+        f"![Anatomy of AI Agents 2026 — 1. Silicon to 10. Multi-Agent + Detached RAG/Multimodal Megachart]({OUT_DEV_PNG.name})",
         "",
         f"![Anatomy of AI Agents 2026 — Mobile Landscape Mini Chart]({OUT_MOBILE_PNG.name})",
         "",
-        "# ANATOMY OF AI AGENTS 2026 (10-Layer Core Agent Spine + Detached RAG & Multimodal Organism)",
+        "# ANATOMY OF AI AGENTS 2026 (`1. Silicon` → `10. Multi-Agent` + Detached `RAG & Multimodal` Organism)",
         "",
-        "> **What actually runs under the hood of an autonomous AI agent in 2026? Modern AI agents form a 10-layer left-to-right stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Pure Data & Tokenization (`L3`), Architecture & Pre-Training (`L4`), Supervised Fine-Tuning / `SFT` (`L5`), Post-Training / `RLHF`, `DPO` & `RLVR` (`L6`), Test-Time Compute & Reasoning (`L7`), Context/Memory/`MCP` (`L8`), `Harness²` Loop/Graph Control (`L9`), and `A2A` Multi-Agent Swarms (`L10`) — while `RAG & Multimodal` operate on the far right as a detached, external organism that plugs into the agent spine.**  ",
-        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE LEFT → RIGHT:`** Follow `Layers 1 → 10` from physical silicon to multi-agent swarms · **`② SEPARATE ORGANISM:`** Inspect the detached `RAG & MULTIMODAL (EXTERNAL)` column on the far right · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** row at the bottom.",
+        "> **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 core stages — `1. Silicon`, `2. Python` (`brew`/`uv`/`conda`/`pip`/`PyTorch`/`JAX`), `3. Data`, `4. Pre-Training`, `5. SFT`, `6. Post-Training` (`RLHF`/`DPO`/`RLVR`), `7. Test-Time`, `8. Memory & MCP`, `9. Harness` (`Harness²`), and `10. Multi-Agent` (`A2A` Swarms) — while `RAG & Multimodal` operate on the far right as a detached, external organism that plugs into the agent spine.**  ",
+        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE LEFT → RIGHT:`** Follow `1. Silicon → 10. Multi-Agent` · **`② SEPARATE ORGANISM:`** Inspect the detached `RAG & Multimodal` column on the far right · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** row at the bottom.",
         "",
         "---",
         "",
-        "## 1. Complete 10-Layer Stack + Detached RAG/Multimodal Organism Overview (`L1` → `L10` + `EXT` × `4` Pillars)",
+        "## 1. Complete 10-Stage Anatomy + Detached RAG/Multimodal Organism Overview (`1. Silicon` → `10. Multi-Agent` + `RAG & Multimodal` × `4` Pillars)",
         "",
-        "| AI Agent Layer / Organism (Scope · Core Unit · Book Ref) | Core Primitives & Architecture | Frameworks, Packages & Protocols | Scaling, Verification & Security | Failure Modes & Traps |",
+        "| Stage / Organism (`H1` Title · Subtitle · Core Unit · Book Ref) | Core Primitives & Architecture | Frameworks, Packages & Protocols | Scaling, Verification & Security | Failure Modes & Traps |",
         "| :--- | :--- | :--- | :--- | :--- |",
     ]
 
     for ly in STACK_LAYERS:
+        st_num = ly["layer"]
         col0 = (
-            f"**{ly['badge']} ({ly['meter']}): {ly['name']}**<br>"
+            f"**{STAGE_H1_TITLES[st_num]}** — *{STAGE_SUBTITLES[st_num]}*<br>"
             f"{ly['desc']}<br>"
             f"• **{ly['core_unit']}**<br>"
             f"• **Roitman Guide:** {ly['book_ref']}"
@@ -2603,20 +2580,21 @@ def write_agent_anatomy_markdown():
         "",
         "---",
         "",
-        "## 2. Layer-by-Layer Architectural Breakdown (`Layer 1` → `Layer 10` + `Separate Organism: RAG & Multimodal`)",
+        "## 2. Stage-by-Stage Architectural Breakdown (`1. Silicon` → `10. Multi-Agent` + `Separate Organism: RAG & Multimodal`)",
         "",
     ])
 
     for ly in STACK_LAYERS:
+        st_num = ly["layer"]
         lines.extend([
-            f"### {ly['badge']} ({ly['meter']}) — {ly['name']}",
+            f"### {STAGE_H1_TITLES[st_num]} — {STAGE_SUBTITLES[st_num]}",
             "",
             f"{ly['desc']}",
             "",
             f"* **Core Unit of Compute / State:** `{ly['core_unit']}`",
             f"* **Primary Reference (`arXiv:2606.24937`):** {ly['book_ref']}",
             "",
-            "| Architectural Pillar | Top 3 Flagship Checkpoints (`H1`) | Core Stack & Mechanisms (`Normal`) | Granular Specs, Flags & Formulas (`Footnote`) |",
+            "| Architectural Pillar | Top 3 Flagship Checkpoints (`H2`) | Core Stack & Mechanisms (`H3`) | Granular Specs, Flags & Formulas (`H4`) |",
             "| :--- | :--- | :--- | :--- |",
         ])
         for col in COLUMNS:
