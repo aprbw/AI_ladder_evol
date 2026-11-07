@@ -1,1559 +1,1338 @@
+#!/usr/bin/env python3
 """
-ANATOMY OF AI AGENTS 2026 — 7-Layer AI Agent Stack Reference Model & Megachart
-=============================================================================
-Grounded in Haggai Roitman's "The Hitchhiker's Guide to Agentic AI: From Foundations to Systems"
-(arXiv:2606.24937, v1.4, June 2026) and the 2026 production AI systems stack.
+Generate the 2026 Agent Anatomy Megachart ("ANATOMY OF AI AGENTS 2026"):
+  1. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026.png        (46.8 x 21.6 in @ 300 DPI — ISO A0-Width 19.5:9 Landscape)
+  2. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026.pdf        (Vector PDF)
+  3. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026_mobile.png (26.0 x 12.0 in @ 300 DPI — Mobile 19.5:9 Landscape)
+  4. dev/anatomy_of_AI_agents_2026/2026 11 07 anatomy_of_AI_agents_2026.md
 
-7 Agent Stack Layers (Left-to-Right Progression: Layer 1 Physical -> Layer 7 Multi-Agent):
-  - LAYER 1 (Physical & Silicon): GPU/TPU/NPU Silicon, HBM3e/SRAM, NVLink/InfiniBand & Power (Ch. 2.1, 11, 30.5)
-  - LAYER 2 (OS, Env & Sandbox): Linux/macOS, Homebrew, uv/conda/pip/venv, Python/Rust/TS & MicroVMs (Ch. 21.5, 22)
-  - LAYER 3 (Tensor & Serving Engine): CUDA/Triton/MLX, PyTorch/JAX, FlashAttention, vLLM/SGLang & Quantization (Ch. 1.6, 2.2, 11)
-  - LAYER 4 (Foundation & Reasoning RL): Transformer/MoE/MLA, SFT/Packing, LoRA/DoRA/PiSSA, DPO/KTO & RLVR/GRPO/DAPO (Ch. 1, 3-10, 12-13)
-  - LAYER 5 (Context, RAG, Memory & MCP): Context Eng, Agentic RAG/REFRAG, Episodic/Dream Memory, MCP & SKILL.md (Ch. 16-18, 23-24)
-  - LAYER 6 (Single-Agent Harness, Loop & Graph): CLAUDE.md/AGENTS.md, ReAct/Reflexion, Loop Eng, LangGraph & Harness² (Ch. 18-21, 27)
-  - LAYER 7 (Multi-Agent Mesh, A2A & Agentic UI): Orchestrator-Worker-Critic (OWC), Google A2A / IBM ACP, Gateways & GenUI (Ch. 25-26, 28)
-
-4 Columns:
-  1. CORE PRIMITIVES & ARCHITECTURE (Math · Abstractions · Data Structures · Topologies)
-  2. FRAMEWORKS, TOOLING & PROTOCOLS (Packages · Runtimes · SDKs · Open Standards)
-  3. SCALING, OPS, EVALS & SECURITY (Optimization · Verification Oracles · Sandboxing · Benchmarks)
-  4. FAILURE MODES & ANTI-PATTERNS (Hardware Walls · Env Hell · Reward Hacking · Loop & Swarm Traps)
+Structure:
+  • Columns (Left -> Right, 10 Stages):
+      1. Silicon       — Physical Compute Silicon, GPU Clusters, HBM3e Memory & Interconnect Fabrics
+      2. Python        — Python Runtimes, Package Managers, Virtual Environments & Tensor Compilers
+      3. Data          — Web & Code Corpora, Subword Tokenization & Curation Pipelines
+      4. Pre-Training  — Foundation Model Architectures, Sparse MoE Routing & Self-Supervised Pre-Training
+      5. SFT           — Supervised Fine-Tuning, Instruction Templates, Sequence Packing & LoRA Adapters
+      6. Post-Training — Preference Alignment (RLHF/DPO) & Verifiable-Reward Reinforcement Learning (RLVR/GRPO)
+      7. Test-Time     — Test-Time Compute Scaling, System-2 Chain-of-Thought Reasoning & Tree Search
+      8. Context       — Context Engineering, Four-Tier Memory, Tool Calling, MCP & Skills
+      9. Harness       — Single-Agent Harness Engineering, Observe-Decide-Act Loops & Stateful Graph Workflows
+     10. Multi-Agent   — Multi-Agent Orchestration, Hierarchical Swarms, A2A Protocols & Shared State
+  • Rows (Top -> Bottom, 4 Organisms — NO generic Pillars/Anti-Pattern rows):
+      1. LLM           — Autoregressive Text, Code & Reasoning Language Models (Primary Spine)
+      --- Detached Organism Boundary ---
+      2. RAG           — Hybrid Vector, Lexical & Graph Retrieval-Augmented Generation
+      3. Multimodal    — Vision, Audio, Speech, Video & Native Omni-Modal Models
+      4. Embodied AI   — GUI Computer Use, Physics World Models & VLA Robotics
+  • Inside Every Cell (40 Cells):
+      - Tier 1 (H2): 3 Flagship Pills (Core Architecture, Flagship Stack, Scaling/Verification)
+      - Tier 2 (H3): 3x2 = 6 Core Mechanisms, Packages, Protocols & Benchmarks
+      - Tier 3 (H4): 1x3 = 3 Granular Specs, Flags & Formulas
+      - Inner Anti-Patterns Box (H3/H4): Red dashed "⚠ ANTI-PATTERNS & TRAPS" sub-card INSIDE the bottom of every cell (2x2 = 4 failure modes)
 """
 
 from datetime import datetime
 from pathlib import Path
 import textwrap
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 
-ANATOMY_DIR = Path(__file__).resolve().parent
-ANATOMY_DIR.mkdir(parents=True, exist_ok=True)
+SCRIPT_DIR = Path(__file__).resolve().parent
+OUT_DEV_PNG = SCRIPT_DIR / "anatomy_of_AI_agents_2026.png"
+OUT_DEV_PDF = SCRIPT_DIR / "anatomy_of_AI_agents_2026.pdf"
+OUT_MOBILE_PNG = SCRIPT_DIR / "anatomy_of_AI_agents_2026_mobile.png"
+OUT_MD = SCRIPT_DIR / "2026 11 07 anatomy_of_AI_agents_2026.md"
 
-OUT_DEV_PNG = ANATOMY_DIR / "anatomy_of_AI_agents_2026.png"
-OUT_DEV_PDF = ANATOMY_DIR / "anatomy_of_AI_agents_2026.pdf"
-OUT_MOBILE_PNG = ANATOMY_DIR / "anatomy_of_AI_agents_2026_mobile.png"
-OUT_MD = ANATOMY_DIR / "2026 11 07 anatomy_of_AI_agents_2026.md"
+LAST_UPDATED_STR = f"Updated: {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M:%S %Z (UTC%:z)')}"
 
-plt.rcParams["pdf.fonttype"] = 42
-plt.rcParams["ps.fonttype"] = 42
+PHI = (1.0 + 5.0 ** 0.5) / 2.0  # Golden Ratio φ ≈ 1.61803398875
 
-_now_local = datetime.now().astimezone()
-_utc_off = _now_local.strftime("%z")
-_utc_off_colon = f"{_utc_off[:3]}:{_utc_off[3:]}" if len(_utc_off) == 5 else _utc_off
-LAST_UPDATED_STR = f"Updated: {_now_local.strftime('%Y-%m-%d %H:%M:%S %Z')} (UTC{_utc_off_colon})"
-
-
-# =============================================================================
-# 4 ARCHITECTURAL PILLAR COLUMNS (3 ACTIVE + 1 FAILURE MODES SIDEBAR)
-# =============================================================================
-COLUMNS = [
+# -----------------------------------------------------------------------------
+# 1. Four Organism Rows (Short Name <= 2 words, Full Name <= 10 words)
+# -----------------------------------------------------------------------------
+ORGANISMS = [
     {
-        "key": "primitives_arch",
-        "title": "CORE PRIMITIVES & ARCHITECTURE",
-        "sub": "Hardware Physics · Math · Data Structures · Control Topologies",
+        "key": "llm",
+        "short_name": "LLM",
+        "full_name": "Autoregressive Text, Code & Reasoning Language Models",
+        "badge": "CORE SPINE",
+        "desc": "Token-by-Token Language,\nSymbolic Math, Code Gen &\nAutonomous Agent Loops",
+        "bullets": "• 1–3: GPU / PyTorch / BPE\n• 4–7: MoE / SFT / RLVR / CoT\n• 8–10: MCP / Harness² / A2A",
+        "hdr_bg": "#047857",
+        "cell_bg": "#ECFDF5",
+        "cell_edge": "#059669",
+        "h1_bg": "#D1FAE5",
+        "h1_txt": "#064E3B",
+        "pill_edge": "#10B981",
+        "t2_bg": "#F0FDF4",
+        "t2_txt": "#065F46",
+        "t3_bg": "#E2E8F0",
+        "t3_txt": "#1E293B",
+    },
+    {
+        "key": "rag",
+        "short_name": "RAG",
+        "full_name": "Hybrid Vector, Lexical & Graph Retrieval-Augmented Generation",
+        "badge": "ORGANISM · KNOWLEDGE",
+        "desc": "External Grounding, Dense +\nBM25 Search, GraphRAG &\nCitation Verification",
+        "bullets": "• 1–3: SIMD / FAISS / Docling\n• 4–7: BGE-M3 / Rerank / HyDE\n• 8–10: Qdrant / Agentic RAG",
         "hdr_bg": "#0F766E",
-        "cell_bg": "#FFFFFF",
-        "t2_bg": "#F8FAFC",
-        "t3_bg": "#F1F5F9",
+        "cell_bg": "#F0FDFA",
         "cell_edge": "#0D9488",
         "h1_bg": "#CCFBF1",
-        "pill_edge": "#0F766E",
-        "h1_txt": "#115E59",
-        "t2_txt": "#0F172A",
-        "t3_txt": "#475569",
-        "div_col": "#99F6E4",
+        "h1_txt": "#134E4A",
+        "pill_edge": "#14B8A6",
+        "t2_bg": "#F0FDFA",
+        "t2_txt": "#115E59",
+        "t3_bg": "#E2E8F0",
+        "t3_txt": "#1E293B",
     },
     {
-        "key": "frameworks_stack",
-        "title": "FRAMEWORKS, PACKAGES & PROTOCOLS",
-        "sub": "CLI Package Managers · DL Frameworks · Serving · Agent SDKs",
+        "key": "multimodal",
+        "short_name": "Multimodal",
+        "full_name": "Vision, Audio, Speech, Video & Native Omni-Modal Models",
+        "badge": "ORGANISM · SENSORY",
+        "desc": "ViT Patch Perception, Native\nSpeech Codecs, Spatio-Temporal\nVideo & Cross-Modal Omni",
+        "bullets": "• 1–3: NVDEC / FFmpeg / Pairs\n• 4–7: SigLIP / LLaVA / Visual CoT\n• 8–10: Token Merge / LiveKit",
         "hdr_bg": "#6D28D9",
-        "cell_bg": "#FFFFFF",
-        "t2_bg": "#F8FAFC",
-        "t3_bg": "#F1F5F9",
+        "cell_bg": "#F5F3FF",
         "cell_edge": "#7C3AED",
         "h1_bg": "#EDE9FE",
-        "pill_edge": "#6D28D9",
         "h1_txt": "#4C1D95",
-        "t2_txt": "#0F172A",
-        "t3_txt": "#475569",
-        "div_col": "#DDD6FE",
+        "pill_edge": "#8B5CF6",
+        "t2_bg": "#FAF5FF",
+        "t2_txt": "#5B21B6",
+        "t3_bg": "#E2E8F0",
+        "t3_txt": "#1E293B",
     },
     {
-        "key": "ops_evals_security",
-        "title": "SCALING, VERIFICATION & SECURITY",
-        "sub": "Parallelism · Sandboxes · Evals & Oracles · Guardrails",
+        "key": "embodied",
+        "short_name": "Embodied AI",
+        "full_name": "GUI Computer Use, Physics World Models & VLA Robotics",
+        "badge": "ORGANISM · ACTION",
+        "desc": "Browser/OS GUI Control,\n3D Physics Simulators, World\nModels & VLA Robot Policies",
+        "bullets": "• 1–3: Edge NPU / Isaac / Teleop\n• 4–7: VLA π0 / ACT / Sim2Real\n• 8–10: 3DGS / OSWorld / Fleets",
         "hdr_bg": "#1D4ED8",
-        "cell_bg": "#FFFFFF",
-        "t2_bg": "#F8FAFC",
-        "t3_bg": "#F1F5F9",
+        "cell_bg": "#EFF6FF",
         "cell_edge": "#2563EB",
         "h1_bg": "#DBEAFE",
-        "pill_edge": "#1D4ED8",
         "h1_txt": "#1E3A8A",
-        "t2_txt": "#0F172A",
-        "t3_txt": "#475569",
-        "div_col": "#BFDBFE",
-    },
-    {
-        "key": "failure_modes",
-        "title": "FAILURE MODES & TRAPS",
-        "sub": "What Breaks Here (Anti-Patterns)",
-        "hdr_bg": "#991B1B",
-        "cell_bg": "#FFF5F5",
-        "t2_bg": "#FEF2F2",
-        "t3_bg": "#FEE2E2",
-        "cell_edge": "#DC2626",
-        "h1_bg": "#FEE2E2",
-        "pill_edge": "#B91C1C",
-        "h1_txt": "#7F1D1D",
-        "t2_txt": "#991B1B",
-        "t3_txt": "#991B1B",
-        "div_col": "#FECACA",
+        "pill_edge": "#3B82F6",
+        "t2_bg": "#F8FAFC",
+        "t2_txt": "#1E40AF",
+        "t3_bg": "#E2E8F0",
+        "t3_txt": "#1E293B",
     },
 ]
 
+for _org in ORGANISMS:
+    _sw = len(_org["short_name"].split())
+    _fw = len(_org["full_name"].split())
+    assert _sw <= 2, f"Organism short_name > 2 words: {_org['short_name']}"
+    assert _fw <= 10, f"Organism full_name > 10 words: {_org['full_name']}"
 
-# =============================================================================
-# 10 CORE AGENT STACK LAYERS (L1 -> L10) + 1 DETACHED ORGANISM (RAG & MULTIMODAL)
-# =============================================================================
-STACK_LAYERS = [
+# -----------------------------------------------------------------------------
+# 2. Ten Stages (Short Name <= 2 words, Full Name <= 10 words) x 4 Organisms
+# -----------------------------------------------------------------------------
+STACK_STAGES = [
+    # =========================================================================
+    # 1. Silicon
+    # =========================================================================
     {
-        "layer": 1,
-        "badge": "LAYER 1",
-        "meter": "L1/10",
-        "name": "PHYSICAL & SILICON",
-        "core_unit": "Core Unit: FLOPs, HBM Bytes & CUDA Warps",
+        "stage": 1,
+        "short_name": "Silicon",
+        "full_name": "Physical Compute Silicon, GPU Clusters, HBM3e Memory & Interconnect Fabrics",
+        "accent": "#38BDF8",
         "desc": "GPUs/TPUs/NPUs, HBM3e vs. SRAM hierarchy, CUDA/Triton kernels, and NVLink/InfiniBand fabrics.",
-        "book_ref": "Ch. 1.6, 2.1, 11.10–14, 30.5 (GPUs & Kernels).",
-        "accent": "#10B981",
-        "is_external_organism": False,
+        "core_unit": "Core Unit: FLOPs, HBM Bytes & CUDA Warps",
+        "book_ref": "Ch. 1.6, 2.3, 11.10–14, 30.5 (GPUs & Kernels)",
         "cells": {
-            "primitives_arch": {
-                "h1": [
-                    "GPU / TPU / NPU Tensor Cores",
-                    "HBM3e vs. On-Chip SRAM Hierarchy",
-                    "FlashAttention IO-Aware SRAM Tiling",
-                ],
-                "normal": [
-                    "Streaming Multiprocessors (SMs)",
-                    "Warp Schedulers (32-Thread SIMT)",
-                    "Arithmetic Intensity (FLOP/Byte)",
-                    "Roofline Compute vs. Memory Bound",
-                    "FP16 / BF16 / FP8 / FP4 Formats",
-                    "Online Softmax Rescaling (Safe Max)",
-                    "Unified Memory Architecture (UMA)",
-                    "Wafer-Scale & SRAM-Only LPU Dies",
-                ],
-                "small": [
-                    "Register File (256KB/SM)",
-                    "L1 Cache / Shared Memory",
-                    "L2 Cache (50MB–128MB)",
-                    "HBM3e Bandwidth (3.3–8 TB/s)",
-                    "SRAM Bandwidth (~20–30 TB/s)",
-                    "Transformer Engine FP8/FP4",
-                    "Stochastic Rounding",
-                    "Tensor Memory Accelerator (TMA)",
-                    "Systolic Array Matrix Multiply",
-                    "Memory Coalescing",
-                    "Bank Conflict Avoidance",
-                    "TDP Power & Liquid Cooling",
-                ],
-            },
-            "frameworks_stack": {
+            "llm": {
                 "h1": [
                     "NVIDIA H100 / H200 / Blackwell B200",
-                    "Google TPU v5p / v6e Trillium / v7",
-                    "CUDA · OpenAI Triton · Apple Silicon M4",
+                    "HBM3e vs. On-Chip SRAM Hierarchy",
+                    "FlashAttention-3 IO-Aware SRAM Tiling",
                 ],
                 "normal": [
-                    "NVIDIA GB200 NVL72 Rack Scale",
-                    "AMD Instinct MI300X / MI325X",
-                    "AWS Trainium2 & Inferentia2",
-                    "Groq LPU & Cerebras WSE-3 ASIC",
-                    "NVLink 4/5 (900–1,800 GB/s/GPU)",
-                    "InfiniBand NDR/XDR (400–800Gb/s)",
-                    "cuBLAS / cuDNN / CUTLASS / FlashInfer",
-                    "AMD ROCm / HIP & Apple Metal",
-                ],
-                "small": [
-                    "DGX / HGX 8-GPU Node Topology",
-                    "GPUDirect RDMA / Storage",
-                    "Mellanox ConnectX-7 / 8 NICs",
-                    "80GB / 141GB / 192GB VRAM Tiers",
-                    "Mac Mini M4 64GB–512GB Cluster",
-                    "RTX 4090 / 5090 Local Workstation",
-                    "On-Device NPU (45–80+ TOPS)",
-                    "Co-Packaged Silicon Photonics",
-                    "Vera Rubin NVL144 (HBM4 Roadmap)",
-                    "Liger-Kernel Fused Triton Ops",
-                    "ECC Memory Error Correction",
-                    "NCCL / Gloo Collective Backend",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
+                    "Google TPU v5p / v6e Trillium / v7",
+                    "CUDA · OpenAI Triton · CUTLASS",
+                    "FP8 (E4M3/E5M2) & Microscaling FP4",
+                    "NVLink 5 (1.8 TB/s) & NVSwitch",
                     "Model FLOPs Utilization (MFU > 45%)",
                     "Prefill (Compute) vs. Decode (BW)",
-                    "Confidential Compute GPU TEEs",
-                ],
-                "normal": [
-                    "Prefill Phase (Matrix-Matrix Gemm)",
-                    "Decode Phase (Matrix-Vector Gemv)",
-                    "Multi-Instance GPU (MIG) Slices",
-                    "Rail-Optimized Fat-Tree Topology",
-                    "NVIDIA DCGM Hardware Health Check",
-                    "Silent Data Corruption (SDC) Scans",
-                    "Nsight Compute & Systems Profiling",
-                    "Hardware Root-of-Trust Attestation",
                 ],
                 "small": [
-                    "MFU = Achieved / Peak FLOPs",
-                    "Hardware FLOPs Utilization (HFU)",
-                    "Bytes/Param: 2B (BF16) vs 0.5B (FP4)",
-                    "4-Model RLHF VRAM Multiplier",
-                    "Optimizer State Memory (12B/param)",
-                    "Activation Memory Checkpointing",
-                    "NVLink All-Reduce Bandwidth",
-                    "Cross-Node All-to-All Bottleneck",
-                    "Thermal Throttling Mitigation",
-                    "H100/B200 Secure Enclave (CC-On)",
-                    "Power Usage Effectiveness (PUE)",
-                    "Straggler GPU Detection",
+                    "Streaming Multiprocessors (132 SMs)",
+                    "400G/800G RoCEv2 & InfiniBand NDR",
+                    "Confidential Compute GPU TEEs",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "HBM Memory Bandwidth Wall (Decode)",
                     "CUDA Out-of-Memory (OOM) Crashes",
-                    "Silent Tensor Core Bit-Flip Corrupt",
+                    "Silent Tensor Core SDC Bit-Flips",
+                    "Straggler GPU Halting 1,000 Nodes",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "NVIDIA cuVS / RAFT GPU Vector Search",
+                    "AVX-512 SIMD Distance Kernels",
+                    "NVMe Gen5 DirectStorage DiskANN I/O",
                 ],
                 "normal": [
-                    "Low Decode MFU (<5% Compute Util)",
-                    "PCIe Host-to-Device Bottleneck",
-                    "InfiniBand Link Flaps & Stalls",
-                    "Straggler GPU Halting 1,000 Nodes",
-                    "4-Model RLHF VRAM Explosion",
-                    "Thermal Throttling Under RL Rollouts",
-                    "Unaligned Tensor Shapes (No TC)",
-                    "Consumer GPU P2P Disabled Locks",
-                    "Power Spike Breaker Trips",
-                    "ECC Uncorrectable GPU Reset",
+                    "GPU-Accelerated CAGRA Graph Index",
+                    "Int8 / Binary Scalar & PQ Hardware",
+                    "High-IOPS NVMe SSD Page Cache",
+                    "RDMA Zero-Copy Index Sharding",
+                    "Sub-10ms p99 Vector Query SLA",
+                    "DRAM vs. SSD Tiered Memory Pool",
                 ],
-                "small": [],
+                "small": [
+                    "L2 / Cosine / Inner-Product SIMD",
+                    "GPUDirect Storage (GDS) DMA",
+                    "HNSW Graph Traversal Cache Misses",
+                ],
+                "anti": [
+                    "Random-Read SSD IOPS Thrashing",
+                    "HNSW Graph Exceeding Host DRAM",
+                    "PCIe Host-to-GPU Index Bottleneck",
+                    "NUMA Cross-Socket Latency Spikes",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "Hardware NVDEC / NVENC Video Codecs",
+                    "ViT Patch Tensor-Core SRAM Tiling",
+                    "Dedicated Audio DSP & Neural Engines",
+                ],
+                "normal": [
+                    "Apple Silicon M4 Unified Memory",
+                    "JPEG/HEVC Hardware Decode Pipelines",
+                    "2D/3D Conv & DiT Attention Kernels",
+                    "GPUDirect RDMA Camera/Video Ingest",
+                    "Sub-200ms Voice-to-Voice Hardware SLA",
+                    "4K Frame Buffer Bandwidth Budgeting",
+                ],
+                "small": [
+                    "NVMM Zero-Copy Frame Buffers",
+                    "BFloat16 ViT Patch Projection",
+                    "Hardware Acoustic Echo Cancellation",
+                ],
+                "anti": [
+                    "CPU-Bound Video Decode Starving GPU",
+                    "4K Uncompressed Frame PCIe Saturation",
+                    "Audio Codec Sample-Rate Clock Drift",
+                    "Thermal Throttling on Continuous Video",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "NVIDIA Jetson Thor / Orin Edge SoCs",
+                    "GPU PhysX / Warp Parallel Sim Kernels",
+                    "1 kHz Real-Time Deterministic Bus",
+                ],
+                "normal": [
+                    "LiDAR / Depth / IMU Sensor ISP Silicon",
+                    "On-Device INT4/FP8 NPU Inference",
+                    "EtherCAT / CAN-FD Actuator Bus",
+                    "Hardware Watchdog & E-Stop Relays",
+                    "10,000x Parallel Sim Env Throughput",
+                    "Sub-5ms Sensor-to-Actuator Loop Latency",
+                ],
+                "small": [
+                    "PREEMPT_RT Real-Time Linux Kernel",
+                    "MIPI CSI-2 Multi-Camera Deserializers",
+                    "Battery Watt-Hour Compute Envelopes",
+                ],
+                "anti": [
+                    "Edge Thermal Throttling Mid-Trajectory",
+                    "GC / OS Jitter Breaking 1 kHz Control",
+                    "USB/CSI Camera Frame Drop Desync",
+                    "Sim-to-Real Contact Physics Mismatch",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 2. Python
+    # =========================================================================
     {
-        "layer": 2,
-        "badge": "LAYER 2",
-        "meter": "L2/10",
-        "name": "ENV, PACKAGES, PYTHON & TENSOR",
+        "stage": 2,
+        "short_name": "Python",
+        "full_name": "Python Runtimes, Package Managers, Virtual Environments & Tensor Compilers",
+        "accent": "#60A5FA",
+        "desc": "Package managers (Homebrew, uv, conda, pip, venv), Python 3.12+, PyTorch, JAX, vLLM, and sandboxes.",
         "core_unit": "Core Unit: Wheels, Lockfiles, Tensors & Paged KV",
-        "desc": "Package managers (`Homebrew`, `uv`, `conda`, `pip`, `venv`), `Python`, `PyTorch`, `JAX`, `vLLM`, and sandboxes.",
-        "book_ref": "Ch. 1.14–15, 11.1–9, 21.5, 22.1–9 (Env & Runtime).",
-        "accent": "#0EA5E9",
-        "is_external_organism": False,
+        "book_ref": "Ch. 1.24–25, 11.1–9, 21.5, 22.1–9 (Env & Runtime)",
         "cells": {
-            "primitives_arch": {
-                "h1": [
-                    "Virtual Environments, Locks & Sandboxes",
-                    "Autograd Computation Graphs & JIT",
-                    "PagedAttention KV & Continuous Batch",
-                ],
-                "normal": [
-                    "POSIX PTYs, Processes & Asyncio Loop",
-                    "ABI / manylinux Wheels & uv.lock",
-                    "OS Namespaces, cgroups & Seccomp",
-                    "Dynamic Autograd DAG & torch.compile",
-                    "PagedAttention Virtual Memory KV",
-                    "RadixAttention Automatic Prefix Cache",
-                    "Disaggregated Prefill-Decode Serving",
-                    "Constrained Grammar / FSM Masking",
-                ],
-                "small": [
-                    "pyproject.toml (PEP 517 / 621)",
-                    "Content-Addressable Global Cache",
-                    "Hardlink / Reflink Env Cloning",
-                    "LD_LIBRARY_PATH / DYLD RPATH",
-                    "torch.compile (TorchInductor/Dynamo)",
-                    "JAX jit / vmap / pmap / shard_map",
-                    "XLA HLO Graph Fusion & CUDA Graphs",
-                    "Chunked Prefill Scheduling",
-                    "KV-Cache FP8 / INT4 Quantization",
-                    "Container UnionFS / OverlayFS Layers",
-                    "Hardware Virtualization (KVM / HVF)",
-                    "IPC Shared Memory (/dev/shm)",
-                ],
-            },
-            "frameworks_stack": {
+            "llm": {
                 "h1": [
                     "Homebrew (brew) · uv · conda · pip · venv",
                     "Python 3.12+ · PyTorch 2.x · JAX · MLX",
                     "vLLM · SGLang · llama.cpp · Docker · E2B",
                 ],
                 "normal": [
-                    "Homebrew (brew) & System Toolchains",
-                    "uv (uv venv / uv run / uvx / uv pip)",
-                    "conda / Miniforge / mamba / Pixi / Poetry",
-                    "pip · venv · virtualenv · pipx",
-                    "PyTorch 2.x · JAX / Flax · Apple MLX",
-                    "vLLM · SGLang · TensorRT-LLM · Ollama",
-                    "Docker / OCI & NVIDIA Container Toolkit",
-                    "Rust (PyO3/Maturin) & TypeScript/Bun",
-                ],
-                "small": [
-                    "brew install uv git ripgrep fd tmux",
-                    "uv lock & uv sync --frozen",
-                    "environment.yml & conda-lock",
-                    "pip install --no-build-isolation",
-                    "DeepSpeed ZeRO & PyTorch FSDP2",
-                    "llama.cpp (GGUF) & ExLlamaV2/v3",
-                    "Outlines & XGrammar (JSON/CFG)",
-                    "Ray Serve & NVIDIA Triton Server",
-                    "ONNX Runtime & Safetensors Zero-Copy",
-                    "Nix / Devcontainers / Direnv",
-                    "Slurm / Kubernetes (K8s) / Ray",
-                    "Pydantic v2 (Rust Schema Core)",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
+                    "torch.compile (TorchInductor) & XLA",
+                    "PagedAttention KV & Continuous Batch",
+                    "pyproject.toml & uv.lock Reproducibility",
                     "E2B / Firecracker MicroVM Sandboxes",
                     "OS Sandboxing (Bubblewrap / Seatbelt)",
-                    "TTFT / TPOT SLAs & Async RL Sync",
-                ],
-                "normal": [
-                    "gVisor User-Space Kernel Isolation",
-                    "macOS sandbox-exec & Linux bwrap",
-                    "OpenEnv Standardized Gym Reset/Step",
-                    "Air-Gapped VLAN & Egress Firewall",
-                    "Scoped Ephemeral OAuth / API Tokens",
-                    "NCCL Weight Broadcast (Trainer->vLLM)",
-                    "Per-Tenant LoRA Adapter Hot-Swapping",
-                    "Grammar-Constrained 100% Valid JSON",
+                    "TTFT / TPOT SLAs & Asyncio Event Loop",
                 ],
                 "small": [
-                    "env.reset() / env.step(action) API",
-                    "SWE-bench Docker Repo Images",
-                    "OSWorld / WebArena Live Desktop VMs",
-                    "TTFT < 200ms · TPOT < 15ms/tok",
-                    "Goodput (SLO-Compliant Tok/s)",
-                    "In-Flight Weight Update (Zero Stall)",
-                    "S-LoRA / Punica Multi-Adapter Batch",
-                    "Pyodide / Wasm Code Execution",
-                    "Secret Scrubbing in Env Vars",
-                    "SBOM & pip-audit Vulnerability Scan",
-                    "Signed Container Attestation (Cosign)",
-                    "Deterministic Seed Mode (cuDNN)",
+                    "manylinux Wheels & CUDA ABI Tags",
+                    "Speculative Decoding Draft-Verify",
+                    "Outlines / XGrammar FSM Masking",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Python Dependency & CUDA ABI Hell",
                     "Unsandboxed Host RCE & rm -rf /",
                     "KV-Cache Fragmentation & Preemption",
+                    "pip install Breaking flash-attn ABI",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "FAISS · HNSWlib · LanceDB · PyArrow",
+                    "psycopg3 (pgvector) · qdrant-client",
+                    "Apache Arrow Zero-Copy Memory Tables",
                 ],
                 "normal": [
-                    "nvcc vs. torch.version.cuda Mismatch",
-                    "Global System Python Pollution",
-                    "pip install Breaking flash-attn ABI",
-                    "Typosquatted PyPI / npm / Skill Packs",
-                    "Agent Leaking .env & SSH Keys",
-                    "60–80% Contiguous KV Memory Waste",
-                    "RL Rollout Generation Bottleneck",
-                    "torch.compile Graph-Break Thrashing",
-                    "NCCL Collective Deadlock / Timeout",
-                    "/dev/shm Exhaustion in PyTorch DDP",
+                    "rank-bm25 · tantivy · Pyserini Lexical",
+                    "Parquet Columnar Storage & DuckDB",
+                    "Async gRPC / HTTP/2 Connection Pools",
+                    "ONNX Runtime / TensorRT Embed Serving",
+                    "Memory-Mapped (mmap) Vector Segments",
+                    "Connection Pool & Batch Upsert SLAs",
                 ],
-                "small": [],
+                "small": [
+                    "pyarrow.Table Zero-Copy Slicing",
+                    "SQLAlchemy / AsyncPG Vector Types",
+                    "Protobuf / FlatBuffers Serialization",
+                ],
+                "anti": [
+                    "GIL Lockup During CPU Token/Chunking",
+                    "Pickle Deserialization RCE in Indexes",
+                    "Unbounded Connection Pool Exhaustion",
+                    "Pandas Copy-on-Write RAM Explosion",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "torchvision · torchaudio · OpenCV",
+                    "FFmpeg · PyAV · Pillow-SIMD · Decord",
+                    "WebRTC · LiveKit · whisper.cpp · Kokoro",
+                ],
+                "normal": [
+                    "NVIDIA DALI GPU Data Loading Pipeline",
+                    "librosa · soundfile · Soxr Resampling",
+                    "vLLM Multimodal & SGLang Vision Engine",
+                    "WebSockets / RTP Real-Time Audio Streams",
+                    "VAD (Silero) Turn-Detection Runtime",
+                    "Frame-Sync Jitter Buffer Management",
+                ],
+                "small": [
+                    "BGR-to-RGB Tensor Channel Ordering",
+                    "Opus / PCM16 Streaming Audio Frames",
+                    "EXIF Orientation Tag Normalization",
+                ],
+                "anti": [
+                    "OpenCV BGR vs. RGB Silent Channel Bug",
+                    "FFmpeg Zombie Subprocess Memory Leaks",
+                    "Audio Buffer Underrun Pops & Glitches",
+                    "Pillow Decompression Bomb DoS",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "ROS 2 (rclpy) · Gymnasium · MuJoCo",
+                    "NVIDIA Isaac Lab · ManiSkill · Genesis",
+                    "Playwright · CDP · PyAutoGUI · LeRobot",
+                ],
+                "normal": [
+                    "ZeroMQ / CycloneDDS Pub-Sub Middleware",
+                    "Headless Chromium / Xvfb Virtual Displays",
+                    "Open3D · Trimesh · PyBullet Kinematics",
+                    "Dockerized Browser & OS Sandboxes",
+                    "Vectorized AsyncGym Env Stepping",
+                    "Deterministic Seed & Replay Recording",
+                ],
+                "small": [
+                    "URDF / MJCF Robot Description XML",
+                    "Accessibility Tree (AXTree) Snapshots",
+                    "6-DoF End-Effector Quaternion Math",
+                ],
+                "anti": [
+                    "ROS 2 DDS Discovery Multicast Storms",
+                    "Zombie Headless Browser RAM Leaks",
+                    "Euler Angle Gimbal Lock in Control",
+                    "Non-Deterministic Physics Step Drift",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 3. Data
+    # =========================================================================
     {
-        "layer": 3,
-        "badge": "LAYER 3",
-        "meter": "L3/10",
-        "name": "DATA & TOKENIZATION",
-        "core_unit": "Core Unit: Corpora, Subword Tokens & Shards",
+        "stage": 3,
+        "short_name": "Data",
+        "full_name": "Web & Code Corpora, Subword Tokenization & Curation Pipelines",
+        "accent": "#818CF8",
         "desc": "Pre-training/post-training corpora, BPE/Tiktoken tokenizers, deduplication, filtering, and synthetic data.",
-        "book_ref": "Ch. 1.2, 3.2–3.5, 4.3, 6.2, 30.2 (Data & Tokenizers).",
-        "accent": "#3B82F6",
-        "is_external_organism": False,
+        "core_unit": "Core Unit: Corpora, Subword Tokens & Shards",
+        "book_ref": "Ch. 1.2, 3.1, 3.3–3.5, 4.1, 30.2 (Data & Tokenizers)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
-                    "Web, Code & Math Corpus Curation",
-                    "Byte-Level BPE & Unigram Tokenizers",
-                    "MinHash Dedup & Quality Filtering",
-                ],
-                "normal": [
-                    "Byte-Level BPE / SentencePiece / Tiktoken",
-                    "Pre-Tokenization Regex Split Rules",
-                    "Vocabulary Size Scaling (32K–256K)",
-                    "MinHash LSH & Suffix-Array Dedup",
-                    "Heuristic & FastText Quality Classifiers",
-                    "Domain & Curriculum Mixture Weights",
-                    "Synthetic Reasoning & Trajectory Gen",
-                    "Execution-Verified Code & Math Traces",
-                ],
-                "small": [
-                    "Tokenizer Fertility (Tokens/Word)",
-                    "Byte-Fallback for Unknown UTF-8",
-                    "ChatML Special Control Tokens",
-                    "Fill-in-the-Middle (FIM) Code Formatting",
-                    "AST-Parsed Repository Level Ordering",
-                    "KenLM Perplexity Outlier Filtering",
-                    "Exact Substring 50-Token Dedup",
-                    "Back-Translation & Persona Diversity",
-                    "Evol-Instruct Complexity Mutation",
-                    "Compile/Test Sandbox Filtering",
-                    "Annealing Data Mix (High-Quality End)",
-                    "Zero-Copy Memory-Mapped Shards",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
-                    "HF Datasets · Datatrove · NeMo Curator",
-                    "Tiktoken · SentencePiece · HF Tokenizers",
                     "FineWeb-Edu · Dolma · The Stack v2",
+                    "Byte-Level BPE · Tiktoken · SentencePiece",
+                    "MinHash LSH Dedup & Quality Classifiers",
                 ],
                 "normal": [
-                    "HuggingFace Datasets & Hub Streaming",
-                    "Datatrove & NeMo Curator Pipelines",
-                    "Tiktoken & HuggingFace Rust Tokenizers",
-                    "FineWeb-Edu · Dolma · RedPajama-v2",
-                    "The Stack v2 & StarCoderData (Code)",
-                    "OpenMathReasoning & NuminaMath",
-                    "Apache Arrow · Parquet · WebDataset",
-                    "Distilabel & Curator Synthetic Suites",
-                ],
-                "small": [
-                    "Polars · DuckDB · PyArrow In-Memory ETL",
-                    "Ray Data Distributed Streaming Ingest",
-                    "MosaicML StreamingDataset (MDS)",
-                    "Megatron-LM IndexedDataset (.bin/.idx)",
-                    "SWE-Gym & SWE-smith Issue Trajectories",
-                    "OpenThoughts & Bespoke-Stratos Sets",
-                    "CommonCrawl WARC / WET Extraction",
-                    "Trafilatura & Resiliparse HTML Clean",
-                    "Tree-sitter AST Code Filtering",
-                    "DVC & LakeFS Data Version Control",
-                    "Cleanlab Automated Label Auditing",
-                    "Argilla Human-in-the-Loop Curation",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Benchmark Decontamination (N-Gram)",
+                    "HF Datasets · Datatrove · NeMo Curator",
+                    "Execution-Verified Code & Math Traces",
+                    "Benchmark Decontamination (13-Gram)",
                     "PII, Secret & License Scrubbing",
-                    "Synthetic Data Diversity & Entropy",
-                ],
-                "normal": [
-                    "13-Gram & Embedding Decontamination",
-                    "Canary String Injection & Filtering",
-                    "Regex + Presidio PII Scrubbing",
-                    "TruffleHog / Gitleaks Key Removal",
-                    "SPDX Open-Source License Verification",
-                    "LLM-as-a-Judge Data Quality Scoring",
-                    "Vendi Score & N-Gram Diversity Audits",
-                    "Tokenizer Compression Ratio Audits",
+                    "Vocabulary Size (128k–256k) & Fertility",
+                    "Domain Curriculum & Annealing Mixes",
                 ],
                 "small": [
-                    "MMLU / GSM8K / HumanEval Overlap Scan",
-                    "SWE-bench Repo Commit-Date Cutoff",
-                    "Opt-Out & robots.txt Compliance",
-                    "Copyright & Verbatim Memorization Check",
-                    "Multilingual Token Fairness Audit",
-                    "Toxic & CSAM Safety Classifier Filter",
-                    "Poisoned Backdoor Trigger Scanning",
-                    "Synthetic Mode-Collapse Entropy Check",
-                    "Data Provenance & Lineage Ledgers",
-                    "Differential Privacy (DP) Scrubbing",
-                    "Dataset Card & Croissant Metadata",
-                    "Deterministic Shard Shuffle Seeding",
+                    "cl100k / o200k Pre-Tokenization Regex",
+                    "Canary String Injection & Filtering",
+                    "Vendi Score & N-Gram Diversity",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Garbage-In Synthetic Model Collapse",
                     "Test-Set Contamination Mirage",
-                    "Tokenizer Glitch & Fertility Bloat",
+                    "Tokenizer Glitch Tokens & Fertility Bloat",
+                    "PII & API Keys Baked into Weights",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Docling · Marker · Unstructured PDF ETL",
+                    "Semantic, Contextual & AST Code Chunking",
+                    "Metadata Schema, ACLs & Temporal Tags",
                 ],
                 "normal": [
-                    "Recursive Synthetic Training Collapse",
-                    "Benchmark Leakage Inflating SOTA",
-                    "PII & API Keys Baked Into Weights",
-                    "Unbalanced Domain Mix Starving Code",
-                    "Tokenizer Glitch Tokens (SolidGoldMagikarp)",
-                    "3–5x Token Bloat on Non-English/Code",
-                    "Duplicate Boilerplate Overfitting",
-                    "Broken UTF-8 / HTML Artifacts in Text",
-                    "Future-Timestamp Leakage in Backtests",
-                    "Unverified Synthetic Hallucinations",
+                    "Anthropic Contextual Chunk Headers",
+                    "Table-to-Markdown & Layout Extraction",
+                    "Hard-Negative Triplet Mining (Q, d+, d-)",
+                    "Incremental CDC Document Sync",
+                    "Near-Duplicate Chunk Deduplication",
+                    "Golden QA Evaluation Set Curation",
                 ],
-                "small": [],
+                "small": [
+                    "256–512 Token Overlap Sliding Windows",
+                    "Tree-sitter AST Function Boundary Split",
+                    "SHA-256 Content-Addressable Chunk IDs",
+                ],
+                "anti": [
+                    "Mid-Sentence / Mid-Table Naive Chunking",
+                    "Multi-Column PDF Reading-Order Scramble",
+                    "Stale Deleted Docs Remaining in Index",
+                    "Missing Document-Level RBAC Metadata",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "DataComp · LAION · OBELICS Interleaved",
+                    "OCR Document, Chart & UI Grounding Sets",
+                    "Whisper ASR & Diarized Speech Corpora",
+                ],
+                "normal": [
+                    "CLIPScore & Aesthetic Quality Filtering",
+                    "Synthetic VLM Recaptioning (ShareGPT4V)",
+                    "Scene-Cut Video Clip Segmentation",
+                    "Discrete Audio Codec Tokens (EnCodec/Mimi)",
+                    "Face Blurring & C2PA Provenance Scrub",
+                    "Bounding-Box & Set-of-Mark Annotations",
+                ],
+                "small": [
+                    "Dynamic Aspect-Ratio AnyRes Tiling",
+                    "Forced Phoneme-Timestamp Alignment",
+                    "NSFW & Watermark Classifier Gates",
+                ],
+                "anti": [
+                    "Alt-Text Noise & Mismatched Captions",
+                    "OCR Hallucination on Low-DPI Scans",
+                    "Biased Demographic & Cultural Corpora",
+                    "Audio Background Noise & Crosstalk Leak",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "Open X-Embodiment · DROID Robot Datasets",
+                    "Mind2Web · OSWorld · Rico GUI Traces",
+                    "Ego4D · Something-Something Video Logs",
+                ],
+                "normal": [
+                    "ALOHA / VR Teleoperation Demonstrations",
+                    "DOM + Screenshot + Action Triplets",
+                    "3D Point-Cloud & Depth-Map Alignment",
+                    "Proprioceptive Joint-State Normalization",
+                    "Success/Failure Trajectory Labeling",
+                    "Domain-Randomized Sim Data Generation",
+                ],
+                "small": [
+                    "RLDS / LeRobot Parquet Episode Format",
+                    "Coordinate Normalization [0, 1000]",
+                    "Camera Extrinsics & Intrinsics Calibration",
+                ],
+                "anti": [
+                    "Teleoperator Hesitation & Suboptimal Demos",
+                    "Coordinate Resolution Scaling Mismatch",
+                    "Action-Space Embodiment Incompatibility",
+                    "Unlogged Environment State Confounders",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 4. Pre-Training
+    # =========================================================================
     {
-        "layer": 4,
-        "badge": "LAYER 4",
-        "meter": "L4/10",
-        "name": "ARCHITECTURE & PRE-TRAINING",
+        "stage": 4,
+        "short_name": "Pre-Training",
+        "full_name": "Foundation Model Architectures, Sparse MoE Routing & Self-Supervised Pre-Training",
+        "accent": "#A78BFA",
+        "desc": "Transformer/MoE/hybrid architectures, attention (GQA, MLA), RoPE, next-token pre-training, and scaling laws.",
         "core_unit": "Core Unit: Transformer Blocks, MoE & Base Weights",
-        "desc": "Transformer/MoE/hybrid architectures (`GQA`, `MLA`, `Mamba/DeltaNet`), next-token pre-training, and scaling laws.",
-        "book_ref": "Ch. 1, 2.2, 11.1–8, 30.1 (Architecture & Pre-Training).",
-        "accent": "#6366F1",
-        "is_external_organism": False,
+        "book_ref": "Ch. 1.1, 2.2, 3.1, 11.1–9, 30.1 (Architecture & Pre-Training)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
                     "Transformer · Sparse MoE · GQA / MLA",
-                    "Hybrid Linear Attention (Mamba/DeltaNet)",
-                    "Next-Token Cross-Entropy & Scaling Laws",
-                ],
-                "normal": [
-                    "Pre-Norm RMSNorm & SwiGLU FFN",
-                    "Grouped-Query (GQA) & Latent (MLA)",
-                    "Sparse MoE Top-K & Shared Experts",
-                    "Gated DeltaNet / Mamba-2 SSM Hybrid",
-                    "RoPE & YaRN Context Extension (1M+)",
-                    "Autoregressive Next-Token Objective",
-                    "Chinchilla Compute-Optimal Scaling",
-                    "3D Parallelism (DP / TP / PP / SP / EP)",
-                ],
-                "small": [
-                    "Multi-Head Latent Attention (KV Compress)",
-                    "Aux-Loss-Free MoE Load Balancing",
-                    "Multi-Token Prediction (MTP) Heads",
-                    "Sliding Window & Ring Attention",
-                    "AdamW vs. Muon Matrix Orthogonal",
-                    "WSD (Warmup-Stable-Decay) LR Schedule",
-                    "ZeRO Stage 1/2/3 & FSDP2 Sharding",
-                    "1F1B & Interleaved Pipeline Schedule",
-                    "FP8 Mixed-Precision Pre-Training",
-                    "muP (Maximal Update Parametrization)",
-                    "QK-Norm Attention Logit Stabilization",
-                    "BitNet b1.58 Native Ternary Architecture",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
                     "Megatron-LM · DeepSpeed · TorchTitan",
+                    "Chinchilla & Inference-Aware Scaling Laws",
+                ],
+                "normal": [
                     "Llama 4 · Qwen 3 · DeepSeek-V3 Base",
-                    "HuggingFace Transformers · OLMo 2",
-                ],
-                "normal": [
-                    "NVIDIA Megatron-Core & NeMo Framework",
-                    "PyTorch TorchTitan & FSDP2 Native",
-                    "DeepSpeed ZeRO-3 & Megatron-DeepSpeed",
-                    "MosaicML Composer & LLM-Foundry",
-                    "Nanotron & LitGPT Pre-Training Suites",
-                    "DeepSeek-V3 (671B/37B MLA+MoE Base)",
-                    "Qwen3 & Llama-4 Pre-Trained Base Models",
-                    "OLMo-2 / Marin Fully-Open Base Checkpoints",
-                ],
-                "small": [
-                    "GPT-5.4 / Claude 4.6 / Gemini 3 Base",
-                    "Mistral Large 3 & Codestral Base",
-                    "Qwen3-Next Hybrid Gated-DeltaNet",
-                    "Nemotron-H Hybrid Mamba-Transformer",
-                    "FlashAttention-3 Hopper FP8 Kernels",
-                    "DeepEP High-Throughput MoE All-to-All",
-                    "TransformerEngine FP8 Linear Layers",
-                    "HuggingFace Accelerate & Safetensors",
-                    "WandB · TensorBoard · MLflow Tracking",
-                    "AWS ParallelCluster & Slurm Orchestrator",
-                    "Checkpointer Async S3 / Lustre Write",
-                    "EleutherAI GPT-NeoX Legacy Reference",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Loss-Spike Recovery & Gradient Clipping",
+                    "Hybrid Linear Attention (Mamba/DeltaNet)",
+                    "Pre-Norm RMSNorm, SwiGLU & RoPE/YaRN",
+                    "3D Parallelism (DP/FSDP + TP + PP + EP)",
+                    "Loss-Spike Recovery & Z-Loss Stability",
                     "Base Perplexity (Bits-per-Byte) & NIAH",
-                    "Distributed Checkpoint & Elastic Faults",
-                ],
-                "normal": [
-                    "Global Gradient Norm Clipping (1.0)",
-                    "Z-Loss Router Logit Regularization",
-                    "Automated Loss-Spike Batch Skip/Rewind",
-                    "Validation Bits-per-Byte (BPB) Tracking",
-                    "Needle-in-a-Haystack (NIAH) & RULER",
-                    "Few-Shot Base Evals (MMLU / HumanEval)",
-                    "Async Distributed Checkpointing (<5s)",
-                    "muP Proxy-Model Hyperparameter Transfer",
                 ],
                 "small": [
-                    "Activation Outlier & Kurtosis Monitoring",
-                    "MoE Expert Utilization Entropy Audit",
-                    "Dead-Neuron & Attention-Sink Diagnostics",
-                    "FP8 Underflow / Overflow Scaling Audit",
-                    "In-Flight Straggler & NaN Detector",
-                    "Cross-Datacenter DiLoCo Low-Comm Sync",
-                    "Continued Pre-Training (CPT) Replay Mix",
-                    "Base Model Memorization Extraction Audit",
-                    "CBRN / Dual-Use Pre-Training Data Filter",
-                    "Checkpoint Integrity SHA-256 Signing",
-                    "Scaling Law Extrapolation (Loss vs FLOPs)",
-                    "Long-Context Perplexity Decay Curve",
+                    "Aux-Loss-Free MoE Load Balancing",
+                    "muP Maximal Update Parametrization",
+                    "Async Distributed Checkpoint Shards",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Catastrophic Loss Spikes & NaN Divergence",
                     "MoE Routing Collapse (Expert Starvation)",
                     "Pipeline Bubble & All-to-All Bottlenecks",
+                    "RoPE Extrapolation Collapse Past Train Len",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Bi-Encoder Contrastive InfoNCE Training",
+                    "BGE-M3 · NV-Embed-v2 · Cohere Embed v4",
+                    "ColBERTv2 Late-Interaction MaxSim",
                 ],
                 "normal": [
-                    "BF16/FP8 Attention Logit Overflow",
-                    "Top-K Router Dumping All Tokens to 1 Expert",
-                    "30–50% GPU Idle Time in Naive Pipeline",
-                    "Cross-Node EP All-to-All Network Saturation",
-                    "Attention Sinks Hoarding Mass on BOS",
-                    "RoPE Out-of-Distribution Length Collapse",
-                    "Catastrophic Forgetting in Domain CPT",
-                    "Corrupted Checkpoint From Silent SDC",
-                    "Suboptimal Chinchilla Over/Under-Training",
-                    "AdamW Weight-Decay Imbalance on Embeddings",
+                    "Matryoshka Representation Learning (MRL)",
+                    "SPLADE Learned Sparse Lexical Expansion",
+                    "In-Batch & Cross-GPU Negative Scaling",
+                    "Bidirectional Attention Encoder Backbones",
+                    "Multilingual Cross-Lingual Alignment",
+                    "MTEB Retrieval & NDCG@10 Benchmarks",
                 ],
-                "small": [],
+                "small": [
+                    "Temperature-Scaled Cosine Similarity",
+                    "Dimension Truncation (1024 -> 256d)",
+                    "Asymmetric Query/Passage Prefixes",
+                ],
+                "anti": [
+                    "Embedding Space Anisotropy Collapse",
+                    "False-Negative Collisions in Large Batches",
+                    "Out-of-Domain Lexical Acronym Blindness",
+                    "Fixed 512-Token Encoder Context Truncation",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "SigLIP-2 · OpenCLIP · DINOv2 Vision",
+                    "Native Early-Fusion Omni (GPT-4o / Gemini)",
+                    "Flow-Matching & DiT Diffusion Backbones",
+                ],
+                "normal": [
+                    "Qwen2.5-VL · Pixtral · InternVL3",
+                    "MLP / Perceiver / Q-Former Projectors",
+                    "3D Spatio-Temporal Video RoPE",
+                    "RVQ Neural Audio Codecs (Mimi / SoundStream)",
+                    "Contrastive + Captioning Joint Pre-Train",
+                    "Zero-Shot ImageNet / VQA / ASR Evals",
+                ],
+                "small": [
+                    "14x14 / 16x16 ViT Patch Embeddings",
+                    "Sigmoid Pairwise Contrastive Loss",
+                    "Classifier-Free Guidance (CFG) Dropout",
+                ],
+                "anti": [
+                    "Modality Competition Degrading Text IQ",
+                    "Bag-of-Patches Spatial Blindness",
+                    "Quadratic ViT Token Explosion on 4K",
+                    "Small-Text & Fine-Line Patch Blur",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "Vision-Language-Action (π0 · OpenVLA · RT-2)",
+                    "World Models (V-JEPA 2 · Cosmos · Genie 2)",
+                    "Diffusion Policy & Flow-Matching Actions",
+                ],
+                "normal": [
+                    "Octo · CrossFormer Multi-Embodiment Base",
+                    "Latent Dynamics & Next-Frame Prediction",
+                    "3D Point-Cloud & Voxel Encoders",
+                    "Discrete Action Bins vs. Continuous Heads",
+                    "Cross-Robot Morphology Tokenization",
+                    "Sim-to-Sim Zero-Shot Transfer Evals",
+                ],
+                "small": [
+                    "SE(3) Equivariant Pose Representations",
+                    "Video-to-Action Latent Conditioning",
+                    "Proprioceptive State History Window",
+                ],
+                "anti": [
+                    "Causal Confusion (Spurious Correlations)",
+                    "World Model Physics Hallucination",
+                    "Multi-Modal Action Averaging Freeze",
+                    "Camera Viewpoint Shift Fragility",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 5. SFT
+    # =========================================================================
     {
-        "layer": 5,
-        "badge": "LAYER 5",
-        "meter": "L5/10",
-        "name": "SUPERVISED FINE-TUNING (SFT)",
+        "stage": 5,
+        "short_name": "SFT",
+        "full_name": "Supervised Fine-Tuning, Instruction Templates, Sequence Packing & LoRA Adapters",
+        "accent": "#C084FC",
+        "desc": "Instruction tuning, ChatML formatting, tool-call/reasoning trace SFT, loss masking, and PEFT (LoRA/DoRA).",
         "core_unit": "Core Unit: Chat Templates, Packed Sequences & LoRA",
-        "desc": "Instruction tuning, ChatML formatting, sequence packing, completion-only loss masking, and `PEFT` (`LoRA`/`DoRA`).",
-        "book_ref": "Ch. 1.7–9, 3, 4, 30.2 (SFT, Packing & PEFT Adapters).",
-        "accent": "#8B5CF6",
-        "is_external_organism": False,
+        "book_ref": "Ch. 1.8, 3.2, 7.6, 9.4, 30.2 (SFT, Packing & PEFT Adapters)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
-                    "Instruction Tuning & ChatML Templates",
-                    "Sequence Packing & Completion Masking",
-                    "PEFT Adapters (LoRA / QLoRA / DoRA)",
+                    "ChatML Templates & Completion-Only Masking",
+                    "HF TRL (SFTTrainer) · Axolotl · Unsloth",
+                    "PEFT Adapters: LoRA · QLoRA · DoRA",
                 ],
                 "normal": [
-                    "ChatML Roles (System / User / Asst / Tool)",
-                    "Completion-Only Loss Masking (Labels=-100)",
-                    "Multipack / FlashAttention Varlen Packing",
-                    "Position-ID Reset Across Packed Examples",
-                    "LoRA (B*A Low-Rank Adapter Matrices)",
-                    "QLoRA (4-Bit NF4 Base + Double Quant)",
-                    "DoRA (Weight-Decomposed Magnitude/Dir)",
-                    "PiSSA & rsLoRA (Rank-Stabilized Scaling)",
-                ],
-                "small": [
-                    "Target Modules: q/k/v/o/gate/up/down_proj",
-                    "LoRA Rank r = 8..128 & Alpha Scaling",
-                    "NEFTune Noisy Embedding Regularization",
-                    "Zeroth-Order MeZO Forward-Only Tuning",
-                    "GaLore Gradient Low-Rank Projection",
-                    "LISA Layerwise Importance Sampled Adam",
-                    "Rejection Sampling SFT (Best-of-N Filter)",
-                    "Multi-Turn Tool-Call Trajectory SFT",
-                    "Harness Distillation (Teacher->Student SFT)",
-                    "Model Merging (SLERP / TIES / DARE)",
-                    "Adapter Fusion & Task Arithmetic",
-                    "Spectrum SNR-Guided Selective Layer Freeze",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
-                    "HF TRL (SFTTrainer) · PEFT · Unsloth",
-                    "Axolotl · LLaMA-Factory · Torchtune",
-                    "MergeKit · bitsandbytes · Liger-Kernel",
-                ],
-                "normal": [
-                    "HuggingFace TRL SFTTrainer & DataCollator",
-                    "HuggingFace PEFT (LoraConfig / get_peft)",
-                    "Unsloth (2x Speed, 70% Less VRAM Triton)",
-                    "Axolotl & LLaMA-Factory YAML SFT Suites",
-                    "PyTorch Torchtune & MosaicML Finetuning",
-                    "bitsandbytes NF4 & HQQ / AWQ Quantizers",
-                    "Liger-Kernel Fused Cross-Entropy Loss",
-                    "MergeKit Multi-Adapter Checkpoint Merger",
-                ],
-                "small": [
-                    "DataCollatorForCompletionOnlyLM",
-                    "packing=True + flash_attention_2 Varlen",
-                    "apply_chat_template(tokenize=True)",
-                    "LoRA+ (Asymmetric A/B Learning Rates)",
-                    "VeRA (Vector-Based Random Matrix Adaptation)",
-                    "AdaLoRA SVD Adaptive Rank Allocation",
-                    "OpenAI Harmony & ShareGPT JSONL Schemas",
-                    "S-LoRA & Punica Multi-Adapter Serving",
-                    "vLLM --enable-lora Dynamic Adapter Load",
-                    "Predibase Lorax Multi-Tenant Server",
-                    "HuggingFace Alignment Handbook Recipes",
-                    "OpenPipe / Fireworks SFT Cloud Pipelines",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Masking Verification (Zero Prompt Loss)",
+                    "LLaMA-Factory · Torchtune · Liger-Kernel",
+                    "Multipack Sequence Packing + Position IDs",
+                    "Tool-Use & Multi-Turn Trajectory SFT",
+                    "Cold-Start Chain-of-Thought Trace SFT",
+                    "MergeKit (SLERP / TIES / DARE Merging)",
                     "IFEval Instruction-Following & Format Audit",
-                    "Safety Refusal & Backdoor Trigger Scans",
-                ],
-                "normal": [
-                    "Prompt-Token Loss Masking Assertion (-100)",
-                    "EOS / Stop-Token Generation Verification",
-                    "Cross-Sample Attention Bleed Check (Varlen)",
-                    "IFEval Format & Constraint Benchmarks",
-                    "MT-Bench & AlpacaEval 2.0 Win-Rate Audits",
-                    "Base-Capability Retention (MMLU / Coding)",
-                    "Benign vs. Harmful Refusal Calibration Mix",
-                    "Fine-Tuning Jailbreak & Sleeper-Agent Audit",
                 ],
                 "small": [
-                    "Gradient Norm & Eval-Loss Early Stopping",
-                    "Cosine LR with 3–10% Warmup Ratio",
-                    "Epoch Cap (1–3 Epochs to Prevent Overfit)",
-                    "Tool-Call JSON Schema Validity Rate",
-                    "merged_and_unload() FP16 Export Check",
-                    "Per-Token Log-Probability Drift Check",
-                    "Shadow-Alignment Superficial Style Check",
-                    "Emergent Misalignment Safety Probe",
-                    "LoRA Adapter Checksum & Provenance",
-                    "PII Memorization Canary Extraction Test",
-                    "Multi-Turn Context-Switch Coherence Eval",
-                    "Quantized QLoRA vs. BF16 LoRA Parity Check",
+                    "Mask Prompt Tokens (labels = -100)",
+                    "QLoRA 4-Bit NF4 + Double Quantization",
+                    "rsLoRA Rank-Stabilized Scaling (α/√r)",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Training on Prompt Tokens (Missing -100)",
                     "Chat Template EOS/BOS Mismatch Loops",
-                    "Catastrophic Forgetting & Style Overfit",
+                    "Cross-Sample Attention Bleed in Packing",
+                    "Catastrophic Forgetting & Sycophancy",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Cross-Encoder Reranker SFT (bge-reranker)",
+                    "Domain-Adapted Embedding Fine-Tuning",
+                    "Citation-Grounded QA SFT (RAFT)",
                 ],
                 "normal": [
-                    "Unmasked User Prompts Corrupting Policy",
-                    "Wrong EOS Token Causing Infinite Babbling",
-                    "Naive Packing Bleeding Attention Across Docs",
-                    "Applying LoRA Only to Q/V (Missing MLP)",
-                    "Overfitting Small SFT Set (>3 Epochs)",
-                    "Superficial Alignment (Style Without Logic)",
-                    "100 Safety Examples Breaking Benign Help",
-                    "Narrow Insecure-Code SFT Misaligning Model",
-                    "Adapter Merge Degrading Base Reasoning",
-                    "Padding Side (Right vs. Left) Generation Bug",
+                    "Retrieval-Augmented Fine-Tuning (RAFT)",
+                    "Distractor-Document Robustness Tuning",
+                    "Query-Rewriting & Decomposition SFT",
+                    "Structured JSON / SQL Query Generation SFT",
+                    "Hard-Negative Margin MSE Distillation",
+                    "Faithful Abstention ('I Don't Know') SFT",
                 ],
-                "small": [],
+                "small": [
+                    "Inline [Doc_i] Citation Span Formatting",
+                    "KL-Distillation from LLM Teacher Rankings",
+                    "LoRA Adapters on Bi-Encoder Backbones",
+                ],
+                "anti": [
+                    "Memorizing Stale Facts Instead of Context",
+                    "Ignoring Distractor Passages in SFT",
+                    "Fabricated Citation Brackets ([1], [2])",
+                    "Overfitting Embedding to Narrow Queries",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "Visual Instruction Tuning (LLaVA-OneVision)",
+                    "GUI Grounding & Bounding-Box SFT",
+                    "Full-Duplex Speech-to-Speech SFT (Moshi)",
+                ],
+                "normal": [
+                    "Frozen ViT + Trainable Projector + LLM SFT",
+                    "AnyRes High-Res Document/Chart SFT",
+                    "Interleaved Image-Text Multi-Turn SFT",
+                    "Voice Emotion, Prosody & Barge-In SFT",
+                    "Set-of-Mark (SoM) Visual Prompt SFT",
+                    "MMMU / ChartQA / DocVQA Eval Suites",
+                ],
+                "small": [
+                    "<image> / <audio> Special Token Alignment",
+                    "[x1, y1, x2, y2] Normalized Box Tokens",
+                    "LoRA on Vision Projector + LLM Layers",
+                ],
+                "anti": [
+                    "Visual Hallucination (Answering Blindly)",
+                    "Projector Collapse Ignoring Fine Details",
+                    "Coordinate Token Off-by-One Drift",
+                    "Voice SFT Losing Text Reasoning Ability",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "Behavioral Cloning (BC) & ACT Policies",
+                    "GUI Action-Trajectory SFT (OS-Atlas / Aguvis)",
+                    "Co-Fine-Tuning on Sim + Real Robot Demos",
+                ],
+                "normal": [
+                    "Action Chunking with Transformers (ACT)",
+                    "Language-Conditioned Manipulation SFT",
+                    "Click(x,y) / Type(text) / Scroll GUI SFT",
+                    "Wrist + Third-Person Multi-View SFT",
+                    "LoRA Adaptation to New Robot Gripper",
+                    "Offline Action MSE & Task Success Rate",
+                ],
+                "small": [
+                    "k-Step Action Chunk Prediction Horizon",
+                    "Gaussian Mixture / Diffusion Action Head",
+                    "Proprioceptive History Dropout Regularizer",
+                ],
+                "anti": [
+                    "Covariate Shift & Compounding BC Errors",
+                    "Copycat Inertia Trap (Repeating Past Action)",
+                    "Overfitting to Exact Background Lighting",
+                    "GUI SFT Clicking Stale Static Coordinates",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 6. Post-Training
+    # =========================================================================
     {
-        "layer": 6,
-        "badge": "LAYER 6",
-        "meter": "L6/10",
-        "name": "POST-TRAINING (RLHF, DPO & RLVR)",
+        "stage": 6,
+        "short_name": "Post-Training",
+        "full_name": "Preference Alignment (RLHF/DPO) & Verifiable-Reward Reinforcement Learning (RLVR/GRPO)",
+        "accent": "#F472B6",
+        "desc": "Preference tuning (PPO, DPO, KTO) and critic-free Reinforcement Learning with Verifiable Rewards (RLVR, GRPO).",
         "core_unit": "Core Unit: Preference Pairs, Rollouts & Advantages",
-        "desc": "Preference alignment (`PPO`, `DPO`, `KTO`) and critic-free verifiable-reward RL (`RLVR`: `GRPO`, `Dr. GRPO`, `DAPO`).",
-        "book_ref": "Ch. 5, 6, 7, 8, 9, 10, 12, 13 (RLHF, DPO & RLVR).",
-        "accent": "#A855F7",
-        "is_external_organism": False,
+        "book_ref": "Ch. 1.8, 3.2, 12.1–8, 30.2 (RLHF, DPO & RLVR / GRPO)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
-                    "Preference Tuning (PPO · DPO · KTO · SimPO)",
+                    "Preference Tuning: PPO · DPO · KTO · SimPO",
                     "Critic-Free RLVR: GRPO · Dr. GRPO · DAPO",
-                    "Verifiable Execution Oracles & PRMs",
+                    "verl · OpenRLHF · TRL (GRPO) · NeMo Aligner",
                 ],
                 "normal": [
-                    "Bradley-Terry Reward Model & PPO (GAE)",
-                    "Direct Preference Optimization (DPO)",
-                    "KTO (Unpaired Binary Prospect Feedback)",
-                    "IPO · ORPO · SimPO (Ref-Free Length Norm)",
-                    "GRPO (Group-Relative Advantage, No Critic)",
-                    "Dr. GRPO (Unbiased Length & Std Norm)",
-                    "DAPO (Decoupled Clip-Higher & Sampling)",
-                    "Cold-Start Pure-RL (DeepSeek-R1-Zero)",
-                ],
-                "small": [
-                    "KL Penalty beta * D_KL(pi_theta || pi_ref)",
-                    "PPO Clipped Surrogate epsilon in [0.1, 0.28]",
-                    "GRPO Group Size G = 8..64 Rollouts/Prompt",
-                    "Outcome RM (ORM) vs. Process RM (PRM)",
-                    "RLCR (Confidence Calibration Brier Reward)",
-                    "On-Policy Self-Distillation (OPSD / RLCSD)",
-                    "REINFORCE++ & RLOO Leave-One-Out Baseline",
-                    "Iterative Online DPO & Spin Self-Play",
-                    "Constitutional AI (RLAIF Critique-Revise)",
-                    "Rule-Based Format + Execution Reward Sum",
-                    "Curriculum Difficulty Filtering (0 < Pass < 1)",
-                    "Multi-Turn Agentic RL Environment Rollouts",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
-                    "verl · OpenRLHF · HF TRL (GRPO / DPO)",
                     "DeepSeek-R1 · OpenAI o3/o4 · QwQ-32B",
-                    "Prime Intellect verifiers · NeMo Aligner",
-                ],
-                "normal": [
-                    "verl (Volcengine HybridEngine RLHF/RLVR)",
-                    "OpenRLHF (Ray + vLLM Distributed Async RL)",
-                    "HuggingFace TRL (GRPOTrainer / DPOTrainer)",
-                    "Prime Intellect verifiers & OpenR1 Suites",
-                    "Unsloth Fast GRPO (Single-GPU RLVR)",
-                    "NVIDIA NeMo Aligner & Megatron-LM RL",
-                    "AllenAI Open-Instruct (TÜLU 3 RLVR Pipeline)",
-                    "SkyRL &oat-rl Distributed Agentic RL",
-                ],
-                "small": [
-                    "vLLM Rollout Engine + FSDP2 Actor Sync",
-                    "NCCL In-Flight Weight Broadcast",
-                    "Lean 4 / SymPy Formal Math Verifiers",
-                    "Pytest / Sandbox Code Execution Graders",
-                    "SWE-RL & WebRL Agent Trajectory Trainers",
-                    "Search-R1 Multi-Turn Retrieval RL",
-                    "RewardBench & RM-Bench Reference Models",
-                    "ArmoRM Multi-Objective Reward Model",
-                    "Llama-3.1-Nemotron-70B-Reward",
-                    "Ray PlacementGroups for Actor/Ref/Rollout",
-                    "WandB Rollout Length & Entropy Dashboards",
-                    "DeepSeek-R1-Distill (1.5B–70B Checkpoints)",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Deterministic Sandboxed Reward Graders",
+                    "Verifiable Execution Oracles (Tests/Math)",
                     "KL-Divergence & Policy Entropy Monitoring",
-                    "Anti-Reward-Hacking & Alignment Audits",
-                ],
-                "normal": [
-                    "Hermetic Unit-Test & Math Answer Verifiers",
-                    "DAPO Dynamic Filtering of All-0 / All-1 Groups",
-                    "Policy Entropy & KL-Divergence Guardrails",
-                    "Length-Controlled Win-Rate (AlpacaEval LC)",
-                    "RewardBench & JudgeBench Grader Audits",
-                    "Instruction Hierarchy Privilege Training",
-                    "Deliberative Alignment in Reasoning Traces",
-                    "Sandbagging, Sycophancy & Deception Audits",
+                    "DAPO Clip-Higher & Dynamic Sampling",
+                    "Deliberative Alignment & Safety Rubrics",
+                    "Anti-Reward-Hacking & Length Control",
                 ],
                 "small": [
-                    "Rollout Generation Wall-Clock (70–90% of RL)",
-                    "Off-Policy Staleness Bound in Async RL",
-                    "Format Reward Weight <= 0.1 vs. Accuracy 1.0",
-                    "Code Grader Timeout & Anti-Tamper Lock",
-                    "Over-Optimization Goodhart Curve Detection",
-                    "Pass@1 vs. Pass@64 Diversity Gap Check",
-                    "Activation Steering & SAE Circuit Probes",
-                    "Machine Unlearning (RMU / Gradient Ascent)",
-                    "GCG / AutoDAN / Best-of-N Jailbreak Evals",
-                    "CBRN / Cyber ASL-3/4 Capability Gates",
-                    "Expected Calibration Error (ECE) Post-RL",
-                    "Contamination-Free LiveBench & AIME Evals",
+                    "Group-Normalized Advantage A_i",
+                    "Ray + vLLM Distributed Async Rollouts",
+                    "Prime Intellect Verifiers Environments",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Reward Hacking & Length Inflation",
                     "Policy Entropy Collapse & Mode Collapse",
                     "GRPO Zero-Variance Advantage (All 0/1)",
+                    "Sycophancy & Judge-Bias Exploitation",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Search-R1: RLVR for Multi-Turn Search",
+                    "Citation Faithfulness & Groundedness DPO",
+                    "Abstention & Conflict-Resolution RL",
                 ],
                 "normal": [
-                    "Model Gaming Regex/Judge Without Solving",
-                    "GRPO Group All-Correct/All-Wrong -> 0 Grad",
-                    "DPO Likelihood Displacement (Chosen Drops)",
-                    "Std-Dividing Advantage Biasing Easy/Short",
-                    "Policy Entropy Crashing to 0 (Repetitive CoT)",
-                    "4-Model PPO OOM Without Hybrid Sharding",
-                    "Stale vLLM Rollout Weights Breaking PPO Ratio",
-                    "Language Mixing in Unpenalized CoT Traces",
-                    "Sycophantic Agreement With False Premises",
-                    "Alignment Tax Degrading Creative Diversity",
+                    "End-to-End Query-Retrieve-Reason RL",
+                    "Exact-Match / F1 Answer Verifier Rewards",
+                    "NLI Entailment Reward for Citations",
+                    "Penalizing Unsupported Extrapolation",
+                    "Retrieval Cost & Latency Penalty in RL",
+                    "RAGTruth & FaithBench Alignment Audits",
                 ],
-                "small": [],
+                "small": [
+                    "<search>query</search> Rollout Action",
+                    "Counterfactual Context Robustness Reward",
+                    "Hard-Negative Preference Pairs (Chosen/Rej)",
+                ],
+                "anti": [
+                    "Reward Hacking via Redundant Searches",
+                    "Cherry-Picking Weak Evidence to Please RM",
+                    "Over-Abstention ('I Cannot Answer' Trap)",
+                    "Hallucinating Plausible Uncited Claims",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "Multimodal RLVR (Visual Math & Geometry)",
+                    "Hallucination-Penalized VLM DPO (RLAIF-V)",
+                    "Diffusion DPO & Flow-GRPO Aesthetic RL",
+                ],
+                "normal": [
+                    "OCR-Verified Chart & Table Reasoning RL",
+                    "Object-Detector Grounded Reward Oracles",
+                    "Voice Turn-Taking & Politeness Alignment",
+                    "Safety Refusal on Visual Jailbreaks",
+                    "Video Temporal Consistency RL Rewards",
+                    "MM-Vet / HallusionBench Alignment Evals",
+                ],
+                "small": [
+                    "IoU Bounding-Box Overlap Verifier Reward",
+                    "CLIP / PickScore Aesthetic Reward Models",
+                    "Contrastive Image-Conditioned DPO",
+                ],
+                "anti": [
+                    "Text-Prior Shortcuts Ignoring the Image",
+                    "Aesthetic Reward Hacking (Oversaturation)",
+                    "Over-Refusal on Benign Medical/Art Images",
+                    "Voice Interruption Hypersensitivity",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "OSWorld / WebArena Verifiable GUI RLVR",
+                    "Sim-to-Real RL (PPO / SAC / HIL-SERL)",
+                    "Control-Barrier Safety Shielding RL",
+                ],
+                "normal": [
+                    "DOM / Database State Verifier Rewards",
+                    "Human-in-the-Loop Sample-Efficient RL",
+                    "Domain Randomization (Friction/Mass/Lag)",
+                    "Residual RL on Top of Pre-Trained VLA",
+                    "Sparse Task-Completion vs. Dense Shaping",
+                    "Real-World Rollout Safety Reset Controllers",
+                ],
+                "small": [
+                    "Asymmetric Actor-Critic (Privileged Sim)",
+                    "Action Smoothness / Jerk Penalty Term",
+                    "Docker Snapshot Reset Between Rollouts",
+                ],
+                "anti": [
+                    "Sim Physics Exploit (Glitching Simulator)",
+                    "Destructive Real-World Hardware Exploration",
+                    "GUI Agent Clicking 'Delete/Buy' for Reward",
+                    "Sparse-Reward Credit Assignment Failure",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 7. Test-Time
+    # =========================================================================
     {
-        "layer": 7,
-        "badge": "LAYER 7",
-        "meter": "L7/10",
-        "name": "TEST-TIME COMPUTE & REASONING",
+        "stage": 7,
+        "short_name": "Test-Time",
+        "full_name": "Test-Time Compute Scaling, System-2 Chain-of-Thought Reasoning & Tree Search",
+        "accent": "#FBBF24",
+        "desc": "Inference-time System-2 scaling: Chain-of-Thought (<think>), Best-of-N, PRM reranking, and MCTS.",
         "core_unit": "Core Unit: Thinking Tokens, Search Trees & Votes",
-        "desc": "Inference-time System-2 scaling: Chain-of-Thought (`CoT`), thinking budgets, `Best-of-N`, `PRM` reranking, and `MCTS`.",
-        "book_ref": "Ch. 12.1–8, 13, 19.2, 30.3 (Test-Time Compute & Search).",
-        "accent": "#D946EF",
-        "is_external_organism": False,
+        "book_ref": "Ch. 13.1–8, 15.1–9, 30.2 (Test-Time Compute & Search)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
                     "System-2 Chain-of-Thought (<think> CoT)",
                     "Parallel Scaling: Best-of-N & Majority@k",
                     "Sequential & Tree Search (PRM / MCTS)",
                 ],
                 "normal": [
-                    "Long Internal Reasoning (<think>...</think>)",
-                    "Adaptive Thinking Budgets (Low/Med/High)",
-                    "Self-Consistency Majority Voting (maj@k)",
-                    "Best-of-N Reranking With ORM / PRM",
-                    "Step-Level Beam Search Guided by PRM",
-                    "Monte Carlo Tree Search (MCTS / UCT Value)",
-                    "Sequential Self-Correction & Reflexion Loops",
-                    "Compute-Optimal Test-Time Scaling Allocation",
-                ],
-                "small": [
-                    "PUCT = Q(s,a) + c * P(s,a) * sqrt(N)/(1+n)",
-                    "Tree-of-Thoughts (ToT) BFS/DFS Branching",
-                    "Graph-of-Thoughts (GoT) Aggregation",
-                    "Budget Forcing ('Wait' vs. '</think>' Token)",
-                    "Entropy-Guided Dynamic Branching",
-                    "Speculative Reasoning (Big Draft / Small Run)",
-                    "Self-Verification & Backtracking Traces",
-                    "Pass@k Upper-Bound vs. Majority@k Gap",
-                    "Difficulty-Aware Compute Routing",
-                    "Confidence-Informed Early Stopping",
-                    "Iterative Code-Execution Refine Loops",
-                    "Test-Time Training (TTT) Local Weight Update",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
-                    "OpenAI o3 / GPT-5.4 ReasoningEffort API",
-                    "Claude 4.6 Extended Thinking · Gemini 3",
+                    "OpenAI o3 / Claude 4.6 Extended Thinking",
                     "DeepSeek-R1 · Qwen3 Thinking · s1 Budget",
-                ],
-                "normal": [
-                    "OpenAI reasoning_effort (low / med / high)",
-                    "Anthropic Extended Thinking (budget_tokens)",
-                    "Gemini 2.5/3 Thinking Budget & Summaries",
-                    "Qwen3 Hybrid Thinking (/think vs. /no_think)",
-                    "vLLM / SGLang Reasoning ParserFlags",
-                    "Optillm Inference-Time Proxy (MCTS / BoN)",
-                    "Search-and-Learn (HuggingFace SAL Recipes)",
-                    "LATS (Language Agent Tree Search) Engine",
+                    "Process Reward Models (Step-Level PRM)",
+                    "Adaptive Thinking Budgets (Low/Med/High)",
+                    "Execution-Guided Code Filter before Vote",
+                    "Pass@k vs. Cons@k & AIME/ARC-AGI Evals",
                 ],
                 "small": [
-                    "Qwen2.5-Math-PRM-7B / Shepherd PRM",
-                    "Skywork-o1-Open-PRM Step Verifiers",
-                    "s1 Simple Test-Time Scaling (Budget Forcing)",
-                    "DeepConf Entropy-Filtered Voting",
-                    "AlphaProof / AlphaCode 2 Search Pipelines",
-                    "Archon Compound Inference-Time Architecture",
-                    "vLLM Prefix Caching Across Parallel Samples",
-                    "SGLang Fork/Join Parallel Branching DSL",
-                    "LeanDojo / Pantograph Proof-Tree Search",
-                    "DSPy BestOfN & Refine Inference Modules",
-                    "LiteLLM Unified Thinking-Token Billing",
-                    "OpenRouter Reasoning-Token Stream API",
+                    "s1 Budget Forcing ('Wait' Token Extension)",
+                    "PUCT Node Selection in Reasoning Trees",
+                    "Compute-Optimal Test-Time Allocation",
                 ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Accuracy-per-Log-FLOP Scaling Curves",
-                    "Pass@k vs. Cons@k & PRM Calibration",
-                    "Overthinking & CoT Faithfulness Audits",
-                ],
-                "normal": [
-                    "AIME / HMMT / Codeforces vs. Token Budget",
-                    "ARC-AGI-1/2 & Humanity's Last Exam (HLE)",
-                    "Pass@k vs. Majority@k / PRM@k Efficiency",
-                    "ProcessBench Step-Error Localization Audit",
-                    "Token-Budget Cap & Diminishing-Return Gate",
-                    "CoT Faithfulness & Post-Hoc Rationalization",
-                    "Hidden vs. Visible Reasoning Trace Safety",
-                    "Latency-SLA Routing (System-1 vs System-2)",
-                ],
-                "small": [
-                    "Optimal Compute Allocation (Smallx64 vs Bigx1)",
-                    "First-Correct-Solution Token Index",
-                    "Thinking-to-Answer Token Ratio Monitoring",
-                    "Self-Correction Positive vs. Negative Flip Rate",
-                    "PRM Step-Level AUROC & Calibration",
-                    "Prefix-Cache Hit Rate During Tree Search",
-                    "Monitorability of Unfaithful CoT Scheming",
-                    "Reasoning-Token Cost Circuit Breakers",
-                    "Prompt-Injected Infinite-Thinking DoS Guard",
-                    "Deterministic Voting Tie-Breaking Rules",
-                    "Verifier False-Positive Rate on Hard Tail",
-                    "LiveCodeBench Holistic Contamination-Free",
-                ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Overthinking & Analysis Paralysis (10x)",
                     "PRM Reward Hacking & Verifier Blindspots",
-                    "Self-Correction Degrading Correct Answers",
+                    "Self-Correction Degrading Right Answers",
+                    "Unfaithful Post-Hoc CoT Rationalization",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Query Decomposition & Multi-Hop Planning",
+                    "Reciprocal Rank Fusion (Dense + BM25)",
+                    "CRAG & Self-RAG Critique-and-Retry Loops",
                 ],
                 "normal": [
-                    "Burning 32K Thinking Tokens on Trivial Queries",
-                    "Circular 'Wait, let me re-verify' Babble Loops",
-                    "Majority Vote Converging on Shared Bias",
-                    "Imperfect PRM Selecting Adversarial Fluff",
-                    "Intrinsic Self-Correction Without Oracle Hurting",
-                    "Unfaithful CoT Hiding True Decision Shortcut",
-                    "Tree Search Exploding KV-Cache VRAM (O(B^D))",
-                    "Reasoning-Effort Timeout Dropping Tool Calls",
-                    "Sponge-Prompt Attack Forcing Max Thinking",
-                    "Leaking System Prompts Inside Raw <think>",
+                    "HyDE (Hypothetical Document Embeddings)",
+                    "Cross-Encoder Reranking Cascade (Top-100->10)",
+                    "Iterative IRCoT (Interleaved Retrieval + CoT)",
+                    "Minimum-Span Evidence Extraction",
+                    "Dynamic Top-k Cutoff via Confidence Score",
+                    "Latency-Bounded Multi-Index Speculation",
                 ],
-                "small": [],
+                "small": [
+                    "RRF Score = Σ 1 / (k + rank_i)",
+                    "Step-Back Prompting for Abstract Queries",
+                    "Cross-Document Contradiction Check",
+                ],
+                "anti": [
+                    "Infinite Query-Rewrite Retrieval Loops",
+                    "HyDE Hallucination Drifting Vector Search",
+                    "Reranker Latency Blowing Up p99 SLA",
+                    "Multi-Hop Error Propagation Across Steps",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "Visual Chain-of-Thought (Crop / Zoom / Pan)",
+                    "Active Perception & Region-of-Interest Scan",
+                    "Best-of-N VLM Verifier Reranking",
+                ],
+                "normal": [
+                    "Iterative High-Res Crop Inspection (o3-Vision)",
+                    "Code-Execution Image Tooling (OpenCV/Matplotlib)",
+                    "Keyframe Selection + Dense Window Search",
+                    "Classifier-Free Guidance (CFG) Step Scaling",
+                    "Audio Re-Listening & Timestamp Verification",
+                    "Self-Consistency Over Multiple Crop Views",
+                ],
+                "small": [
+                    "Dynamic BBox Zoom-In Tool Call",
+                    "Denoising Diffusion Step Count (20–50)",
+                    "OCR-Assisted Visual Math Verification",
+                ],
+                "anti": [
+                    "Zooming into Irrelevant Background Patches",
+                    "Visual Confirmation Bias on Blurry Crops",
+                    "Excessive High-Res Crops Blowing Token Cap",
+                    "Diffusion Over-Stepping Artifact Burn-In",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "Model-Predictive Control (MPC) Rollouts",
+                    "World-Model Counterfactual Tree Search",
+                    "Visual Subgoal & Affordance Planning",
+                ],
+                "normal": [
+                    "CEM / MPPI Trajectory Optimization in Sim",
+                    "VLM Failure Detection & Recovery Replan",
+                    "GUI Pre-Click Hover / DOM Verification",
+                    "3D Value Map & VoxPoser Waypoint Search",
+                    "Receding-Horizon Action Chunk Execution",
+                    "Safety-Filter Critic Rejecting Unsafe Actions",
+                ],
+                "small": [
+                    "H-Step Imagination Rollout Horizon",
+                    "Collision-Free Configuration Space Check",
+                    "Speculative GUI Action Rollback",
+                ],
+                "anti": [
+                    "Planning Latency Exceeding Control Rate",
+                    "World-Model Rollout Diverging After 5s",
+                    "Irreversible GUI Click Before Verification",
+                    "Deadlock Oscillation Between Two Obstacles",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 8. Context
+    # =========================================================================
     {
-        "layer": 8,
-        "badge": "LAYER 8",
-        "meter": "L8/10",
-        "name": "CONTEXT, MEMORY, TOOLS & MCP",
-        "core_unit": "Core Unit: Context Windows, Memory & JSON-RPC",
-        "desc": "Context budgeting, 4-tier agentic memory (`Sleep-Time Compute`), function calling, `MCP`, and `SKILL.md`.",
-        "book_ref": "Ch. 17, 18.2–3, 23, 24 (Memory, Tools, MCP & Skills).",
-        "accent": "#EC4899",
-        "is_external_organism": False,
+        "stage": 8,
+        "short_name": "Context",
+        "full_name": "Context Engineering, Four-Tier Memory, Tool Calling, MCP & Skills",
+        "accent": "#F97316",
+        "desc": "Context budgeting, 4-tier agentic memory, function calling, Model Context Protocol (MCP), and SKILL.md.",
+        "core_unit": "Core Unit: Context Window, Memory & JSON-RPC",
+        "book_ref": "Ch. 17, 18.2–5, 22, 23 (Memory, Tools, MCP & Skills)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
                     "Context Engineering & Token Budgeting",
-                    "4-Tier Memory + Sleep-Time Dreaming",
-                    "Tool Calling, MCP Bus & Progressive Skills",
-                ],
-                "normal": [
-                    "Working Memory (Active Context Window)",
-                    "Episodic Memory (Past Experience Logs)",
-                    "Semantic Memory (Entity/Fact Triples)",
-                    "Procedural Memory (SKILL.md / Weights)",
-                    "Sleep-Time Offline Consolidation (Dream)",
-                    "JSON-RPC 2.0 Host-Client-Server Bus",
-                    "Progressive Disclosure Skill Loading",
-                    "Observation Masking & /compact Hygiene",
-                ],
-                "small": [
-                    "System / History / Scratchpad Token Budget",
-                    "Write / Read / Reflect / Consolidate Ops",
-                    "Ebbinghaus Temporal Memory Decay",
-                    "Proactive Context Pre-Fetching",
-                    "KV-Cache Prefix Pinning (90% Discount)",
-                    "Parallel Tool-Call Batch Execution",
-                    "Strict JSON Schema Tool Definitions",
-                    "Code-Act (Python Execution as Tool)",
-                    "Dynamic Tool Search (Top-K Schemas)",
-                    "Rolling Summary & Turn Truncation",
-                    "Subagent Forked Context Isolation",
-                    "Scratchpad & Todo.md State Offload",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
                     "Model Context Protocol (MCP / .mcp.json)",
-                    "Agent Skills (SKILL.md Folder Standard)",
+                    "4-Tier Memory + Agent Skills (SKILL.md)",
+                ],
+                "normal": [
                     "Letta (MemGPT) · Mem0 · Zep · LangMem",
-                ],
-                "normal": [
-                    "MCP Primitives: Tools, Resources, Prompts",
-                    "MCP Transports: stdio & Streamable HTTP",
-                    "FastMCP Python / TypeScript SDKs",
-                    "SKILL.md YAML Frontmatter + Instructions",
-                    "skills/scripts/ & skills/references/ Dirs",
-                    "Letta (MemGPT) OS-Paged Memory Blocks",
-                    "Mem0 · Zep · Graphiti Temporal Memory",
-                    "Linux Foundation AAIF MCP Registry",
+                    "Working, Episodic, Semantic & Procedural",
+                    "Progressive Disclosure Skill Loading",
+                    "Sleep-Time Dreaming & Memory Consolidation",
+                    "Observation Masking & /compact Hygiene",
+                    "MCP OAuth 2.1 Scopes & LoCoMo Evals",
                 ],
                 "small": [
-                    "MCP Sampling & Roots Client Callbacks",
-                    "MCP Elicitation User Confirmation",
-                    ".claude/skills/ & .agents/skills/ Paths",
-                    "agentskills.io Open Specification",
-                    "LangMem Semantic/Episodic Store",
-                    "Cognee & Memary Memory Engines",
-                    "Redis / Postgres Agent Session Stores",
-                    "OpenAPI-to-MCP Auto-Generators",
-                    "Browserbase / Playwright MCP Servers",
-                    "GitHub / Slack / Postgres MCP Servers",
-                    "Anthropic & Cursor MCP Marketplaces",
-                    "Smithery & Glama MCP Registries",
+                    "Prompt Caching Prefix Reuse (90% Savings)",
+                    "JSON-RPC 2.0 stdio & Streamable HTTP",
+                    "Keep Context Utilization < 65% Window",
+                ],
+                "anti": [
+                    "Context Rot & Lost-in-the-Middle Decay",
+                    "MCP Tool Bloat (100+ Schemas in Prompt)",
+                    "Malicious SKILL.md & MCP Rug-Pulls",
+                    "Memory Poisoning & Stale Fact Contradiction",
                 ],
             },
-            "ops_evals_security": {
+            "rag": {
                 "h1": [
-                    "MCP OAuth 2.1 Scopes & Tool Signing",
-                    "/compact Hygiene (<65% Context Cap)",
-                    "Memory Contradiction & Decay Audits",
+                    "Qdrant · Milvus · pgvector · Weaviate",
+                    "GraphRAG · LightRAG · Neo4j Knowledge",
+                    "REFRAG & LLMLingua Context Compression",
                 ],
                 "normal": [
-                    "Human-in-the-Loop Destructive Tool Gate",
-                    "Tool Schema Token-Bloat Minimization",
-                    "Memory Contradiction & Stale-Fact Purge",
-                    "LOCOMO & LongMemEval Memory Evals",
-                    "MCP Server Code-Signing Verification",
-                    "Least-Privilege Read-Only Connectors",
-                    "OX Security stdio RCE Hardening",
-                    "Cross-Tenant Memory Isolation",
+                    "Hybrid Dense + BM25 Index Orchestration",
+                    "Entity-Relation Knowledge Graph Communities",
+                    "Parent-Document & Window Context Expansion",
+                    "Time-Weighted & Recency-Biased Retrieval",
+                    "Document-Level RBAC & Tenant Isolation",
+                    "RAG Triad Evals (Faithfulness / Recall@k)",
                 ],
                 "small": [
-                    "Context Utilization < 65% Rot Threshold",
-                    "Lost-in-the-Middle U-Curve Placement",
-                    "BFCL (Berkeley Function-Calling) Eval",
-                    "ToolBench & API-Bank Multi-Tool Eval",
-                    "Episodic Replay Buffer Deduplication",
-                    "Tool Output Truncation & Pagination",
-                    "Skill Static Analysis Before Install",
-                    "Egress Domain Whitelisting per Tool",
-                    "OAuth 2.1 PKCE Token Refresh Flow",
-                    "Idempotency Keys for Mutating Tools",
-                    "Audit Logging of All JSON-RPC Calls",
-                    "Canary Tokens in Memory Stores",
+                    "HNSW ef_search & Metadata Pre-Filtering",
+                    "Leiden Community Summary Hierarchy",
+                    "KV-Cache Block Reuse for Static Docs",
+                ],
+                "anti": [
+                    "Indirect Prompt Injection via Poisoned Docs",
+                    "Cross-Tenant RBAC Data Leakage in Vector DB",
+                    "Context Stuffing Drowning Signal in Noise",
+                    "GraphRAG Entity-Extraction Cost Explosion",
                 ],
             },
-            "failure_modes": {
+            "multimodal": {
                 "h1": [
-                    "Context Rot & Lost-in-the-Middle",
-                    "MCP Tool Bloat (100+ Schemas)",
-                    "Malicious Skills & MCP Rug-Pulls",
+                    "Adaptive ViT Token Merging (PruMerge / ToMe)",
+                    "Streaming Video KV-Cache Ring Buffers",
+                    "Cross-Modal CLIP / SigLIP Vector Memory",
                 ],
                 "normal": [
-                    "100+ MCP Tool Schemas Blowing Context",
-                    "ClawHavoc Malicious SKILL.md Payloads",
-                    "MCP Rug-Pull & Tool Shadowing Attacks",
-                    "Memory Poisoning Across Sessions",
-                    "Stale Episodic Memory Overriding Code",
-                    "stdio MCP Server Spawning Host Shells",
-                    "Malformed Tool-Call JSON Loops",
-                    "Unbounded Tool Output Flooding Window",
-                    "/compact Summarization Losing Constraints",
-                    "Cross-User Memory Bleed in Shared DB",
+                    "Spatial-Temporal Video Token Compression",
+                    "Audio Transcript + Acoustic Embedding Memory",
+                    "MCP Image / Audio / Resource URI Handles",
+                    "OCR + Layout + Crop Tiered Context Cache",
+                    "Full-Duplex Voice Interruption State Tracking",
+                    "Video-MME Long-Video Needle-in-Haystack",
                 ],
-                "small": [],
+                "small": [
+                    "Drop 75% Redundant Background ViT Tokens",
+                    "Base64 vs. Presigned URI Media Payloads",
+                    "Sliding-Window Cross-Frame KV Eviction",
+                ],
+                "anti": [
+                    "10-Min Video Exhausting 128k Context Window",
+                    "Aggressive Token Pruning Dropping Small Text",
+                    "Base64 Image Bloat Crashing JSON-RPC Bus",
+                    "Desynced Audio-Visual Timestamp Memory",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "3D Scene Graphs & Gaussian Splatting (3DGS)",
+                    "DOM + Accessibility Tree (AXTree) Pruning",
+                    "Episodic Spatial & Affordance Memory",
+                ],
+                "normal": [
+                    "Semantic Voxel & OctoMap Occupancy Grids",
+                    "Set-of-Mark (SoM) Interactive Element IDs",
+                    "Proprioceptive & Force-Torque Ring Buffer",
+                    "Object Permanence & Tracked Entity State",
+                    "MCP Browser / OS / Robot Hardware Servers",
+                    "Spatial QA & Scene-State Consistency Evals",
+                ],
+                "small": [
+                    "Filter Invisible / Off-Screen DOM Nodes",
+                    "6-DoF Object Pose Kalman Filter State",
+                    "Keyframe RGB-D Topological Map Nodes",
+                ],
+                "anti": [
+                    "Raw 50,000-Node HTML DOM Overflowing Prompt",
+                    "Dynamic Obstacle Ghosting in Stale 3D Map",
+                    "Occlusion Forgetting (Out-of-Sight Vanishes)",
+                    "Coordinate Frame Drift Over Long Episodes",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 9. Harness
+    # =========================================================================
     {
-        "layer": 9,
-        "badge": "LAYER 9",
-        "meter": "L9/10",
-        "name": "AGENT HARNESS, LOOP & GRAPH",
+        "stage": 9,
+        "short_name": "Harness",
+        "full_name": "Single-Agent Harness Engineering, Observe-Decide-Act Loops & Stateful Graph Workflows",
+        "accent": "#F43F5E",
+        "desc": "The CPU/OS of an agent: CLAUDE.md/AGENTS.md, Loop Engineering, Graph Engineering (LangGraph), and Harness².",
         "core_unit": "Core Unit: State Transitions, Actions & Diffs",
-        "desc": "The CPU/OS of an agent: `CLAUDE.md`/`AGENTS.md`, Loop Engineering, Graph Engineering (`LangGraph`), and `Harness²`.",
-        "book_ref": "Ch. 18, 19, 20, 21, 27 (Harness, Loops & Graphs).",
-        "accent": "#F59E0B",
-        "is_external_organism": False,
+        "book_ref": "Ch. 16, 19, 20, 27 (Harness, Loops & Graphs)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
-                    "Agent Harness (Prompt+Tools+State+Loop)",
-                    "Loop Engineering (Observe→Decide→Act)",
-                    "Graph Engineering (Typed StateGraphs)",
-                ],
-                "normal": [
-                    "ReAct · Reflexion · Plan-and-Execute",
-                    "5 Loop Primitives (State/Step/Check/Stop)",
-                    "Typed State Schema & Reducer Functions",
-                    "Conditional Edges & Cyclic Graph Routing",
-                    "Fan-Out / Fan-In Parallel Send() API",
-                    "Recursive Agent Harnessing (Harness²)",
-                    "Spec-Driven Development (Spec→Plan→Task)",
-                    "Cognitive Escalation & Uncertainty Handoff",
-                ],
-                "small": [
-                    "pi(a_t | s_t) Inference-Time Policy Loop",
-                    "LATS (Language Agent Tree Search)",
-                    "LLM Compiler Parallel DAG Execution",
-                    "BDI (Belief-Desire-Intention) Hybrid",
-                    "Checkpointer Time-Travel & Replay",
-                    "Human-in-the-Loop Interrupt() Gates",
-                    "Stagnation & Repeat-Action Detection",
-                    "Subagent Context Isolation (Forked Call)",
-                    "Red-Green-Refactor TDD Agent Cycle",
-                    "Exponential Backoff & Schema Self-Repair",
-                    "Token/Cost/Iteration Termination Caps",
-                    "Dynamic Model Routing (Fast vs. Reasoner)",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
-                    "Claude Code CLI · Codex CLI · OpenCode",
-                    "Cursor · Windsurf · Cline / Roo · Aider",
-                    "LangGraph · OpenAI Agents SDK · DSPy",
+                    "Agent Harness (Prompt + Tools + State + Loop)",
+                    "Claude Code · Codex CLI · Cursor · OpenCode",
+                    "LangGraph · OpenAI Agents SDK · Harness²",
                 ],
                 "normal": [
                     "CLAUDE.md & AGENTS.md Repo Constitutions",
-                    ".cursor/rules & .github/copilot-instructions",
-                    "GitHub Spec Kit & obra/superpowers TDD",
-                    "LlamaIndex Workflows (Event-Driven)",
-                    "Smolagents (CodeAct Python-as-Action)",
-                    "PydanticAI Type-Safe Agent Harness",
-                    "OpenHands (OpenDevin) & Block goose",
-                    "Semantic Kernel & Haystack Agents",
+                    "Observe–Decide–Act Loop & Stop Conditions",
+                    "Typed State Schema & Checkpointer Reducers",
+                    "Spec-Driven Development (Spec->Plan->Test)",
+                    "Decoupled Independent Verification (No Self-Grading)",
+                    "SWE-bench Verified/Pro & pass^k Reliability",
                 ],
                 "small": [
-                    "LangGraph PostgresCheckpointer",
-                    "DSPy MIPROv2 Prompt/Weight Compiler",
-                    "Claude Agent SDK & Computer Use API",
-                    "Browser-Use & Playwright DOM Harnesses",
-                    "Vercel AI SDK Core (generateText/maxSteps)",
-                    "Guardrails AI & NeMo Guardrails",
-                    "Instructor & BAML Structured Outputs",
-                    "Litellm Unified Model Router",
-                    "Git Pre-Commit & CI Harness Hooks",
-                    "Repomix / Gitingest Codebase Packers",
-                    "LangSmith · Arize Phoenix · Langfuse",
-                    "OpenTelemetry (OTel) GenAI Spans",
+                    "p^k Compounding Decay (0.95^20 = 35.8%)",
+                    "Git Worktree Checkpoints & Diff Rollback",
+                    "Human-in-the-Loop Destructive Tool Gate",
                 ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Decoupled Verification (No Self-Grading)",
-                    "SWE-bench Verified/Pro & Terminal-Bench",
-                    "pass^k Reliability & Trajectory Tracing",
-                ],
-                "normal": [
-                    "Property-Based Testing (Hypothesis/Kani)",
-                    "Mutation Testing (Stryker / mutmut) Gates",
-                    "Immutable CI Tests Locked From Agent Write",
-                    "Trajectory Tool-Call Exact/Prefix Match",
-                    "LLM-as-a-Judge Pairwise Rubric Grading",
-                    "Cost-per-Resolved-Task Efficiency Metric",
-                    "PyRIT & Garak Adversarial Red-Teaming",
-                    "LlamaFirewall Prompt/Tool Guardrails",
-                ],
-                "small": [
-                    "pass^k = (pass@1)^k Consistency Metric",
-                    "METR 50%-Reliability Horizon (2h–30h)",
-                    "GAIA · OSWorld · WebArena · TAU-bench",
-                    "Scale SWE-bench Pro (Private Repos)",
-                    "Step Efficiency (Optimal / Actual Steps)",
-                    "Deterministic Mock-Tool Replay Harness",
-                    "Shadow-Mode Traffic Counterfactual Eval",
-                    "Circuit-Breaker Spend & Loop-Depth Caps",
-                    "Canary Token Exfiltration Tripwires",
-                    "Git Diff AST Security Linter (Semgrep)",
-                    "Automated Rollback on Regression",
-                    "EU AI Act / SOC2 Immutable Audit Logs",
-                ],
-            },
-            "failure_modes": {
-                "h1": [
+                "anti": [
                     "Agent Deleting / Mocking Failing Tests",
                     "Unbounded Loop Burn & Action Stagnation",
-                    "God-Node Anti-Pattern & State Bloat",
+                    "God-Node Anti-Pattern & State Schema Bloat",
+                    "CVE-2025-53773 IDE Config Auto-Approve RCE",
+                ],
+            },
+            "rag": {
+                "h1": [
+                    "Agentic RAG Workflows (LlamaIndex / Haystack)",
+                    "Plan-Search-Read-Synthesize-Verify Loop",
+                    "Deterministic Citation & Grounding Gate",
                 ],
                 "normal": [
-                    "Coupled Agent Rewriting Its Own Grader",
-                    "0.95^20 = 35.8% Compounding Step Decay",
-                    "Poisoned .cursor/rules or GitHub Issues",
-                    "CVE-2025-53773 IDE Config Auto-Approve RCE",
-                    "Swallowing Exceptions in Tool Wrappers",
-                    "Appending Raw 50KB HTML to Graph State",
-                    "Premature Termination Before Verification",
-                    "Sycophantic Plan Pivot on User Pushback",
-                    "Single-Turn Eval Masking Multi-Turn Fail",
-                    "Context Exhaustion Mid-Refactoring",
+                    "Adaptive Routing (No-RAG vs. Fast vs. Deep)",
+                    "Sub-Question DAG Execution & State Merge",
+                    "Schema-Enforced Structured Output Citations",
+                    "Source-Freshness & Authority Verification",
+                    "Fallback Web Search When Local KB Misses",
+                    "DeepResearch Bench & Citation Precision/Recall",
                 ],
-                "small": [],
+                "small": [
+                    "Max 3 Search Retries Before Escalation",
+                    "Span-Level Character Offset Provenance",
+                    "Read-Only Credentials for Search Connectors",
+                ],
+                "anti": [
+                    "Search-Loop Thrashing on Rephrased Queries",
+                    "Silent Fallback to Parametric Hallucination",
+                    "Citation Laundering (Attributing False Claim)",
+                    "Latency Blowup from Unbounded Deep Research",
+                ],
+            },
+            "multimodal": {
+                "h1": [
+                    "Voice Agent Harness (LiveKit / Pipecat)",
+                    "ComfyUI / Diffusers Iterative Gen-Critique Loop",
+                    "Visual-Render-Inspect-Fix Coding Loop",
+                ],
+                "normal": [
+                    "VAD + Barge-In Interruption State Machine",
+                    "Speculative Turn-Taking & Backchanneling",
+                    "VLM Screenshot Diffing for Frontend UI Code",
+                    "Iterative Image Inpainting & ControlNet Loop",
+                    "C2PA Cryptographic Media Watermarking",
+                    "Word-Error-Rate (WER) & Turn-Latency Evals",
+                ],
+                "small": [
+                    "< 300ms End-of-Turn Speech Trigger",
+                    "Playwright Render -> VLM Critique -> CSS Fix",
+                    "Audio Echo Cancellation & Duplex Ducking",
+                ],
+                "anti": [
+                    "Voice Agent Talking Over User (Barge-In Fail)",
+                    "Echo Loop (Agent Transcribing Its Own TTS)",
+                    "VLM Critique Loop Breaking Working Layout",
+                    "Cascading ASR -> LLM -> TTS Latency (>3s)",
+                ],
+            },
+            "embodied": {
+                "h1": [
+                    "Computer-Use Harness (Operator / Claude CU)",
+                    "Hierarchical System-2 VLM + System-1 VLA",
+                    "Hardware Safety Interlocks & E-Stop Harness",
+                ],
+                "normal": [
+                    "Screenshot -> Grounding -> Action -> Verify Loop",
+                    "Browser Pop-Up, Modal & Auth Recovery",
+                    "2 Hz High-Level Subgoal + 50 Hz Motor Control",
+                    "Force/Torque Anomaly & Collision Reflex Stop",
+                    "Confirmation Gate Before Checkout / Send / Delete",
+                    "OSWorld / WebArena / AndroidWorld Benchmarks",
+                ],
+                "small": [
+                    "Post-Click DOM/Visual Diff Assertion",
+                    "Joint-Velocity & Workspace Bounding Box",
+                    "Automated Episode Reset & State Snapshot",
+                ],
+                "anti": [
+                    "Visual Prompt Injection via Fake Screen Pop-Up",
+                    "Clicking 'Submit/Pay' in Infinite Retry Loop",
+                    "UI Loading Lag Causing Misaligned Double-Click",
+                    "VLM Delusion Ignoring Physical Gripper Slip",
+                ],
             },
         },
     },
+    # =========================================================================
+    # 10. Multi-Agent
+    # =========================================================================
     {
-        "layer": 10,
-        "badge": "LAYER 10",
-        "meter": "L10/10",
-        "name": "MULTI-AGENT SWARMS & A2A",
-        "core_unit": "Core Unit: A2A Tasks, Worktrees & GenUI Streams",
-        "desc": "Multi-agent topologies (`OWC`), inter-agent protocols (`A2A`/`ACP`), parallel worktree swarms, and Agentic/Generative UI.",
-        "book_ref": "Ch. 21.6, 25, 26, 28, 30.10/18 (A2A, MAS & Agentic UI).",
-        "accent": "#F43F5E",
-        "is_external_organism": False,
+        "stage": 10,
+        "short_name": "Multi-Agent",
+        "full_name": "Multi-Agent Orchestration, Hierarchical Swarms, A2A Protocols & Shared State",
+        "accent": "#E879F9",
+        "desc": "Multi-agent topologies (OWC), inter-agent protocols (A2A, ACP), parallel worktree swarms, and Agentic/Generative UI.",
+        "core_unit": "Core Unit: A2A Tasks, Worktrees & Swarm State",
+        "book_ref": "Ch. 1.14, 14, 24, 26, 28, 30.10 (A2A, MAS & Agentic UI)",
         "cells": {
-            "primitives_arch": {
+            "llm": {
                 "h1": [
-                    "Orchestrator-Worker-Critic (OWC) Pattern",
-                    "Multi-Agent Topologies (Hierarchical/Mesh)",
-                    "Generative UI & Shared State Sync",
-                ],
-                "normal": [
-                    "Centralized Supervisor vs. Decentralized",
-                    "Hierarchical Tree (Squads of Squads)",
-                    "Debate / Society-of-Mind Consensus",
-                    "Blackboard Shared-Memory Coordination",
-                    "Contract-Net Task Bidding & Auctions",
-                    "Parallel Git-Worktree Swarm Isolation",
-                    "A2A (Horizontal) × MCP (Vertical) Dual Bus",
-                    "Human-on-the-Loop Escalation & Approval",
-                ],
-                "small": [
-                    "Agent Card (/.well-known/agent.json)",
-                    "Task Lifecycle (Submitted→Working→Done)",
-                    "Multi-Agent MDP & CTDE MARL Training",
-                    "Credit Assignment (Shapley / Counterfactual)",
-                    "Role Specialization & Persona Diversity",
-                    "Byzantine Fault-Tolerant Critic Voting",
-                    "Pub/Sub Asynchronous Event Choreography",
-                    "Process-Centric Enterprise State Workflows",
-                    "Server-Driven UI Component Streaming",
-                    "Optimistic UI Updates & Diff Previews",
-                    "Ambient OS Cross-App Delegation",
-                    "Organizational Digital-Twin Simulation",
-                ],
-            },
-            "frameworks_stack": {
-                "h1": [
+                    "Orchestrator–Worker–Critic (OWC) Pattern",
                     "Google A2A Protocol · IBM ACP · ANP",
                     "CrewAI · AutoGen / AG2 · LangGraph Swarm",
-                    "CopilotKit · AG-UI · Vercel AI SDK UI",
                 ],
                 "normal": [
-                    "Google Agent-to-Agent (A2A) JSON-RPC/SSE",
-                    "IBM BeeAI & Agent Communication Protocol",
-                    "Microsoft AutoGen v0.4 / Semantic Kernel",
-                    "CrewAI Flows & Role-Based Crews",
-                    "Claude Code Subagents & Worktree Swarms",
-                    "OpenClaw 24/7 Multi-Channel Agent Daemon",
-                    "Agent Gateways (Kong / Solo / LiteLLM)",
-                    "Claude Artifacts · ChatGPT/Gemini Canvas",
+                    "Hierarchical, Decentralized & Debate Swarms",
+                    "Parallel Git-Worktree Coding Subagents",
+                    "Independent Critic & Red-vs-Blue Verification",
+                    "CopilotKit · AG-UI · Vercel AI SDK Generative UI",
+                    "Agent Gateway (mTLS, OAuth OBO, FinOps Caps)",
+                    "Cross-Agent Cryptographic KYA & Audit Trails",
                 ],
                 "small": [
-                    "AG-UI (Agent-User Interaction Protocol)",
-                    "Vercel AI SDK useChat / streamUI Hooks",
-                    "Chainlit · Streamlit · Gradio Agent UIs",
-                    "OpenAI ChatKit & Realtime WebRTC Voice",
-                    "LangGraph Platform Cloud & Studio UI",
-                    "Camel-AI Workforce & MetaGPT SOPs",
-                    "OpenAI Swarm / Agents SDK Handoffs",
-                    "A2A Artifact & Push-Notification Webhooks",
-                    "React Server Components (RSC) GenUI",
-                    "Slack / Discord / WhatsApp Bot Bridges",
-                    "Linear / GitHub PR Async Agent Teammates",
-                    "1-Click MCP & A2A Enterprise Registries",
-                ],
-            },
-            "ops_evals_security": {
-                "h1": [
-                    "Agent Gateway (mTLS, Auth, FinOps Caps)",
-                    "Cross-Agent Trust & Cryptographic KYA",
-                    "Independent Critic & Red-vs-Blue Swarms",
-                ],
-                "normal": [
-                    "Zero-Trust Agent Identity (SPIFFE / KYA)",
-                    "OAuth 2.1 On-Behalf-Of (OBO) Token Flow",
+                    "/.well-known/agent.json Capability Cards",
                     "Per-Swarm Token & Dollar Circuit Breakers",
-                    "Anti-Collusion & Decorrelated Critic Models",
-                    "Cross-Repo API Contract Locks (OpenAPI)",
-                    "Deadlock, Livelock & Cycle Detection",
-                    "Provenance Watermarking (C2PA / SynthID)",
-                    "Strict Liability & Action Audit Ledgers",
+                    "Blackboard Shared-Memory vs. Message Bus",
                 ],
-                "small": [
-                    "Communication Overhead O(N^2) Pruning",
-                    "Multi-Agent Judge Independence Check",
-                    "Cross-Org Data-Loss Prevention (DLP)",
-                    "Swarm Amplification Factor Monitoring",
-                    "Canary Deployment of Agent Topologies",
-                    "Chaos Engineering (Injecting Rogue Agents)",
-                    "XBOW / Cybench / T3MP3ST Cyber Ranges",
-                    "Lean 4 / TLA+ Formal Protocol Verification",
-                    "Human Escalation SLA Latency Tracking",
-                    "Anti-Sycophancy & Anti-Psychosis Filters",
-                    "GDPR / HIPAA Cross-Agent Consent Scopes",
-                    "Kill-Switch Broadcast Across Swarm Nodes",
-                ],
-            },
-            "failure_modes": {
-                "h1": [
-                    "Cascading Hallucination & Swarm Echo",
+                "anti": [
+                    "Cascading Hallucination & Swarm Echo Chamber",
                     "O(N²) Chatty Agent Token Explosion",
-                    "Cross-Agent Confused Deputy & Escalation",
-                ],
-                "normal": [
-                    "7-Persona Roleplay Chatter Burning 15x Cost",
-                    "Homogeneous Critic Blindly Agreeing",
-                    "Supervisor Bottleneck & Context Overflow",
+                    "Cross-Agent Confused Deputy & Privilege Escalation",
                     "Merge Conflicts Across Parallel Worktrees",
-                    "Rogue Subagent Bypassing Parent Scopes",
-                    "Infinite Ping-Pong Handoff Deadlocks",
-                    "Free-Riding Worker Agents in Crews",
-                    "UI Stream Desync & Phantom Tool States",
-                    "Automation Bias Rubber-Stamping Swarm PRs",
-                    "Unattributed Multi-Agent Tort Liability",
                 ],
-                "small": [],
             },
-        },
-    },
-    {
-        "layer": 11,
-        "badge": "SEPARATE ORGANISM",
-        "meter": "EXT",
-        "name": "RAG & MULTIMODAL (EXTERNAL)",
-        "core_unit": "Core Unit: Vector Chunks, ViT Patches & Audio Frames",
-        "desc": "Detached retrieval (`Hybrid/Graph RAG`) and sensory (`Vision/Audio/Omni`) subsystems that plug into the agent stack.",
-        "book_ref": "Ch. 14, 15, 16, 18.4, 30.8/9 (RAG, Vision & Audio).",
-        "accent": "#14B8A6",
-        "is_external_organism": True,
-        "cells": {
-            "primitives_arch": {
+            "rag": {
                 "h1": [
-                    "Hybrid & Agentic RAG (Dense+BM25+RRF)",
-                    "GraphRAG Entity Summaries & REFRAG",
-                    "Vision (ViT/SigLIP) & Native Omni Audio",
+                    "Federated Multi-Index Knowledge Brokers",
+                    "Parallel Deep-Research Subagent Swarms",
+                    "Cross-Domain Claim-Verification Critics",
                 ],
                 "normal": [
-                    "Bi-Encoder (HNSW) vs. Cross-Encoder Rerank",
-                    "Reciprocal Rank Fusion (RRF) & ColBERT",
-                    "Contextual Chunking & AST Code Splitting",
-                    "Self-RAG / Corrective RAG / Search-R1",
-                    "ViT Patch Projection & AnyRes Dynamic Tiling",
-                    "Visual Token Compression (Perceiver/Q-Former)",
-                    "Whisper Spectrogram & RVQ Audio Codecs",
-                    "GUI Coordinate Grounding (Set-of-Mark/SoM)",
+                    "Supervisor Routing Across SQL / Vector / Graph",
+                    "Map-Reduce Literature & Patent Synthesis",
+                    "Adversarial Fact-Checker vs. Writer Debate",
+                    "Per-Agent OAuth On-Behalf-Of (OBO) ACLs",
+                    "Shared Citation Blackboard & Deduplication",
+                    "Enterprise Cross-Silo Retrieval Benchmarks",
                 ],
                 "small": [
-                    "HNSW / IVF-PQ / DiskANN Vector Indices",
-                    "Matryoshka Representation Learning (MRL)",
-                    "HyDE Hypothetical Document Embeddings",
-                    "GraphRAG Community Detection (Leiden)",
-                    "REFRAG Compress-Sense-Expand Decoding",
-                    "SigLIP / CLIP Contrastive Alignment",
-                    "Chameleon / Gemini Early-Fusion Omni",
-                    "2D-RoPE Spatial Vision Positional Encoding",
-                    "ColPali Visual Document Patch Retrieval",
-                    "Full-Duplex Speech-to-Speech Streaming",
-                    "Video Temporal Frame Sampling & 3D Tubes",
-                    "Diffusion / Flow-Matching Visual Generation",
+                    "A2A Knowledge-Query Capability Discovery",
+                    "Provenance Hash Chain Across Subagents",
+                    "Token-Budget Allocation per Research Branch",
+                ],
+                "anti": [
+                    "Subagent Circular Citation Laundering",
+                    "Confused-Deputy Cross-Department Data Leak",
+                    "10 Subagents Fetching Identical Documents",
+                    "Aggregator Dropping Minority Counter-Evidence",
                 ],
             },
-            "frameworks_stack": {
+            "multimodal": {
                 "h1": [
-                    "Qdrant · Milvus · pgvector · Neo4j",
-                    "LlamaIndex · Haystack · LightRAG · Docling",
-                    "GPT-5.4 Omni · Gemini 3 · Qwen2.5-VL",
+                    "Cross-Modal Specialist Production Swarms",
+                    "Director–Storyboard–Video–Audio Pipeline",
+                    "Multimodal Critic & Brand/Safety Gatekeeper",
                 ],
                 "normal": [
-                    "Qdrant · Milvus · Pinecone · Weaviate",
-                    "pgvector · LanceDB · Chroma · FAISS",
-                    "LlamaIndex · Haystack · Microsoft GraphRAG",
-                    "BGE-M3 · Cohere Embed v3 & Rerank v3.5",
-                    "Docling · Unstructured · Marker · MinerU PDF",
-                    "Qwen2.5-VL / Qwen-Omni · Pixtral · InternVL",
-                    "Whisper-v3 · Moshi · ElevenLabs · Cartesia",
-                    "Claude Computer Use & OpenAI Operator GUI",
+                    "Voice Concierge + Backend Tool Subagents",
+                    "Character-Sheet & Style Consistency Blackboard",
+                    "Parallel Scene Rendering + Audio Foley Sync",
+                    "VLM Visual QA Critic Grading Generated Media",
+                    "Streaming AG-UI Canvas & Live Media Artifacts",
+                    "End-to-End Multi-Modal Storyboard Evals",
                 ],
                 "small": [
-                    "Elasticsearch / OpenSearch BM25 Lexical",
-                    "Firecrawl & Jina Reader Markdown Scrapers",
-                    "ColPali / Byaldi Multimodal PDF RAG",
-                    "Neo4j & FalkorDB Property Graph Stores",
-                    "SQLite-vec & DuckDB-VSS Local Vector",
-                    "LiveKit & Pipecat Real-Time Voice/Video",
-                    "OmniParser UI Icon/Bounding-Box Detector",
-                    "Playwright + Screenshot Visual DOM Hybrid",
-                    "PaddleOCR & Surya Multilingual OCR",
-                    "SAM 2 (Segment Anything) Spatial Masks",
-                    "Flux.1 / SD3.5 / Veo 3 Media Generators",
-                    "TwelveLabs & LanguageBind Video Indexers",
+                    "Shared Latent Seed & IP-Adapter Reference",
+                    "WebRTC + A2A Split-Plane Media Streaming",
+                    "Automated Copyright & Likeness Guardrails",
+                ],
+                "anti": [
+                    "Character Identity Drift Across Video Scenes",
+                    "Voice Concierge Promising Actions Backend Fails",
+                    "Audio-Visual Lip-Sync Desynchronization",
+                    "Runaway Diffusion Rendering Costs in Swarm",
                 ],
             },
-            "ops_evals_security": {
+            "embodied": {
                 "h1": [
-                    "RAG Triad Evals (Faithfulness / Recall@k)",
-                    "Document-Level RBAC & Citation Locking",
-                    "MMMU / ScreenSpot / OSWorld GUI Evals",
+                    "Multi-Robot Fleet & Warehouse Orchestration",
+                    "Digital-Twin Sim + Physical Fleet Co-Execution",
+                    "Human–Robot–GUI Shared Autonomy Swarms",
                 ],
                 "normal": [
-                    "Ragas & TruLens Groundedness Oracles",
-                    "NDCG@k · MRR · Recall@k Retrieval Audits",
-                    "Pre-Indexing Document ACL / RBAC Filtering",
-                    "Citation Span-Locking & Provenance Check",
-                    "Hallucination Span Detection (LettuceDetect)",
-                    "MMMU · MathVista · DocVQA · OCRBench",
-                    "ScreenSpot & OSWorld GUI Grounding Evals",
-                    "C2PA Cryptographic Media Watermarking",
+                    "MAPF (Multi-Agent Path Finding) Conflict-Free",
+                    "Heterogeneous Swarms (Drone + Rover + Arm)",
+                    "V2X Cooperative Perception & Spatial Sharing",
+                    "Cloud Fleet Planner + Local Edge Safety Reflex",
+                    "Operator Fleet Dashboard & Teleop Handoff",
+                    "Fleet Throughput, Deadlock & Collision Evals",
                 ],
                 "small": [
-                    "FRAMES & LongBench Multi-Hop RAG Eval",
-                    "RGB (Retrieval-Augmented Generation Bench)",
-                    "Cross-Tenant Vector Namespace Isolation",
-                    "PII & Secret Redaction Before Indexing",
-                    "Embedding Drift Monitor on Model Upgrade",
-                    "Stale-Document TTL & Incremental Re-Index",
-                    "Visual Prompt-Injection OCR Scrubbing",
-                    "Audio Deepfake & Voice-Cloning Spoof Check",
-                    "Voice Turn-Taking Latency (<300ms EoT)",
-                    "Bounding-Box IoU Click Accuracy Audit",
-                    "Video Long-Horizon Needle-in-a-Haystack",
-                    "SynthID & AudioSeal Provenance Verification",
+                    "CBS (Conflict-Based Search) Spatio-Temporal",
+                    "DDS / ROS 2 Multi-Robot Namespace Isolation",
+                    "Graceful Degradation on Wi-Fi Drop",
                 ],
-            },
-            "failure_modes": {
-                "h1": [
-                    "Indirect Prompt Injection via RAG / Images",
-                    "Naive Fixed-Size Mid-Table/Code Chunking",
-                    "Visual OCR Hallucination & GUI Misclicks",
+                "anti": [
+                    "Warehouse Corridor Deadlock & Traffic Gridlock",
+                    "Shared-Map Poisoning from One Faulty Sensor",
+                    "Network Partition Leaving Fleet Uncoordinated",
+                    "Simultaneous Grasp Collision on Shared Object",
                 ],
-                "normal": [
-                    "Poisoned Web/PDF Hijacking Agent via RAG",
-                    "Hidden White-on-White Text in Images",
-                    "512-Token Split Severing Table Headers",
-                    "Unfiltered Vector Search Leaking Exec Docs",
-                    "Hallucinated Citations on Unretrieved Text",
-                    "Embedding Space Mismatch After Re-Index",
-                    "VLM Misreading Dense Charts / Small Fonts",
-                    "Coordinate Drift Clicking Wrong GUI Button",
-                    "Quadratic ViT Patch Explosion on 4K Screens",
-                    "Voice Interruption Desync & Echo Loops",
-                ],
-                "small": [],
             },
         },
     },
 ]
 
+# Validate Short Name (<= 2 words) and Full Name (<= 10 words) for all 10 stages
+STAGE_SHORT_NAMES = {}
+STAGE_H1_TITLES = {}
+STAGE_FULL_NAMES = {}
 
-PHI = (1.0 + 5.0 ** 0.5) / 2.0  # Golden Ratio φ ≈ 1.61803398875
-
-# Short Name: strictly <= 2 words (even if hyphens are split into separate words)
-STAGE_SHORT_NAMES = {
-    1: "Silicon",
-    2: "Python",
-    3: "Data",
-    4: "Pre-Training",
-    5: "SFT",
-    6: "Post-Training",
-    7: "Test-Time",
-    8: "Context",
-    9: "Harness",
-    10: "Multi-Agent",
-    11: "Multimodal RAG",
-}
-
-# Display H1 Title: "{n}. {Short Name}" for Core Stages 1..10, "{Short Name}" for Separate Organism
-STAGE_H1_TITLES = {
-    idx: (f"{idx}. {sname}" if idx <= 10 else sname)
-    for idx, sname in STAGE_SHORT_NAMES.items()
-}
-
-# Full Name: descriptive full layer name, strictly <= 10 words
-STAGE_FULL_NAMES = {
-    1: "Physical Compute Silicon, GPU Clusters, HBM3e Memory & Interconnect Fabrics",
-    2: "Python Runtimes, Package Managers, Virtual Environments & Tensor Compilers",
-    3: "Web & Code Corpora, Subword Tokenization & Curation Pipelines",
-    4: "Foundation Model Architectures, Sparse MoE Routing & Self-Supervised Pre-Training",
-    5: "Supervised Fine-Tuning, Instruction Templates, Sequence Packing & LoRA Adapters",
-    6: "Preference Alignment (RLHF/DPO) & Verifiable-Reward Reinforcement Learning (RLVR/GRPO)",
-    7: "Test-Time Compute Scaling, System-2 Chain-of-Thought Reasoning & Tree Search",
-    8: "Context Engineering, Four-Tier Memory, Tool Calling, MCP & Skills",
-    9: "Single-Agent Harness Engineering, Observe-Decide-Act Loops & Stateful Graph Workflows",
-    10: "Multi-Agent Orchestration, Hierarchical Swarms, A2A Protocols & Shared State",
-    11: "External Hybrid & Graph RAG, Vision Encoders & Native Audio",
-}
-
-for _ly in STACK_LAYERS:
-    _idx = _ly["layer"]
-    _sname = STAGE_SHORT_NAMES[_idx]
-    _fname = STAGE_FULL_NAMES[_idx]
-    assert len(_sname.split()) <= 2 and len(_sname.replace("-", " ").split()) <= 2, f"Short name > 2 words: {_sname}"
-    assert len(_fname.split()) <= 10, f"Full name > 10 words: {_fname}"
-    _ly["short_name"] = _sname
-    _ly["full_name"] = _fname
-    _ly["name"] = _fname
+for _st in STACK_STAGES:
+    _idx = _st["stage"]
+    _sname = _st["short_name"]
+    _fname = _st["full_name"]
+    assert len(_sname.split()) <= 2 and len(_sname.replace("-", " ").split()) <= 2, f"Stage short_name > 2 words: {_sname}"
+    assert len(_fname.split()) <= 10, f"Stage full_name > 10 words: {_fname}"
+    STAGE_SHORT_NAMES[_idx] = _sname
+    STAGE_H1_TITLES[_idx] = f"{_idx}. {_sname}"
+    STAGE_FULL_NAMES[_idx] = _fname
 
 
 def render_desktop_agent_anatomy_megachart():
@@ -1563,22 +1342,20 @@ def render_desktop_agent_anatomy_megachart():
 
     Strict Unskipped 5-Level Golden Ratio Typographic Hierarchy (φ = 1.61803398875):
       • T = H0 = 10.0 * φ² ≈ 26.18 pt : Main Megachart Title ("ANATOMY OF AI AGENTS 2026")
-      • H1 = H0 / φ        ≈ 16.18 pt : Stage Title ("1. Silicon", "2. Python", ..., "10. Multi-Agent",
-                                        "RAG & Multimodal") + Top-Left "AI AGENT ANATOMY"
-      • H2 = H1 / φ        = 10.00 pt : Cell Tier-1 Top-3 Flagship Pills, Masthead Subtitle/Hook/Key,
-                                        and Left-Column Row Pillar Titles
-      • H3 = H2 / φ        ≈  6.18 pt : Cell Tier-2 Normal Grid Items (2x4 active / 4x1 fail),
-                                        Column Header Subtitles/Descriptions/Bullets, Row Pillar Badges/Descs,
-                                        and Masthead Footnote Strip
-      • H4 = H3 / φ        ≈  3.82 pt : Cell Tier-3 Granular Footnote Grid Items (3x4 active / 2x2 fail)
+      • H1 = H0 / φ        ≈ 16.18 pt : Stage Short Names ("1. Silicon" .. "10. Multi-Agent")
+                                        & Organism Short Names ("LLM", "RAG", "Multimodal", "Embodied AI")
+      • H2 = H1 / φ        = 10.00 pt : Cell Tier-1 Top-3 Flagship Pills & Masthead Subtitle/Hook/Key
+      • H3 = H2 / φ        ≈  6.18 pt : Stage & Organism Full Names (<= 10 words), Cell Tier-2 Core Grid,
+                                        Inner Anti-Pattern Items, and Masthead Footnote Strip
+      • H4 = H3 / φ        ≈  3.82 pt : Cell Tier-3 Granular Specs & Anti-Pattern Header Badge
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
-    H2 = 10.0000          # 10.0000 pt (Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles)
-    H1 = H2 * PHI         # 16.1803 pt (1. Silicon, 2. Python, ... H1 Stage Titles)
-    H0 = H1 * PHI         # 26.1803 pt (Title T = H0)
-    H3 = H2 / PHI         #  6.1803 pt (Cell Tier-2 Normal Grid & Header Descriptions/Bullets)
-    H4 = H3 / PHI         #  3.8197 pt (Cell Tier-3 Granular Footnote Grid)
+    H2 = 10.0000          # 10.0000 pt (Cell Tier-1 Top-3 Pills & Masthead)
+    H1 = H2 * PHI         # 16.1803 pt (Stage Short Names & Organism Short Names)
+    H0 = H1 * PHI         # 26.1803 pt (Main Title T = H0)
+    H3 = H2 / PHI         #  6.1803 pt (Full Names, Cell Tier-2 Grid & Anti-Pattern Items)
+    H4 = H3 / PHI         #  3.8197 pt (Cell Tier-3 Granular Specs & Anti-Pattern Badge)
 
     fig = plt.figure(figsize=(46.8, 21.6), dpi=300, facecolor="#0F172A")
     ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
@@ -1605,7 +1382,6 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.add_patch(hdr_box)
 
-    # Left Block: T = H0 Title + H2 Website/Subtitle Underneath
     ax.text(
         0.012, hdr_y + hdr_h * 0.70,
         "ANATOMY OF AI AGENTS 2026",
@@ -1613,19 +1389,17 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com · 1. Silicon → 10. Multi-Agent + External RAG/Multimodal (arXiv:2606.24937)",
+        "www.arianprabowo.com · 10 Stages (1. Silicon → 10. Multi-Agent) × 4 Organisms (LLM · RAG · Multimodal · Embodied AI)",
         fontsize=H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
-    # Vertical divider 1
     ax.plot(
-        [0.415, 0.415], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.435, 0.435], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.6
     )
 
-    # Middle Block: H2 Yellow Motivating Hook
     ax.text(
-        0.423, hdr_y + hdr_h * 0.58,
+        0.443, hdr_y + hdr_h * 0.58,
         "What actually runs under an AI agent in 2026? Trace left to right:\n"
         "1. Silicon → 2. Python → 3. Data → 4. Pre-Training → 5. SFT →\n"
         "6. Post-Training → 7. Test-Time → 8. Context → 9. Harness → 10. Multi-Agent.",
@@ -1633,29 +1407,25 @@ def render_desktop_agent_anatomy_megachart():
         linespacing=1.16
     )
 
-    # Vertical divider 2
     ax.plot(
         [0.758, 0.758], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.6
     )
 
-    # Right Block: H2 Blue 3-Step Key
     ax.text(
         0.766, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow 1. Silicon → 10. Multi-Agent\n"
-        "② SEPARATE ORGANISM: Far-right = Multimodal RAG\n"
-        "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
+        "① COLUMNS (1 → 10): Physical Silicon to Multi-Agent Swarms\n"
+        "② ROWS (4 ORGANISMS): LLM Spine + RAG, Multimodal & Embodied AI\n"
+        "③ INSIDE EVERY CELL: Stack + Red ⚠ ANTI-PATTERNS Box at Bottom",
         fontsize=H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
         linespacing=1.18
     )
 
-    # Horizontal divider above bottom footnote strip
     ax.plot(
         [0.010, 0.990], [hdr_y + hdr_h * 0.20, hdr_y + hdr_h * 0.20],
         color="#1E293B", linewidth=1.1
     )
 
-    # Bottom Combined Grey Footnote Strip (H3)
     ax.text(
         0.500, hdr_y + hdr_h * 0.095,
         f"*Synthesized from Haggai Roitman's 'The Hitchhiker's Guide to Agentic AI: From Foundations to Systems' (arXiv:2606.24937, v1.4, June 2026) + 2026 systems tooling. "
@@ -1664,21 +1434,17 @@ def render_desktop_agent_anatomy_megachart():
     )
 
     # -------------------------------------------------------------------------
-    # 2. Horizontal Geometry (Left Pillar Column + 10 Core Stages + 1 Detached Organism)
+    # 2. Horizontal Geometry (Left Organism Column + 10 Stage Columns)
     # -------------------------------------------------------------------------
     left_x0 = 0.004
-    left_w = 0.072
-    col_gap = 0.0024
-    org_sep_gap = 0.0096  # Extra visual gap separating 10. Multi-Agent from the Separate Organism
+    left_w = 0.076
+    col_gap = 0.0026
     active_x0 = left_x0 + left_w + col_gap
-    n_layers = len(STACK_LAYERS)  # 11 total (10 core + 1 external organism)
-    layer_col_w = (0.996 - active_x0 - (n_layers - 2) * col_gap - org_sep_gap) / n_layers
+    n_stages = len(STACK_STAGES)  # 10 stages
+    stage_col_w = (0.996 - active_x0 - (n_stages - 1) * col_gap) / n_stages
 
-    def get_col_x(l_idx: int) -> float:
-        base_x = active_x0 + l_idx * (layer_col_w + col_gap)
-        if STACK_LAYERS[l_idx].get("is_external_organism"):
-            base_x += org_sep_gap - col_gap
-        return base_x
+    def get_col_x(s_idx: int) -> float:
+        return active_x0 + s_idx * (stage_col_w + col_gap)
 
     col_hdr_y = 0.778
     col_hdr_h = 0.124
@@ -1691,53 +1457,34 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.add_patch(corner_box)
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "AI AGENT\nANATOMY",
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.73,
+        "ORGANISMS\n× STAGES",
         fontsize=H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
         linespacing=1.02
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.37,
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.38,
         "1. Silicon → 10. Swarms",
         fontsize=H2, fontweight="bold", color="#FEF08A", va="center", ha="center"
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.15,
-        "+ Detached Organism\n(RAG & Multimodal)",
+        "LLM · RAG · Multimodal\n· Embodied (+ ⚠ Traps)",
         fontsize=H3, fontweight="bold", color="#5EEAD4", va="center", ha="center",
-        linespacing=1.10
+        linespacing=1.08
     )
 
-    # Vertical Dashed Boundary & Background Halo for the Detached Separate Organism (Column 11)
-    org_x0 = get_col_x(10)
-    org_div_x = org_x0 - org_sep_gap * 0.50
-    ax.plot(
-        [org_div_x, org_div_x], [0.008, col_hdr_y + col_hdr_h],
-        color="#0D9488", linewidth=2.6, linestyle=(0, (7, 4)), alpha=0.90
-    )
-    org_halo = FancyBboxPatch(
-        (org_x0 - 0.0018, 0.006),
-        layer_col_w + 0.0036,
-        col_hdr_y + col_hdr_h - 0.004,
-        boxstyle="round,pad=0.0,rounding_size=0.005",
-        facecolor="#CCFBF1", edgecolor="#0D9488", linewidth=1.8, linestyle=(0, (6, 3)), alpha=0.28
-    )
-    ax.add_patch(org_halo)
-
-    # 10 Core Stage Column Headers + 1 Separate Organism Column Header
-    # Stage Title ("1. Silicon", "2. Python", ...) is strictly H1 (= H0 / φ)
-    for l_idx, ly in enumerate(STACK_LAYERS):
-        lx = get_col_x(l_idx)
-        is_org = bool(ly.get("is_external_organism"))
-        st_num = ly["layer"]
+    # 10 Stage Column Headers
+    for s_idx, st in enumerate(STACK_STAGES):
+        lx = get_col_x(s_idx)
+        st_num = st["stage"]
 
         lbox_body = FancyBboxPatch(
-            (lx, col_hdr_y), layer_col_w, col_hdr_h,
+            (lx, col_hdr_y), stage_col_w, col_hdr_h,
             boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor="#042F2E" if is_org else "#0F172A",
-            edgecolor="#14B8A6" if is_org else "#334155",
-            linewidth=2.0 if is_org else 1.5,
-            linestyle="--" if is_org else "-"
+            facecolor="#0F172A",
+            edgecolor="#334155",
+            linewidth=1.5
         )
         ax.add_patch(lbox_body)
 
@@ -1745,67 +1492,60 @@ def render_desktop_agent_anatomy_megachart():
         banner_h = col_hdr_h * 0.55
         lbox_top = FancyBboxPatch(
             (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
-            layer_col_w - 2 * inset_b, banner_h,
+            stage_col_w - 2 * inset_b, banner_h,
             boxstyle="round,pad=0.0,rounding_size=0.003",
-            facecolor="#115E59" if is_org else "#1E293B",
-            edgecolor=ly["accent"],
+            facecolor="#1E293B",
+            edgecolor=st["accent"],
             linewidth=1.5
         )
         ax.add_patch(lbox_top)
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
-        if is_org:
-            # Top strip of organism banner: SEPARATE ORGANISM · EXTERNAL badge
-            ax.text(
-                lx + layer_col_w / 2, b_top_y - banner_h * 0.16,
-                "⇄ SEPARATE ORGANISM · EXTERNAL",
-                fontsize=H3, fontweight="bold", color="#5EEAD4", va="center", ha="center"
+
+        # 10-segment progress bar centered across top of banner
+        bar_total_w = stage_col_w - 0.0080
+        bar_gap = 0.0008
+        seg_w = (bar_total_w - 9 * bar_gap) / 10.0
+        seg_h = banner_h * 0.12
+        bar_x_start = lx + 0.0040
+        bar_y = b_top_y - banner_h * 0.16 - seg_h / 2.0
+        for b_i in range(10):
+            bx_i = bar_x_start + b_i * (seg_w + bar_gap)
+            is_lit = b_i < st_num
+            seg_patch = FancyBboxPatch(
+                (bx_i, bar_y), seg_w, seg_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0008",
+                facecolor=st["accent"] if is_lit else "#334155",
+                edgecolor=st["accent"] if is_lit else "#475569",
+                linewidth=0.50
             )
-        else:
-            # Top strip of stage banner: 10-segment progress bar centered across top of banner
-            bar_total_w = layer_col_w - 0.0080
-            bar_gap = 0.0008
-            seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.12
-            bar_x_start = lx + 0.0040
-            bar_y = b_top_y - banner_h * 0.16 - seg_h / 2.0
-            for b_i in range(10):
-                bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-                is_lit = b_i < st_num
-                seg_patch = FancyBboxPatch(
-                    (bx_i, bar_y), seg_w, seg_h,
-                    boxstyle="round,pad=0.0,rounding_size=0.0008",
-                    facecolor=ly["accent"] if is_lit else "#334155",
-                    edgecolor=ly["accent"] if is_lit else "#475569",
-                    linewidth=0.50
-                )
-                ax.add_patch(seg_patch)
+            ax.add_patch(seg_patch)
 
         # Short Name (<= 2 words) in H1 (= H0 / φ): "1. Silicon", "2. Python", ...
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.45,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.45,
             STAGE_H1_TITLES[st_num],
             fontsize=H1,
             fontweight="bold",
-            color="#FEF08A" if is_org else "#FFFFFF",
+            color="#FFFFFF",
             va="center", ha="center"
         )
 
         # Full Name (<= 10 words, wrapped onto 2 lines) at bottom of banner in H3 (= H0 / φ³)
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.80,
-            textwrap.fill(STAGE_FULL_NAMES[st_num], width=48),
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.80,
+            textwrap.fill(STAGE_FULL_NAMES[st_num], width=52),
             fontsize=H3,
             fontweight="bold",
-            color="#5EEAD4" if is_org else "#FEF08A",
+            color="#FEF08A",
             va="center", ha="center",
             linespacing=1.02
         )
 
         # Column Header Body below banner: Description & Bullets in H3 (= H0 / φ³)
-        desc_wrapped = textwrap.fill(ly["desc"], width=42)
-        unit_line = f"• {ly['core_unit']}"
-        ref_line = f"• Guide: {ly['book_ref']}"
+        desc_wrapped = textwrap.fill(st["desc"], width=46)
+        unit_line = f"• {st['core_unit']}"
+        ref_line = f"• Guide: {st['book_ref']}"
 
         body_avail_h = col_hdr_h - banner_h - inset_b
         body_top_y = col_hdr_y + body_avail_h * 0.93
@@ -1828,361 +1568,298 @@ def render_desktop_agent_anatomy_megachart():
             bullet_body,
             fontsize=H3,
             fontweight="bold",
-            color="#5EEAD4" if is_org else "#93C5FD",
+            color="#93C5FD",
             va="bottom",
             ha="left",
             linespacing=1.04,
         )
 
     # -------------------------------------------------------------------------
-    # 3. 4 Architectural Pillar Rows x (10 Core Stage Columns + 1 Organism Column)
+    # 3. 4 Organism Rows (LLM Spine + Detached RAG, Multimodal, Embodied AI)
+    #    with Red Dashed "⚠ ANTI-PATTERNS & TRAPS" Box INSIDE Every Cell
     # -------------------------------------------------------------------------
     top_y = 0.772
-    active_row_h = 0.199
-    fail_row_h = 0.151
-    row_gap = 0.0040
-    fail_sep_gap = 0.0080
+    row_h = 0.1865
+    spine_sep_gap = 0.0075  # Visual separation between Row 1 (LLM Spine) and Separate Organisms (RAG, Multimodal, Embodied)
+    row_gap = 0.0042
 
     row_geoms = [
-        (top_y - 1 * active_row_h - 0 * row_gap, active_row_h),
-        (top_y - 2 * active_row_h - 1 * row_gap, active_row_h),
-        (top_y - 3 * active_row_h - 2 * row_gap, active_row_h),
-        (top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap - fail_row_h, fail_row_h),
+        (top_y - 1 * row_h, row_h),
+        (top_y - 2 * row_h - spine_sep_gap, row_h),
+        (top_y - 3 * row_h - spine_sep_gap - 1 * row_gap, row_h),
+        (top_y - 4 * row_h - spine_sep_gap - 2 * row_gap, row_h),
     ]
 
-    # Red dashed horizontal separator line above FAILURE MODES & TRAPS row
-    sep_y = top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap * 0.5
+    # Dashed teal/amber separator line between LLM Core Spine (Row 1) and Separate Organisms (Rows 2..4)
+    sep_y = top_y - row_h - spine_sep_gap * 0.50
     ax.plot(
         [left_x0, 0.996], [sep_y, sep_y],
-        color="#DC2626", linewidth=1.8, linestyle=(0, (6, 3)), alpha=0.75
+        color="#0D9488", linewidth=2.0, linestyle=(0, (7, 4)), alpha=0.85
     )
 
-    row_side_titles = {
-        "primitives_arch": (
-            "PILLAR 1",
-            "CORE PRIMITIVES\n& ARCHITECTURE",
-            "Hardware Physics,\nTraining Objectives,\nInference Search &\nAgent Topologies",
-            "• 1–3: Silicon / Python / Data\n• 4–7: Pretrain / SFT / RLVR / TTC\n• 8–10: MCP / Harness / Swarms",
-        ),
-        "frameworks_stack": (
-            "PILLAR 2",
-            "FRAMEWORKS, PKGS\n& PROTOCOLS",
-            "CLI Package Managers,\nDL/RL/Serving Engines,\nAgent Harnesses &\nSwarm Protocols",
-            "• brew · uv · conda · pip · venv\n• PyTorch · JAX · TRL · verl · vLLM\n• MCP · SKILL.md · LangGraph · A2A",
-        ),
-        "ops_evals_security": (
-            "PILLAR 3",
-            "SCALING, EVALS\n& SECURITY",
-            "Throughput SLAs,\nMicroVM Sandboxes,\nVerification Oracles &\nZero-Trust Guardrails",
-            "• MFU · E2B/bwrap · Decontam\n• RLVR Graders · PRM · MCP OAuth\n• SWE-bench · pass^k · KYA",
-        ),
-        "failure_modes": (
-            "ANTI-PATTERNS",
-            "FAILURE MODES\n& TRAPS",
-            "What Breaks in Prod:\nBottlenecks, Collapses,\nReward Hacking &\nSwarm Cascades",
-            "• OOM & CUDA ABI Hell\n• Catastrophic Forgetting & Hack\n• Context Rot & O(N²) Chatter",
-        ),
-    }
-
-    for r_idx, col in enumerate(COLUMNS):
+    for r_idx, org in enumerate(ORGANISMS):
         ry, rh = row_geoms[r_idx]
-        is_fail = col["key"] == "failure_modes"
-        p_badge, p_title, p_desc, p_bullets = row_side_titles[col["key"]]
 
-        # Left Row-Header Card
+        # Left Organism Row-Header Card
         rbox_body = FancyBboxPatch(
             (left_x0, ry), left_w, rh,
             boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor="#0F172A", edgecolor=col["cell_edge"], linewidth=1.6
+            facecolor="#0F172A", edgecolor=org["cell_edge"], linewidth=1.8
         )
         ax.add_patch(rbox_body)
 
         inset_r = 0.0014
-        rbanner_h = rh * (0.42 if is_fail else 0.36)
+        rbanner_h = rh * 0.48
         rbox_top = FancyBboxPatch(
             (left_x0 + inset_r, ry + rh - rbanner_h - inset_r),
             left_w - 2 * inset_r, rbanner_h,
             boxstyle="round,pad=0.0,rounding_size=0.003",
-            facecolor=col["hdr_bg"], edgecolor="#FFFFFF", linewidth=1.0
+            facecolor=org["hdr_bg"], edgecolor="#FFFFFF", linewidth=1.1
         )
         ax.add_patch(rbox_top)
 
+        rb_top_y = ry + rh - inset_r
+        # Badge in H4/H3
         ax.text(
-            left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.24,
-            p_badge,
+            left_x0 + left_w / 2, rb_top_y - rbanner_h * 0.16,
+            org["badge"],
             fontsize=H3, fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
+        # Organism Short Name (<= 2 words) in H1
         ax.text(
-            left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.67,
-            p_title,
-            fontsize=H2,
-            fontweight="bold", color="#FFFFFF", va="center", ha="center",
-            linespacing=1.02
+            left_x0 + left_w / 2, rb_top_y - rbanner_h * 0.46,
+            org["short_name"],
+            fontsize=H1,
+            fontweight="bold", color="#FFFFFF", va="center", ha="center"
+        )
+        # Organism Full Name (<= 10 words, wrapped) in H3
+        ax.text(
+            left_x0 + left_w / 2, rb_top_y - rbanner_h * 0.80,
+            textwrap.fill(org["full_name"], width=28),
+            fontsize=H3,
+            fontweight="bold", color="#E2E8F0", va="center", ha="center",
+            linespacing=1.00
         )
 
         body_avail_h = rh - rbanner_h - inset_r
         ax.text(
             left_x0 + left_w / 2,
-            ry + body_avail_h * 0.66,
-            p_desc,
+            ry + body_avail_h * 0.68,
+            org["desc"],
             fontsize=H3,
             fontweight="bold",
             color="#F8FAFC",
             va="center",
             ha="center",
-            linespacing=1.08,
+            linespacing=1.06,
         )
         ax.text(
             left_x0 + 0.0030,
-            ry + 0.005,
-            p_bullets,
+            ry + 0.0045,
+            org["bullets"],
             fontsize=H3,
             fontweight="bold",
-            color="#FCA5A5" if is_fail else "#93C5FD",
+            color="#93C5FD",
             va="bottom",
             ha="left",
             linespacing=1.08,
         )
 
-        # 10 Core Layer Cells + 1 Separate Organism Cell across this Row
-        for l_idx, ly in enumerate(STACK_LAYERS):
-            cx = get_col_x(l_idx)
-            cw = layer_col_w
-            is_org = bool(ly.get("is_external_organism"))
+        # 10 Stage Cells for this Organism
+        for s_idx, st in enumerate(STACK_STAGES):
+            cx = get_col_x(s_idx)
+            cw = stage_col_w
 
-            cell_data = ly["cells"][col["key"]]
+            cell_data = st["cells"][org["key"]]
             top_h1 = cell_data["h1"]
             mid_norm = cell_data["normal"]
             bot_small = cell_data["small"]
+            anti_list = cell_data["anti"]
 
             cbox = FancyBboxPatch(
                 (cx, ry), cw, rh,
                 boxstyle="round,pad=0.0,rounding_size=0.004",
-                facecolor=col["cell_bg"],
-                edgecolor="#0D9488" if (is_org and not is_fail) else col["cell_edge"],
-                linewidth=1.8 if is_org else (1.5 if not is_fail else 1.6),
-                linestyle="--" if (is_fail or is_org) else "-"
+                facecolor=org["cell_bg"],
+                edgecolor=org["cell_edge"],
+                linewidth=1.5
             )
             ax.add_patch(cbox)
 
             pad_x = 0.0018
-            pad_top = 0.0028
+            pad_top = 0.0026
             pad_bot = 0.0024
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
-            # =================================================================
-            # CASE A: Failure Modes Row (Top 3 Pills=H2, 4x1 Tier 2=H3, 2x2 Tier 3=H4)
-            # =================================================================
-            if is_fail:
-                gap_t1_t2 = 0.0020
-                gap_t2_t3 = 0.0016
-                avail_h = rh - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
-                t1_h = avail_h * 0.410
-                t2_h = avail_h * 0.340
-                t3_h = avail_h * 0.250
+            gap_z = 0.0018
+            avail_h = rh - pad_top - pad_bot - 3 * gap_z
+            t1_h = avail_h * 0.34   # Top 3 Flagship Pills (H2)
+            t2_h = avail_h * 0.30   # Middle 3x2 = 6 Core Items (H3)
+            t3_h = avail_h * 0.08   # Granular 1x3 = 3 Specs (H4)
+            anti_h = avail_h * 0.28 # Inner Red "⚠ ANTI-PATTERNS & TRAPS" Box (2x2 in H3/H4)
 
-                t1_top_y = ry + rh - pad_top
-                pill_gap = 0.0016
-                ph = (t1_h - 2 * pill_gap) / 3.0
-                for idx_1, kw in enumerate(top_h1[:3]):
-                    px = x_left
-                    pw = inner_w
-                    py = t1_top_y - (idx_1 + 1) * ph - idx_1 * pill_gap
-                    pill = FancyBboxPatch(
-                        (px, py), pw, ph,
-                        boxstyle="round,pad=0.0,rounding_size=0.0022",
-                        facecolor=col["h1_bg"],
-                        edgecolor=col["pill_edge"],
-                        linewidth=1.05,
-                        linestyle="--"
-                    )
-                    ax.add_patch(pill)
-                    ax.text(
-                        px + pw / 2, py + ph / 2,
-                        kw,
-                        fontsize=H2,
-                        fontweight="bold",
-                        color=col["h1_txt"],
-                        va="center", ha="center"
-                    )
-
-                # Tier 2: 4 single-column rows (H3 = H2 / φ)
-                t2_top_y = t1_top_y - t1_h - gap_t1_t2
-                t2_row_h = t2_h / 4.0
-
-                for r_div in range(1, 4):
-                    hy = t2_top_y - r_div * t2_row_h
-                    ax.plot(
-                        [x_left + 0.0004, x_left + inner_w - 0.0004],
-                        [hy, hy],
-                        color="#FECACA", linewidth=0.55
-                    )
-
-                for sr, kw in enumerate(mid_norm[:4]):
-                    if sr % 2 == 1:
-                        stripe = FancyBboxPatch(
-                            (x_left, t2_top_y - (sr + 1) * t2_row_h + 0.00012),
-                            inner_w, t2_row_h - 0.00024,
-                            boxstyle="round,pad=0.0,rounding_size=0.001",
-                            facecolor="#FEE2E2", edgecolor="none", alpha=0.65
-                        )
-                        ax.add_patch(stripe)
-                    tx = x_left + 0.0016
-                    ty = t2_top_y - (sr + 0.5) * t2_row_h
-                    ax.text(
-                        tx, ty,
-                        f"▸ {kw}",
-                        fontsize=H3,
-                        fontweight="bold",
-                        color=col["t2_txt"],
-                        va="center", ha="left"
-                    )
-
-                # Tier 3: Bottom 4 in 2x2 grid inside bottom band (H4 = H3 / φ)
-                t3_top_y = t2_top_y - t2_h - gap_t2_t3
-                t3_row_h = t3_h / 2.0
-                t3_col_w = inner_w / 2.0
-
-                t3_band = FancyBboxPatch(
-                    (x_left, ry + pad_bot),
-                    inner_w, t3_h,
-                    boxstyle="round,pad=0.0,rounding_size=0.0018",
-                    facecolor="#FFF1F2",
-                    edgecolor="#FCA5A5",
-                    linewidth=0.6
-                )
-                ax.add_patch(t3_band)
-
-                ax.plot(
-                    [x_left + t3_col_w, x_left + t3_col_w],
-                    [ry + pad_bot + 0.0006, t3_top_y - 0.0006],
-                    color="#FCA5A5", linewidth=0.55
-                )
-
-                for idx_3, kw in enumerate(mid_norm[4:8]):
-                    sr = idx_3 // 2
-                    sc = idx_3 % 2
-                    tx = x_left + sc * t3_col_w + 0.0010
-                    ty = t3_top_y - (sr + 0.5) * t3_row_h
-                    ax.text(
-                        tx, ty,
-                        textwrap.fill(kw, width=36),
-                        fontsize=H4,
-                        fontweight="bold",
-                        color="#991B1B",
-                        va="center", ha="left",
-                        linespacing=0.95
-                    )
-                continue
-
-            # =================================================================
-            # CASE B: Full 3-Tier Active Architectural Cell (H2 -> H3 -> H4)
-            # =================================================================
-            gap_t1_t2 = 0.0022
-            gap_t2_t3 = 0.0018
-            avail_h = rh - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
-            t1_h = avail_h * 0.365
-            t2_h = avail_h * 0.375
-            t3_h = avail_h * 0.260
-
-            # --- TIER 1: Top 3 Flagship Pills (H2 = H1 / φ) ---
+            # -----------------------------------------------------------------
+            # Zone 1: Top 3 Flagship Pills (H2)
+            # -----------------------------------------------------------------
             t1_top_y = ry + rh - pad_top
-            pill_gap = 0.0018
+            pill_gap = 0.0015
             ph = (t1_h - 2 * pill_gap) / 3.0
             for idx_1, kw in enumerate(top_h1[:3]):
-                px = x_left
-                pw = inner_w
                 py = t1_top_y - (idx_1 + 1) * ph - idx_1 * pill_gap
-
                 pill = FancyBboxPatch(
-                    (px, py), pw, ph,
+                    (x_left, py), inner_w, ph,
                     boxstyle="round,pad=0.0,rounding_size=0.0022",
-                    facecolor=col["h1_bg"],
-                    edgecolor=col["pill_edge"],
+                    facecolor=org["h1_bg"],
+                    edgecolor=org["pill_edge"],
                     linewidth=1.10
                 )
                 ax.add_patch(pill)
 
                 ax.text(
-                    px + pw / 2, py + ph / 2,
+                    x_left + inner_w / 2, py + ph / 2,
                     kw,
                     fontsize=H2,
                     fontweight="bold",
-                    color=col["h1_txt"],
+                    color=org["h1_txt"],
                     va="center", ha="center"
                 )
 
-            # --- TIER 2: Middle 8 in 2 Columns x 4 Rows (H3 = H2 / φ) ---
-            t2_top_y = t1_top_y - t1_h - gap_t1_t2
-            t2_row_h = t2_h / 4.0
+            # -----------------------------------------------------------------
+            # Zone 2: Middle 3x2 = 6 Core Stack & Mechanisms Grid (H3)
+            # -----------------------------------------------------------------
+            t2_top_y = t1_top_y - t1_h - gap_z
+            t2_row_h = t2_h / 3.0
             t2_col_w = inner_w / 2.0
 
             ax.plot(
                 [x_left + t2_col_w, x_left + t2_col_w],
-                [t2_top_y - t2_h + 0.0006, t2_top_y - 0.0006],
-                color="#CBD5E1", linewidth=0.75
+                [t2_top_y - t2_h + 0.0008, t2_top_y - 0.0008],
+                color=org["cell_edge"], linewidth=0.55, alpha=0.35
             )
 
-            for idx_2, kw in enumerate(mid_norm[:8]):
-                sr = idx_2 // 2
-                sc = idx_2 % 2
-                if sc == 0 and sr % 2 == 1:
+            for idx_2, kw in enumerate(mid_norm[:6]):
+                mr = idx_2 // 2
+                mc = idx_2 % 2
+                if mr % 2 == 1 and mc == 0:
                     stripe = FancyBboxPatch(
-                        (x_left, t2_top_y - (sr + 1) * t2_row_h + 0.00015),
-                        inner_w, t2_row_h - 0.00030,
-                        boxstyle="round,pad=0.0,rounding_size=0.001",
-                        facecolor=col["t2_bg"], edgecolor="none"
+                        (x_left + 0.0004, t2_top_y - (mr + 1) * t2_row_h + 0.00015),
+                        inner_w - 0.0008, t2_row_h - 0.0003,
+                        boxstyle="round,pad=0.0,rounding_size=0.0012",
+                        facecolor=org["t2_bg"],
+                        edgecolor="none"
                     )
                     ax.add_patch(stripe)
 
-                tx = x_left + sc * t2_col_w + 0.0009
-                ty = t2_top_y - (sr + 0.5) * t2_row_h
+                tx = x_left + mc * t2_col_w + 0.0010
+                ty = t2_top_y - (mr + 0.5) * t2_row_h
                 ax.text(
                     tx, ty,
-                    textwrap.fill(kw, width=27),
+                    textwrap.fill(kw, width=23),
                     fontsize=H3,
                     fontweight="bold",
-                    color=col["t2_txt"],
+                    color=org["t2_txt"],
                     va="center", ha="left",
-                    linespacing=0.95
+                    linespacing=0.96
                 )
 
-            # --- TIER 3: Bottom 12 in 3 Columns x 4 Rows (H4 = H3 / φ) ---
-            t3_top_y = t2_top_y - t2_h - gap_t2_t3
-            t3_row_h = t3_h / 4.0
+            # -----------------------------------------------------------------
+            # Zone 3: Granular 1x3 = 3 Specs Strip (H4)
+            # -----------------------------------------------------------------
+            t3_top_y = t2_top_y - t2_h - gap_z
             t3_col_w = inner_w / 3.0
-
             t3_band = FancyBboxPatch(
-                (x_left, ry + pad_bot),
-                inner_w, t3_h,
-                boxstyle="round,pad=0.0,rounding_size=0.0018",
-                facecolor=col["t3_bg"],
+                (x_left, t3_top_y - t3_h), inner_w, t3_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0016",
+                facecolor=org["t3_bg"],
                 edgecolor="#CBD5E1",
-                linewidth=0.6
+                linewidth=0.55
             )
             ax.add_patch(t3_band)
 
             for c_div in (1, 2):
                 ax.plot(
                     [x_left + c_div * t3_col_w, x_left + c_div * t3_col_w],
-                    [ry + pad_bot + 0.0006, t3_top_y - 0.0006],
+                    [t3_top_y - t3_h + 0.0005, t3_top_y - 0.0005],
                     color="#CBD5E1", linewidth=0.50
                 )
 
-            for idx_3, kw in enumerate(bot_small[:12]):
-                sr = idx_3 // 3
-                sc = idx_3 % 3
-                tx = x_left + sc * t3_col_w + 0.0007
-                ty = t3_top_y - (sr + 0.5) * t3_row_h
+            for idx_3, kw in enumerate(bot_small[:3]):
+                tx = x_left + idx_3 * t3_col_w + 0.0007
+                ty = t3_top_y - 0.5 * t3_h
                 ax.text(
                     tx, ty,
                     textwrap.fill(kw, width=25),
                     fontsize=H4,
                     fontweight="bold",
-                    color=col["t3_txt"],
+                    color=org["t3_txt"],
                     va="center", ha="left",
-                    linespacing=0.94
+                    linespacing=0.92
+                )
+
+            # -----------------------------------------------------------------
+            # Zone 4 (INSIDE): Red Dashed "⚠ ANTI-PATTERNS & TRAPS" Sub-Box
+            # -----------------------------------------------------------------
+            anti_top_y = t3_top_y - t3_h - gap_z
+            anti_bot_y = ry + pad_bot
+            anti_box = FancyBboxPatch(
+                (x_left, anti_bot_y), inner_w, anti_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0022",
+                facecolor="#FFF1F2",
+                edgecolor="#E11D48",
+                linewidth=1.15,
+                linestyle="--"
+            )
+            ax.add_patch(anti_box)
+
+            # Compact top header strip inside the Anti-Patterns sub-box
+            ahdr_h = anti_h * 0.22
+            ahdr_box = FancyBboxPatch(
+                (x_left + 0.0004, anti_top_y - ahdr_h), inner_w - 0.0008, ahdr_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0016",
+                facecolor="#FFE4E6",
+                edgecolor="#FECDD3",
+                linewidth=0.50
+            )
+            ax.add_patch(ahdr_box)
+            ax.text(
+                x_left + inner_w / 2, anti_top_y - ahdr_h * 0.52,
+                "⚠ ANTI-PATTERNS & FAILURE MODES",
+                fontsize=H4,
+                fontweight="bold",
+                color="#9F1239",
+                va="center", ha="center"
+            )
+
+            # 2x2 Grid of 4 Concrete Anti-Patterns in H3/H4
+            abody_top_y = anti_top_y - ahdr_h
+            abody_h = anti_h - ahdr_h
+            arow_h = abody_h / 2.0
+            acol_w = inner_w / 2.0
+
+            ax.plot(
+                [x_left + acol_w, x_left + acol_w],
+                [anti_bot_y + 0.0006, abody_top_y - 0.0006],
+                color="#FDA4AF", linewidth=0.55
+            )
+            ax.plot(
+                [x_left + 0.0010, x_left + inner_w - 0.0010],
+                [anti_bot_y + arow_h, anti_bot_y + arow_h],
+                color="#FDA4AF", linewidth=0.50
+            )
+
+            for idx_a, akw in enumerate(anti_list[:4]):
+                ar = idx_a // 2
+                ac = idx_a % 2
+                tx = x_left + ac * acol_w + 0.0009
+                ty = abody_top_y - (ar + 0.5) * arow_h
+                ax.text(
+                    tx, ty,
+                    textwrap.fill(f"✕ {akw}", width=22),
+                    fontsize=H3,
+                    fontweight="bold",
+                    color="#881337",
+                    va="center", ha="left",
+                    linespacing=0.92
                 )
 
     fig.savefig(OUT_DEV_PNG, dpi=300, facecolor=fig.get_facecolor())
@@ -2195,19 +1872,15 @@ def render_desktop_agent_anatomy_megachart():
 def render_mobile_agent_anatomy_chart():
     """
     Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI — exact 19.5:9 Mobile Landscape)
-    flowing from LEFT to RIGHT (1. Silicon -> 10. Multi-Agent) + Detached Separate Organism (RAG & Multimodal),
-    scaled proportionally by (26.0 / 46.8 = 5/9) with the same Unskipped Golden Ratio hierarchy:
-      • M_H0 = H0 * (26.0 / 46.8) ≈ 14.54 pt : Title
-      • M_H1 = M_H0 / φ           ≈  8.99 pt : Stage Title (1. Silicon, 2. Python, ...)
-      • M_H2 = M_H1 / φ           ≈  5.56 pt : Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles
-      • M_H3 = M_H2 / φ           ≈  3.43 pt : Cell Tier-2 Normal Items, Subtitles & Footnote
+    flowing from LEFT to RIGHT (1. Silicon -> 10. Multi-Agent) across 4 Organism Rows
+    (LLM, RAG, Multimodal, Embodied AI) with Anti-Patterns INSIDE every cell.
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
-    M_H2 = 10.0 * (26.0 / 46.8)          #  5.5556 pt (Cell Tier-1 Top-3 Pills, Masthead & Pillar Titles)
-    M_H1 = M_H2 * PHI                    #  8.9891 pt (1. Silicon, 2. Python, ... Stage Title)
-    M_H0 = M_H1 * PHI                    # 14.5446 pt (Title T = H0)
-    M_H3 = M_H2 / PHI                    #  3.4335 pt (Cell Tier-2 Items & Header Subtitles/Bullets)
+    M_H2 = 10.0 * (26.0 / 46.8)          #  5.5556 pt
+    M_H1 = M_H2 * PHI                    #  8.9891 pt
+    M_H0 = M_H1 * PHI                    # 14.5446 pt
+    M_H3 = M_H2 / PHI                    #  3.4335 pt
 
     fig = plt.figure(figsize=(26.0, 12.0), dpi=300, facecolor="#0F172A")
     ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
@@ -2238,17 +1911,17 @@ def render_mobile_agent_anatomy_chart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com · 1. Silicon → 10. Multi-Agent + External RAG/Multimodal (arXiv:2606.24937)",
+        "www.arianprabowo.com · 10 Stages (1. Silicon → 10. Multi-Agent) × 4 Organisms (LLM · RAG · Multimodal · Embodied AI)",
         fontsize=M_H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
     ax.plot(
-        [0.415, 0.415], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.435, 0.435], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.2
     )
 
     ax.text(
-        0.423, hdr_y + hdr_h * 0.58,
+        0.443, hdr_y + hdr_h * 0.58,
         "What actually runs under an AI agent in 2026? Trace left to right:\n"
         "1. Silicon → 2. Python → 3. Data → 4. Pre-Training → 5. SFT →\n"
         "6. Post-Training → 7. Test-Time → 8. Context → 9. Harness → 10. Multi-Agent.",
@@ -2263,9 +1936,9 @@ def render_mobile_agent_anatomy_chart():
 
     ax.text(
         0.766, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow 1. Silicon → 10. Multi-Agent\n"
-        "② SEPARATE ORGANISM: Far-right = Multimodal RAG\n"
-        "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
+        "① COLUMNS (1 → 10): Physical Silicon to Multi-Agent Swarms\n"
+        "② ROWS (4 ORGANISMS): LLM Spine + RAG, Multimodal & Embodied AI\n"
+        "③ INSIDE EVERY CELL: Stack + Red ⚠ ANTI-PATTERNS Box at Bottom",
         fontsize=M_H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
         linespacing=1.18
     )
@@ -2282,18 +1955,14 @@ def render_mobile_agent_anatomy_chart():
     )
 
     left_x0 = 0.004
-    left_w = 0.072
-    col_gap = 0.0024
-    org_sep_gap = 0.0096
+    left_w = 0.076
+    col_gap = 0.0026
     active_x0 = left_x0 + left_w + col_gap
-    n_layers = len(STACK_LAYERS)
-    layer_col_w = (0.996 - active_x0 - (n_layers - 2) * col_gap - org_sep_gap) / n_layers
+    n_stages = len(STACK_STAGES)
+    stage_col_w = (0.996 - active_x0 - (n_stages - 1) * col_gap) / n_stages
 
-    def get_col_x(l_idx: int) -> float:
-        base_x = active_x0 + l_idx * (layer_col_w + col_gap)
-        if STACK_LAYERS[l_idx].get("is_external_organism"):
-            base_x += org_sep_gap - col_gap
-        return base_x
+    def get_col_x(s_idx: int) -> float:
+        return active_x0 + s_idx * (stage_col_w + col_gap)
 
     col_hdr_y = 0.790
     col_hdr_h = 0.112
@@ -2306,7 +1975,7 @@ def render_mobile_agent_anatomy_chart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "AI AGENT\nANATOMY",
+        "ORGANISMS\n× STAGES",
         fontsize=M_H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
         linespacing=1.02
     )
@@ -2317,38 +1986,21 @@ def render_mobile_agent_anatomy_chart():
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.15,
-        "+ Detached\nRAG/Multimodal",
+        "LLM · RAG · Multimodal\n· Embodied (+ ⚠ Traps)",
         fontsize=M_H3, fontweight="bold", color="#5EEAD4", va="center", ha="center",
         linespacing=1.08
     )
 
-    org_x0 = get_col_x(10)
-    org_div_x = org_x0 - org_sep_gap * 0.50
-    ax.plot(
-        [org_div_x, org_div_x], [0.008, col_hdr_y + col_hdr_h],
-        color="#0D9488", linewidth=1.8, linestyle=(0, (6, 3)), alpha=0.90
-    )
-    org_halo = FancyBboxPatch(
-        (org_x0 - 0.0016, 0.006),
-        layer_col_w + 0.0032,
-        col_hdr_y + col_hdr_h - 0.004,
-        boxstyle="round,pad=0.0,rounding_size=0.005",
-        facecolor="#CCFBF1", edgecolor="#0D9488", linewidth=1.4, linestyle=(0, (5, 3)), alpha=0.28
-    )
-    ax.add_patch(org_halo)
-
-    for l_idx, ly in enumerate(STACK_LAYERS):
-        lx = get_col_x(l_idx)
-        is_org = bool(ly.get("is_external_organism"))
-        st_num = ly["layer"]
+    for s_idx, st in enumerate(STACK_STAGES):
+        lx = get_col_x(s_idx)
+        st_num = st["stage"]
 
         lbox_body = FancyBboxPatch(
-            (lx, col_hdr_y), layer_col_w, col_hdr_h,
+            (lx, col_hdr_y), stage_col_w, col_hdr_h,
             boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor="#042F2E" if is_org else "#0F172A",
-            edgecolor="#14B8A6" if is_org else "#334155",
-            linewidth=1.6 if is_org else 1.3,
-            linestyle="--" if is_org else "-"
+            facecolor="#0F172A",
+            edgecolor="#334155",
+            linewidth=1.3
         )
         ax.add_patch(lbox_body)
 
@@ -2356,201 +2008,198 @@ def render_mobile_agent_anatomy_chart():
         banner_h = col_hdr_h * 0.60
         lbox_top = FancyBboxPatch(
             (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
-            layer_col_w - 2 * inset_b, banner_h,
+            stage_col_w - 2 * inset_b, banner_h,
             boxstyle="round,pad=0.0,rounding_size=0.003",
-            facecolor="#115E59" if is_org else "#1E293B",
-            edgecolor=ly["accent"],
+            facecolor="#1E293B",
+            edgecolor=st["accent"],
             linewidth=1.2
         )
         ax.add_patch(lbox_top)
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
-        if is_org:
-            ax.text(
-                lx + layer_col_w / 2, b_top_y - banner_h * 0.16,
-                "⇄ SEPARATE ORGANISM · EXTERNAL",
-                fontsize=M_H3, fontweight="bold", color="#5EEAD4", va="center", ha="center"
+        bar_total_w = stage_col_w - 0.0080
+        bar_gap = 0.0006
+        seg_w = (bar_total_w - 9 * bar_gap) / 10.0
+        seg_h = banner_h * 0.12
+        bar_x_start = lx + 0.0040
+        bar_y = b_top_y - banner_h * 0.16 - seg_h / 2.0
+        for b_i in range(10):
+            bx_i = bar_x_start + b_i * (seg_w + bar_gap)
+            is_lit = b_i < st_num
+            seg_patch = FancyBboxPatch(
+                (bx_i, bar_y), seg_w, seg_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0008",
+                facecolor=st["accent"] if is_lit else "#334155",
+                edgecolor=st["accent"] if is_lit else "#475569",
+                linewidth=0.40
             )
-        else:
-            bar_total_w = layer_col_w - 0.0080
-            bar_gap = 0.0006
-            seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.12
-            bar_x_start = lx + 0.0040
-            bar_y = b_top_y - banner_h * 0.16 - seg_h / 2.0
-            for b_i in range(10):
-                bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-                is_lit = b_i < st_num
-                seg_patch = FancyBboxPatch(
-                    (bx_i, bar_y), seg_w, seg_h,
-                    boxstyle="round,pad=0.0,rounding_size=0.0008",
-                    facecolor=ly["accent"] if is_lit else "#334155",
-                    edgecolor=ly["accent"] if is_lit else "#475569",
-                    linewidth=0.40
-                )
-                ax.add_patch(seg_patch)
+            ax.add_patch(seg_patch)
 
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.45,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.45,
             STAGE_H1_TITLES[st_num],
             fontsize=M_H1,
             fontweight="bold",
-            color="#FEF08A" if is_org else "#FFFFFF",
+            color="#FFFFFF",
             va="center", ha="center"
         )
 
         ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.80,
-            textwrap.fill(STAGE_FULL_NAMES[st_num], width=48),
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.80,
+            textwrap.fill(STAGE_FULL_NAMES[st_num], width=52),
             fontsize=M_H3,
             fontweight="bold",
-            color="#5EEAD4" if is_org else "#FEF08A",
+            color="#FEF08A",
             va="center", ha="center",
             linespacing=1.02
         )
 
-        unit_short = textwrap.fill(f"{ly['core_unit']} · {ly['book_ref']}", width=42)
+        unit_short = textwrap.fill(f"{st['core_unit']} · {st['book_ref']}", width=46)
         ax.text(
             lx + 0.0026,
             col_hdr_y + (col_hdr_h - banner_h) * 0.48,
             unit_short,
             fontsize=M_H3,
             fontweight="bold",
-            color="#5EEAD4" if is_org else "#93C5FD",
+            color="#93C5FD",
             va="center",
             ha="left",
             linespacing=1.05,
         )
 
     top_y = 0.784
-    active_row_h = 0.202
-    fail_row_h = 0.156
+    row_h = 0.1895
+    spine_sep_gap = 0.0070
     row_gap = 0.0040
-    fail_sep_gap = 0.0070
 
     row_geoms = [
-        (top_y - 1 * active_row_h - 0 * row_gap, active_row_h),
-        (top_y - 2 * active_row_h - 1 * row_gap, active_row_h),
-        (top_y - 3 * active_row_h - 2 * row_gap, active_row_h),
-        (top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap - fail_row_h, fail_row_h),
+        (top_y - 1 * row_h, row_h),
+        (top_y - 2 * row_h - spine_sep_gap, row_h),
+        (top_y - 3 * row_h - spine_sep_gap - 1 * row_gap, row_h),
+        (top_y - 4 * row_h - spine_sep_gap - 2 * row_gap, row_h),
     ]
 
-    sep_y = top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap * 0.5
+    sep_y = top_y - row_h - spine_sep_gap * 0.50
     ax.plot(
         [left_x0, 0.996], [sep_y, sep_y],
-        color="#DC2626", linewidth=1.4, linestyle=(0, (5, 3)), alpha=0.75
+        color="#0D9488", linewidth=1.5, linestyle=(0, (6, 3)), alpha=0.85
     )
 
-    mobile_row_titles = {
-        "primitives_arch": ("PRIMITIVES &\nARCHITECTURE", "Math · Topologies"),
-        "frameworks_stack": ("FRAMEWORKS &\nPROTOCOLS", "Packages · SDKs"),
-        "ops_evals_security": ("SCALING, EVALS\n& SECURITY", "Oracles · Sandboxes"),
-        "failure_modes": ("FAILURE MODES\n& TRAPS", "What Breaks Here"),
-    }
-
-    for r_idx, col in enumerate(COLUMNS):
+    for r_idx, org in enumerate(ORGANISMS):
         ry, rh = row_geoms[r_idx]
-        is_fail = col["key"] == "failure_modes"
-        m_title, m_sub = mobile_row_titles[col["key"]]
 
         rbox = FancyBboxPatch(
             (left_x0, ry), left_w, rh,
             boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor=col["hdr_bg"], edgecolor="#0F172A", linewidth=1.3
+            facecolor=org["hdr_bg"], edgecolor="#0F172A", linewidth=1.3
         )
         ax.add_patch(rbox)
         ax.text(
-            left_x0 + left_w / 2, ry + rh * 0.60,
-            m_title,
-            fontsize=M_H2,
-            fontweight="bold", color="#FFFFFF", va="center", ha="center",
-            linespacing=1.05
+            left_x0 + left_w / 2, ry + rh * 0.80,
+            org["badge"],
+            fontsize=M_H3,
+            fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
         ax.text(
-            left_x0 + left_w / 2, ry + rh * 0.25,
-            m_sub,
+            left_x0 + left_w / 2, ry + rh * 0.56,
+            org["short_name"],
+            fontsize=M_H1,
+            fontweight="bold", color="#FFFFFF", va="center", ha="center"
+        )
+        ax.text(
+            left_x0 + left_w / 2, ry + rh * 0.24,
+            textwrap.fill(org["full_name"], width=28),
             fontsize=M_H3,
-            fontweight="bold", color="#FEE2E2" if is_fail else "#E2E8F0", va="center", ha="center"
+            fontweight="bold", color="#E2E8F0", va="center", ha="center",
+            linespacing=1.02
         )
 
-        for l_idx, ly in enumerate(STACK_LAYERS):
-            cx = get_col_x(l_idx)
-            cw = layer_col_w
-            is_org = bool(ly.get("is_external_organism"))
+        for s_idx, st in enumerate(STACK_STAGES):
+            cx = get_col_x(s_idx)
+            cw = stage_col_w
 
-            cell_data = ly["cells"][col["key"]]
+            cell_data = st["cells"][org["key"]]
             top_h1 = cell_data["h1"]
             mid_norm = cell_data["normal"]
+            anti_list = cell_data["anti"]
 
             cbox = FancyBboxPatch(
                 (cx, ry), cw, rh,
                 boxstyle="round,pad=0.0,rounding_size=0.004",
-                facecolor=col["cell_bg"],
-                edgecolor="#0D9488" if (is_org and not is_fail) else col["cell_edge"],
-                linewidth=1.5 if is_org else (1.3 if not is_fail else 1.4),
-                linestyle="--" if (is_fail or is_org) else "-"
+                facecolor=org["cell_bg"],
+                edgecolor=org["cell_edge"],
+                linewidth=1.3
             )
             ax.add_patch(cbox)
 
             pad_x = 0.0018
-            pad_top = 0.0028
+            pad_top = 0.0026
             pad_bot = 0.0024
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
-            gap_t1_t2 = 0.0020
-            avail_h = rh - pad_top - pad_bot - gap_t1_t2
-            t1_h = avail_h * 0.54
-            t2_h = avail_h * 0.46
+            gap_z = 0.0018
+            avail_h = rh - pad_top - pad_bot - 2 * gap_z
+            t1_h = avail_h * 0.42
+            t2_h = avail_h * 0.30
+            anti_h = avail_h * 0.28
 
             t1_top_y = ry + rh - pad_top
-            pill_gap = 0.0018
+            pill_gap = 0.0015
             ph = (t1_h - 2 * pill_gap) / 3.0
             for idx_1, kw in enumerate(top_h1[:3]):
-                px = x_left
-                pw = inner_w
                 py = t1_top_y - (idx_1 + 1) * ph - idx_1 * pill_gap
                 pill = FancyBboxPatch(
-                    (px, py), pw, ph,
+                    (x_left, py), inner_w, ph,
                     boxstyle="round,pad=0.0,rounding_size=0.0022",
-                    facecolor=col["h1_bg"],
-                    edgecolor=col["pill_edge"],
-                    linewidth=0.95,
-                    linestyle="--" if is_fail else "-"
+                    facecolor=org["h1_bg"],
+                    edgecolor=org["pill_edge"],
+                    linewidth=0.90
                 )
                 ax.add_patch(pill)
 
                 ax.text(
-                    px + pw / 2, py + ph / 2,
+                    x_left + inner_w / 2, py + ph / 2,
                     kw,
                     fontsize=M_H2,
                     fontweight="bold",
-                    color=col["h1_txt"],
+                    color=org["h1_txt"],
                     va="center", ha="center"
                 )
 
-            t2_top_y = t1_top_y - t1_h - gap_t1_t2
-            t2_row_h = t2_h / 4.0
-
-            for idx_2, kw in enumerate(mid_norm[:4]):
-                if idx_2 % 2 == 1:
-                    stripe = FancyBboxPatch(
-                        (x_left + 0.0003, t2_top_y - (idx_2 + 1) * t2_row_h + 0.00012),
-                        inner_w - 0.0006, t2_row_h - 0.00024,
-                        boxstyle="round,pad=0.0,rounding_size=0.001",
-                        facecolor="#FEE2E2" if is_fail else col["t2_bg"],
-                        edgecolor="none",
-                        alpha=0.60 if is_fail else 1.0
-                    )
-                    ax.add_patch(stripe)
-
+            t2_top_y = t1_top_y - t1_h - gap_z
+            t2_row_h = t2_h / 3.0
+            for idx_2, kw in enumerate(mid_norm[:3]):
                 ty = t2_top_y - (idx_2 + 0.5) * t2_row_h
                 ax.text(
-                    x_left + 0.0015, ty,
+                    x_left + 0.0012, ty,
                     f"• {kw}",
                     fontsize=M_H3,
                     fontweight="bold",
-                    color=col["t2_txt"],
+                    color=org["t2_txt"],
+                    va="center", ha="left"
+                )
+
+            anti_bot_y = ry + pad_bot
+            anti_box = FancyBboxPatch(
+                (x_left, anti_bot_y), inner_w, anti_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0020",
+                facecolor="#FFF1F2",
+                edgecolor="#E11D48",
+                linewidth=0.95,
+                linestyle="--"
+            )
+            ax.add_patch(anti_box)
+
+            arow_h = anti_h / 2.0
+            for idx_a, akw in enumerate(anti_list[:2]):
+                ty = anti_bot_y + anti_h - (idx_a + 0.5) * arow_h
+                ax.text(
+                    x_left + 0.0012, ty,
+                    f"⚠ {akw}",
+                    fontsize=M_H3,
+                    fontweight="bold",
+                    color="#881337",
                     va="center", ha="left"
                 )
 
@@ -2561,38 +2210,39 @@ def render_mobile_agent_anatomy_chart():
 
 def write_agent_anatomy_markdown():
     lines = [
-        f"![Anatomy of AI Agents 2026 — 1. Silicon to 10. Multi-Agent + Detached Multimodal RAG Megachart]({OUT_DEV_PNG.name})",
+        f"![Anatomy of AI Agents 2026 — 10 Stages x 4 Organisms Megachart]({OUT_DEV_PNG.name})",
         "",
         f"![Anatomy of AI Agents 2026 — Mobile Landscape Mini Chart]({OUT_MOBILE_PNG.name})",
         "",
-        "# ANATOMY OF AI AGENTS 2026 (`1. Silicon` → `10. Multi-Agent` + Detached `Multimodal RAG` Organism)",
+        "# ANATOMY OF AI AGENTS 2026 (`10 Stages: 1. Silicon → 10. Multi-Agent` × `4 Organisms: LLM · RAG · Multimodal · Embodied AI`)",
         "",
-        "> **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 core stages — `1. Silicon`, `2. Python` (`brew`/`uv`/`conda`/`pip`/`PyTorch`/`JAX`), `3. Data`, `4. Pre-Training`, `5. SFT`, `6. Post-Training` (`RLHF`/`DPO`/`RLVR`), `7. Test-Time`, `8. Context` (`Memory`/`MCP`/`SKILL.md`), `9. Harness` (`Harness²`), and `10. Multi-Agent` (`A2A` Swarms) — while `Multimodal RAG` operates on the far right as a detached, external organism that plugs into the agent spine.**  ",
-        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE LEFT → RIGHT:`** Follow `1. Silicon → 10. Multi-Agent` · **`② SEPARATE ORGANISM:`** Inspect the detached `Multimodal RAG` column on the far right · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** row at the bottom.",
+        "> **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 stages (`1. Silicon`, `2. Python`, `3. Data`, `4. Pre-Training`, `5. SFT`, `6. Post-Training`, `7. Test-Time`, `8. Context`, `9. Harness`, `10. Multi-Agent`) and top to bottom across the 4 distinct organisms (`LLM`, `RAG`, `Multimodal`, `Embodied AI`), with production `⚠ ANTI-PATTERNS & FAILURE MODES` embedded directly inside every cell.**  ",
+        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① COLUMNS (1 → 10):`** Follow `1. Silicon → 10. Multi-Agent` · **`② ROWS (4 ORGANISMS):`** Compare the `LLM` Core Spine against `RAG`, `Multimodal`, and `Embodied AI` · **`③ INSIDE EVERY CELL:`** Audit the red dashed **`⚠ ANTI-PATTERNS & FAILURE MODES`** box at the bottom of each cell.",
         "",
         "---",
         "",
-        "## 1. Complete 10-Stage Anatomy + Detached Multimodal RAG Organism Overview (`1. Silicon` → `10. Multi-Agent` + `Multimodal RAG` × `4` Pillars)",
+        "## 1. Complete 10-Stage × 4-Organism Matrix Overview",
         "",
-        "| Stage / Organism (`H1` Short Name · `H3` Full Name · Core Unit · Book Ref) | Core Primitives & Architecture | Frameworks, Packages & Protocols | Scaling, Verification & Security | Failure Modes & Traps |",
+        "| Stage (`H1` Short Name · `H3` Full Name · Core Unit · Book Ref) | `LLM` (*Autoregressive Text, Code & Reasoning Language Models*) | `RAG` (*Hybrid Vector, Lexical & Graph Retrieval-Augmented Generation*) | `Multimodal` (*Vision, Audio, Speech, Video & Native Omni-Modal Models*) | `Embodied AI` (*GUI Computer Use, Physics World Models & VLA Robotics*) |",
         "| :--- | :--- | :--- | :--- | :--- |",
     ]
 
-    for ly in STACK_LAYERS:
-        st_num = ly["layer"]
+    for st in STACK_STAGES:
+        st_num = st["stage"]
         col0 = (
             f"**{STAGE_H1_TITLES[st_num]}** — *{STAGE_FULL_NAMES[st_num]}*<br>"
-            f"{ly['desc']}<br>"
-            f"• **{ly['core_unit']}**<br>"
-            f"• **Roitman Guide:** {ly['book_ref']}"
+            f"{st['desc']}<br>"
+            f"• **{st['core_unit']}**<br>"
+            f"• **Roitman Guide:** {st['book_ref']}"
         )
         row_cells = [col0]
-        for col in COLUMNS:
-            d = ly["cells"][col["key"]]
+        for org in ORGANISMS:
+            d = st["cells"][org["key"]]
             h1_str = " · ".join(f"**{k}**" for k in d["h1"])
             norm_str = " · ".join(d["normal"])
             small_str = " · ".join(f"*{k}*" for k in d["small"])
-            parts = [p for p in (h1_str, norm_str, small_str) if p]
+            anti_str = " · ".join(f"**`⚠ {k}`**" for k in d["anti"])
+            parts = [p for p in (h1_str, norm_str, small_str, anti_str) if p]
             row_cells.append("<br><br>".join(parts))
         lines.append("| " + " | ".join(row_cells) + " |")
 
@@ -2600,29 +2250,32 @@ def write_agent_anatomy_markdown():
         "",
         "---",
         "",
-        "## 2. Stage-by-Stage Architectural Breakdown (`1. Silicon` → `10. Multi-Agent` + `Separate Organism: Multimodal RAG`)",
+        "## 2. Stage-by-Stage Breakdown (`1. Silicon` → `10. Multi-Agent` Across All 4 Organisms)",
         "",
     ])
 
-    for ly in STACK_LAYERS:
-        st_num = ly["layer"]
+    for st in STACK_STAGES:
+        st_num = st["stage"]
         lines.extend([
             f"### {STAGE_H1_TITLES[st_num]} — {STAGE_FULL_NAMES[st_num]}",
             "",
-            f"{ly['desc']}",
+            f"{st['desc']}",
             "",
-            f"* **Core Unit of Compute / State:** `{ly['core_unit']}`",
-            f"* **Primary Reference (`arXiv:2606.24937`):** {ly['book_ref']}",
+            f"* **Core Unit of Compute / State:** `{st['core_unit']}`",
+            f"* **Primary Reference (`arXiv:2606.24937`):** {st['book_ref']}",
             "",
-            "| Architectural Pillar | Top 3 Flagship Checkpoints (`H2`) | Core Stack & Mechanisms (`H3`) | Granular Specs, Flags & Formulas (`H4`) |",
-            "| :--- | :--- | :--- | :--- |",
+            "| Organism (`Short` — *Full Name*) | Top 3 Flagship Checkpoints (`H2`) | Core Stack & Mechanisms (`H3`) | Granular Specs (`H4`) | Inner `⚠ Anti-Patterns & Traps` |",
+            "| :--- | :--- | :--- | :--- | :--- |",
         ])
-        for col in COLUMNS:
-            d = ly["cells"][col["key"]]
-            h1_s = ", ".join(f"**`{k}`**" for k in d["h1"]) if d["h1"] else "—"
-            nm_s = ", ".join(f"`{k}`" for k in d["normal"]) if d["normal"] else "—"
-            sm_s = ", ".join(f"*{k}*" for k in d["small"]) if d["small"] else "—"
-            lines.append(f"| **{col['title']}** | {h1_s} | {nm_s} | {sm_s} |")
+        for org in ORGANISMS:
+            d = st["cells"][org["key"]]
+            h1_s = ", ".join(f"**`{k}`**" for k in d["h1"])
+            nm_s = ", ".join(f"`{k}`" for k in d["normal"])
+            sm_s = ", ".join(f"*{k}*" for k in d["small"])
+            an_s = ", ".join(f"**`✕ {k}`**" for k in d["anti"])
+            lines.append(
+                f"| **{org['short_name']}** (*{org['full_name']}*) | {h1_s} | {nm_s} | {sm_s} | {an_s} |"
+            )
         lines.append("")
 
     content = "\n".join(lines)
