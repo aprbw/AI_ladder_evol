@@ -26,16 +26,13 @@ import textwrap
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 
-REPO_ROOT = Path("/Users/z3540725/My Drive/personal/2026 10 17 AI_ladder_evol")
-DEV_DIR = REPO_ROOT / "dev"
-FIG_DIR = DEV_DIR / "figures_v5"
-FIG_DIR.mkdir(parents=True, exist_ok=True)
+ANATOMY_DIR = Path(__file__).resolve().parent
+ANATOMY_DIR.mkdir(parents=True, exist_ok=True)
 
-OUT_DEV_PNG = DEV_DIR / "anatomy_of_AI_agents_2026.png"
-OUT_DEV_PDF = DEV_DIR / "anatomy_of_AI_agents_2026.pdf"
-OUT_FIG_PNG = FIG_DIR / "fig_v5_anatomy_of_ai_agents_2026.png"
-OUT_MOBILE_PNG = FIG_DIR / "fig_v5_mini_anatomy_of_ai_agents_mobile.png"
-OUT_MD = DEV_DIR / "2026 11 07 anatomy_of_AI_agents_2026.md"
+OUT_DEV_PNG = ANATOMY_DIR / "anatomy_of_AI_agents_2026.png"
+OUT_DEV_PDF = ANATOMY_DIR / "anatomy_of_AI_agents_2026.pdf"
+OUT_MOBILE_PNG = ANATOMY_DIR / "anatomy_of_AI_agents_2026_mobile.png"
+OUT_MD = ANATOMY_DIR / "2026 11 07 anatomy_of_AI_agents_2026.md"
 
 plt.rcParams["pdf.fonttype"] = 42
 plt.rcParams["ps.fonttype"] = 42
@@ -1480,11 +1477,9 @@ def render_desktop_agent_anatomy_megachart():
                 )
 
     fig.savefig(OUT_DEV_PNG, dpi=300, facecolor=fig.get_facecolor())
-    fig.savefig(OUT_FIG_PNG, dpi=300, facecolor=fig.get_facecolor())
     fig.savefig(OUT_DEV_PDF, format="pdf", facecolor=fig.get_facecolor())
     plt.close(fig)
     print(f"Saved: {OUT_DEV_PNG} ({OUT_DEV_PNG.stat().st_size:,} bytes)")
-    print(f"Saved: {OUT_FIG_PNG} ({OUT_FIG_PNG.stat().st_size:,} bytes)")
     print(f"Saved: {OUT_DEV_PDF} ({OUT_DEV_PDF.stat().st_size:,} bytes)")
 
 
@@ -1838,13 +1833,13 @@ def render_mobile_agent_anatomy_chart():
 
 def write_agent_anatomy_markdown():
     lines = [
-        f"![Anatomy of AI Agents 2026 — 7-Layer OSI-Inspired Megachart]({OUT_DEV_PNG})",
+        f"![Anatomy of AI Agents 2026 — 7-Layer OSI-Inspired Megachart]({OUT_DEV_PNG.name})",
         "",
-        f"![Anatomy of AI Agents 2026 — Mobile Portrait Mini Chart]({OUT_MOBILE_PNG})",
+        f"![Anatomy of AI Agents 2026 — Mobile Portrait Mini Chart]({OUT_MOBILE_PNG.name})",
         "",
         "# ANATOMY OF AI AGENTS 2026 (7-Layer OSI-Inspired Reference Stack)",
         "",
-        "> **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `uv`/`conda`/`Docker` environments (`L2`) to `PyTorch`/`vLLM` serving (`L3`), `RLVR` reasoning weights (`L4`), `MCP`/`SKILL.md` & memory (`L5`), `Harness²` loop/graph control (`L6`), and `A2A` multi-agent meshes (`L7`).**  ",
+        "> **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Data/Tokenization/RAG (`L3`), Model Architecture & `RLVR` (`L4`), `MCP`/`SKILL.md` & Memory (`L5`), `Harness²` Loop/Graph Control (`L6`), and `A2A` Multi-Agent Swarms (`L7`).**  ",
         f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.",
         "",
         "---",

@@ -1,11 +1,11 @@
-![Anatomy of AI Agents 2026 — 7-Layer OSI-Inspired Megachart](/Users/z3540725/My Drive/personal/2026 10 17 AI_ladder_evol/dev/anatomy_of_AI_agents_2026.png)
+![Anatomy of AI Agents 2026 — 7-Layer OSI-Inspired Megachart](anatomy_of_AI_agents_2026.png)
 
-![Anatomy of AI Agents 2026 — Mobile Portrait Mini Chart](/Users/z3540725/My Drive/personal/2026 10 17 AI_ladder_evol/dev/figures_v5/fig_v5_mini_anatomy_of_ai_agents_mobile.png)
+![Anatomy of AI Agents 2026 — Mobile Portrait Mini Chart](anatomy_of_AI_agents_2026_mobile.png)
 
 # ANATOMY OF AI AGENTS 2026 (7-Layer OSI-Inspired Reference Stack)
 
-> **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `uv`/`conda`/`Docker` environments (`L2`) to `PyTorch`/`vLLM` serving (`L3`), `RLVR` reasoning weights (`L4`), `MCP`/`SKILL.md` & memory (`L5`), `Harness²` loop/graph control (`L6`), and `A2A` multi-agent meshes (`L7`).**  
-> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-07 19:12:50 AEDT (UTC+11:00)`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.
+> **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Data/Tokenization/RAG (`L3`), Model Architecture & `RLVR` (`L4`), `MCP`/`SKILL.md` & Memory (`L5`), `Harness²` Loop/Graph Control (`L6`), and `A2A` Multi-Agent Swarms (`L7`).**  
+> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-07 23:16:50 AEDT (UTC+11:00)`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.
 
 ---
 
