@@ -118,11 +118,11 @@ for _org in ORGANISMS:
 
 # -----------------------------------------------------------------------------
 # 2. Ten Stages (Short Name <= 2 words at H1, Full Name <= 10 words at H4)
-#    Inside each cell:
-#      • h2_pill (1 flagship pill in H2 = 24.00 pt, <= 17 chars)
-#      • h3_pills (2 checkpoint pills in H3 = 14.83 pt, <= 27 chars)
-#      • normal (3x2 = 6 core stack items in H4 = 9.17 pt)
-#      • anti (2x2 = 4 failure modes in H4 = 9.17 pt inside red dashed box)
+#    Inside each cell (4-Part Anatomical Cell Design):
+#      • h2_pill  (Zone 1, H2 = 24.00 pt): 100% Brand-Agnostic Functional Category (<= 18 chars)
+#      • h3_pills (Zone 2, H3 = 14.83 pt): 2 Brand-Agnostic Core Mechanisms / Primitives (zero brand names)
+#      • normal   (Zone 3, H4 =  9.17 pt): 3x2 = 6 Concrete Products, Models & OSS Tools inside "⚙ PRODUCTS, MODELS & OSS"
+#      • anti     (Zone 4, H4 =  9.17 pt): 2x2 = 4 Concrete Failure Modes inside "⚠ ANTI-PATTERNS & TRAPS"
 # -----------------------------------------------------------------------------
 STACK_STAGES = [
     # =========================================================================
@@ -138,18 +138,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.6, 2.3, 11.10–14, 30.5",
         "cells": {
             "llm": {
-                "h2_pill": "H100 / B200 · CUDA",
+                "h2_pill": "Tensor Compute",
                 "h3_pills": [
                     "HBM3e vs. On-Chip SRAM",
-                    "FlashAttention-3 Tiling",
+                    "Tiled Attention & FP8",
                 ],
                 "normal": [
-                    "CUDA · OpenAI Triton",
-                    "FP8 & Microscaling FP4",
-                    "NVLink 5 & InfiniBand",
-                    "MFU > 45% Utilization",
-                    "Prefill vs. Decode BW",
-                    "Confidential GPU TEEs",
+                    "AI ACCELERATORS: | H200 · B200 · MI325X",
+                    "CLOUD ASICs: | TPU v6e · Trainium2",
+                    "KERNEL LANGUAGES: | CUDA · Triton · CUTLASS",
+                    "ATTENTION KERNEL: | FlashAttention-3",
+                    "CLUSTER FABRIC: | NVLink 5 · InfiniBand",
+                    "LOW-BIT ENGINE: | TransformerEngine FP8",
                 ],
                 "anti": [
                     "HBM Bandwidth Wall",
@@ -159,18 +159,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "cuVS · SIMD · NVMe",
+                "h2_pill": "Vector & SSD I/O",
                 "h3_pills": [
-                    "NVIDIA cuVS / RAFT GPU",
-                    "AVX-512 Distance SIMD",
+                    "GPU Graph & SIMD Scan",
+                    "Direct NVMe Disk I/O",
                 ],
                 "normal": [
-                    "CAGRA GPU Graph Index",
-                    "NVMe Gen5 DiskANN I/O",
-                    "Int8 / Binary PQ Codes",
-                    "RDMA Index Sharding",
-                    "Sub-10ms p99 Vector SLA",
-                    "DRAM + SSD Tiered Pool",
+                    "GPU VECTOR INDEX: | NVIDIA cuVS · RAFT",
+                    "CPU SIMD KERNELS: | Intel AVX-512 · AMX",
+                    "ASYNC DISK I/O: | NVMe Gen5 · io_uring",
+                    "ON-DISK GRAPH: | DiskANN · SPANN",
+                    "DMA STORAGE: | GPUDirect Storage",
+                    "MEMORY POOLING: | RoCEv2 · CXL 3.0",
                 ],
                 "anti": [
                     "SSD Random-Read Thrash",
@@ -180,18 +180,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "NVDEC · ViT · DSP",
+                "h2_pill": "Media Codec DSP",
                 "h3_pills": [
-                    "Hardware NVDEC / NVENC",
-                    "ViT Patch SRAM Tiling",
+                    "HW Video/Audio Decode",
+                    "3D Patch & Conv Tiling",
                 ],
                 "normal": [
-                    "Apple M4 Unified RAM",
-                    "JPEG/HEVC HW Decode",
-                    "2D/3D DiT Conv Kernels",
-                    "GPUDirect Video Ingest",
-                    "Sub-200ms Voice DSP",
-                    "4K Frame BW Budgeting",
+                    "GPU MEDIA CODEC: | NVIDIA NVDEC / NVENC",
+                    "UNIFIED RAM SoC: | Apple M4 Media Engine",
+                    "MOBILE / EDGE DSP: | Qualcomm Hexagon NPU",
+                    "ZERO-COPY VIDEO: | GPUDirect Video DMA",
+                    "VISION KERNELS: | cuDNN · TensorRT-MM",
+                    "CAMERA / RTC BUS: | MIPI CSI-2 · WebRTC",
                 ],
                 "anti": [
                     "CPU Video Decode Stall",
@@ -201,18 +201,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "Jetson Thor · PhysX",
+                "h2_pill": "Edge RT Compute",
                 "h3_pills": [
-                    "Edge NPU & Sensor ISP",
-                    "GPU PhysX / Warp Sim",
+                    "1kHz Sensor ISP & Bus",
+                    "GPU Rigid/Soft Physics",
                 ],
                 "normal": [
-                    "1 kHz Real-Time Bus",
-                    "LiDAR / IMU Hardware",
-                    "EtherCAT / CAN-FD Bus",
-                    "INT4/FP8 Edge NPU",
-                    "10,000x Parallel Sim",
-                    "Hardware E-Stop Relay",
+                    "ROBOTICS SoC: | NVIDIA Jetson Thor",
+                    "GPU PHYSICS SIM: | PhysX 5 · NVIDIA Warp",
+                    "REAL-TIME FIELD: | EtherCAT · CAN-FD",
+                    "LOW-POWER NPU: | Qualcomm RB5 · Hailo",
+                    "3D LIDAR SENSOR: | Ouster · Velodyne",
+                    "DEPTH CAMERAS: | RealSense · ZED 2i",
                 ],
                 "anti": [
                     "Edge Thermal Throttle",
@@ -236,18 +236,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.24–25, 11.1–9, 21.5, 22.1",
         "cells": {
             "llm": {
-                "h2_pill": "uv · PyTorch · vLLM",
+                "h2_pill": "Serving Runtime",
                 "h3_pills": [
-                    "brew · uv · conda · pip · venv",
-                    "PyTorch 2.x · JAX · SGLang",
+                    "Deterministic Lockfiles",
+                    "Paged KV & Graph Capture",
                 ],
                 "normal": [
-                    "torch.compile & XLA",
-                    "PagedAttention KV Cache",
-                    "uv.lock Reproducibility",
-                    "E2B / Firecracker VM",
-                    "Bubblewrap / Seatbelt",
-                    "TTFT / TPOT Async SLAs",
+                    "ENV & PKG MGR: | uv · Pixi · Conda · pip",
+                    "TENSOR FRAMEWORK: | PyTorch 2.x · JAX",
+                    "SERVING ENGINE: | vLLM · SGLang",
+                    "C++ LLM RUNTIME: | TRT-LLM · llama.cpp",
+                    "GRAPH COMPILER: | torch.compile · XLA",
+                    "CODE SANDBOX: | E2B · Firecracker VM",
                 ],
                 "anti": [
                     "CUDA ABI & Wheel Hell",
@@ -257,18 +257,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "FAISS · Arrow · PQ",
+                "h2_pill": "Index Bindings",
                 "h3_pills": [
-                    "FAISS · HNSWlib · LanceDB",
-                    "psycopg3 · qdrant-client",
+                    "Zero-Copy Columnar IPC",
+                    "Async Vector/DB Drivers",
                 ],
                 "normal": [
-                    "PyArrow Zero-Copy RAM",
-                    "BM25 · Tantivy · DuckDB",
-                    "Parquet Columnar Store",
-                    "Async gRPC / HTTP Pools",
-                    "ONNX / TRT Embed Serve",
-                    "mmap Vector Segments",
+                    "ANN LIBRARIES: | FAISS · HNSWLib · Lance",
+                    "COLUMNAR MEMORY: | Apache Arrow · Parquet",
+                    "IN-PROCESS OLAP: | DuckDB · Polars",
+                    "ASYNC SQL DRIVER: | psycopg3 · asyncpg",
+                    "VECTOR CLIENTS: | qdrant-client · pymilvus",
+                    "LEXICAL & EMBED: | Tantivy · BM25S · ONNX",
                 ],
                 "anti": [
                     "Python GIL Chunk Lock",
@@ -278,18 +278,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "FFmpeg · OpenCV",
+                "h2_pill": "Stream Pipelines",
                 "h3_pills": [
-                    "torchvision · torchaudio",
-                    "LiveKit · whisper.cpp",
+                    "Zero-Copy Tensor Decode",
+                    "Async Media Ring Buffers",
                 ],
                 "normal": [
-                    "FFmpeg · PyAV · Decord",
-                    "NVIDIA DALI GPU Loader",
-                    "Pillow-SIMD · librosa",
-                    "vLLM Multimodal Serve",
-                    "Silero VAD Turn Runtime",
-                    "WebRTC Jitter Buffers",
+                    "VIDEO DEMUXING: | FFmpeg · PyAV · Decord",
+                    "VISION TRANSFORMS: | OpenCV · torchvision",
+                    "AUDIO DSP LIBS: | torchaudio · librosa",
+                    "GPU DATA LOADER: | NVIDIA DALI · Kornia",
+                    "FAST IMAGE I/O: | Pillow-SIMD · Albument.",
+                    "SPEECH & VAD: | whisper.cpp · Silero",
                 ],
                 "anti": [
                     "OpenCV BGR vs RGB Bug",
@@ -299,18 +299,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "ROS 2 · Isaac · CDP",
+                "h2_pill": "Middleware & IPC",
                 "h3_pills": [
-                    "ROS 2 · Gymnasium · MuJoCo",
-                    "Playwright · LeRobot",
+                    "Pub-Sub DDS & Zero-Copy",
+                    "Browser & Physics APIs",
                 ],
                 "normal": [
-                    "NVIDIA Isaac Lab / Gym",
-                    "CycloneDDS Middleware",
-                    "Headless Chromium Xvfb",
-                    "Open3D · Pinocchio IK",
-                    "Async Vectorized Envs",
-                    "Deterministic Replays",
+                    "ROBOT MIDDLEWARE: | ROS 2 · CycloneDDS",
+                    "BROWSER CONTROL: | Playwright · Chrome CDP",
+                    "RL ENV INTERFACE: | Gymnasium · PettingZoo",
+                    "PHYSICS ENGINES: | MuJoCo · Isaac Lab",
+                    "KINEMATICS & 3D: | Pinocchio · Open3D",
+                    "ROBOT SDK & BUS: | LeRobot · Eclipse Zenoh",
                 ],
                 "anti": [
                     "ROS 2 Multicast Storms",
@@ -334,18 +334,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.2, 3.1, 3.3–3.5, 4.1, 30.2",
         "cells": {
             "llm": {
-                "h2_pill": "FineWeb · Byte-BPE",
+                "h2_pill": "Text & BPE Corpus",
                 "h3_pills": [
-                    "FineWeb-Edu · Dolma · Stack",
-                    "Byte-BPE · Tiktoken · Dedup",
+                    "MinHash Dedup & Filter",
+                    "Byte-Level BPE Tokenize",
                 ],
                 "normal": [
-                    "Datatrove · NeMo Curator",
-                    "Verified Code/Math Synth",
-                    "13-Gram Decontamination",
-                    "PII & Secret Scrubbing",
-                    "128k–256k Vocab Size",
-                    "Curriculum Annealing",
+                    "WEB TEXT CORPORA: | FineWeb-Edu · Dolma",
+                    "CODE & MATH SETS: | The Stack v2 · DCLM",
+                    "BPE TOKENIZERS: | Tiktoken · SentencePiece",
+                    "CURATION ENGINES: | Datatrove · NeMo Curat.",
+                    "SYNTHETIC CORPORA: | Nemotron-CC · Cosmop.",
+                    "PII & QUALITY: | Presidio · FastText",
                 ],
                 "anti": [
                     "Synthetic Model Collapse",
@@ -355,18 +355,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Docling · Chunking",
+                "h2_pill": "Doc Chunking & ETL",
                 "h3_pills": [
-                    "Docling · Marker PDF ETL",
-                    "Contextual & AST Chunking",
+                    "Layout-Aware & AST Split",
+                    "ACL Metadata & CDC Sync",
                 ],
                 "normal": [
-                    "Anthropic Chunk Headers",
-                    "Table-to-Markdown Parse",
-                    "Hard-Negative Mining",
-                    "Metadata & RBAC Tags",
-                    "CDC Incremental Sync",
-                    "Golden QA Eval Sets",
+                    "PDF LAYOUT ETL: | Docling · Marker PDF",
+                    "DOC PARSERS: | LlamaParse · Unstruct.",
+                    "CODE AST CHUNKER: | Tree-sitter AST Split",
+                    "ACADEMIC OCR: | Grobid · Nougat OCR",
+                    "SEMANTIC CHUNKER: | Chonkie · LangChain",
+                    "CDC STREAM SYNC: | Debezium · Airbyte",
                 ],
                 "anti": [
                     "Mid-Table Naive Split",
@@ -376,18 +376,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "DataComp · OCR",
+                "h2_pill": "Modal Alignment",
                 "h3_pills": [
-                    "DataComp · OBELICS Pairs",
-                    "OCR, Chart & Speech Sets",
+                    "Contrastive Pair Filter",
+                    "Scene Cut & Diarization",
                 ],
                 "normal": [
-                    "CLIPScore Aesthetic Gate",
-                    "ShareGPT4V Recaptioning",
-                    "Scene-Cut Video Clips",
-                    "EnCodec / Mimi Tokens",
-                    "Face Blur & C2PA Scrub",
-                    "Set-of-Mark BBox Labels",
+                    "IMAGE-TEXT SETS: | DataComp · OBELICS",
+                    "DENSE CAPTIONS: | ShareGPT4V · LAION-5B",
+                    "SPEECH DIARIZE: | WhisperX · pyannote",
+                    "NEURAL CODECS: | EnCodec · Mimi · DAC",
+                    "VIDEO SCENE CUT: | PySceneDetect · CLIP",
+                    "DOCUMENT OCR: | PaddleOCR · Surya",
                 ],
                 "anti": [
                     "Mismatched Alt-Text",
@@ -397,18 +397,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "Open-X · GUI Traces",
+                "h2_pill": "Trajectory Logs",
                 "h3_pills": [
-                    "Open X-Embodiment · DROID",
-                    "Mind2Web · OSWorld · Ego4D",
+                    "Teleop & Action Sync",
+                    "DOM + Screen Traces",
                 ],
                 "normal": [
-                    "ALOHA / VR Teleop Demos",
-                    "DOM + Screen + Action",
-                    "3D Point-Cloud Align",
-                    "Joint-State Normalize",
-                    "RLDS / LeRobot Parquet",
-                    "Sim Domain Randomize",
+                    "ROBOT TRAJECTORY: | Open X-Embodiment",
+                    "MANIPULATION SET: | DROID · BridgeData V2",
+                    "EGOCENTRIC VIDEO: | Ego4D · Epic-Kitchens",
+                    "GUI ACTION LOGS: | Mind2Web · OSWorld",
+                    "BIMANUAL TELEOP: | ALOHA · GELLO Rig",
+                    "TRAJECTORY STORE: | RLDS · LeRobot Parquet",
                 ],
                 "anti": [
                     "Teleop Hesitation Noise",
@@ -432,18 +432,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.1, 2.2, 3.1, 11.1–9, 30.1",
         "cells": {
             "llm": {
-                "h2_pill": "Sparse MoE · MLA",
+                "h2_pill": "Sparse MoE & Attn",
                 "h3_pills": [
-                    "Sparse MoE · GQA / MLA",
-                    "Megatron-LM · TorchTitan",
+                    "Routed MoE & Latent KV",
+                    "3D/4D Tensor Parallel",
                 ],
                 "normal": [
-                    "Llama 4 · Qwen 3 · V3",
-                    "Mamba / DeltaNet Hybrid",
-                    "RMSNorm, SwiGLU & RoPE",
-                    "3D Parallel (DP/TP/PP/EP)",
-                    "Chinchilla Scaling Laws",
-                    "Perplexity (BPB) & NIAH",
+                    "OPEN MoE MODELS: | DeepSeek-V3 · Llama 4",
+                    "DENSE & MoE LLMs: | Qwen 3 · Mistral Large",
+                    "3D/4D TRAINERS: | Megatron-LM · TorchTitan",
+                    "SHARDED DATA PAR: | DeepSpeed ZeRO · FSDP2",
+                    "SSM / HYBRID ARCH: | Mamba-2 · Jamba · RWKV",
+                    "COMPACT DENSE: | Gemma 3 · Nemotron-4",
                 ],
                 "anti": [
                     "Loss Spikes & NaN Crash",
@@ -453,18 +453,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "BGE-M3 · ColBERTv2",
+                "h2_pill": "Dense Bi-Encoders",
                 "h3_pills": [
-                    "Bi-Encoder InfoNCE Loss",
-                    "BGE-M3 · NV-Embed · ColBERT",
+                    "Contrastive InfoNCE Loss",
+                    "Late-Interaction & MRL",
                 ],
                 "normal": [
-                    "Matryoshka (MRL) Dims",
-                    "SPLADE Sparse Lexical",
-                    "Cross-GPU In-Batch Negs",
-                    "Bidirectional Encoders",
-                    "Multilingual Alignment",
-                    "MTEB & NDCG@10 Evals",
+                    "DENSE EMBEDDERS: | BGE-M3 · NV-Embed-v2",
+                    "LATE INTERACTION: | ColBERTv2 · PLAID",
+                    "SPARSE LEXICAL: | SPLADE-v3 · BM25S",
+                    "MATRYOSHKA EMBED: | Nomic-Embed · GTE",
+                    "COMMERCIAL EMBED: | Cohere Embed v3 · E5",
+                    "RETRIEVAL EVALS: | MTEB · BEIR Benchmark",
                 ],
                 "anti": [
                     "Embedding Anisotropy",
@@ -474,18 +474,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "SigLIP · Omni · DiT",
+                "h2_pill": "Omni Backbones",
                 "h3_pills": [
-                    "SigLIP-2 · DINOv2 Vision",
-                    "Early-Fusion Omni & DiT",
+                    "Early-Fusion Any-to-Any",
+                    "Flow-Matching & 3D RoPE",
                 ],
                 "normal": [
-                    "Qwen2.5-VL · InternVL3",
-                    "MLP / Q-Former Projector",
-                    "3D Video RoPE Position",
-                    "RVQ Audio Codecs (Mimi)",
-                    "Flow-Matching Backbones",
-                    "Zero-Shot VQA & ASR",
+                    "VISION ENCODERS: | SigLIP-2 · DINOv2 ViT",
+                    "OPEN VLM BASES: | Qwen2.5-VL · InternVL3",
+                    "NATIVE OMNI LLMs: | GPT-4o · Gemini 2.5 Pro",
+                    "FLOW / DiT GEN: | Flux.1 · Wan2.1 DiT",
+                    "FULL-DUPLEX OMNI: | Moshi · Chameleon",
+                    "MULTIMODAL EVAL: | MMMU · MathVista",
                 ],
                 "anti": [
                     "Modality Text-IQ Drop",
@@ -495,18 +495,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "VLA π0 · V-JEPA 2",
+                "h2_pill": "World & VLA Base",
                 "h3_pills": [
-                    "VLA (π0 · OpenVLA · RT-2)",
-                    "World Models (V-JEPA / Genie)",
+                    "Latent Physics Prediction",
+                    "Visuomotor Token Fusion",
                 ],
                 "normal": [
-                    "Diffusion Action Policy",
-                    "Octo Multi-Embodiment",
-                    "Latent Next-Frame Pred",
-                    "3D Point-Cloud Encoder",
-                    "SE(3) Equivariant Pose",
-                    "Zero-Shot Sim Transfer",
+                    "FLOW VLA MODELS: | π0 (Pi-Zero) · OpenVLA",
+                    "GENERALIST VLA: | RT-2 · Octo · CrossFormer",
+                    "WORLD MODELS: | V-JEPA 2 · NVIDIA Cosmos",
+                    "INTERACTIVE SIM: | Google Genie 2 · UniSim",
+                    "3D POINT ENCODER: | PointNet++ · Uni3D",
+                    "EMBODIED SUITES: | Habitat 3.0 · ManiSkill",
                 ],
                 "anti": [
                     "Spurious Causal Confusion",
@@ -530,18 +530,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.8, 3.2, 7.6, 9.4, 30.2",
         "cells": {
             "llm": {
-                "h2_pill": "ChatML · TRL · LoRA",
+                "h2_pill": "Instruction Tuning",
                 "h3_pills": [
-                    "TRL · Axolotl · Unsloth",
-                    "LoRA · QLoRA · DoRA PEFT",
+                    "Chat Template & Packing",
+                    "LoRA / QLoRA & Masking",
                 ],
                 "normal": [
-                    "Completion Loss Masking",
-                    "Multipack + Position IDs",
-                    "Tool & Trajectory SFT",
-                    "Cold-Start CoT Traces",
-                    "MergeKit (SLERP / DARE)",
-                    "IFEval Format Audits",
+                    "SFT FRAMEWORKS: | TRL · Axolotl · Unsloth",
+                    "MODULAR TRAINERS: | TorchTune · LLaMA-Fact.",
+                    "ADAPTER LIBRARIES: | HF PEFT · LoRA · DoRA",
+                    "WEIGHT MERGING: | MergeKit (SLERP/TIES)",
+                    "CHAT TEMPLATES: | ChatML · ShareGPT · Tulu",
+                    "FORMAT BENCHMARK: | IFEval · Arena-Hard",
                 ],
                 "anti": [
                     "Unmasked Prompt Loss",
@@ -551,18 +551,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Rerank · RAFT SFT",
+                "h2_pill": "Retriever Tuning",
                 "h3_pills": [
-                    "Cross-Encoder bge-reranker",
-                    "Citation-Grounded RAFT SFT",
+                    "Hard-Negative Cross-Enc",
+                    "Distractor-Robust RAFT",
                 ],
                 "normal": [
-                    "Domain Embed Fine-Tune",
-                    "Distractor Doc Immunity",
-                    "Query-Rewrite SFT",
-                    "Text-to-SQL / JSON SFT",
-                    "Margin-MSE Distillation",
-                    "'I Don't Know' Abstain",
+                    "CROSS-ENCODERS: | bge-reranker · Cohere",
+                    "GROUNDED SFT: | RAFT · RankZephyr",
+                    "UNIFIED EMBED+GEN: | GritLM · Instructor",
+                    "EMBEDDING TUNER: | Sentence-Transformers",
+                    "LIGHT RERANKERS: | FlashRank · Rerankers",
+                    "RAG SFT EVALS: | RAGBench · RGB Eval",
                 ],
                 "anti": [
                     "Memorizing Stale Facts",
@@ -572,18 +572,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "LLaVA · AnyRes SFT",
+                "h2_pill": "Visual & Voice SFT",
                 "h3_pills": [
-                    "Visual SFT (LLaVA / AnyRes)",
-                    "GUI BBox & Duplex Voice SFT",
+                    "Dynamic High-Res Tiling",
+                    "Bounding-Box & Voice SFT",
                 ],
                 "normal": [
-                    "Projector + LLM Stage-2",
-                    "High-Res Chart/Doc SFT",
-                    "Interleaved Multi-Turn",
-                    "Set-of-Mark Visual SFT",
-                    "Moshi Full-Duplex SFT",
-                    "MMMU & ChartQA Evals",
+                    "ANYRES VLM SFT: | LLaVA-OneVision · Molmo",
+                    "SPEECH-LLM SFT: | Qwen2-Audio · Ultravox",
+                    "COMPACT VLM SFT: | PaliGemma 2 · Pixtral",
+                    "GROUNDING BBOX: | Florence-2 · GroundDINO",
+                    "VISUAL PROMPTING: | Set-of-Mark (SoM)",
+                    "DOC & CHART EVAL: | DocVQA · ChartQA",
                 ],
                 "anti": [
                     "Blind Visual Guessing",
@@ -593,18 +593,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "ACT · BC · OS-Atlas",
+                "h2_pill": "Behavior Cloning",
                 "h3_pills": [
-                    "Behavioral Cloning & ACT",
-                    "GUI Action SFT (OS-Atlas)",
+                    "k-Step Action Chunking",
+                    "GUI Pixel-to-Action SFT",
                 ],
                 "normal": [
-                    "k-Step Action Chunking",
-                    "Language-Conditioned BC",
-                    "Click / Type / Scroll SFT",
-                    "Wrist + 3rd-Person View",
-                    "New-Gripper LoRA Tune",
-                    "Offline Action MSE Eval",
+                    "ACTION CHUNKING: | ACT · ALOHA Policy",
+                    "DIFFUSION POLICY: | Diffusion Policy · DP3",
+                    "GUI GROUNDING: | OS-Atlas · SeeClick",
+                    "GUI ACTION MODELS: | ShowUI · Aguvis · CogAg.",
+                    "BIMANUAL VLA SFT: | RDT-1B · Octo Tune",
+                    "BC BENCHMARKS: | LIBERO · Meta-World",
                 ],
                 "anti": [
                     "Compounding BC Drift",
@@ -628,18 +628,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.8, 3.2, 12.1–8, 30.2",
         "cells": {
             "llm": {
-                "h2_pill": "PPO · DPO · GRPO",
+                "h2_pill": "Alignment & RLVR",
                 "h3_pills": [
-                    "PPO · DPO · KTO · SimPO",
-                    "RLVR: GRPO · DAPO · verl",
+                    "Group-Relative RL (GRPO)",
+                    "Pairwise Preference DPO",
                 ],
                 "normal": [
-                    "DeepSeek-R1 · o3 · QwQ",
-                    "Code/Math Test Oracles",
-                    "OpenRLHF · NeMo Aligner",
-                    "KL & Entropy Monitoring",
-                    "Deliberative Alignment",
-                    "Length-Controlled Win",
+                    "RLVR REASONERS: | DeepSeek-R1 · Open-R1",
+                    "RLVR FRAMEWORKS: | veRL · OpenRLHF · NeMo",
+                    "PREFERENCE TUNER: | TRL DPO / KTO / SimPO",
+                    "REWARD & ASYNC RL: | Prime-RL · Skywork-RM",
+                    "VERIFIABLE EVALS: | LiveCodeBench · AIME",
+                    "ALIGNMENT EVALS: | RewardBench · AlpacaEv.",
                 ],
                 "anti": [
                     "Reward Hacking & Bloat",
@@ -649,18 +649,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Search-R1 · DPO",
+                "h2_pill": "Search & Cite RL",
                 "h3_pills": [
-                    "Search-R1 Multi-Hop RLVR",
-                    "Citation Faithfulness DPO",
+                    "Multi-Hop Search RLVR",
+                    "NLI Faithfulness Reward",
                 ],
                 "normal": [
-                    "Query-Retrieve-Reason RL",
-                    "Exact-Match / F1 Oracles",
-                    "NLI Entailment Rewards",
-                    "Conflict Resolution RL",
-                    "Search Cost Penalty RL",
-                    "RAGTruth & FaithBench",
+                    "SEARCH RL MODELS: | Search-R1 · R1-Searcher",
+                    "QUERY REWRITE RL: | DeepRetrieval · ReZero",
+                    "NLI VERIFIERS: | AlignScore · LettuceDet.",
+                    "RAG JUDGE SUITES: | RAGAS · TruLens · ARES",
+                    "MULTI-HOP QA SET: | HotpotQA · MuSiQue",
+                    "HALLUCINATION QA: | RAGTruth · HaluEval",
                 ],
                 "anti": [
                     "Redundant Search Loops",
@@ -670,18 +670,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "VLM RLVR · RLAIF-V",
+                "h2_pill": "Perceptual RL",
                 "h3_pills": [
-                    "Visual Math & OCR RLVR",
-                    "RLAIF-V & Diffusion DPO",
+                    "IoU & OCR Verifiable RL",
+                    "Diffusion & Fact DPO",
                 ],
                 "normal": [
-                    "IoU BBox Reward Oracles",
-                    "Chart/Table Verifier RL",
-                    "Flow-GRPO Aesthetic RL",
-                    "Voice Turn-Taking RLHF",
-                    "Visual Safety Alignment",
-                    "HallusionBench Audits",
+                    "VISUAL RLVR MODELS: | R1-OneVision · VLM-R1",
+                    "VLM FACT ALIGN: | RLAIF-V · POVID · BPO",
+                    "DIFFUSION RL: | Diffusion-DPO · FlowGRPO",
+                    "MULTIMODAL RLHF: | InternVL-RL · LLaVA-RL",
+                    "OBJECT HALLUC QA: | POPE · HallusionBench",
+                    "VLM SAFETY EVALS: | MM-SafetyBench · SPA-VL",
                 ],
                 "anti": [
                     "Text-Prior Blind Guess",
@@ -691,18 +691,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "Sim2Real · RLVR",
+                "h2_pill": "Sim-to-Real RL",
                 "h3_pills": [
-                    "OSWorld / WebArena RLVR",
-                    "Sim-to-Real PPO & HIL-SERL",
+                    "Domain-Randomized PPO",
+                    "Residual & Safe HIL-RL",
                 ],
                 "normal": [
-                    "DOM / DB State Oracles",
-                    "Human-in-Loop SERL RL",
-                    "Friction/Mass Randomize",
-                    "Residual VLA Policy RL",
-                    "Control-Barrier Shield",
-                    "Docker Rollout Resets",
+                    "GPU RL TRAINERS: | Isaac Gym · CleanRL",
+                    "REAL-WORLD HIL RL: | HIL-SERL · RLPD",
+                    "LLM REWARD SYNTH: | Eureka · DrEureka",
+                    "WEB / OS RL ENVS: | WebArena · OSWorld-RL",
+                    "LEGGED LOCOMOTION: | RSL-RL · Legged-Gym",
+                    "SAFE CONTROL RL: | Safe-RL · ControlBarrier",
                 ],
                 "anti": [
                     "Simulator Physics Exploit",
@@ -726,18 +726,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 13.1–8, 15.1–9, 30.2",
         "cells": {
             "llm": {
-                "h2_pill": "<think> CoT · MCTS",
+                "h2_pill": "System-2 Search",
                 "h3_pills": [
-                    "System-2 <think> CoT",
-                    "Best-of-N · PRM · MCTS",
+                    "Deliberative CoT Tokens",
+                    "Process RM & Tree Search",
                 ],
                 "normal": [
-                    "o3 · Claude 4.6 · R1",
-                    "Step-Level Process RM",
-                    "Adaptive Budget Forcing",
-                    "Exec-Filter Before Vote",
-                    "Pass@k vs. Majority@k",
-                    "AIME & ARC-AGI-2 Evals",
+                    "FRONTIER REASONER: | OpenAI o3 / o4-mini",
+                    "OPEN REASONERS: | DeepSeek-R1 · QwQ-32B",
+                    "EXTENDED THINKING: | Claude 4.6 · Gemini 2.5",
+                    "TREE & BUDGET: | LATS · s1 Budget-Force",
+                    "PROCESS VERIFIER: | Math-Shepherd · SkyPRM",
+                    "SYSTEM-2 EVALS: | ARC-AGI-2 · AIME · GPQA",
                 ],
                 "anti": [
                     "10x Overthinking Burn",
@@ -747,18 +747,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "RRF · CRAG · HyDE",
+                "h2_pill": "Iterative Search",
                 "h3_pills": [
-                    "Hybrid RRF + Reranking",
-                    "IRCoT · CRAG · Self-RAG",
+                    "Query Decomp & Rewrite",
+                    "Reciprocal Rank & Verify",
                 ],
                 "normal": [
-                    "Query Decomposition",
-                    "HyDE Hypothetical Docs",
-                    "Top-100 -> 10 Reranker",
-                    "Interleaved Search + CoT",
-                    "Minimum-Span Extraction",
-                    "Dynamic Score Cutoffs",
+                    "REFLECTIVE RAG: | Self-RAG · CRAG",
+                    "INTERLEAVED CoT: | IRCoT · FLARE · HyDE",
+                    "NEURAL RERANKER: | Cohere Rerank 3.5",
+                    "TOKEN RERANKER: | ColBERT PLAID Rerank",
+                    "LISTWISE LLM RANK: | RankGPT · MonoT5",
+                    "REASONING RAG QA: | BRIGHT · FRAMES Eval",
                 ],
                 "anti": [
                     "Infinite Rewrite Loops",
@@ -768,18 +768,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "Visual CoT · Zoom",
+                "h2_pill": "Active Perception",
                 "h3_pills": [
-                    "Iterative Crop/Zoom CoT",
-                    "Active ROI Scan & Verify",
+                    "Iterative Crop & Zoom",
+                    "Best-of-N Visual Verify",
                 ],
                 "normal": [
-                    "o3-Vision Crop Inspect",
-                    "OpenCV Code-Exec Zoom",
-                    "Video Keyframe Search",
-                    "Diffusion CFG Scaling",
-                    "Audio Re-Listen Verify",
-                    "Multi-Crop Voting",
+                    "VISUAL CoT ZOOM: | OpenAI o3 Visual CoT",
+                    "GUIDED CROP SEARCH: | V* (V-Star) Search",
+                    "VISUAL PROGRAM: | ViperGPT · VisProg",
+                    "TOOL-USING VLMs: | LLaVA-Plus · CogCom",
+                    "DIFFUSION SCALING: | ControlNet Tile · CFG",
+                    "PERCEPTION EVALS: | BLINK · V-Bench Eval",
                 ],
                 "anti": [
                     "Zooming Irrelevant Bg",
@@ -789,18 +789,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "MPC · Tree Rollout",
+                "h2_pill": "Predictive Rollout",
                 "h3_pills": [
-                    "Model-Predictive Control",
+                    "Receding-Horizon MPC",
                     "World-Model Tree Search",
                 ],
                 "normal": [
-                    "CEM / MPPI Sim Rollouts",
-                    "VLM Failure Replanning",
-                    "Pre-Click Hover Verify",
-                    "VoxPoser 3D Value Maps",
-                    "Receding-Horizon Exec",
-                    "Safety-Filter Critic",
+                    "SAMPLING PLANNER: | MPPI · CEM Rollouts",
+                    "LATENT WORLD MPC: | TD-MPC2 · DreamerV3",
+                    "3D VALUE MAPS: | VoxPoser · Code-as-Pol.",
+                    "AFFORDANCE PLAN: | SayCan · InnerMonologue",
+                    "MOTION PLANNERS: | MoveIt 2 · Drake MPC",
+                    "GUI TREE SEARCH: | AgentQ · WebTree MCTS",
                 ],
                 "anti": [
                     "Planning Lag > 1kHz Loop",
@@ -824,18 +824,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 17, 18.2–5, 22, 23",
         "cells": {
             "llm": {
-                "h2_pill": "MCP · 4-Tier Mem",
+                "h2_pill": "Memory & Tool Bus",
                 "h3_pills": [
-                    "Model Context Protocol",
-                    "4-Tier Memory & SKILL.md",
+                    "4-Tier Memory Hierarchy",
+                    "JSON-RPC Tool & Skill Bus",
                 ],
                 "normal": [
-                    "Letta · Mem0 · Zep",
-                    "Episodic & Semantic Mem",
-                    "Progressive Skill Load",
-                    "Sleep-Time Consolidation",
-                    "/compact (<65% Window)",
-                    "MCP OAuth 2.1 & LoCoMo",
+                    "TOOL PROTOCOL: | Model Context Protocol",
+                    "AGENTIC MEMORY: | Letta (MemGPT) · Mem0",
+                    "TEMPORAL GRAPH: | Zep · LangMem · Cognee",
+                    "PROGRESSIVE SKILL: | SKILL.md · AGENTS.md",
+                    "KV PREFIX CACHE: | Anthropic Prompt Cache",
+                    "MEMORY BENCHMARK: | LoCoMo · LongMemEval",
                 ],
                 "anti": [
                     "Lost-in-the-Middle Rot",
@@ -845,18 +845,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Qdrant · GraphRAG",
+                "h2_pill": "Hybrid & Graph KB",
                 "h3_pills": [
-                    "Qdrant · Milvus · pgvector",
-                    "GraphRAG · LightRAG · Neo4j",
+                    "Dense + Lexical Fusion",
+                    "Entity-Relation Graph KB",
                 ],
                 "normal": [
-                    "REFRAG / LLMLingua Comp",
-                    "Dense + BM25 Hybrid DB",
-                    "Leiden Graph Communities",
-                    "Parent-Doc Expansion",
-                    "Tenant RBAC Pre-Filter",
-                    "RAG Triad Faithfulness",
+                    "VECTOR DATABASES: | Qdrant · Milvus · Weav.",
+                    "HYBRID SQL / DOC: | pgvector · Elasticsearch",
+                    "GRAPH RAG ENGINE: | MS GraphRAG · LightRAG",
+                    "PROPERTY GRAPHS: | Neo4j · Memgraph",
+                    "PROMPT COMPRESS: | LLMLingua-2 · REFRAG",
+                    "RAG ORCHESTRATOR: | LlamaIndex · Haystack",
                 ],
                 "anti": [
                     "Indirect Prompt Inject",
@@ -866,18 +866,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "ToMe · Video KV",
+                "h2_pill": "Token & KV Pruning",
                 "h3_pills": [
-                    "ViT Token Merge (PruMerge)",
-                    "Streaming Video KV Buffer",
+                    "ViT Patch Merge & Drop",
+                    "Streaming Video KV Ring",
                 ],
                 "normal": [
-                    "Drop 75% Bg ViT Tokens",
-                    "Cross-Modal CLIP Memory",
-                    "Audio + Text Dual Index",
-                    "MCP Presigned Media URI",
-                    "Duplex Barge-In State",
-                    "Video-MME Long Context",
+                    "PATCH MERGING: | ToMe (Token Merging)",
+                    "VLM TOKEN PRUNE: | FastV · PruMerge",
+                    "STREAMING KV RING: | StreamingLLM · InfiniPot",
+                    "VIDEO INDEX API: | TwelveLabs · Marengo",
+                    "AUDIO-TEXT ALIGN: | Whisper Timestamp Idx",
+                    "LONG VIDEO EVALS: | Video-MME · MLVU Eval",
                 ],
                 "anti": [
                     "10m Video Filling 128k",
@@ -887,18 +887,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "3DGS · DOM AXTree",
+                "h2_pill": "Spatial Scene Map",
                 "h3_pills": [
-                    "3D Scene Graphs & 3DGS",
-                    "DOM & AXTree Pruning",
+                    "3D Voxel & Gaussian Map",
+                    "Pruned DOM & AXTree",
                 ],
                 "normal": [
-                    "OctoMap Occupancy Grid",
-                    "Set-of-Mark Element IDs",
-                    "Proprioceptive Ring Buf",
-                    "Kalman 6-DoF Object Track",
-                    "MCP Robot/Browser Bus",
-                    "Spatial Consistency QA",
+                    "RADIANCE FIELDS: | 3D Gaussian Splatting",
+                    "VOXEL OCCUPANCY: | OctoMap · nvblox",
+                    "3D SCENE GRAPHS: | Hydra · ConceptGraphs",
+                    "DOM DISTILLATION: | Browser-Use DOM Pruner",
+                    "ACCESSIBILITY TREE: | Playwright AXTree · SoM",
+                    "SLAM LOCALIZATION: | RTAB-Map · ORB-SLAM3",
                 ],
                 "anti": [
                     "50k-Node Raw DOM Flood",
@@ -922,18 +922,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 16, 19, 20, 27",
         "cells": {
             "llm": {
-                "h2_pill": "Claude Code · Loop",
+                "h2_pill": "Observe-Act Loop",
                 "h3_pills": [
-                    "Claude Code · Codex · Cursor",
-                    "LangGraph · Harness² Loop",
+                    "Stateful Graph & Retries",
+                    "Sandboxed Test-Fix Loop",
                 ],
                 "normal": [
-                    "CLAUDE.md / AGENTS.md",
-                    "Observe–Decide–Act Loop",
-                    "Typed State & Checkpoints",
-                    "Spec->Plan->Test->Verify",
-                    "Independent Test Grader",
-                    "SWE-bench & pass^k SLA",
+                    "CLI CODE AGENTS: | Claude Code · Codex",
+                    "IDE CODE AGENTS: | Cursor · Windsurf · Cline",
+                    "STATEFUL GRAPHS: | LangGraph · PydanticAI",
+                    "OPEN SWE AGENTS: | OpenHands · SWE-agent",
+                    "DURABLE WORKFLOW: | Temporal · Inngest",
+                    "CODING BENCHMARK: | SWE-bench Verified",
                 ],
                 "anti": [
                     "Deleting Failing Tests",
@@ -943,18 +943,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Agentic RAG Loop",
+                "h2_pill": "Plan-Verify RAG",
                 "h3_pills": [
-                    "Agentic RAG Workflows",
-                    "Plan–Search–Read–Verify",
+                    "Adaptive Query Routing",
+                    "Citation & Span Verify",
                 ],
                 "normal": [
-                    "Adaptive Router Gate",
-                    "Sub-Question DAG Merge",
-                    "Span-Level Citation Gate",
-                    "Source Freshness Check",
-                    "Web Fallback on KB Miss",
-                    "DeepResearch Benchmark",
+                    "DEEP RESEARCHERS: | OpenAI Deep Research",
+                    "SEARCH SYNTHESIS: | Perplexity Pro · STORM",
+                    "AGENTIC RAG DAG: | LangGraph CRAG · DSPy",
+                    "AGENT SEARCH API: | Tavily · Exa · Firecrawl",
+                    "FAITHFULNESS GATE: | Patronus Lynx · NeMo G.",
+                    "RESEARCH BENCH: | GAIA · FRAMES Eval",
                 ],
                 "anti": [
                     "Rephrase Search Thrash",
@@ -964,18 +964,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "LiveKit · Pipecat",
+                "h2_pill": "Duplex Media Loop",
                 "h3_pills": [
-                    "LiveKit / Pipecat Voice",
-                    "Render–Inspect–Fix Loop",
+                    "Full-Duplex VAD Barge-In",
+                    "Render-Inspect-Fix Loop",
                 ],
                 "normal": [
-                    "VAD + Barge-In Machine",
-                    "VLM UI Screenshot Diff",
-                    "ComfyUI Gen-Critique",
-                    "ControlNet Inpaint Loop",
-                    "C2PA Media Provenance",
-                    "WER & Turn-Latency SLA",
+                    "VOICE HARNESSES: | LiveKit Agents · Pipecat",
+                    "DUPLEX SPEECH API: | OpenAI Realtime API",
+                    "NODE GEN GRAPH: | ComfyUI · InvokeAI",
+                    "LOW-LATENCY TTS: | ElevenLabs · Cartesia",
+                    "MEDIA PROVENANCE: | C2PA · SynthID",
+                    "DUPLEX BENCHMARK: | Full-Duplex-Bench",
                 ],
                 "anti": [
                     "Talking Over User Voice",
@@ -985,18 +985,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "Computer Use Loop",
+                "h2_pill": "Closed-Loop Act",
                 "h3_pills": [
-                    "Operator / Claude CU Loop",
-                    "System-2 VLM + System-1 VLA",
+                    "Screen-Action-Verify",
+                    "2Hz VLM + 50Hz Control",
                 ],
                 "normal": [
-                    "Screen -> Action -> Verify",
-                    "Pop-Up & Auth Recovery",
-                    "2Hz Planner + 50Hz Motor",
-                    "Force/Torque Reflex Stop",
-                    "Checkout/Delete Gate",
-                    "OSWorld / WebArena Eval",
+                    "DESKTOP AGENTS: | Anthropic Computer Use",
+                    "BROWSER AGENTS: | OpenAI Operator · CUA",
+                    "GUI PARSER & VLA: | UI-TARS · OmniParser v2",
+                    "WEB AUTOMATION: | Browser-Use · Skyvern",
+                    "ROBOT NAV STACK: | ROS 2 Nav2 · MoveIt 2",
+                    "OS AGENT BENCH: | OSWorld · WindowsArena",
                 ],
                 "anti": [
                     "Fake Pop-Up Injection",
@@ -1020,18 +1020,18 @@ STACK_STAGES = [
         "book_ref": "Guide: Ch. 1.14, 14, 24, 26, 28, 30.10",
         "cells": {
             "llm": {
-                "h2_pill": "A2A · OWC · AG-UI",
+                "h2_pill": "Multi-Agent Graph",
                 "h3_pills": [
-                    "Orchestrator–Worker–Critic",
-                    "Google A2A · CrewAI · AG2",
+                    "Orchestrator-Worker DAG",
+                    "Agent-to-Agent RPC Bus",
                 ],
                 "normal": [
-                    "Parallel Git Worktrees",
-                    "Red-vs-Blue Independent",
-                    "CopilotKit · AG-UI",
-                    "Agent Gateway & FinOps",
-                    "Cryptographic Agent KYA",
-                    "/.well-known/agent.json",
+                    "INTER-AGENT RPC: | Google A2A Protocol",
+                    "AGENT-USER UI BUS: | AG-UI · CopilotKit",
+                    "ROLE SWARM SDKs: | CrewAI · AutoGen (AG2)",
+                    "GRAPH SWARM SDKs: | LangGraph Swarm · OAI",
+                    "SANDBOX WORKTREE: | Git Worktree · Dagger",
+                    "ROLEPLAY SWARMS: | ChatDev · MetaGPT",
                 ],
                 "anti": [
                     "Swarm Echo Hallucinate",
@@ -1041,18 +1041,18 @@ STACK_STAGES = [
                 ],
             },
             "rag": {
-                "h2_pill": "Federated RAG MAS",
+                "h2_pill": "Federated KB Mesh",
                 "h3_pills": [
-                    "Federated Knowledge Broker",
-                    "Parallel Deep-Research MAS",
+                    "Cross-Silo Query Router",
+                    "OAuth ACL Token Pass",
                 ],
                 "normal": [
-                    "SQL + Vector + Graph Bus",
-                    "Map-Reduce Lit Synthesis",
-                    "Fact-Checker vs. Writer",
-                    "OAuth On-Behalf-Of ACLs",
-                    "Shared Citation Board",
-                    "Cross-Silo Recall Evals",
+                    "ENTERPRISE SEARCH: | Glean · Onyx (Danswer)",
+                    "MULTI-AGENT RAG: | LlamaIndex AgentWorkfl.",
+                    "FEDERATED ROUTER: | Federated-MCP · GraphQL",
+                    "ZANZIBAR RBAC: | SpiceDB · OpenFGA ACL",
+                    "FEDERATED LAKE: | Apache Iceberg · Trino",
+                    "ENTERPRISE BENCH: | Enterprise RAG-Bench",
                 ],
                 "anti": [
                     "Circular Citation Loop",
@@ -1062,18 +1062,18 @@ STACK_STAGES = [
                 ],
             },
             "multimodal": {
-                "h2_pill": "Multi-Modal Swarm",
+                "h2_pill": "Cross-Modal Studio",
                 "h3_pills": [
-                    "Cross-Modal Media Swarm",
-                    "Director–Video–Audio MAS",
+                    "Director-Storyboard DAG",
+                    "Multi-Track Sync & QA",
                 ],
                 "normal": [
-                    "Voice + Tool Subagents",
-                    "Character Style Board",
-                    "Scene + Foley Sync Gen",
-                    "VLM Visual QA Gatekeeper",
-                    "Streaming AG-UI Canvas",
-                    "Copyright & Brand Gate",
+                    "VIDEO GEN MODELS: | Runway Gen-4 · Sora",
+                    "CINEMA DI-T MODELS: | Google Veo 2 · Kling",
+                    "AUDIO / MUSIC GEN: | Suno · Udio · StableAud.",
+                    "WORKFLOW CLOUD: | ComfyUI Swarm · Fal.ai",
+                    "TIMELINE ASSEMBLY: | FFmpeg · OTIO Timeline",
+                    "VIDEO GEN BENCH: | MovieGenBench · VBench",
                 ],
                 "anti": [
                     "Character Identity Drift",
@@ -1083,18 +1083,18 @@ STACK_STAGES = [
                 ],
             },
             "embodied": {
-                "h2_pill": "Fleet MAPF Swarm",
+                "h2_pill": "Fleet Coordination",
                 "h3_pills": [
-                    "Multi-Robot Fleet Control",
-                    "Digital-Twin + Physical MAS",
+                    "Conflict-Free Path Plan",
+                    "Shared Spatial Twin",
                 ],
                 "normal": [
-                    "Conflict-Free MAPF Path",
-                    "Drone + Rover + Arm MAS",
-                    "V2X Spatial Perception",
-                    "Cloud Plan + Edge Reflex",
-                    "Human Teleop Handoff",
-                    "Fleet Deadlock Evals",
+                    "FLEET MIDDLEWARE: | Open-RMF Robotics",
+                    "DIGITAL TWIN CTRL: | NVIDIA Isaac Mission",
+                    "MAPF PATH SOLVER: | CBS / LaCAM Solvers",
+                    "FLEET TELEMETRY: | Foxglove · Formant",
+                    "INTEROP STANDARD: | VDA 5050 · AWS RoboRun.",
+                    "SWARM SIM BENCH: | Flatland · VMAS Eval",
                 ],
                 "anti": [
                     "Corridor Traffic Gridlock",
@@ -1189,7 +1189,7 @@ def render_desktop_agent_anatomy_megachart():
         0.496, hdr_y + hdr_h * 0.56,
         "① COLUMNS (1 → 10): 1. Silicon → 2. Python → 3. Data → 4. Pre-Train → 5. SFT → 6. Post-Train → 7. Test-Time → 8. Context → 9. Harness → 10. Swarms\n"
         "② ROWS (4 ORGANISMS): Core LLM Spine + Separated RAG, Multimodal & Embodied Organisms\n"
-        "③ INSIDE EVERY CELL: Flagship Pill (H2) + Checkpoints (H3) + Core Stack & Red ⚠ ANTI-PATTERNS Box (H4)",
+        "③ CELL ANATOMY: Brand-Agnostic Category (H2) + Mechanisms (H3) + ⚙ PRODUCTS & OSS Box (H4) + ⚠ ANTI-PATTERNS Box (H4)",
         fontsize=H3, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.18
     )
@@ -1241,7 +1241,7 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.16,
-        "LLM · RAG · Multimodal\n· Embodied (+ ⚠ Traps)",
+        "Category (H2) · Mechs (H3)\n⚙ Products · ⚠ Traps (H4)",
         fontsize=H4, fontweight="bold", color="#5EEAD4", va="center", ha="center",
         linespacing=1.06
     )
@@ -1312,7 +1312,11 @@ def render_desktop_agent_anatomy_megachart():
 
     # -------------------------------------------------------------------------
     # 3. 4 Organism Rows (LLM Spine + Detached RAG, Multimodal, Embodied)
-    #    with Red Dashed "⚠ ANTI-PATTERNS & TRAPS" Box INSIDE Every Cell
+    #    with 4-Zone Anatomical Cell Design:
+    #      Zone 1 (H2 = 24.00 pt): Brand-Agnostic Category Banner
+    #      Zone 2 (H3 = 14.83 pt): 2 Brand-Agnostic Core Mechanisms
+    #      Zone 3 (H4 =  9.17 pt): Framed "⚙ PRODUCTS, MODELS & OSS" Sub-Box (3x2 = 6 items)
+    #      Zone 4 (H4 =  9.17 pt): Framed "⚠ ANTI-PATTERNS & TRAPS" Sub-Box (2x2 = 4 items)
     # -------------------------------------------------------------------------
     top_y = 0.772
     row_h = 0.1865
@@ -1403,9 +1407,9 @@ def render_desktop_agent_anatomy_megachart():
             cw = stage_col_w
 
             cell_data = st["cells"][org["key"]]
-            h2_pill_str = cell_data["h2_pill"]
-            h3_pills = cell_data["h3_pills"]
-            mid_norm = cell_data["normal"]
+            h2_cat_str = cell_data["h2_pill"]
+            h3_mechs = cell_data["h3_pills"]
+            prod_list = cell_data["normal"]
             anti_list = cell_data["anti"]
 
             cbox = FancyBboxPatch(
@@ -1418,20 +1422,20 @@ def render_desktop_agent_anatomy_megachart():
             ax.add_patch(cbox)
 
             pad_x = 0.0016
-            pad_top = 0.0024
-            pad_bot = 0.0022
+            pad_top = 0.0020
+            pad_bot = 0.0020
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
-            gap_z = 0.0016
+            gap_z = 0.0014
             avail_h = rh - pad_top - pad_bot - 3 * gap_z
-            z1_h = avail_h * 0.16   # Zone 1: Top Flagship Banner Pill (H2 = 24.00 pt)
-            z2_h = avail_h * 0.22   # Zone 2: 2 Secondary Checkpoint Pills (H3 = 14.83 pt)
-            z3_h = avail_h * 0.31   # Zone 3: 3x2 = 6 Core Stack Grid (H4 = 9.17 pt)
-            anti_h = avail_h * 0.31 # Zone 4: Inner Red "⚠ ANTI-PATTERNS & TRAPS" Box (2x2 in H4 = 9.17 pt)
+            z1_h = avail_h * 0.148   # Zone 1: Brand-Agnostic Category Banner (H2 = 24.00 pt)
+            z2_h = avail_h * 0.197   # Zone 2: 2 Brand-Agnostic Core Mechanisms (H3 = 14.83 pt)
+            z3_h = avail_h * 0.365   # Zone 3: Framed "⚙ PRODUCTS, MODELS & OSS" Sub-Box (3x2 in H4 = 9.17 pt)
+            anti_h = avail_h * 0.290 # Zone 4: Framed "⚠ ANTI-PATTERNS & TRAPS" Sub-Box (2x2 in H4 = 9.17 pt)
 
             # -----------------------------------------------------------------
-            # Zone 1: Top Flagship Pill in H2 (= 24.00 pt)
+            # Zone 1: Brand-Agnostic Category Banner in H2 (= 24.00 pt)
             # -----------------------------------------------------------------
             z1_top_y = ry + rh - pad_top
             z1_bot_y = z1_top_y - z1_h
@@ -1439,13 +1443,13 @@ def render_desktop_agent_anatomy_megachart():
                 (x_left, z1_bot_y), inner_w, z1_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0024",
                 facecolor=org["h2_bg"],
-                edgecolor=org["pill_edge"],
-                linewidth=1.2
+                edgecolor="#FFFFFF",
+                linewidth=1.15
             )
             ax.add_patch(p_h2)
             ax.text(
                 x_left + inner_w / 2, z1_bot_y + z1_h / 2,
-                h2_pill_str,
+                h2_cat_str,
                 fontsize=H2,
                 fontweight="bold",
                 color=org["h2_txt"],
@@ -1453,19 +1457,19 @@ def render_desktop_agent_anatomy_megachart():
             )
 
             # -----------------------------------------------------------------
-            # Zone 2: 2 Secondary Checkpoint Pills in H3 (= 14.83 pt)
+            # Zone 2: 2 Brand-Agnostic Mechanism Bars in H3 (= 14.83 pt)
             # -----------------------------------------------------------------
             z2_top_y = z1_bot_y - gap_z
-            pill_gap = 0.0014
+            pill_gap = 0.0012
             ph3 = (z2_h - pill_gap) / 2.0
-            for idx_p, kw in enumerate(h3_pills[:2]):
+            for idx_p, kw in enumerate(h3_mechs[:2]):
                 py = z2_top_y - (idx_p + 1) * ph3 - idx_p * pill_gap
                 pill = FancyBboxPatch(
                     (x_left, py), inner_w, ph3,
                     boxstyle="round,pad=0.0,rounding_size=0.0020",
                     facecolor=org["h3_bg"],
                     edgecolor=org["pill_edge"],
-                    linewidth=1.0
+                    linewidth=0.95
                 )
                 ax.add_patch(pill)
                 ax.text(
@@ -1478,47 +1482,93 @@ def render_desktop_agent_anatomy_megachart():
                 )
 
             # -----------------------------------------------------------------
-            # Zone 3: Middle 3x2 = 6 Core Stack & Mechanisms Grid in H4 (= 9.17 pt)
+            # Zone 3 (INSIDE): Framed "⚙ PRODUCTS, MODELS & OSS" Sub-Box (3x2 in H4 = 9.17 pt)
             # -----------------------------------------------------------------
             z3_top_y = z2_top_y - z2_h - gap_z
-            t2_row_h = z3_h / 3.0
+            z3_bot_y = z3_top_y - z3_h
+            prod_box = FancyBboxPatch(
+                (x_left, z3_bot_y), inner_w, z3_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0022",
+                facecolor="#FFFFFF",
+                edgecolor=org["cell_edge"],
+                linewidth=1.15
+            )
+            ax.add_patch(prod_box)
+
+            phdr_h = z3_h * 0.205
+            phdr_box = FancyBboxPatch(
+                (x_left + 0.0004, z3_top_y - phdr_h), inner_w - 0.0008, phdr_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0016",
+                facecolor=org["hdr_bg"],
+                edgecolor=org["pill_edge"],
+                linewidth=0.55
+            )
+            ax.add_patch(phdr_box)
+            ax.text(
+                x_left + inner_w / 2, z3_top_y - phdr_h * 0.52,
+                "⚙ SUB-CATEGORY ▸ PRODUCTS & OSS",
+                fontsize=H4,
+                fontweight="bold",
+                color="#FEF08A",
+                va="center", ha="center"
+            )
+
+            pbody_top_y = z3_top_y - phdr_h
+            pbody_h = z3_h - phdr_h
+            t2_row_h = pbody_h / 3.0
             t2_col_w = inner_w / 2.0
 
             ax.plot(
                 [x_left + t2_col_w, x_left + t2_col_w],
-                [z3_top_y - z3_h + 0.0006, z3_top_y - 0.0006],
-                color=org["cell_edge"], linewidth=0.60, alpha=0.35
+                [z3_bot_y + 0.0006, pbody_top_y - 0.0006],
+                color=org["pill_edge"], linewidth=0.55, alpha=0.45
             )
-
-            for idx_2, kw in enumerate(mid_norm[:6]):
-                mr = idx_2 // 2
-                mc = idx_2 % 2
-                if mr % 2 == 1 and mc == 0:
-                    stripe = FancyBboxPatch(
-                        (x_left + 0.0004, z3_top_y - (mr + 1) * t2_row_h + 0.00015),
-                        inner_w - 0.0008, t2_row_h - 0.0003,
-                        boxstyle="round,pad=0.0,rounding_size=0.0012",
-                        facecolor=org["t2_bg"],
-                        edgecolor="none"
-                    )
-                    ax.add_patch(stripe)
-
-                tx = x_left + mc * t2_col_w + 0.0009
-                ty = z3_top_y - (mr + 0.5) * t2_row_h
-                ax.text(
-                    tx, ty,
-                    textwrap.fill(kw, width=19),
-                    fontsize=H4,
-                    fontweight="bold",
-                    color=org["t2_txt"],
-                    va="center", ha="left",
-                    linespacing=1.02
+            for r_div in (1, 2):
+                y_div = pbody_top_y - r_div * t2_row_h
+                ax.plot(
+                    [x_left + 0.0010, x_left + inner_w - 0.0010],
+                    [y_div, y_div],
+                    color=org["pill_edge"], linewidth=0.45, alpha=0.40
                 )
 
+            for idx_2, kw in enumerate(prod_list[:6]):
+                mr = idx_2 // 2
+                mc = idx_2 % 2
+                tx = x_left + mc * t2_col_w + 0.0008
+                ty = pbody_top_y - (mr + 0.5) * t2_row_h
+                if " | " in kw:
+                    sub_cat, prod_names = kw.split(" | ", 1)
+                    ax.text(
+                        tx, ty + t2_row_h * 0.22,
+                        sub_cat,
+                        fontsize=H4,
+                        fontweight="bold",
+                        color="#64748B",
+                        va="center", ha="left"
+                    )
+                    ax.text(
+                        tx, ty - t2_row_h * 0.21,
+                        prod_names,
+                        fontsize=H4,
+                        fontweight="bold",
+                        color=org["t2_txt"],
+                        va="center", ha="left"
+                    )
+                else:
+                    ax.text(
+                        tx, ty,
+                        textwrap.fill(kw, width=19),
+                        fontsize=H4,
+                        fontweight="bold",
+                        color=org["t2_txt"],
+                        va="center", ha="left",
+                        linespacing=1.00
+                    )
+
             # -----------------------------------------------------------------
-            # Zone 4 (INSIDE): Red Dashed "⚠ ANTI-PATTERNS & TRAPS" Sub-Box (H4 = 9.17 pt)
+            # Zone 4 (INSIDE): Red Dashed "⚠ ANTI-PATTERNS & TRAPS" Sub-Box (2x2 in H4 = 9.17 pt)
             # -----------------------------------------------------------------
-            anti_top_y = z3_top_y - z3_h - gap_z
+            anti_top_y = z3_bot_y - gap_z
             anti_bot_y = ry + pad_bot
             anti_box = FancyBboxPatch(
                 (x_left, anti_bot_y), inner_w, anti_h,
@@ -1530,7 +1580,7 @@ def render_desktop_agent_anatomy_megachart():
             )
             ax.add_patch(anti_box)
 
-            ahdr_h = anti_h * 0.24
+            ahdr_h = anti_h * 0.245
             ahdr_box = FancyBboxPatch(
                 (x_left + 0.0004, anti_top_y - ahdr_h), inner_w - 0.0008, ahdr_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0016",
@@ -1576,7 +1626,7 @@ def render_desktop_agent_anatomy_megachart():
                     fontweight="bold",
                     color="#881337",
                     va="center", ha="left",
-                    linespacing=1.02
+                    linespacing=1.00
                 )
 
     fig.savefig(OUT_DEV_PNG, dpi=300, facecolor=fig.get_facecolor())
@@ -1647,7 +1697,7 @@ def render_mobile_agent_anatomy_chart():
         0.496, hdr_y + hdr_h * 0.56,
         "① COLUMNS (1 → 10): 1. Silicon → 2. Python → 3. Data → 4. Pre-Train → 5. SFT → 6. Post-Train → 7. Test-Time → 8. Context → 9. Harness → 10. Swarms\n"
         "② ROWS (4 ORGANISMS): Core LLM Spine + Separated RAG, Multimodal & Embodied Organisms\n"
-        "③ INSIDE EVERY CELL: Flagship Pill (H2) + Checkpoints (H3) + Core Stack & Red ⚠ ANTI-PATTERNS Box (H4)",
+        "③ CELL ANATOMY: Brand-Agnostic Category (H2) + Mechanisms (H3) + ⚙ PRODUCTS & OSS Box (H4) + ⚠ ANTI-PATTERNS Box (H4)",
         fontsize=M_H3, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.18
     )
@@ -1694,7 +1744,7 @@ def render_mobile_agent_anatomy_chart():
     )
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.16,
-        "LLM · RAG · Multimodal\n· Embodied (+ ⚠ Traps)",
+        "Category (H2) · Mechs (H3)\n⚙ Products · ⚠ Traps (H4)",
         fontsize=M_H4, fontweight="bold", color="#5EEAD4", va="center", ha="center",
         linespacing=1.06
     )
@@ -1725,26 +1775,9 @@ def render_mobile_agent_anatomy_chart():
         ax.add_patch(lbox_top)
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
-        bar_total_w = stage_col_w - 0.0080
-        bar_gap = 0.0006
-        seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-        seg_h = banner_h * 0.09
-        bar_x_start = lx + 0.0040
-        bar_y = b_top_y - banner_h * 0.11 - seg_h / 2.0
-        for b_i in range(10):
-            bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-            is_lit = b_i < st_num
-            seg_patch = FancyBboxPatch(
-                (bx_i, bar_y), seg_w, seg_h,
-                boxstyle="round,pad=0.0,rounding_size=0.0008",
-                facecolor=st["accent"] if is_lit else "#334155",
-                edgecolor=st["accent"] if is_lit else "#475569",
-                linewidth=0.40
-            )
-            ax.add_patch(seg_patch)
 
         ax.text(
-            lx + stage_col_w / 2, b_top_y - banner_h * 0.43,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.35,
             STAGE_H1_TITLES[st_num],
             fontsize=M_H1,
             fontweight="bold",
@@ -1753,7 +1786,7 @@ def render_mobile_agent_anatomy_chart():
         )
 
         ax.text(
-            lx + stage_col_w / 2, b_top_y - banner_h * 0.81,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.77,
             textwrap.fill(STAGE_FULL_NAMES[st_num], width=36),
             fontsize=M_H4,
             fontweight="bold",
@@ -1863,9 +1896,9 @@ def render_mobile_agent_anatomy_chart():
             cw = stage_col_w
 
             cell_data = st["cells"][org["key"]]
-            h2_pill_str = cell_data["h2_pill"]
-            h3_pills = cell_data["h3_pills"]
-            mid_norm = cell_data["normal"]
+            h2_cat_str = cell_data["h2_pill"]
+            h3_mechs = cell_data["h3_pills"]
+            prod_list = cell_data["normal"]
             anti_list = cell_data["anti"]
 
             cbox = FancyBboxPatch(
@@ -1878,17 +1911,17 @@ def render_mobile_agent_anatomy_chart():
             ax.add_patch(cbox)
 
             pad_x = 0.0016
-            pad_top = 0.0024
-            pad_bot = 0.0022
+            pad_top = 0.0020
+            pad_bot = 0.0020
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
-            gap_z = 0.0016
+            gap_z = 0.0014
             avail_h = rh - pad_top - pad_bot - 3 * gap_z
-            z1_h = avail_h * 0.16
-            z2_h = avail_h * 0.22
-            z3_h = avail_h * 0.31
-            anti_h = avail_h * 0.31
+            z1_h = avail_h * 0.148
+            z2_h = avail_h * 0.197
+            z3_h = avail_h * 0.365
+            anti_h = avail_h * 0.290
 
             z1_top_y = ry + rh - pad_top
             z1_bot_y = z1_top_y - z1_h
@@ -1896,13 +1929,13 @@ def render_mobile_agent_anatomy_chart():
                 (x_left, z1_bot_y), inner_w, z1_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0024",
                 facecolor=org["h2_bg"],
-                edgecolor=org["pill_edge"],
-                linewidth=0.95
+                edgecolor="#FFFFFF",
+                linewidth=0.90
             )
             ax.add_patch(p_h2)
             ax.text(
                 x_left + inner_w / 2, z1_bot_y + z1_h / 2,
-                h2_pill_str,
+                h2_cat_str,
                 fontsize=M_H2,
                 fontweight="bold",
                 color=org["h2_txt"],
@@ -1910,16 +1943,16 @@ def render_mobile_agent_anatomy_chart():
             )
 
             z2_top_y = z1_bot_y - gap_z
-            pill_gap = 0.0014
+            pill_gap = 0.0012
             ph3 = (z2_h - pill_gap) / 2.0
-            for idx_p, kw in enumerate(h3_pills[:2]):
+            for idx_p, kw in enumerate(h3_mechs[:2]):
                 py = z2_top_y - (idx_p + 1) * ph3 - idx_p * pill_gap
                 pill = FancyBboxPatch(
                     (x_left, py), inner_w, ph3,
                     boxstyle="round,pad=0.0,rounding_size=0.0020",
                     facecolor=org["h3_bg"],
                     edgecolor=org["pill_edge"],
-                    linewidth=0.80
+                    linewidth=0.75
                 )
                 ax.add_patch(pill)
                 ax.text(
@@ -1932,31 +1965,87 @@ def render_mobile_agent_anatomy_chart():
                 )
 
             z3_top_y = z2_top_y - z2_h - gap_z
-            t2_row_h = z3_h / 3.0
+            z3_bot_y = z3_top_y - z3_h
+            prod_box = FancyBboxPatch(
+                (x_left, z3_bot_y), inner_w, z3_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0022",
+                facecolor="#FFFFFF",
+                edgecolor=org["cell_edge"],
+                linewidth=0.95
+            )
+            ax.add_patch(prod_box)
+
+            phdr_h = z3_h * 0.205
+            phdr_box = FancyBboxPatch(
+                (x_left + 0.0004, z3_top_y - phdr_h), inner_w - 0.0008, phdr_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0016",
+                facecolor=org["hdr_bg"],
+                edgecolor=org["pill_edge"],
+                linewidth=0.45
+            )
+            ax.add_patch(phdr_box)
+            ax.text(
+                x_left + inner_w / 2, z3_top_y - phdr_h * 0.52,
+                "⚙ SUB-CATEGORY ▸ PRODUCTS & OSS",
+                fontsize=M_H4,
+                fontweight="bold",
+                color="#FEF08A",
+                va="center", ha="center"
+            )
+
+            pbody_top_y = z3_top_y - phdr_h
+            pbody_h = z3_h - phdr_h
+            t2_row_h = pbody_h / 3.0
             t2_col_w = inner_w / 2.0
 
             ax.plot(
                 [x_left + t2_col_w, x_left + t2_col_w],
-                [z3_top_y - z3_h + 0.0006, z3_top_y - 0.0006],
-                color=org["cell_edge"], linewidth=0.50, alpha=0.35
+                [z3_bot_y + 0.0006, pbody_top_y - 0.0006],
+                color=org["pill_edge"], linewidth=0.45, alpha=0.45
             )
-
-            for idx_2, kw in enumerate(mid_norm[:6]):
-                mr = idx_2 // 2
-                mc = idx_2 % 2
-                tx = x_left + mc * t2_col_w + 0.0009
-                ty = z3_top_y - (mr + 0.5) * t2_row_h
-                ax.text(
-                    tx, ty,
-                    textwrap.fill(kw, width=19),
-                    fontsize=M_H4,
-                    fontweight="bold",
-                    color=org["t2_txt"],
-                    va="center", ha="left",
-                    linespacing=1.02
+            for r_div in (1, 2):
+                y_div = pbody_top_y - r_div * t2_row_h
+                ax.plot(
+                    [x_left + 0.0010, x_left + inner_w - 0.0010],
+                    [y_div, y_div],
+                    color=org["pill_edge"], linewidth=0.38, alpha=0.40
                 )
 
-            anti_top_y = z3_top_y - z3_h - gap_z
+            for idx_2, kw in enumerate(prod_list[:6]):
+                mr = idx_2 // 2
+                mc = idx_2 % 2
+                tx = x_left + mc * t2_col_w + 0.0008
+                ty = pbody_top_y - (mr + 0.5) * t2_row_h
+                if " | " in kw:
+                    sub_cat, prod_names = kw.split(" | ", 1)
+                    ax.text(
+                        tx, ty + t2_row_h * 0.22,
+                        sub_cat,
+                        fontsize=M_H4,
+                        fontweight="bold",
+                        color="#64748B",
+                        va="center", ha="left"
+                    )
+                    ax.text(
+                        tx, ty - t2_row_h * 0.21,
+                        prod_names,
+                        fontsize=M_H4,
+                        fontweight="bold",
+                        color=org["t2_txt"],
+                        va="center", ha="left"
+                    )
+                else:
+                    ax.text(
+                        tx, ty,
+                        textwrap.fill(kw, width=19),
+                        fontsize=M_H4,
+                        fontweight="bold",
+                        color=org["t2_txt"],
+                        va="center", ha="left",
+                        linespacing=1.00
+                    )
+
+            anti_top_y = z3_bot_y - gap_z
             anti_bot_y = ry + pad_bot
             anti_box = FancyBboxPatch(
                 (x_left, anti_bot_y), inner_w, anti_h,
@@ -1968,7 +2057,7 @@ def render_mobile_agent_anatomy_chart():
             )
             ax.add_patch(anti_box)
 
-            ahdr_h = anti_h * 0.24
+            ahdr_h = anti_h * 0.245
             ahdr_box = FancyBboxPatch(
                 (x_left + 0.0004, anti_top_y - ahdr_h), inner_w - 0.0008, ahdr_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0016",
@@ -2014,7 +2103,7 @@ def render_mobile_agent_anatomy_chart():
                     fontweight="bold",
                     color="#881337",
                     va="center", ha="left",
-                    linespacing=1.02
+                    linespacing=1.00
                 )
 
     fig.savefig(OUT_MOBILE_PNG, dpi=300, facecolor=fig.get_facecolor())
@@ -2030,8 +2119,8 @@ def write_agent_anatomy_markdown():
         "",
         "# ANATOMY OF AI AGENTS 2026 (`10 Stages: 1. Silicon → 10. Swarms` × `4 Organisms: LLM · RAG · Multimodal · Embodied`)",
         "",
-        "> **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 stages (`1. Silicon`, `2. Python`, `3. Data`, `4. Pre-Train`, `5. SFT`, `6. Post-Train`, `7. Test-Time`, `8. Context`, `9. Harness`, `10. Swarms`) and top to bottom across the 4 distinct organisms (`LLM`, `RAG`, `Multimodal`, `Embodied`), with production `⚠ ANTI-PATTERNS & TRAPS` embedded directly inside every cell.**  ",
-        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① COLUMNS (1 → 10):`** Follow `1. Silicon → 10. Swarms` · **`② ROWS (4 ORGANISMS):`** Compare the `LLM` Core Spine against `RAG`, `Multimodal`, and `Embodied` · **`③ INSIDE EVERY CELL:`** Audit the Flagship Banner (`H2 = 24 pt`), Checkpoints (`H3 = 14.83 pt`), Core Stack (`H4 = 9.17 pt`), and Red **`⚠ ANTI-PATTERNS & TRAPS`** box (`H4 = 9.17 pt`).",
+        "> **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 stages (`1. Silicon`, `2. Python`, `3. Data`, `4. Pre-Train`, `5. SFT`, `6. Post-Train`, `7. Test-Time`, `8. Context`, `9. Harness`, `10. Swarms`) and top to bottom across the 4 distinct organisms (`LLM`, `RAG`, `Multimodal`, `Embodied`), where every cell cleanly separates its Brand-Agnostic Category (`H2`) and Core Mechanisms (`H3`) from its Concrete `⚙ PRODUCTS, MODELS & OSS` (`H4`) and `⚠ ANTI-PATTERNS & TRAPS` (`H4`).**  ",
+        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① COLUMNS (1 → 10):`** Follow `1. Silicon → 10. Swarms` · **`② ROWS (4 ORGANISMS):`** Compare the `LLM` Core Spine against `RAG`, `Multimodal`, and `Embodied` · **`③ CELL ANATOMY:`** Audit the Brand-Agnostic Category (`H2 = 24 pt`), Brand-Agnostic Mechanisms (`H3 = 14.83 pt`), Framed **`⚙ PRODUCTS, MODELS & OSS`** box (`H4 = 9.17 pt`), and Framed **`⚠ ANTI-PATTERNS & TRAPS`** box (`H4 = 9.17 pt`).",
         "",
         "---",
         "",
@@ -2052,10 +2141,14 @@ def write_agent_anatomy_markdown():
         row_cells = [col0]
         for org in ORGANISMS:
             d = st["cells"][org["key"]]
-            h2_str = f"**`[{d['h2_pill']}]`**"
-            h3_str = " · ".join(f"**{k}**" for k in d["h3_pills"])
-            norm_str = " · ".join(d["normal"])
-            anti_str = " · ".join(f"**`⚠ {k}`**" for k in d["anti"])
+            h2_str = f"**`[{d['h2_pill']}]`** *(Brand-Agnostic Category)*"
+            h3_str = "**Core Mechanisms:** " + " · ".join(f"**{k}**" for k in d["h3_pills"])
+            norm_items = [
+                f"**{k.split(' | ', 1)[0]}** `{k.split(' | ', 1)[1]}`" if " | " in k else f"`{k}`"
+                for k in d["normal"]
+            ]
+            norm_str = "**`⚙ Sub-Category ▸ Products:`** " + " · ".join(norm_items)
+            anti_str = "**`⚠ Traps:`** " + " · ".join(f"**`✕ {k}`**" for k in d["anti"])
             parts = [p for p in (h2_str, h3_str, norm_str, anti_str) if p]
             row_cells.append("<br><br>".join(parts))
         lines.append("| " + " | ".join(row_cells) + " |")
@@ -2078,14 +2171,17 @@ def write_agent_anatomy_markdown():
             f"* **Core Unit of Compute / State:** `{st['core_unit']}`",
             f"* **Primary Reference (`arXiv:2606.24937`):** {st['book_ref']}",
             "",
-            "| Organism (`Short` — *Full Name*) | Flagship Banner (`H2 = 24pt`) | Checkpoints (`H3 = 14.83pt`) | Core Stack (`H4 = 9.17pt`) | Inner `⚠ Anti-Patterns & Traps` (`H4 = 9.17pt`) |",
+            "| Organism (`Short` — *Full Name*) | Brand-Agnostic Category (`H2 = 24pt`) | Brand-Agnostic Mechanisms (`H3 = 14.83pt`) | `⚙ Sub-Category ▸ Products & OSS` (`H4 = 9.17pt`) | `⚠ Anti-Patterns & Traps` (`H4 = 9.17pt`) |",
             "| :--- | :--- | :--- | :--- | :--- |",
         ])
         for org in ORGANISMS:
             d = st["cells"][org["key"]]
             h2_s = f"**`{d['h2_pill']}`**"
             h3_s = ", ".join(f"**`{k}`**" for k in d["h3_pills"])
-            nm_s = ", ".join(f"`{k}`" for k in d["normal"])
+            nm_s = ", ".join(
+                f"**{k.split(' | ', 1)[0]}** `{k.split(' | ', 1)[1]}`" if " | " in k else f"`{k}`"
+                for k in d["normal"]
+            )
             an_s = ", ".join(f"**`✕ {k}`**" for k in d["anti"])
             lines.append(
                 f"| **{org['short_name']}** (*{org['full_name']}*) | {h2_s} | {h3_s} | {nm_s} | {an_s} |"
