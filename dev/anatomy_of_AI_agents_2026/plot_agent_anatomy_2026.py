@@ -640,14 +640,14 @@ STACK_LAYERS = [
                     "PEFT Adapters (LoRA / QLoRA / DoRA)",
                 ],
                 "normal": [
-                    "ChatML Roles (System / User / Assistant / Tool)",
+                    "ChatML Roles (System / User / Asst / Tool)",
                     "Completion-Only Loss Masking (Labels=-100)",
                     "Multipack / FlashAttention Varlen Packing",
                     "Position-ID Reset Across Packed Examples",
                     "LoRA (B*A Low-Rank Adapter Matrices)",
                     "QLoRA (4-Bit NF4 Base + Double Quant)",
                     "DoRA (Weight-Decomposed Magnitude/Dir)",
-                    "PiSSA & rsLoRA (Rank-Stabilized alpha/sqrt(r))",
+                    "PiSSA & rsLoRA (Rank-Stabilized Scaling)",
                 ],
                 "small": [
                     "Target Modules: q/k/v/o/gate/up/down_proj",
@@ -672,13 +672,13 @@ STACK_LAYERS = [
                 ],
                 "normal": [
                     "HuggingFace TRL SFTTrainer & DataCollator",
-                    "HuggingFace PEFT (LoraConfig / get_peft_model)",
+                    "HuggingFace PEFT (LoraConfig / get_peft)",
                     "Unsloth (2x Speed, 70% Less VRAM Triton)",
                     "Axolotl & LLaMA-Factory YAML SFT Suites",
                     "PyTorch Torchtune & MosaicML Finetuning",
                     "bitsandbytes NF4 & HQQ / AWQ Quantizers",
                     "Liger-Kernel Fused Cross-Entropy Loss",
-                    "MergeKit CLI Multi-Adapter Checkpoint Merger",
+                    "MergeKit Multi-Adapter Checkpoint Merger",
                 ],
                 "small": [
                     "DataCollatorForCompletionOnlyLM",
@@ -705,9 +705,9 @@ STACK_LAYERS = [
                     "Prompt-Token Loss Masking Assertion (-100)",
                     "EOS / Stop-Token Generation Verification",
                     "Cross-Sample Attention Bleed Check (Varlen)",
-                    "IFEval Strict Format & Constraint Benchmarks",
+                    "IFEval Format & Constraint Benchmarks",
                     "MT-Bench & AlpacaEval 2.0 Win-Rate Audits",
-                    "Base-Capability Retention (MMLU / Code Drop)",
+                    "Base-Capability Retention (MMLU / Coding)",
                     "Benign vs. Harmful Refusal Calibration Mix",
                     "Fine-Tuning Jailbreak & Sleeper-Agent Audit",
                 ],
@@ -761,19 +761,19 @@ STACK_LAYERS = [
         "cells": {
             "primitives_arch": {
                 "h1": [
-                    "Preference Tuning: PPO · DPO · KTO · SimPO",
+                    "Preference Tuning (PPO · DPO · KTO · SimPO)",
                     "Critic-Free RLVR: GRPO · Dr. GRPO · DAPO",
                     "Verifiable Execution Oracles & PRMs",
                 ],
                 "normal": [
                     "Bradley-Terry Reward Model & PPO (GAE)",
-                    "Direct Preference Optimization (DPO Implicit RM)",
-                    "KTO (Prospect Theory Unpaired Binary Feedback)",
-                    "IPO · ORPO · SimPO (Reference-Free Length Norm)",
+                    "Direct Preference Optimization (DPO)",
+                    "KTO (Unpaired Binary Prospect Feedback)",
+                    "IPO · ORPO · SimPO (Ref-Free Length Norm)",
                     "GRPO (Group-Relative Advantage, No Critic)",
-                    "Dr. GRPO (Unbiased Length & Std Normalization)",
-                    "DAPO (Decoupled Clip-Higher & Dynamic Sample)",
-                    "Cold-Start Pure-RL Emergence (DeepSeek-R1-Zero)",
+                    "Dr. GRPO (Unbiased Length & Std Norm)",
+                    "DAPO (Decoupled Clip-Higher & Sampling)",
+                    "Cold-Start Pure-RL (DeepSeek-R1-Zero)",
                 ],
                 "small": [
                     "KL Penalty beta * D_KL(pi_theta || pi_ref)",
@@ -893,9 +893,9 @@ STACK_LAYERS = [
                 ],
                 "normal": [
                     "Long Internal Reasoning (<think>...</think>)",
-                    "Adaptive Thinking Token Budgets (Low/Med/High)",
+                    "Adaptive Thinking Budgets (Low/Med/High)",
                     "Self-Consistency Majority Voting (maj@k)",
-                    "Best-of-N Reranking With Outcome/Process RM",
+                    "Best-of-N Reranking With ORM / PRM",
                     "Step-Level Beam Search Guided by PRM",
                     "Monte Carlo Tree Search (MCTS / UCT Value)",
                     "Sequential Self-Correction & Reflexion Loops",
@@ -923,12 +923,12 @@ STACK_LAYERS = [
                     "DeepSeek-R1 · Qwen3 Thinking · s1 Budget",
                 ],
                 "normal": [
-                    "OpenAI reasoning_effort (low / medium / high)",
+                    "OpenAI reasoning_effort (low / med / high)",
                     "Anthropic Extended Thinking (budget_tokens)",
-                    "Gemini 2.5/3 Thinking Budget & Thought Summary",
+                    "Gemini 2.5/3 Thinking Budget & Summaries",
                     "Qwen3 Hybrid Thinking (/think vs. /no_think)",
-                    "vLLM / SGLang Reasoning Parser (--reasoning)",
-                    "Optillm Inference-Time Scaling Proxy (MCTS/BoN)",
+                    "vLLM / SGLang Reasoning ParserFlags",
+                    "Optillm Inference-Time Proxy (MCTS / BoN)",
                     "Search-and-Learn (HuggingFace SAL Recipes)",
                     "LATS (Language Agent Tree Search) Engine",
                 ],
@@ -954,14 +954,14 @@ STACK_LAYERS = [
                     "Overthinking & CoT Faithfulness Audits",
                 ],
                 "normal": [
-                    "AIME / HMMT / Codeforces Rating vs. Token Budget",
+                    "AIME / HMMT / Codeforces vs. Token Budget",
                     "ARC-AGI-1/2 & Humanity's Last Exam (HLE)",
                     "Pass@k vs. Majority@k / PRM@k Efficiency",
                     "ProcessBench Step-Error Localization Audit",
-                    "Token-Budget Cap & Diminishing-Return Cutoff",
+                    "Token-Budget Cap & Diminishing-Return Gate",
                     "CoT Faithfulness & Post-Hoc Rationalization",
                     "Hidden vs. Visible Reasoning Trace Safety",
-                    "Latency-SLA Routing (Fast System-1 vs. System-2)",
+                    "Latency-SLA Routing (System-1 vs System-2)",
                 ],
                 "small": [
                     "Optimal Compute Allocation (Smallx64 vs Bigx1)",
@@ -980,7 +980,7 @@ STACK_LAYERS = [
             },
             "failure_modes": {
                 "h1": [
-                    "Overthinking & Analysis Paralysis (10x Cost)",
+                    "Overthinking & Analysis Paralysis (10x)",
                     "PRM Reward Hacking & Verifier Blindspots",
                     "Self-Correction Degrading Correct Answers",
                 ],
@@ -1201,7 +1201,7 @@ STACK_LAYERS = [
             },
             "ops_evals_security": {
                 "h1": [
-                    "Decoupled Verification Oracles (No Self-Grade)",
+                    "Decoupled Verification (No Self-Grading)",
                     "SWE-bench Verified/Pro & Terminal-Bench",
                     "pass^k Reliability & Trajectory Tracing",
                 ],
@@ -1391,7 +1391,7 @@ STACK_LAYERS = [
         "cells": {
             "primitives_arch": {
                 "h1": [
-                    "Hybrid & Agentic RAG (Dense+BM25+Rerank)",
+                    "Hybrid & Agentic RAG (Dense+BM25+RRF)",
                     "GraphRAG Entity Summaries & REFRAG",
                     "Vision (ViT/SigLIP) & Native Omni Audio",
                 ],
@@ -1401,9 +1401,9 @@ STACK_LAYERS = [
                     "Contextual Chunking & AST Code Splitting",
                     "Self-RAG / Corrective RAG / Search-R1",
                     "ViT Patch Projection & AnyRes Dynamic Tiling",
-                    "Visual Token Compression (Perceiver / Q-Former)",
+                    "Visual Token Compression (Perceiver/Q-Former)",
                     "Whisper Spectrogram & RVQ Audio Codecs",
-                    "GUI Coordinate Grounding (Set-of-Mark / SoM)",
+                    "GUI Coordinate Grounding (Set-of-Mark/SoM)",
                 ],
                 "small": [
                     "HNSW / IVF-PQ / DiskANN Vector Indices",
@@ -1507,20 +1507,48 @@ STACK_LAYERS = [
 ]
 
 
+PHI = (1.0 + 5.0 ** 0.5) / 2.0  # Golden Ratio φ ≈ 1.61803398875
+
+LAYER_NAME_2LINE = {
+    1: "PHYSICAL &\nSILICON",
+    2: "ENV, PACKAGES,\nPYTHON & TENSOR",
+    3: "DATA &\nTOKENIZATION",
+    4: "ARCHITECTURE &\nPRE-TRAINING",
+    5: "SUPERVISED\nFINE-TUNING (SFT)",
+    6: "POST-TRAINING\n(RLHF, DPO & RLVR)",
+    7: "TEST-TIME COMPUTE\n& REASONING",
+    8: "CONTEXT, MEMORY,\nTOOLS & MCP",
+    9: "AGENT HARNESS,\nLOOP & GRAPH",
+    10: "MULTI-AGENT\nSWARMS & A2A",
+    11: "RAG & MULTIMODAL\n(EXTERNAL)",
+}
+
+
 def render_desktop_agent_anatomy_megachart():
     """
-    Landscape Widescreen Megachart (39.0 x 18.0 in @ 300 DPI — 19.5:9 Mobile-Landscape Aspect Ratio).
-    The 10 Core Agent Stack Layers flow horizontally from LEFT to RIGHT (Columns 1..10:
-    L1 Physical/Silicon -> L2 Env/Packages/PyTorch/JAX -> L3 Data & Tokenization ->
-    L4 Architecture & Pre-Training -> L5 Supervised Fine-Tuning (SFT) ->
-    L6 Post-Training (RLHF, DPO & RLVR) -> L7 Test-Time Compute & Reasoning ->
-    L8 Context, Memory, Tools & MCP -> L9 Agent Harness, Loop & Graph ->
-    L10 Multi-Agent Swarms & A2A), followed on the far right by a visually detached
-    11th column for the SEPARATE ORGANISM: RAG & MULTIMODAL (EXTERNAL).
+    ISO A0-Width Landscape Megachart (46.8 x 21.6 in @ 300 DPI — exact 19.5:9 Mobile-Landscape
+    Aspect Ratio, width = 46.8 in = 1188.7 mm ≈ 1189 mm ISO A0 landscape width).
+
+    Strict Unskipped 5-Level Golden Ratio Typographic Hierarchy (φ = 1.61803398875):
+      • T = H0 = 10.0 * φ² ≈ 26.18 pt : Main Megachart Title ("ANATOMY OF AI AGENTS 2026")
+      • H1 = H0 / φ        ≈ 16.18 pt : LAYER X badge ("LAYER 1 →" .. "LAYER 10 ★", "⇄ ORGANISM")
+                                        AND 2-line Layer Name ("PHYSICAL & SILICON", etc.)
+      • H2 = H1 / φ        = 10.00 pt : Cell Tier-1 Top-3 Flagship Pills, Masthead Subtitle/Hook/Key,
+                                        and Left-Column Row Pillar Titles
+      • H3 = H2 / φ        ≈  6.18 pt : Cell Tier-2 Normal Grid Items (2x4 active / 4x1 fail),
+                                        Column Header Descriptions/Bullets, Row Pillar Badges/Descs,
+                                        and Masthead Footnote Strip
+      • H4 = H3 / φ        ≈  3.82 pt : Cell Tier-3 Granular Footnote Grid Items (3x4 active / 2x2 fail)
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
-    fig = plt.figure(figsize=(39.0, 18.0), dpi=300, facecolor="#0F172A")
+    H2 = 10.0000          # 10.0000 pt (Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles)
+    H1 = H2 * PHI         # 16.1803 pt (LAYER X & Layer Name)
+    H0 = H1 * PHI         # 26.1803 pt (Title T = H0)
+    H3 = H2 / PHI         #  6.1803 pt (Cell Tier-2 Normal Grid & Header Descriptions/Bullets)
+    H4 = H3 / PHI         #  3.8197 pt (Cell Tier-3 Granular Footnote Grid)
+
+    fig = plt.figure(figsize=(46.8, 21.6), dpi=300, facecolor="#0F172A")
     ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
@@ -1529,12 +1557,12 @@ def render_desktop_agent_anatomy_megachart():
     bg_canvas = FancyBboxPatch(
         (0.001, 0.001), 0.998, 0.998,
         boxstyle="round,pad=0.0,rounding_size=0.005",
-        facecolor="#E2E8F0", edgecolor="#0F172A", linewidth=1.5
+        facecolor="#E2E8F0", edgecolor="#0F172A", linewidth=1.6
     )
     ax.add_patch(bg_canvas)
 
     # -------------------------------------------------------------------------
-    # 1. Top Masthead (Title + Website + Yellow Hook + Blue How-to-Read + Footnote)
+    # 1. Top Masthead (T=H0 Title + H2 Subtitle/Hook/Key + H3 Footnote Strip)
     # -------------------------------------------------------------------------
     hdr_y = 0.908
     hdr_h = 0.086
@@ -1545,48 +1573,48 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.add_patch(hdr_box)
 
-    # Left Block: Giant Title + Website Underneath
+    # Left Block: T = H0 Title + H2 Website/Subtitle Underneath
     ax.text(
         0.012, hdr_y + hdr_h * 0.70,
         "ANATOMY OF AI AGENTS 2026",
-        fontsize=38.0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+        fontsize=H0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com  ·  10-Layer Agent Stack + Detached RAG/Multimodal Organism (Roitman arXiv:2606.24937)",
-        fontsize=12.2, fontweight="bold", color="#38BDF8", va="center", ha="left"
+        "www.arianprabowo.com · 10-Layer Agent Stack + External RAG/Multimodal (arXiv:2606.24937)",
+        fontsize=H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
     # Vertical divider 1
     ax.plot(
-        [0.418, 0.418], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.415, 0.415], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.6
     )
 
-    # Middle Block: Yellow Motivating Hook
+    # Middle Block: H2 Yellow Motivating Hook
     ax.text(
-        0.426, hdr_y + hdr_h * 0.58,
-        "What actually runs under the hood of an autonomous AI agent in 2026?\n"
-        "A 10-layer left-to-right spine: Silicon (L1) → uv/PyTorch/JAX (L2) → Data/Tokens (L3) → Arch/Pretrain (L4) →\n"
-        "SFT (L5) → RLHF/DPO/RLVR (L6) → Test-Time Compute (L7) → MCP (L8) → Harness² (L9) → Swarms (L10) + External RAG/MM.",
-        fontsize=10.0, fontweight="bold", color="#FEF08A", va="center", ha="left",
-        linespacing=1.18
+        0.423, hdr_y + hdr_h * 0.58,
+        "What actually runs under an AI agent in 2026? A 10-layer left-to-right stack:\n"
+        "Silicon (L1) → Env/PyTorch (L2) → Data (L3) → Pretrain (L4) → SFT (L5) →\n"
+        "RLVR (L6) → Test-Time (L7) → MCP (L8) → Harness² (L9) → Swarms (L10) + RAG/MM.",
+        fontsize=H2, fontweight="bold", color="#FEF08A", va="center", ha="left",
+        linespacing=1.16
     )
 
     # Vertical divider 2
     ax.plot(
-        [0.742, 0.742], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.758, 0.758], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.6
     )
 
-    # Right Block: Blue 3-Step Key
+    # Right Block: H2 Blue 3-Step Key
     ax.text(
-        0.751, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10 from silicon to swarms\n"
-        "② SEPARATE ORGANISM: Far-right column = detached RAG & Multimodal systems\n"
-        "③ HARDEN PROD: Audit the red FAILURE MODES & TRAPS row at bottom",
-        fontsize=10.8, fontweight="bold", color="#93C5FD", va="center", ha="left",
-        linespacing=1.22
+        0.766, hdr_y + hdr_h * 0.58,
+        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10\n"
+        "② SEPARATE ORGANISM: Far-right = RAG & Multimodal\n"
+        "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
+        fontsize=H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
+        linespacing=1.18
     )
 
     # Horizontal divider above bottom footnote strip
@@ -1595,12 +1623,12 @@ def render_desktop_agent_anatomy_megachart():
         color="#1E293B", linewidth=1.1
     )
 
-    # Bottom Combined Grey Footnote Strip
+    # Bottom Combined Grey Footnote Strip (H3)
     ax.text(
         0.500, hdr_y + hdr_h * 0.095,
         f"*Synthesized from Haggai Roitman's 'The Hitchhiker's Guide to Agentic AI: From Foundations to Systems' (arXiv:2606.24937, v1.4, June 2026) + 2026 systems tooling. "
         f"Companion to AI Skill Tree 2026 & AI Ladder Evolution by Arian Prabowo · {LAST_UPDATED_STR}",
-        fontsize=8.6, fontweight="bold", color="#94A3B8", va="center", ha="center"
+        fontsize=H3, fontweight="bold", color="#94A3B8", va="center", ha="center"
     )
 
     # -------------------------------------------------------------------------
@@ -1620,8 +1648,8 @@ def render_desktop_agent_anatomy_megachart():
             base_x += org_sep_gap - col_gap
         return base_x
 
-    col_hdr_y = 0.788
-    col_hdr_h = 0.114
+    col_hdr_y = 0.778
+    col_hdr_h = 0.124
 
     # Top-Left Corner Card
     corner_box = FancyBboxPatch(
@@ -1631,20 +1659,21 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.add_patch(corner_box)
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.74,
-        "AI AGENT STACK",
-        fontsize=12.8, fontweight="bold", color="#FFFFFF", va="center", ha="center"
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
+        "AI AGENT\nSTACK",
+        fontsize=H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
+        linespacing=1.02
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.48,
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.37,
         "LAYER 1 → LAYER 10",
-        fontsize=10.0, fontweight="bold", color="#FEF08A", va="center", ha="center"
+        fontsize=H2, fontweight="bold", color="#FEF08A", va="center", ha="center"
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.21,
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.15,
         "+ Detached Organism\n(RAG & Multimodal)",
-        fontsize=7.6, fontweight="bold", color="#5EEAD4", va="center", ha="center",
-        linespacing=1.12
+        fontsize=H3, fontweight="bold", color="#5EEAD4", va="center", ha="center",
+        linespacing=1.10
     )
 
     # Vertical Dashed Boundary & Background Halo for the Detached Separate Organism (Column 11)
@@ -1652,7 +1681,7 @@ def render_desktop_agent_anatomy_megachart():
     org_div_x = org_x0 - org_sep_gap * 0.50
     ax.plot(
         [org_div_x, org_div_x], [0.008, col_hdr_y + col_hdr_h],
-        color="#0D9488", linewidth=2.4, linestyle=(0, (7, 4)), alpha=0.90
+        color="#0D9488", linewidth=2.6, linestyle=(0, (7, 4)), alpha=0.90
     )
     org_halo = FancyBboxPatch(
         (org_x0 - 0.0018, 0.006),
@@ -1664,6 +1693,7 @@ def render_desktop_agent_anatomy_megachart():
     ax.add_patch(org_halo)
 
     # 10 Core Layer Column Headers + 1 Separate Organism Column Header
+    # BOTH `LAYER X` and `Layer Name` are strictly H1 (= H0 / φ)
     for l_idx, ly in enumerate(STACK_LAYERS):
         lx = get_col_x(l_idx)
         is_org = bool(ly.get("is_external_organism"))
@@ -1679,7 +1709,7 @@ def render_desktop_agent_anatomy_megachart():
         ax.add_patch(lbox_body)
 
         inset_b = 0.0012
-        banner_h = col_hdr_h * 0.40
+        banner_h = col_hdr_h * 0.54
         lbox_top = FancyBboxPatch(
             (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
             layer_col_w - 2 * inset_b, banner_h,
@@ -1692,42 +1722,42 @@ def render_desktop_agent_anatomy_megachart():
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
         if is_org:
-            badge_label = "⇄ SEPARATE ORGANISM"
+            badge_label = "⇄ ORGANISM"
             ax.text(
-                lx + 0.0032, b_top_y - banner_h * 0.33,
+                lx + 0.0030, b_top_y - banner_h * 0.23,
                 badge_label,
-                fontsize=9.4, fontweight="bold", color="#5EEAD4", va="center", ha="left"
+                fontsize=H1, fontweight="bold", color="#5EEAD4", va="center", ha="left"
             )
-            ext_pill_w = 0.024
-            ext_pill_h = banner_h * 0.34
+            ext_pill_w = 0.025
+            ext_pill_h = banner_h * 0.25
             ext_pill = FancyBboxPatch(
-                (lx + layer_col_w - 0.0030 - ext_pill_w, b_top_y - banner_h * 0.33 - ext_pill_h / 2.0),
+                (lx + layer_col_w - 0.0028 - ext_pill_w, b_top_y - banner_h * 0.23 - ext_pill_h / 2.0),
                 ext_pill_w, ext_pill_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0018",
-                facecolor="#0F766E", edgecolor="#5EEAD4", linewidth=0.9
+                facecolor="#0F766E", edgecolor="#5EEAD4", linewidth=1.0
             )
             ax.add_patch(ext_pill)
             ax.text(
-                lx + layer_col_w - 0.0030 - ext_pill_w / 2.0,
-                b_top_y - banner_h * 0.33,
+                lx + layer_col_w - 0.0028 - ext_pill_w / 2.0,
+                b_top_y - banner_h * 0.23,
                 "EXTERNAL",
-                fontsize=6.4, fontweight="bold", color="#CCFBF1", va="center", ha="center"
+                fontsize=H3, fontweight="bold", color="#CCFBF1", va="center", ha="center"
             )
         else:
             badge_label = f"{ly['badge']} →" if l_idx < 9 else f"{ly['badge']} ★"
             ax.text(
-                lx + 0.0035, b_top_y - banner_h * 0.33,
+                lx + 0.0032, b_top_y - banner_h * 0.23,
                 badge_label,
-                fontsize=11.8, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+                fontsize=H1, fontweight="bold", color="#FFFFFF", va="center", ha="left"
             )
 
             # 10-segment progress bar on top-right of banner for the 10 Core Layers
             bar_total_w = 0.032
-            bar_gap = 0.0007
+            bar_gap = 0.0006
             seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.22
-            bar_x_start = lx + layer_col_w - 0.0032 - bar_total_w
-            bar_y = b_top_y - banner_h * 0.33 - seg_h / 2.0
+            seg_h = banner_h * 0.17
+            bar_x_start = lx + layer_col_w - 0.0030 - bar_total_w
+            bar_y = b_top_y - banner_h * 0.23 - seg_h / 2.0
             for b_i in range(10):
                 bx_i = bar_x_start + b_i * (seg_w + bar_gap)
                 is_lit = b_i < ly["layer"]
@@ -1740,49 +1770,62 @@ def render_desktop_agent_anatomy_megachart():
                 )
                 ax.add_patch(seg_patch)
 
-        ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.76,
-            ly["name"],
-            fontsize=7.6 if len(ly["name"]) >= 28 else (8.1 if len(ly["name"]) >= 24 else 8.6),
-            fontweight="bold", color="#FEF08A", va="center", ha="center"
+        # Subtle divider between H1 Layer X row and H1 2-line Layer Name
+        ax.plot(
+            [lx + 0.0030, lx + layer_col_w - 0.0030],
+            [b_top_y - banner_h * 0.42, b_top_y - banner_h * 0.42],
+            color="#0D9488" if is_org else "#334155",
+            linewidth=0.8,
+            alpha=0.85
         )
 
-        desc_wrapped = textwrap.fill(ly["desc"], width=44)
+        # 2-Line Layer Name in H1 (= H0 / φ)
+        ax.text(
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.71,
+            LAYER_NAME_2LINE[ly["layer"]],
+            fontsize=H1,
+            fontweight="bold", color="#FEF08A", va="center", ha="center",
+            linespacing=1.00
+        )
+
+        # Column Header Body below banner: Description & Bullets in H3 (= H0 / φ³)
+        desc_wrapped = textwrap.fill(ly["desc"], width=42)
         unit_line = f"• {ly['core_unit']}"
         ref_line = f"• Guide: {ly['book_ref']}"
 
-        body_top_y = col_hdr_y + (col_hdr_h - banner_h - inset_b) * 0.93
+        body_avail_h = col_hdr_h - banner_h - inset_b
+        body_top_y = col_hdr_y + body_avail_h * 0.93
         ax.text(
-            lx + 0.0028,
+            lx + 0.0026,
             body_top_y,
             desc_wrapped,
-            fontsize=5.65,
+            fontsize=H3,
             fontweight="bold",
             color="#F8FAFC",
             va="top",
             ha="left",
-            linespacing=1.05,
+            linespacing=1.04,
         )
 
         bullet_body = f"{unit_line}\n{ref_line}"
         ax.text(
-            lx + 0.0028,
-            col_hdr_y + 0.0038,
+            lx + 0.0026,
+            col_hdr_y + 0.0032,
             bullet_body,
-            fontsize=5.25,
+            fontsize=H3,
             fontweight="bold",
             color="#5EEAD4" if is_org else "#93C5FD",
             va="bottom",
             ha="left",
-            linespacing=1.08,
+            linespacing=1.04,
         )
 
     # -------------------------------------------------------------------------
     # 3. 4 Architectural Pillar Rows x (10 Core Layer Columns + 1 Organism Column)
     # -------------------------------------------------------------------------
-    top_y = 0.782
-    active_row_h = 0.202
-    fail_row_h = 0.152
+    top_y = 0.772
+    active_row_h = 0.199
+    fail_row_h = 0.151
     row_gap = 0.0040
     fail_sep_gap = 0.0080
 
@@ -1853,12 +1896,12 @@ def render_desktop_agent_anatomy_megachart():
         ax.text(
             left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.24,
             p_badge,
-            fontsize=8.8, fontweight="bold", color="#FEF08A", va="center", ha="center"
+            fontsize=H3, fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
         ax.text(
             left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.67,
             p_title,
-            fontsize=9.6 if not is_fail else 9.4,
+            fontsize=H2,
             fontweight="bold", color="#FFFFFF", va="center", ha="center",
             linespacing=1.02
         )
@@ -1868,23 +1911,23 @@ def render_desktop_agent_anatomy_megachart():
             left_x0 + left_w / 2,
             ry + body_avail_h * 0.66,
             p_desc,
-            fontsize=7.4 if not is_fail else 7.0,
+            fontsize=H3,
             fontweight="bold",
             color="#F8FAFC",
             va="center",
             ha="center",
-            linespacing=1.10,
+            linespacing=1.08,
         )
         ax.text(
             left_x0 + 0.0030,
-            ry + 0.006,
+            ry + 0.005,
             p_bullets,
-            fontsize=6.0 if not is_fail else 5.8,
+            fontsize=H3,
             fontweight="bold",
             color="#FCA5A5" if is_fail else "#93C5FD",
             va="bottom",
             ha="left",
-            linespacing=1.10,
+            linespacing=1.08,
         )
 
         # 10 Core Layer Cells + 1 Separate Organism Cell across this Row
@@ -1915,7 +1958,7 @@ def render_desktop_agent_anatomy_megachart():
             x_left = cx + pad_x
 
             # =================================================================
-            # CASE A: Failure Modes Row (Top 3 H1 Pills + 4x1 Tier 2 + 2x2 Tier 3)
+            # CASE A: Failure Modes Row (Top 3 Pills=H2, 4x1 Tier 2=H3, 2x2 Tier 3=H4)
             # =================================================================
             if is_fail:
                 gap_t1_t2 = 0.0020
@@ -1944,13 +1987,13 @@ def render_desktop_agent_anatomy_megachart():
                     ax.text(
                         px + pw / 2, py + ph / 2,
                         kw,
-                        fontsize=7.6 if len(kw) > 34 else 8.1,
+                        fontsize=H2,
                         fontweight="bold",
                         color=col["h1_txt"],
                         va="center", ha="center"
                     )
 
-                # Tier 2: 4 single-column rows
+                # Tier 2: 4 single-column rows (H3 = H2 / φ)
                 t2_top_y = t1_top_y - t1_h - gap_t1_t2
                 t2_row_h = t2_h / 4.0
 
@@ -1976,13 +2019,13 @@ def render_desktop_agent_anatomy_megachart():
                     ax.text(
                         tx, ty,
                         f"▸ {kw}",
-                        fontsize=5.9 if len(kw) > 42 else 6.2,
+                        fontsize=H3,
                         fontweight="bold",
                         color=col["t2_txt"],
                         va="center", ha="left"
                     )
 
-                # Tier 3: Bottom 4 in 2x2 grid inside bottom band
+                # Tier 3: Bottom 4 in 2x2 grid inside bottom band (H4 = H3 / φ)
                 t3_top_y = t2_top_y - t2_h - gap_t2_t3
                 t3_row_h = t3_h / 2.0
                 t3_col_w = inner_w / 2.0
@@ -2008,28 +2051,28 @@ def render_desktop_agent_anatomy_megachart():
                     sc = idx_3 % 2
                     tx = x_left + sc * t3_col_w + 0.0010
                     ty = t3_top_y - (sr + 0.5) * t3_row_h
-                    fs_fail_t3 = 3.95 if len(kw) > 36 else (4.25 if len(kw) > 31 else 4.55)
                     ax.text(
                         tx, ty,
-                        kw,
-                        fontsize=fs_fail_t3,
+                        textwrap.fill(kw, width=36),
+                        fontsize=H4,
                         fontweight="bold",
                         color="#991B1B",
-                        va="center", ha="left"
+                        va="center", ha="left",
+                        linespacing=0.95
                     )
                 continue
 
             # =================================================================
-            # CASE B: Full 3-Tier Active Architectural Cell
+            # CASE B: Full 3-Tier Active Architectural Cell (H2 -> H3 -> H4)
             # =================================================================
             gap_t1_t2 = 0.0022
             gap_t2_t3 = 0.0018
             avail_h = rh - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
-            t1_h = avail_h * 0.380
-            t2_h = avail_h * 0.365
-            t3_h = avail_h * 0.255
+            t1_h = avail_h * 0.365
+            t2_h = avail_h * 0.375
+            t3_h = avail_h * 0.260
 
-            # --- TIER 1: Top 3 H1 Pills ---
+            # --- TIER 1: Top 3 Flagship Pills (H2 = H1 / φ) ---
             t1_top_y = ry + rh - pad_top
             pill_gap = 0.0018
             ph = (t1_h - 2 * pill_gap) / 3.0
@@ -2050,13 +2093,13 @@ def render_desktop_agent_anatomy_megachart():
                 ax.text(
                     px + pw / 2, py + ph / 2,
                     kw,
-                    fontsize=7.9 if len(kw) > 36 else 8.4,
+                    fontsize=H2,
                     fontweight="bold",
                     color=col["h1_txt"],
                     va="center", ha="center"
                 )
 
-            # --- TIER 2: Middle 8 in 2 Columns x 4 Rows ---
+            # --- TIER 2: Middle 8 in 2 Columns x 4 Rows (H3 = H2 / φ) ---
             t2_top_y = t1_top_y - t1_h - gap_t1_t2
             t2_row_h = t2_h / 4.0
             t2_col_w = inner_w / 2.0
@@ -2081,17 +2124,17 @@ def render_desktop_agent_anatomy_megachart():
 
                 tx = x_left + sc * t2_col_w + 0.0009
                 ty = t2_top_y - (sr + 0.5) * t2_row_h
-                fs_t2 = 4.05 if len(kw) > 37 else (4.35 if len(kw) > 33 else (4.65 if len(kw) > 29 else 4.95))
                 ax.text(
                     tx, ty,
-                    kw,
-                    fontsize=fs_t2,
+                    textwrap.fill(kw, width=27),
+                    fontsize=H3,
                     fontweight="bold",
                     color=col["t2_txt"],
-                    va="center", ha="left"
+                    va="center", ha="left",
+                    linespacing=0.95
                 )
 
-            # --- TIER 3: Bottom 12 in 3 Columns x 4 Rows ---
+            # --- TIER 3: Bottom 12 in 3 Columns x 4 Rows (H4 = H3 / φ) ---
             t3_top_y = t2_top_y - t2_h - gap_t2_t3
             t3_row_h = t3_h / 4.0
             t3_col_w = inner_w / 3.0
@@ -2118,15 +2161,14 @@ def render_desktop_agent_anatomy_megachart():
                 sc = idx_3 % 3
                 tx = x_left + sc * t3_col_w + 0.0007
                 ty = t3_top_y - (sr + 0.5) * t3_row_h
-                fs_t3 = 2.60 if len(kw) > 36 else (2.80 if len(kw) > 31 else (3.05 if len(kw) > 26 else 3.35))
-
                 ax.text(
                     tx, ty,
-                    kw,
-                    fontsize=fs_t3,
+                    textwrap.fill(kw, width=25),
+                    fontsize=H4,
                     fontweight="bold",
                     color=col["t3_txt"],
-                    va="center", ha="left"
+                    va="center", ha="left",
+                    linespacing=0.94
                 )
 
     fig.savefig(OUT_DEV_PNG, dpi=300, facecolor=fig.get_facecolor())
@@ -2138,11 +2180,20 @@ def render_desktop_agent_anatomy_megachart():
 
 def render_mobile_agent_anatomy_chart():
     """
-    Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI — 19.5:9 Mobile Landscape)
-    flowing from LEFT to RIGHT (Layers 1 -> 10) + Detached Separate Organism (RAG & Multimodal)
-    with simplified 2-tier cells for mobile screens.
+    Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI — exact 19.5:9 Mobile Landscape)
+    flowing from LEFT to RIGHT (Layers 1 -> 10) + Detached Separate Organism (RAG & Multimodal),
+    scaled proportionally by (26.0 / 46.8 = 5/9) with the same Unskipped Golden Ratio hierarchy:
+      • M_H0 = H0 * (26.0 / 46.8) ≈ 14.54 pt : Title
+      • M_H1 = M_H0 / φ           ≈  8.99 pt : LAYER X badge & 2-line Layer Name
+      • M_H2 = M_H1 / φ           ≈  5.56 pt : Cell Tier-1 Top-3 Pills, Masthead & Row Pillar Titles
+      • M_H3 = M_H2 / φ           ≈  3.43 pt : Cell Tier-2 Normal Items, Header Bullets & Footnote
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
+
+    M_H2 = 10.0 * (26.0 / 46.8)          #  5.5556 pt (Cell Tier-1 Top-3 Pills, Masthead & Pillar Titles)
+    M_H1 = M_H2 * PHI                    #  8.9891 pt (LAYER X & Layer Name)
+    M_H0 = M_H1 * PHI                    # 14.5446 pt (Title T = H0)
+    M_H3 = M_H2 / PHI                    #  3.4335 pt (Cell Tier-2 Items & Header Bullets)
 
     fig = plt.figure(figsize=(26.0, 12.0), dpi=300, facecolor="#0F172A")
     ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
@@ -2169,39 +2220,39 @@ def render_mobile_agent_anatomy_chart():
     ax.text(
         0.012, hdr_y + hdr_h * 0.70,
         "ANATOMY OF AI AGENTS 2026",
-        fontsize=25.5, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+        fontsize=M_H0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.34,
-        "www.arianprabowo.com  ·  10-Layer Agent Stack + Detached RAG/Multimodal (Roitman arXiv:2606.24937)",
-        fontsize=8.4, fontweight="bold", color="#38BDF8", va="center", ha="left"
+        "www.arianprabowo.com · 10-Layer Agent Stack + External RAG/Multimodal (arXiv:2606.24937)",
+        fontsize=M_H2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
     ax.plot(
-        [0.418, 0.418], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.415, 0.415], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.2
     )
 
     ax.text(
-        0.427, hdr_y + hdr_h * 0.58,
-        "10-Layer Left-to-Right Agent Spine: Silicon (L1) → uv/PyTorch/JAX (L2) → Data/Tokens (L3) →\n"
-        "Arch/Pretrain (L4) → SFT (L5) → RLHF/DPO/RLVR (L6) → Test-Time Compute (L7) →\n"
-        "MCP/Memory (L8) → Harness² (L9) → Multi-Agent Swarms (L10)  |  + External RAG/Multimodal.",
-        fontsize=7.2, fontweight="bold", color="#FEF08A", va="center", ha="left",
+        0.423, hdr_y + hdr_h * 0.58,
+        "What actually runs under an AI agent in 2026? A 10-layer left-to-right stack:\n"
+        "Silicon (L1) → Env/PyTorch (L2) → Data (L3) → Pretrain (L4) → SFT (L5) →\n"
+        "RLVR (L6) → Test-Time (L7) → MCP (L8) → Harness² (L9) → Swarms (L10) + RAG/MM.",
+        fontsize=M_H2, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.15
     )
 
     ax.plot(
-        [0.742, 0.742], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.758, 0.758], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.2
     )
 
     ax.text(
-        0.751, hdr_y + hdr_h * 0.58,
-        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10 across columns\n"
-        "② SEPARATE ORGANISM: Far-right column = RAG & Multimodal\n"
-        "③ HARDEN: Audit FAILURE MODES & TRAPS on bottom row",
-        fontsize=7.2, fontweight="bold", color="#93C5FD", va="center", ha="left",
+        0.766, hdr_y + hdr_h * 0.58,
+        "① TRACE LEFT → RIGHT: Follow Core Layers 1 → 10\n"
+        "② SEPARATE ORGANISM: Far-right = RAG & Multimodal\n"
+        "③ HARDEN PROD: Audit FAILURE MODES row at bottom",
+        fontsize=M_H2, fontweight="bold", color="#93C5FD", va="center", ha="left",
         linespacing=1.18
     )
 
@@ -2213,13 +2264,13 @@ def render_mobile_agent_anatomy_chart():
     ax.text(
         0.500, hdr_y + hdr_h * 0.095,
         f"*Based on Roitman 'The Hitchhiker's Guide to Agentic AI' (arXiv:2606.24937, June 2026) · Arian Prabowo · {LAST_UPDATED_STR}",
-        fontsize=5.8, fontweight="bold", color="#94A3B8", va="center", ha="center"
+        fontsize=M_H3, fontweight="bold", color="#94A3B8", va="center", ha="center"
     )
 
     left_x0 = 0.004
-    left_w = 0.070
+    left_w = 0.072
     col_gap = 0.0024
-    org_sep_gap = 0.0092
+    org_sep_gap = 0.0096
     active_x0 = left_x0 + left_w + col_gap
     n_layers = len(STACK_LAYERS)
     layer_col_w = (0.996 - active_x0 - (n_layers - 2) * col_gap - org_sep_gap) / n_layers
@@ -2230,8 +2281,8 @@ def render_mobile_agent_anatomy_chart():
             base_x += org_sep_gap - col_gap
         return base_x
 
-    col_hdr_y = 0.802
-    col_hdr_h = 0.100
+    col_hdr_y = 0.790
+    col_hdr_h = 0.112
 
     corner_box = FancyBboxPatch(
         (left_x0, col_hdr_y), left_w, col_hdr_h,
@@ -2241,19 +2292,20 @@ def render_mobile_agent_anatomy_chart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "AGENT STACK",
-        fontsize=8.6, fontweight="bold", color="#FFFFFF", va="center", ha="center"
+        "AI AGENT\nSTACK",
+        fontsize=M_H1, fontweight="bold", color="#FFFFFF", va="center", ha="center",
+        linespacing=1.02
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.44,
-        "L1 → L10",
-        fontsize=7.2, fontweight="bold", color="#FEF08A", va="center", ha="center"
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.37,
+        "LAYER 1 → 10",
+        fontsize=M_H2, fontweight="bold", color="#FEF08A", va="center", ha="center"
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.19,
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.15,
         "+ Detached\nRAG/Multimodal",
-        fontsize=5.2, fontweight="bold", color="#5EEAD4", va="center", ha="center",
-        linespacing=1.06
+        fontsize=M_H3, fontweight="bold", color="#5EEAD4", va="center", ha="center",
+        linespacing=1.08
     )
 
     org_x0 = get_col_x(10)
@@ -2286,7 +2338,7 @@ def render_mobile_agent_anatomy_chart():
         ax.add_patch(lbox_body)
 
         inset_b = 0.0012
-        banner_h = col_hdr_h * 0.48
+        banner_h = col_hdr_h * 0.58
         lbox_top = FancyBboxPatch(
             (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
             layer_col_w - 2 * inset_b, banner_h,
@@ -2300,24 +2352,39 @@ def render_mobile_agent_anatomy_chart():
         b_top_y = col_hdr_y + col_hdr_h - inset_b
         if is_org:
             ax.text(
-                lx + 0.0028, b_top_y - banner_h * 0.33,
-                "⇄ SEPARATE ORGANISM",
-                fontsize=6.5, fontweight="bold", color="#5EEAD4", va="center", ha="left"
+                lx + 0.0028, b_top_y - banner_h * 0.23,
+                "⇄ ORGANISM",
+                fontsize=M_H1, fontweight="bold", color="#5EEAD4", va="center", ha="left"
+            )
+            ext_pill_w = 0.024
+            ext_pill_h = banner_h * 0.25
+            ext_pill = FancyBboxPatch(
+                (lx + layer_col_w - 0.0028 - ext_pill_w, b_top_y - banner_h * 0.23 - ext_pill_h / 2.0),
+                ext_pill_w, ext_pill_h,
+                boxstyle="round,pad=0.0,rounding_size=0.0016",
+                facecolor="#0F766E", edgecolor="#5EEAD4", linewidth=0.8
+            )
+            ax.add_patch(ext_pill)
+            ax.text(
+                lx + layer_col_w - 0.0028 - ext_pill_w / 2.0,
+                b_top_y - banner_h * 0.23,
+                "EXTERNAL",
+                fontsize=M_H3, fontweight="bold", color="#CCFBF1", va="center", ha="center"
             )
         else:
             badge_label = f"{ly['badge']} →" if l_idx < 9 else f"{ly['badge']} ★"
             ax.text(
-                lx + 0.0032, b_top_y - banner_h * 0.33,
+                lx + 0.0030, b_top_y - banner_h * 0.23,
                 badge_label,
-                fontsize=8.2, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+                fontsize=M_H1, fontweight="bold", color="#FFFFFF", va="center", ha="left"
             )
 
-            bar_total_w = 0.030
+            bar_total_w = 0.032
             bar_gap = 0.0006
             seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-            seg_h = banner_h * 0.22
-            bar_x_start = lx + layer_col_w - 0.0030 - bar_total_w
-            bar_y = b_top_y - banner_h * 0.33 - seg_h / 2.0
+            seg_h = banner_h * 0.17
+            bar_x_start = lx + layer_col_w - 0.0028 - bar_total_w
+            bar_y = b_top_y - banner_h * 0.23 - seg_h / 2.0
             for b_i in range(10):
                 bx_i = bar_x_start + b_i * (seg_w + bar_gap)
                 is_lit = b_i < ly["layer"]
@@ -2330,29 +2397,38 @@ def render_mobile_agent_anatomy_chart():
                 )
                 ax.add_patch(seg_patch)
 
-        ax.text(
-            lx + layer_col_w / 2, b_top_y - banner_h * 0.77,
-            ly["name"],
-            fontsize=5.2 if len(ly["name"]) >= 26 else 5.6,
-            fontweight="bold", color="#FEF08A", va="center", ha="center"
+        ax.plot(
+            [lx + 0.0028, lx + layer_col_w - 0.0028],
+            [b_top_y - banner_h * 0.42, b_top_y - banner_h * 0.42],
+            color="#0D9488" if is_org else "#334155",
+            linewidth=0.65,
+            alpha=0.85
         )
 
-        unit_short = textwrap.fill(f"{ly['core_unit']} · {ly['book_ref']}", width=36)
         ax.text(
-            lx + 0.0028,
-            col_hdr_y + (col_hdr_h - banner_h) * 0.50,
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.71,
+            LAYER_NAME_2LINE[ly["layer"]],
+            fontsize=M_H1,
+            fontweight="bold", color="#FEF08A", va="center", ha="center",
+            linespacing=1.00
+        )
+
+        unit_short = textwrap.fill(f"{ly['core_unit']} · {ly['book_ref']}", width=42)
+        ax.text(
+            lx + 0.0026,
+            col_hdr_y + (col_hdr_h - banner_h) * 0.48,
             unit_short,
-            fontsize=4.2,
+            fontsize=M_H3,
             fontweight="bold",
             color="#5EEAD4" if is_org else "#93C5FD",
             va="center",
             ha="left",
-            linespacing=1.08,
+            linespacing=1.05,
         )
 
-    top_y = 0.796
-    active_row_h = 0.205
-    fail_row_h = 0.160
+    top_y = 0.784
+    active_row_h = 0.202
+    fail_row_h = 0.156
     row_gap = 0.0040
     fail_sep_gap = 0.0070
 
@@ -2390,14 +2466,14 @@ def render_mobile_agent_anatomy_chart():
         ax.text(
             left_x0 + left_w / 2, ry + rh * 0.60,
             m_title,
-            fontsize=6.6,
+            fontsize=M_H2,
             fontweight="bold", color="#FFFFFF", va="center", ha="center",
             linespacing=1.05
         )
         ax.text(
             left_x0 + left_w / 2, ry + rh * 0.25,
             m_sub,
-            fontsize=4.9,
+            fontsize=M_H3,
             fontweight="bold", color="#FEE2E2" if is_fail else "#E2E8F0", va="center", ha="center"
         )
 
@@ -2451,7 +2527,7 @@ def render_mobile_agent_anatomy_chart():
                 ax.text(
                     px + pw / 2, py + ph / 2,
                     kw,
-                    fontsize=5.2 if len(kw) > 35 else 5.5,
+                    fontsize=M_H2,
                     fontweight="bold",
                     color=col["h1_txt"],
                     va="center", ha="center"
@@ -2476,7 +2552,7 @@ def render_mobile_agent_anatomy_chart():
                 ax.text(
                     x_left + 0.0015, ty,
                     f"• {kw}",
-                    fontsize=4.35 if len(kw) > 40 else 4.55,
+                    fontsize=M_H3,
                     fontweight="bold",
                     color=col["t2_txt"],
                     va="center", ha="left"
