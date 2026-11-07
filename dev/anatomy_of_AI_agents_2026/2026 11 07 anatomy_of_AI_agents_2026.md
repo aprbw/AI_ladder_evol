@@ -5,7 +5,7 @@
 # ANATOMY OF AI AGENTS 2026 (`10 Stages: 1. Silicon → 10. Swarms` × `4 Organisms: LLM · RAG · Multimodal · Embodied`)
 
 > **What actually runs under the hood of an autonomous AI agent in 2026? Trace left to right across the 10 stages (`1. Silicon`, `2. Python`, `3. Data`, `4. Pre-Train`, `5. SFT`, `6. Post-Train`, `7. Test-Time`, `8. Context`, `9. Harness`, `10. Swarms`) and top to bottom across the 4 distinct organisms (`LLM`, `RAG`, `Multimodal`, `Embodied`), with production `⚠ ANTI-PATTERNS & TRAPS` embedded directly inside every cell.**  
-> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-08 02:25:58 AEDT (UTC+11:00)`</sub>):** **`① COLUMNS (1 → 10):`** Follow `1. Silicon → 10. Swarms` · **`② ROWS (4 ORGANISMS):`** Compare the `LLM` Core Spine against `RAG`, `Multimodal`, and `Embodied` · **`③ INSIDE EVERY CELL:`** Audit the Flagship Banner (`H2 = 24 pt`), Checkpoints (`H3 = 14.83 pt`), Core Stack (`H4 = 9.17 pt`), and Red **`⚠ ANTI-PATTERNS & TRAPS`** box (`H4 = 9.17 pt`).
+> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-08 02:29:57 AEDT (UTC+11:00)`</sub>):** **`① COLUMNS (1 → 10):`** Follow `1. Silicon → 10. Swarms` · **`② ROWS (4 ORGANISMS):`** Compare the `LLM` Core Spine against `RAG`, `Multimodal`, and `Embodied` · **`③ INSIDE EVERY CELL:`** Audit the Flagship Banner (`H2 = 24 pt`), Checkpoints (`H3 = 14.83 pt`), Core Stack (`H4 = 9.17 pt`), and Red **`⚠ ANTI-PATTERNS & TRAPS`** box (`H4 = 9.17 pt`).
 
 ---
 

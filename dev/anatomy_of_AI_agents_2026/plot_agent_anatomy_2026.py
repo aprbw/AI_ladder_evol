@@ -1274,28 +1274,9 @@ def render_desktop_agent_anatomy_megachart():
 
         b_top_y = col_hdr_y + col_hdr_h - inset_b
 
-        # 10-segment progress bar centered across top of banner
-        bar_total_w = stage_col_w - 0.0080
-        bar_gap = 0.0008
-        seg_w = (bar_total_w - 9 * bar_gap) / 10.0
-        seg_h = banner_h * 0.09
-        bar_x_start = lx + 0.0040
-        bar_y = b_top_y - banner_h * 0.11 - seg_h / 2.0
-        for b_i in range(10):
-            bx_i = bar_x_start + b_i * (seg_w + bar_gap)
-            is_lit = b_i < st_num
-            seg_patch = FancyBboxPatch(
-                (bx_i, bar_y), seg_w, seg_h,
-                boxstyle="round,pad=0.0,rounding_size=0.0008",
-                facecolor=st["accent"] if is_lit else "#334155",
-                edgecolor=st["accent"] if is_lit else "#475569",
-                linewidth=0.50
-            )
-            ax.add_patch(seg_patch)
-
         # Short Name (<= 2 words) in H1 (= 38.83 pt): "1. Silicon", "2. Python", ...
         ax.text(
-            lx + stage_col_w / 2, b_top_y - banner_h * 0.43,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.35,
             STAGE_H1_TITLES[st_num],
             fontsize=H1,
             fontweight="bold",
@@ -1305,7 +1286,7 @@ def render_desktop_agent_anatomy_megachart():
 
         # Full Name (<= 10 words, wrapped onto 2 lines) at bottom of banner in H4 (= 9.17 pt)
         ax.text(
-            lx + stage_col_w / 2, b_top_y - banner_h * 0.81,
+            lx + stage_col_w / 2, b_top_y - banner_h * 0.77,
             textwrap.fill(STAGE_FULL_NAMES[st_num], width=36),
             fontsize=H4,
             fontweight="bold",
