@@ -1,10 +1,10 @@
 """
-ANATOMY OF AI AGENTS 2026 — 7-Layer OSI-Inspired Reference Model & Megachart
+ANATOMY OF AI AGENTS 2026 — 7-Layer AI Agent Stack Reference Model & Megachart
 =============================================================================
 Grounded in Haggai Roitman's "The Hitchhiker's Guide to Agentic AI: From Foundations to Systems"
 (arXiv:2606.24937, v1.4, June 2026) and the 2026 production AI systems stack.
 
-7 OSI-Inspired Stack Layers (Top-to-Bottom Progression: Layer 1 Physical -> Layer 7 Multi-Agent):
+7 Agent Stack Layers (Left-to-Right Progression: Layer 1 Physical -> Layer 7 Multi-Agent):
   - LAYER 1 (Physical & Silicon): GPU/TPU/NPU Silicon, HBM3e/SRAM, NVLink/InfiniBand & Power (Ch. 2.1, 11, 30.5)
   - LAYER 2 (OS, Env & Sandbox): Linux/macOS, Homebrew, uv/conda/pip/venv, Python/Rust/TS & MicroVMs (Ch. 21.5, 22)
   - LAYER 3 (Tensor & Serving Engine): CUDA/Triton/MLX, PyTorch/JAX, FlashAttention, vLLM/SGLang & Quantization (Ch. 1.6, 2.2, 11)
@@ -115,7 +115,7 @@ COLUMNS = [
 
 
 # =============================================================================
-# 7 OSI-INSPIRED AGENT STACK LAYERS (LAYER 1 PHYSICAL -> LAYER 7 MULTI-AGENT)
+# 7 AGENT STACK LAYERS (LAYER 1 PHYSICAL -> LAYER 7 MULTI-AGENT)
 # =============================================================================
 STACK_LAYERS = [
     {
@@ -123,7 +123,7 @@ STACK_LAYERS = [
         "badge": "LAYER 1",
         "meter": "L1/7",
         "name": "PHYSICAL & SILICON",
-        "osi_map": "OSI L1 Physical · PDU: FLOPs, HBM Bytes & Warps",
+        "core_unit": "Core Unit: FLOPs, HBM Bytes & CUDA Warps",
         "desc": "GPUs/TPUs/NPUs, HBM3e vs. SRAM hierarchy, CUDA/Triton kernels, and NVLink/InfiniBand fabrics.",
         "book_ref": "Ch. 1.6, 2.1, 11.10–14, 30.5 (GPUs & Kernels).",
         "accent": "#10B981",
@@ -248,7 +248,7 @@ STACK_LAYERS = [
         "badge": "LAYER 2",
         "meter": "L2/7",
         "name": "ENV, PACKAGES, PYTHON & TENSOR",
-        "osi_map": "OSI L2 Data Link · PDU: Wheels, Tensors & Paged KV",
+        "core_unit": "Core Unit: Wheels, Lockfiles, Tensors & Paged KV",
         "desc": "Package managers (`Homebrew`, `uv`, `conda`, `pip`, `venv`), `Python`, `PyTorch`, `JAX`, `vLLM`, and sandboxes.",
         "book_ref": "Ch. 1.14–15, 11.1–9, 21.5, 22.1–9 (Env & Runtime).",
         "accent": "#0EA5E9",
@@ -373,7 +373,7 @@ STACK_LAYERS = [
         "badge": "LAYER 3",
         "meter": "L3/7",
         "name": "DATA, TOKENIZATION & RAG",
-        "osi_map": "OSI L3 Network · PDU: Token IDs, Embeddings & Chunks",
+        "core_unit": "Core Unit: Token IDs, Embeddings & Chunks",
         "desc": "Pre-training/SFT/RLVR data curation, synthetic trajectories, BPE tokenizers, vector DBs, and Agentic RAG.",
         "book_ref": "Ch. 1.2, 3.2–5, 4.3, 16, 18.4, 30.2 (Data & RAG).",
         "accent": "#6366F1",
@@ -498,7 +498,7 @@ STACK_LAYERS = [
         "badge": "LAYER 4",
         "meter": "L4/7",
         "name": "MODEL ARCHITECTURE & RLVR",
-        "osi_map": "OSI L4 Transport · PDU: Logits, Adapters & CoT",
+        "core_unit": "Core Unit: Logits, LoRA Adapters & CoT Traces",
         "desc": "Transformer/MoE/hybrid architectures, SFT, PEFT adapters (`LoRA`), preference tuning (`DPO`), and `RLVR` (`GRPO`).",
         "book_ref": "Ch. 1, 2.2, 3–10, 12–13, 30.1–3 (Models & RL).",
         "accent": "#8B5CF6",
@@ -623,7 +623,7 @@ STACK_LAYERS = [
         "badge": "LAYER 5",
         "meter": "L5/7",
         "name": "CONTEXT, MEMORY, TOOLS & MCP",
-        "osi_map": "OSI L5 Session · PDU: Context Windows & JSON-RPC",
+        "core_unit": "Core Unit: Context Windows & JSON-RPC Calls",
         "desc": "Context budgeting, 4-tier agentic memory (`Sleep-Time Compute`), function calling, `MCP`, and `SKILL.md`.",
         "book_ref": "Ch. 17, 18.2–3, 23, 24 (Memory, Tools, MCP & Skills).",
         "accent": "#EC4899",
@@ -748,7 +748,7 @@ STACK_LAYERS = [
         "badge": "LAYER 6",
         "meter": "L6/7",
         "name": "AGENT HARNESS, LOOP & GRAPH",
-        "osi_map": "OSI L6 Presentation · PDU: State Transitions & Diffs",
+        "core_unit": "Core Unit: State Transitions, Actions & Diffs",
         "desc": "The CPU/OS of an agent: `CLAUDE.md`/`AGENTS.md`, Loop Engineering, Graph Engineering (`LangGraph`), and `Harness²`.",
         "book_ref": "Ch. 18, 19, 20, 21, 27 (Harness, Loops & Graphs).",
         "accent": "#F59E0B",
@@ -873,7 +873,7 @@ STACK_LAYERS = [
         "badge": "LAYER 7",
         "meter": "L7/7",
         "name": "MULTI-AGENT MESH, A2A & UI",
-        "osi_map": "OSI L7 Application · PDU: A2A Tasks & GenUI Streams",
+        "core_unit": "Core Unit: A2A Tasks, Worktrees & GenUI Streams",
         "desc": "Multi-agent topologies (`OWC`), inter-agent protocols (`A2A`/`ACP`), parallel worktree swarms, and Agentic/Generative UI.",
         "book_ref": "Ch. 21.6, 25, 26, 28, 30.10/18 (A2A, MAS & Agentic UI).",
         "accent": "#F43F5E",
@@ -999,7 +999,7 @@ STACK_LAYERS = [
 def render_desktop_agent_anatomy_megachart():
     """
     Landscape Widescreen Megachart (29.25 x 13.5 in @ 300 DPI — 19.5:9 Mobile-Landscape Aspect Ratio).
-    The 7 OSI-Inspired Agent Stack Layers flow horizontally from LEFT to RIGHT (Columns 1..7),
+    The 7 Agent Stack Layers flow horizontally from LEFT to RIGHT (Columns 1..7),
     while the 4 Architectural Pillars form the horizontal rows (Rows 1..4).
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
@@ -1037,7 +1037,7 @@ def render_desktop_agent_anatomy_megachart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.35,
-        "www.arianprabowo.com  ·  7-Layer OSI-Style Stack Reference (Based on Roitman arXiv:2606.24937)",
+        "www.arianprabowo.com  ·  7-Layer AI Agent Stack Reference (Based on Roitman arXiv:2606.24937)",
         fontsize=11.2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
@@ -1051,7 +1051,7 @@ def render_desktop_agent_anatomy_megachart():
     ax.text(
         0.428, hdr_y + hdr_h * 0.58,
         "What actually runs under the hood of an autonomous AI agent in 2026?\n"
-        "Like the 7-layer OSI model, modern agents form a left-to-right stack — from GPU silicon (L1) &\n"
+        "Modern AI agents form a 7-layer left-to-right stack — from GPU silicon (L1) &\n"
         "uv/PyTorch/JAX (L2) to Data/RAG (L3), Arch/RLVR (L4), MCP (L5), Harness² (L6) & A2A swarms (L7).",
         fontsize=9.6, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.18
@@ -1088,7 +1088,7 @@ def render_desktop_agent_anatomy_megachart():
     )
 
     # -------------------------------------------------------------------------
-    # 2. Horizontal Geometry (Left Pillar Column + 7 OSI Layer Columns Left->Right)
+    # 2. Horizontal Geometry (Left Pillar Column + 7 Agent Layer Columns Left->Right)
     # -------------------------------------------------------------------------
     left_x0 = 0.004
     left_w = 0.094
@@ -1109,7 +1109,7 @@ def render_desktop_agent_anatomy_megachart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
-        "OSI AGENT STACK",
+        "AI AGENT STACK",
         fontsize=11.8, fontweight="bold", color="#FFFFFF", va="center", ha="center"
     )
     ax.text(
@@ -1180,7 +1180,7 @@ def render_desktop_agent_anatomy_megachart():
         )
 
         desc_wrapped = textwrap.fill(ly["desc"], width=48)
-        osi_line = f"• {ly['osi_map']}"
+        unit_line = f"• {ly['core_unit']}"
         ref_line = f"• Guide: {ly['book_ref']}"
 
         body_top_y = col_hdr_y + (col_hdr_h - banner_h - inset_b) * 0.93
@@ -1196,7 +1196,7 @@ def render_desktop_agent_anatomy_megachart():
             linespacing=1.05,
         )
 
-        bullet_body = f"{osi_line}\n{ref_line}"
+        bullet_body = f"{unit_line}\n{ref_line}"
         ax.text(
             lx + 0.0035,
             col_hdr_y + 0.0040,
@@ -1603,7 +1603,7 @@ def render_mobile_agent_anatomy_chart():
     )
     ax.text(
         0.013, hdr_y + hdr_h * 0.35,
-        "www.arianprabowo.com  ·  7-Layer OSI-Style Stack (Roitman arXiv:2606.24937)",
+        "www.arianprabowo.com  ·  7-Layer AI Agent Stack (Roitman arXiv:2606.24937)",
         fontsize=7.6, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
@@ -1664,7 +1664,7 @@ def render_mobile_agent_anatomy_chart():
     ax.add_patch(corner_box)
     ax.text(
         left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.68,
-        "OSI STACK",
+        "AGENT STACK",
         fontsize=8.6, fontweight="bold", color="#FFFFFF", va="center", ha="center"
     )
     ax.text(
@@ -1727,11 +1727,11 @@ def render_mobile_agent_anatomy_chart():
             fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
 
-        osi_short = textwrap.fill(f"{ly['osi_map']} · {ly['book_ref']}", width=38)
+        unit_short = textwrap.fill(f"{ly['core_unit']} · {ly['book_ref']}", width=38)
         ax.text(
             lx + 0.0035,
             col_hdr_y + (col_hdr_h - banner_h) * 0.50,
-            osi_short,
+            unit_short,
             fontsize=4.4,
             fontweight="bold",
             color="#93C5FD",
@@ -1878,20 +1878,20 @@ def render_mobile_agent_anatomy_chart():
 
 def write_agent_anatomy_markdown():
     lines = [
-        f"![Anatomy of AI Agents 2026 — 7-Layer OSI-Inspired Megachart]({OUT_DEV_PNG.name})",
+        f"![Anatomy of AI Agents 2026 — 7-Layer AI Agent Stack Megachart]({OUT_DEV_PNG.name})",
         "",
-        f"![Anatomy of AI Agents 2026 — Mobile Portrait Mini Chart]({OUT_MOBILE_PNG.name})",
+        f"![Anatomy of AI Agents 2026 — Mobile Landscape Mini Chart]({OUT_MOBILE_PNG.name})",
         "",
-        "# ANATOMY OF AI AGENTS 2026 (7-Layer OSI-Inspired Reference Stack)",
+        "# ANATOMY OF AI AGENTS 2026 (7-Layer AI Agent Reference Stack)",
         "",
-        "> **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Data/Tokenization/RAG (`L3`), Model Architecture & `RLVR` (`L4`), `MCP`/`SKILL.md` & Memory (`L5`), `Harness²` Loop/Graph Control (`L6`), and `A2A` Multi-Agent Swarms (`L7`).**  ",
-        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.",
+        "> **What actually runs under the hood of an autonomous AI agent in 2026? Modern AI agents form a 7-layer left-to-right stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Data/Tokenization/RAG (`L3`), Model Architecture & `RLVR` (`L4`), `MCP`/`SKILL.md` & Memory (`L5`), `Harness²` Loop/Graph Control (`L6`), and `A2A` Multi-Agent Swarms (`L7`).**  ",
+        f"> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`{LAST_UPDATED_STR}`</sub>):** **`① TRACE LEFT → RIGHT:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** row at the bottom.",
         "",
         "---",
         "",
         "## 1. Complete 7-Layer Stack Overview (`Layer 1` → `Layer 7` × `4` Pillars)",
         "",
-        "| OSI Agent Layer (Analogy · PDU · Scope · Book Ref) | Core Primitives & Architecture | Frameworks, Packages & Protocols | Scaling, Verification & Security | Failure Modes & Traps |",
+        "| AI Agent Layer (Scope · Core Unit · Book Ref) | Core Primitives & Architecture | Frameworks, Packages & Protocols | Scaling, Verification & Security | Failure Modes & Traps |",
         "| :--- | :--- | :--- | :--- | :--- |",
     ]
 
@@ -1899,7 +1899,7 @@ def write_agent_anatomy_markdown():
         col0 = (
             f"**{ly['badge']} ({ly['meter']}): {ly['name']}**<br>"
             f"{ly['desc']}<br>"
-            f"• **OSI & PDU:** {ly['osi_map']}<br>"
+            f"• **{ly['core_unit']}**<br>"
             f"• **Roitman Guide:** {ly['book_ref']}"
         )
         row_cells = [col0]
@@ -1926,7 +1926,7 @@ def write_agent_anatomy_markdown():
             "",
             f"{ly['desc']}",
             "",
-            f"* **OSI Analogy & Protocol Data Unit (PDU):** `{ly['osi_map']}`",
+            f"* **Core Unit of Compute / State:** `{ly['core_unit']}`",
             f"* **Primary Reference (`arXiv:2606.24937`):** {ly['book_ref']}",
             "",
             "| Architectural Pillar | Top 3 Flagship Checkpoints (`H1`) | Core Stack & Mechanisms (`Normal`) | Granular Specs, Flags & Formulas (`Footnote`) |",
