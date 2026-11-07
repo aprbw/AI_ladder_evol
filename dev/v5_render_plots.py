@@ -894,8 +894,10 @@ def render_all_plots():
     render_plot12_pair_plot(dfs)
     render_plot13_animation(dfs)
     render_plot14_gen5_speculative_matrix(dfs)
-    # 5. Run all 8 deterministic gates with figure + report verification
-    run_all_gates(dfs, check_figures=True, check_report=True)
+    # 5. Assemble report v5.md and run all 8 deterministic gates with figure + report verification
+    from stages_v5.report_builder import assemble_report_v5
+    assemble_report_v5()
+    run_all_gates(check_figures=True, check_report=True)
     print("\n[ALL 44 V5 VISUAL ARTIFACTS RENDERED & VERIFIED SUCCESSFULLY]")
 
 

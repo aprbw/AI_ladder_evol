@@ -55,10 +55,10 @@
 | G3-L4 | Populated | Cyclic StateGraph & DPO Engineer | L4: ~600h (~1 Qtr / 1 Uni Semester) \| ~$1.5k | 850000 | 1.65 | 3.8 | 90.0 | 20.0 | 3.2 | 23.0 | 22.0 | 7.188 |
 | G3-L5 | Populated | Containerized Eval Farm Architect | L5: ~2,000h (~1 Yr / Core Postgrad) \| ~$500k | 6500000 | 18.0 | 42.0 | 240.0 | 240.0 | 1.0 | 17.0 | 22.0 | 17.0 |
 | G3-L6 | Populated | RLVR, FineWeb & MCP Pioneer | L6: ~10,000h (~5 Yrs / Focused PhD) \| ~$100M+ | 45000000 | 220.0 | 580.0 | 1440.0 | 2880.0 | 0.2 | 15.0 | 21.0 | 75.0 |
-| G4-L1 | Populated | Auto-Routed Reasoner Consumer | L1: 0h (0d) \| $0 | 8500 | 0.004 | 0.025 | 1.0 | 0.6 | 68.5 | 2.8 | 4.0 | 0.041 |
-| G4-L2 | Populated | Vibe Coder & CLI Delegator | L2: <50h (~1 Wk / Short Course) \| <$30 | 140000 | 0.14 | 0.45 | 12.0 | 12.0 | 19.0 | 4.5 | 7.0 | 0.237 |
-| G4-L3 | Populated | Agentic IDE & Single-Agent Builder | L3: <200h (~1 Mo / 1 Uni Subject) \| <$100 | 550000 | 0.85 | 1.8 | 30.0 | 18.0 | 10.0 | 10.0 | 14.0 | 1.0 |
-| G4-L4 | Populated | Multi-Agent & Context Architect | L4: ~600h (~1 Qtr / 1 Uni Semester) \| ~$1.5k | 3200000 | 5.4 | 11.0 | 75.0 | 90.0 | 1.8 | 29.7 | 26.0 | 16.5 |
+| G4-L1 | Populated | Auto-Routed Reasoner & Vibe User | L1: 0h (0d) \| $0 | 8500 | 0.004 | 0.025 | 1.0 | 0.6 | 68.5 | 2.8 | 4.0 | 0.041 |
+| G4-L2 | Populated | Deep Research & No-Code Builder | L2: <50h (~1 Wk / Short Course) \| <$30 | 140000 | 0.14 | 0.45 | 12.0 | 12.0 | 19.0 | 4.5 | 7.0 | 0.237 |
+| G4-L3 | Populated | Vibe Coder & Agentic IDE Builder | L3: <200h (~1 Mo / 1 Uni Subject) \| <$100 | 550000 | 0.85 | 1.8 | 30.0 | 18.0 | 10.0 | 10.0 | 14.0 | 1.0 |
+| G4-L4 | Populated | AI & Agent Harness Engineer | L4: ~600h (~1 Qtr / 1 Uni Semester) \| ~$1.5k | 3200000 | 5.4 | 11.0 | 75.0 | 90.0 | 1.8 | 29.7 | 26.0 | 16.5 |
 | G4-L5 | Populated | RLVR Post-Trainer & Sandbox Architect | L5: ~2,000h (~1 Yr / Core Postgrad) \| ~$500k | 28000000 | 65.0 | 145.0 | 180.0 | 480.0 | 0.55 | 28.0 | 25.0 | 50.909 |
 | G4-L6 | Populated | Synthetic Flywheel & Pro-Eval Pioneer | L6: ~10,000h (~5 Yrs / Focused PhD) \| ~$100M+ | 240000000 | 680.0 | 1850.0 | 1440.0 | 4320.0 | 0.15 | 25.0 | 24.0 | 166.667 |
 | G5-L1 | Speculative (Current + 1) | Ambient Zero-Skill OS Delegate | L1: 0h (0d) \| $0 | 35000 | 0.003 | 0.018 | 0.5 | 15.0 | 70.0 | 1.5 | 3.0 | 0.021 |
