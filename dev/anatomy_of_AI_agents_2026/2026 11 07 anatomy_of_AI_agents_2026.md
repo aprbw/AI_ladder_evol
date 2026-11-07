@@ -5,7 +5,7 @@
 # ANATOMY OF AI AGENTS 2026 (7-Layer OSI-Inspired Reference Stack)
 
 > **What actually runs under the hood of an autonomous AI agent in 2026? Like the 7-layer OSI networking model, modern agents are a deep vertical stack — from GPU silicon (`L1`) and `Homebrew`/`uv`/`conda`/`PyTorch`/`JAX` (`L2`) to Data/Tokenization/RAG (`L3`), Model Architecture & `RLVR` (`L4`), `MCP`/`SKILL.md` & Memory (`L5`), `Harness²` Loop/Graph Control (`L6`), and `A2A` Multi-Agent Swarms (`L7`).**  
-> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-07 23:16:50 AEDT (UTC+11:00)`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.
+> **How to Read ([www.arianprabowo.com](https://www.arianprabowo.com) · Based on Haggai Roitman's *The Hitchhiker's Guide to Agentic AI*, `arXiv:2606.24937` · <sub>`Updated: 2026-11-07 23:31:22 AEDT (UTC+11:00)`</sub>):** **`① TRACE THE STACK:`** Follow `Layers 1 → 7` from physical silicon to multi-agent swarms · **`② BUILD EACH LAYER:`** Target the **Top 3** pills in each pillar · **`③ HARDEN PROD:`** Audit the **`FAILURE MODES & TRAPS`** on the right.
 
 ---
 

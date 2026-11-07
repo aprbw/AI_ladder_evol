@@ -998,21 +998,21 @@ STACK_LAYERS = [
 
 def render_desktop_agent_anatomy_megachart():
     """
-    Desktop Widescreen Megachart (24.0 x 17.5 in @ 300 DPI).
-    Mirrors the visual hierarchy of `AI_skill_tree_2026` while mapping the
-    7-Layer OSI-Inspired Anatomy of AI Agents (Physical Silicon -> Multi-Agent Mesh).
+    Landscape Widescreen Megachart (29.25 x 13.5 in @ 300 DPI — 19.5:9 Mobile-Landscape Aspect Ratio).
+    The 7 OSI-Inspired Agent Stack Layers flow horizontally from LEFT to RIGHT (Columns 1..7),
+    while the 4 Architectural Pillars form the horizontal rows (Rows 1..4).
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
-    fig = plt.figure(figsize=(24.0, 17.5), dpi=300, facecolor="#0F172A")
-    ax = fig.add_axes([0.004, 0.004, 0.992, 0.992])
+    fig = plt.figure(figsize=(29.25, 13.5), dpi=300, facecolor="#0F172A")
+    ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
 
     bg_canvas = FancyBboxPatch(
         (0.001, 0.001), 0.998, 0.998,
-        boxstyle="round,pad=0.0,rounding_size=0.006",
+        boxstyle="round,pad=0.0,rounding_size=0.005",
         facecolor="#E2E8F0", edgecolor="#0F172A", linewidth=1.5
     )
     ax.add_patch(bg_canvas)
@@ -1020,62 +1020,62 @@ def render_desktop_agent_anatomy_megachart():
     # -------------------------------------------------------------------------
     # 1. Top Masthead (Title + Website + Yellow Hook + Blue How-to-Read + Footnote)
     # -------------------------------------------------------------------------
-    hdr_y = 0.916
-    hdr_h = 0.079
+    hdr_y = 0.908
+    hdr_h = 0.086
     hdr_box = FancyBboxPatch(
-        (0.005, hdr_y), 0.990, hdr_h,
-        boxstyle="round,pad=0.0,rounding_size=0.006",
+        (0.004, hdr_y), 0.992, hdr_h,
+        boxstyle="round,pad=0.0,rounding_size=0.005",
         facecolor="#0F172A", edgecolor="#1E293B", linewidth=1.8
     )
     ax.add_patch(hdr_box)
 
     # Left Block: Giant Title + Website Underneath
     ax.text(
-        0.013, hdr_y + hdr_h * 0.70,
+        0.012, hdr_y + hdr_h * 0.70,
         "ANATOMY OF AI AGENTS 2026",
-        fontsize=31.0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+        fontsize=31.5, fontweight="bold", color="#FFFFFF", va="center", ha="left"
     )
     ax.text(
-        0.014, hdr_y + hdr_h * 0.36,
+        0.013, hdr_y + hdr_h * 0.35,
         "www.arianprabowo.com  ·  7-Layer OSI-Style Stack Reference (Based on Roitman arXiv:2606.24937)",
-        fontsize=11.0, fontweight="bold", color="#38BDF8", va="center", ha="left"
+        fontsize=11.2, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
     # Vertical divider 1
     ax.plot(
-        [0.440, 0.440], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.418, 0.418], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.4
     )
 
     # Middle Block: Yellow Motivating Hook
     ax.text(
-        0.450, hdr_y + hdr_h * 0.58,
+        0.428, hdr_y + hdr_h * 0.58,
         "What actually runs under the hood of an autonomous AI agent in 2026?\n"
-        "Like the 7-layer OSI model, modern agents are a vertical stack — from GPU silicon (L1) &\n"
+        "Like the 7-layer OSI model, modern agents form a left-to-right stack — from GPU silicon (L1) &\n"
         "uv/PyTorch/JAX (L2) to Data/RAG (L3), Arch/RLVR (L4), MCP (L5), Harness² (L6) & A2A swarms (L7).",
-        fontsize=9.1, fontweight="bold", color="#FEF08A", va="center", ha="left",
+        fontsize=9.6, fontweight="bold", color="#FEF08A", va="center", ha="left",
         linespacing=1.18
     )
 
     # Vertical divider 2
     ax.plot(
-        [0.758, 0.758], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
+        [0.735, 0.735], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.4
     )
 
     # Right Block: Blue 3-Step Key
     ax.text(
-        0.768, hdr_y + hdr_h * 0.58,
-        "① TRACE THE STACK: Follow Layers 1 → 7 from silicon to swarms\n"
+        0.745, hdr_y + hdr_h * 0.58,
+        "① TRACE LEFT → RIGHT: Follow Layers 1 → 7 from silicon to swarms\n"
         "② BUILD EACH LAYER: Top 3 pills = flagship 2026 primitives & tools\n"
-        "③ HARDEN PROD: Audit the red FAILURE MODES & TRAPS on the right",
-        fontsize=9.0, fontweight="bold", color="#93C5FD", va="center", ha="left",
+        "③ HARDEN PROD: Audit the red FAILURE MODES & TRAPS row at bottom",
+        fontsize=9.4, fontweight="bold", color="#93C5FD", va="center", ha="left",
         linespacing=1.22
     )
 
     # Horizontal divider above bottom footnote strip
     ax.plot(
-        [0.012, 0.988], [hdr_y + hdr_h * 0.20, hdr_y + hdr_h * 0.20],
+        [0.010, 0.990], [hdr_y + hdr_h * 0.20, hdr_y + hdr_h * 0.20],
         color="#1E293B", linewidth=1.0
     )
 
@@ -1084,120 +1084,82 @@ def render_desktop_agent_anatomy_megachart():
         0.500, hdr_y + hdr_h * 0.095,
         f"*Synthesized from Haggai Roitman's 'The Hitchhiker's Guide to Agentic AI: From Foundations to Systems' (arXiv:2606.24937, v1.4, June 2026) + 2026 systems tooling. "
         f"Companion to AI Skill Tree 2026 & AI Ladder Evolution by Arian Prabowo · {LAST_UPDATED_STR}",
-        fontsize=6.4, fontweight="bold", color="#94A3B8", va="center", ha="center"
+        fontsize=6.8, fontweight="bold", color="#94A3B8", va="center", ha="center"
     )
 
     # -------------------------------------------------------------------------
-    # 2. Column Headers
+    # 2. Horizontal Geometry (Left Pillar Column + 7 OSI Layer Columns Left->Right)
     # -------------------------------------------------------------------------
-    col_hdr_y = 0.881
-    col_hdr_h = 0.031
-
-    left_x0 = 0.005
-    left_w = 0.142
-
-    col_gap = 0.0045
+    left_x0 = 0.004
+    left_w = 0.094
+    col_gap = 0.0032
     active_x0 = left_x0 + left_w + col_gap
-    active_col_w = 0.224
-    sep_x = active_x0 + 3 * active_col_w + 2 * col_gap + 0.0045
-    obs_x0 = sep_x + 0.0045
-    obs_w = 0.995 - obs_x0
+    n_layers = len(STACK_LAYERS)
+    layer_col_w = (0.996 - active_x0 - (n_layers - 1) * col_gap) / n_layers
 
-    col_geoms = [
-        (active_x0 + 0 * (active_col_w + col_gap), active_col_w),
-        (active_x0 + 1 * (active_col_w + col_gap), active_col_w),
-        (active_x0 + 2 * (active_col_w + col_gap), active_col_w),
-        (obs_x0, obs_w),
-    ]
+    col_hdr_y = 0.788
+    col_hdr_h = 0.114
 
-    # Red dashed vertical separator line before FAILURE MODES & TRAPS
-    ax.plot(
-        [sep_x, sep_x], [0.005, col_hdr_y + col_hdr_h],
-        color="#DC2626", linewidth=1.8, linestyle=(0, (6, 3)), alpha=0.70
-    )
-
-    lhdr = FancyBboxPatch(
+    # Top-Left Corner Card
+    corner_box = FancyBboxPatch(
         (left_x0, col_hdr_y), left_w, col_hdr_h,
         boxstyle="round,pad=0.0,rounding_size=0.004",
         facecolor="#0F172A", edgecolor="#334155", linewidth=1.5
     )
-    ax.add_patch(lhdr)
+    ax.add_patch(corner_box)
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.65,
-        "OSI AGENT LAYER",
-        fontsize=13.2, fontweight="bold", color="#FFFFFF", va="center", ha="center"
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.72,
+        "OSI AGENT STACK",
+        fontsize=11.8, fontweight="bold", color="#FFFFFF", va="center", ha="center"
     )
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.22,
-        "OSI Analogy · PDU · Scope · Ch.",
-        fontsize=6.8, fontweight="bold", color="#94A3B8", va="center", ha="center"
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.45,
+        "LAYER 1 → LAYER 7",
+        fontsize=9.4, fontweight="bold", color="#FEF08A", va="center", ha="center"
+    )
+    ax.text(
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.19,
+        "Left-to-Right Pipeline\n× 4 Architectural Rows",
+        fontsize=6.6, fontweight="bold", color="#94A3B8", va="center", ha="center",
+        linespacing=1.12
     )
 
-    for c_idx, col in enumerate(COLUMNS):
-        cx, cw = col_geoms[c_idx]
-        is_fail = col["key"] == "failure_modes"
-        chdr = FancyBboxPatch(
-            (cx, col_hdr_y), cw, col_hdr_h,
-            boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor=col["hdr_bg"], edgecolor="#0F172A", linewidth=1.4
-        )
-        ax.add_patch(chdr)
-        ax.text(
-            cx + cw / 2, col_hdr_y + col_hdr_h * 0.65,
-            col["title"],
-            fontsize=13.0 if not is_fail else 12.2,
-            fontweight="bold", color="#FFFFFF", va="center", ha="center"
-        )
-        ax.text(
-            cx + cw / 2, col_hdr_y + col_hdr_h * 0.21,
-            col["sub"],
-            fontsize=6.8 if is_fail else 7.1,
-            fontweight="bold", color="#FEE2E2" if is_fail else "#E2E8F0", va="center", ha="center"
-        )
+    # 7 Layer Column Headers (Left to Right: Layer 1 -> Layer 7)
+    for l_idx, ly in enumerate(STACK_LAYERS):
+        lx = active_x0 + l_idx * (layer_col_w + col_gap)
 
-    # -------------------------------------------------------------------------
-    # 3. 7 Layer Rows x 4 Columns
-    # -------------------------------------------------------------------------
-    top_y = 0.8765
-    bot_y = 0.0045
-    n_layers = len(STACK_LAYERS)
-    row_gap = 0.0038
-    row_h = (top_y - bot_y - (n_layers - 1) * row_gap) / n_layers
-
-    for r_idx, ly in enumerate(STACK_LAYERS):
-        y0 = top_y - (r_idx + 1) * row_h - r_idx * row_gap
-
-        # Left Column Card (Layer Badge + 7-Segment Stack Meter + OSI PDU + Book Ref)
         lbox_body = FancyBboxPatch(
-            (left_x0, y0), left_w, row_h,
+            (lx, col_hdr_y), layer_col_w, col_hdr_h,
             boxstyle="round,pad=0.0,rounding_size=0.004",
             facecolor="#0F172A", edgecolor="#334155", linewidth=1.5
         )
         ax.add_patch(lbox_body)
 
-        inset_b = 0.0016
-        banner_h = row_h * 0.300
+        inset_b = 0.0014
+        banner_h = col_hdr_h * 0.39
         lbox_top = FancyBboxPatch(
-            (left_x0 + inset_b, y0 + row_h - banner_h - inset_b),
-            left_w - 2 * inset_b, banner_h,
+            (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
+            layer_col_w - 2 * inset_b, banner_h,
             boxstyle="round,pad=0.0,rounding_size=0.003",
             facecolor="#1E293B", edgecolor=ly["accent"], linewidth=1.4
         )
         ax.add_patch(lbox_top)
 
+        b_top_y = col_hdr_y + col_hdr_h - inset_b
+        badge_label = f"{ly['badge']} →" if l_idx < n_layers - 1 else f"{ly['badge']} ★"
         ax.text(
-            left_x0 + 0.0050, y0 + row_h - inset_b - banner_h * 0.34,
-            ly["badge"],
-            fontsize=15.0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+            lx + 0.0045, b_top_y - banner_h * 0.33,
+            badge_label,
+            fontsize=12.4, fontweight="bold", color="#FFFFFF", va="center", ha="left"
         )
 
-        # 7-segment vector progress bar on top-right of banner
-        bar_total_w = 0.052
-        bar_gap = 0.0012
+        # 7-segment progress bar on top-right of banner
+        bar_total_w = 0.044
+        bar_gap = 0.0010
         seg_w = (bar_total_w - 6 * bar_gap) / 7.0
-        seg_h = banner_h * 0.23
-        bar_x_start = left_x0 + left_w - 0.0050 - bar_total_w
-        bar_y = y0 + row_h - inset_b - banner_h * 0.34 - seg_h / 2.0
+        seg_h = banner_h * 0.22
+        bar_x_start = lx + layer_col_w - 0.0045 - bar_total_w
+        bar_y = b_top_y - banner_h * 0.33 - seg_h / 2.0
         for b_i in range(7):
             bx_i = bar_x_start + b_i * (seg_w + bar_gap)
             is_lit = b_i < ly["layer"]
@@ -1206,51 +1168,161 @@ def render_desktop_agent_anatomy_megachart():
                 boxstyle="round,pad=0.0,rounding_size=0.001",
                 facecolor=ly["accent"] if is_lit else "#334155",
                 edgecolor=ly["accent"] if is_lit else "#475569",
-                linewidth=0.6
+                linewidth=0.55
             )
             ax.add_patch(seg_patch)
 
         ax.text(
-            left_x0 + left_w / 2, y0 + row_h - inset_b - banner_h * 0.77,
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.76,
             ly["name"],
-            fontsize=9.6 if len(ly["name"]) >= 22 else 10.3,
+            fontsize=8.0 if len(ly["name"]) >= 25 else 8.6,
             fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
 
-        desc_wrapped = textwrap.fill(ly["desc"], width=34)
-        osi_wrapped = textwrap.fill(f"• {ly['osi_map']}", width=34)
-        ref_wrapped = textwrap.fill(f"• Guide: {ly['book_ref']}", width=34)
+        desc_wrapped = textwrap.fill(ly["desc"], width=48)
+        osi_line = f"• {ly['osi_map']}"
+        ref_line = f"• Guide: {ly['book_ref']}"
 
-        body_top_y = y0 + (row_h - banner_h - inset_b) * 0.94
+        body_top_y = col_hdr_y + (col_hdr_h - banner_h - inset_b) * 0.93
         ax.text(
-            left_x0 + 0.0035,
+            lx + 0.0035,
             body_top_y,
             desc_wrapped,
-            fontsize=7.35,
+            fontsize=5.45,
             fontweight="bold",
             color="#F8FAFC",
             va="top",
             ha="left",
-            linespacing=1.08,
+            linespacing=1.05,
         )
 
-        bullet_body = f"{osi_wrapped}\n{ref_wrapped}"
+        bullet_body = f"{osi_line}\n{ref_line}"
         ax.text(
-            left_x0 + 0.0035,
-            body_top_y - 0.031,
+            lx + 0.0035,
+            col_hdr_y + 0.0040,
             bullet_body,
-            fontsize=7.05,
+            fontsize=5.05,
             fontweight="bold",
             color="#93C5FD",
-            va="top",
+            va="bottom",
             ha="left",
             linespacing=1.08,
         )
 
-        # 4 Architectural Pillar Columns
-        for c_idx, col in enumerate(COLUMNS):
-            cx, cw = col_geoms[c_idx]
-            is_fail = col["key"] == "failure_modes"
+    # -------------------------------------------------------------------------
+    # 3. 4 Architectural Pillar Rows x 7 Layer Columns (Left to Right)
+    # -------------------------------------------------------------------------
+    top_y = 0.782
+    active_row_h = 0.202
+    fail_row_h = 0.152
+    row_gap = 0.0040
+    fail_sep_gap = 0.0080
+
+    row_geoms = [
+        (top_y - 1 * active_row_h - 0 * row_gap, active_row_h),
+        (top_y - 2 * active_row_h - 1 * row_gap, active_row_h),
+        (top_y - 3 * active_row_h - 2 * row_gap, active_row_h),
+        (top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap - fail_row_h, fail_row_h),
+    ]
+
+    # Red dashed horizontal separator line above FAILURE MODES & TRAPS row
+    sep_y = top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap * 0.5
+    ax.plot(
+        [left_x0, 0.996], [sep_y, sep_y],
+        color="#DC2626", linewidth=1.8, linestyle=(0, (6, 3)), alpha=0.75
+    )
+
+    row_side_titles = {
+        "primitives_arch": (
+            "PILLAR 1",
+            "CORE PRIMITIVES\n& ARCHITECTURE",
+            "Hardware Physics,\nMathematical Ops,\nData Structures &\nControl Topologies",
+            "• Layer 1–2: Silicon/Kernels\n• Layer 3–4: Data/Model Math\n• Layer 5–7: Memory/Loops/MAS",
+        ),
+        "frameworks_stack": (
+            "PILLAR 2",
+            "FRAMEWORKS, PKGS\n& PROTOCOLS",
+            "CLI Package Managers,\nDL/Serving Frameworks,\nModel Checkpoints &\nAgent SDKs/Protocols",
+            "• brew · uv · conda · pip · venv\n• PyTorch · JAX · vLLM · TRL\n• MCP · SKILL.md · LangGraph · A2A",
+        ),
+        "ops_evals_security": (
+            "PILLAR 3",
+            "SCALING, EVALS\n& SECURITY",
+            "Throughput SLAs,\nMicroVM Sandboxes,\nVerification Oracles &\nZero-Trust Guardrails",
+            "• MFU · E2B/bwrap · RAG Triad\n• RLVR Graders · MCP OAuth 2.1\n• SWE-bench · pass^k · KYA",
+        ),
+        "failure_modes": (
+            "ANTI-PATTERNS",
+            "FAILURE MODES\n& TRAPS",
+            "What Breaks in Prod:\nBottlenecks, Collapses,\nInjections & Swarm\nEcho Chambers",
+            "• OOM & CUDA ABI Hell\n• Model Collapse & Reward Hack\n• Context Rot & O(N²) Chatter",
+        ),
+    }
+
+    for r_idx, col in enumerate(COLUMNS):
+        ry, rh = row_geoms[r_idx]
+        is_fail = col["key"] == "failure_modes"
+        p_badge, p_title, p_desc, p_bullets = row_side_titles[col["key"]]
+
+        # Left Row-Header Card
+        rbox_body = FancyBboxPatch(
+            (left_x0, ry), left_w, rh,
+            boxstyle="round,pad=0.0,rounding_size=0.004",
+            facecolor="#0F172A", edgecolor=col["cell_edge"], linewidth=1.5
+        )
+        ax.add_patch(rbox_body)
+
+        inset_r = 0.0016
+        rbanner_h = rh * (0.42 if is_fail else 0.36)
+        rbox_top = FancyBboxPatch(
+            (left_x0 + inset_r, ry + rh - rbanner_h - inset_r),
+            left_w - 2 * inset_r, rbanner_h,
+            boxstyle="round,pad=0.0,rounding_size=0.003",
+            facecolor=col["hdr_bg"], edgecolor="#FFFFFF", linewidth=1.0
+        )
+        ax.add_patch(rbox_top)
+
+        ax.text(
+            left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.24,
+            p_badge,
+            fontsize=8.0, fontweight="bold", color="#FEF08A", va="center", ha="center"
+        )
+        ax.text(
+            left_x0 + left_w / 2, ry + rh - inset_r - rbanner_h * 0.67,
+            p_title,
+            fontsize=8.8 if not is_fail else 8.6,
+            fontweight="bold", color="#FFFFFF", va="center", ha="center",
+            linespacing=1.02
+        )
+
+        body_avail_h = rh - rbanner_h - inset_r
+        ax.text(
+            left_x0 + left_w / 2,
+            ry + body_avail_h * 0.66,
+            p_desc,
+            fontsize=6.8 if not is_fail else 6.4,
+            fontweight="bold",
+            color="#F8FAFC",
+            va="center",
+            ha="center",
+            linespacing=1.10,
+        )
+        ax.text(
+            left_x0 + 0.0035,
+            ry + 0.006,
+            p_bullets,
+            fontsize=5.65 if not is_fail else 5.45,
+            fontweight="bold",
+            color="#FCA5A5" if is_fail else "#93C5FD",
+            va="bottom",
+            ha="left",
+            linespacing=1.10,
+        )
+
+        # 7 Layer Cells across this Row (Left to Right)
+        for l_idx, ly in enumerate(STACK_LAYERS):
+            cx = active_x0 + l_idx * (layer_col_w + col_gap)
+            cw = layer_col_w
 
             cell_data = ly["cells"][col["key"]]
             top_h1 = cell_data["h1"]
@@ -1258,7 +1330,7 @@ def render_desktop_agent_anatomy_megachart():
             bot_small = cell_data["small"]
 
             cbox = FancyBboxPatch(
-                (cx, y0), cw, row_h,
+                (cx, ry), cw, rh,
                 boxstyle="round,pad=0.0,rounding_size=0.004",
                 facecolor=col["cell_bg"],
                 edgecolor=col["cell_edge"],
@@ -1267,25 +1339,25 @@ def render_desktop_agent_anatomy_megachart():
             )
             ax.add_patch(cbox)
 
-            pad_x = 0.0026
-            pad_top = 0.0022
-            pad_bot = 0.0020
+            pad_x = 0.0022
+            pad_top = 0.0028
+            pad_bot = 0.0024
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
             # =================================================================
-            # CASE A: Failure Modes Column (Top 3 H1 Pills + 4x1 Tier 2 + 4x1 Tier 3)
+            # CASE A: Failure Modes Row (Top 3 H1 Pills + 4x1 Tier 2 + 4x1 Tier 3)
             # =================================================================
             if is_fail:
-                gap_t1_t2 = 0.0017
-                gap_t2_t3 = 0.0014
-                avail_h = row_h - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
-                t1_h = avail_h * 0.390
-                t2_h = avail_h * 0.365
-                t3_h = avail_h * 0.245
+                gap_t1_t2 = 0.0020
+                gap_t2_t3 = 0.0016
+                avail_h = rh - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
+                t1_h = avail_h * 0.410
+                t2_h = avail_h * 0.340
+                t3_h = avail_h * 0.250
 
-                t1_top_y = y0 + row_h - pad_top
-                pill_gap = 0.0015
+                t1_top_y = ry + rh - pad_top
+                pill_gap = 0.0016
                 ph = (t1_h - 2 * pill_gap) / 3.0
                 for idx_1, kw in enumerate(top_h1[:3]):
                     px = x_left
@@ -1296,20 +1368,20 @@ def render_desktop_agent_anatomy_megachart():
                         boxstyle="round,pad=0.0,rounding_size=0.0022",
                         facecolor=col["h1_bg"],
                         edgecolor=col["pill_edge"],
-                        linewidth=1.1,
+                        linewidth=1.05,
                         linestyle="--"
                     )
                     ax.add_patch(pill)
                     ax.text(
                         px + pw / 2, py + ph / 2,
                         kw,
-                        fontsize=9.9 if len(kw) > 34 else 10.4,
+                        fontsize=7.9 if len(kw) > 34 else 8.3,
                         fontweight="bold",
                         color=col["h1_txt"],
                         va="center", ha="center"
                     )
 
-                # Tier 2: 4 single-column rows (full width, zero horizontal collision)
+                # Tier 2: 4 single-column rows
                 t2_top_y = t1_top_y - t1_h - gap_t1_t2
                 t2_row_h = t2_h / 4.0
 
@@ -1330,23 +1402,24 @@ def render_desktop_agent_anatomy_megachart():
                             facecolor="#FEE2E2", edgecolor="none", alpha=0.65
                         )
                         ax.add_patch(stripe)
-                    tx = x_left + 0.0025
+                    tx = x_left + 0.0020
                     ty = t2_top_y - (sr + 0.5) * t2_row_h
                     ax.text(
                         tx, ty,
                         f"▸ {kw}",
-                        fontsize=6.45,
+                        fontsize=6.15,
                         fontweight="bold",
                         color=col["t2_txt"],
                         va="center", ha="left"
                     )
 
-                # Tier 3: Bottom 4 single-column rows in matching band
+                # Tier 3: Bottom 4 in 2x2 grid inside bottom band
                 t3_top_y = t2_top_y - t2_h - gap_t2_t3
-                t3_row_h = t3_h / 4.0
+                t3_row_h = t3_h / 2.0
+                t3_col_w = inner_w / 2.0
 
                 t3_band = FancyBboxPatch(
-                    (x_left, y0 + pad_bot),
+                    (x_left, ry + pad_bot),
                     inner_w, t3_h,
                     boxstyle="round,pad=0.0,rounding_size=0.0018",
                     facecolor="#FFF1F2",
@@ -1355,13 +1428,22 @@ def render_desktop_agent_anatomy_megachart():
                 )
                 ax.add_patch(t3_band)
 
-                for sr, kw in enumerate(mid_norm[4:8]):
-                    tx = x_left + 0.0025
+                ax.plot(
+                    [x_left + t3_col_w, x_left + t3_col_w],
+                    [ry + pad_bot + 0.0006, t3_top_y - 0.0006],
+                    color="#FCA5A5", linewidth=0.55
+                )
+
+                for idx_3, kw in enumerate(mid_norm[4:8]):
+                    sr = idx_3 // 2
+                    sc = idx_3 % 2
+                    tx = x_left + sc * t3_col_w + 0.0012
                     ty = t3_top_y - (sr + 0.5) * t3_row_h
+                    fs_fail_t3 = 4.10 if len(kw) > 36 else (4.40 if len(kw) > 31 else 4.65)
                     ax.text(
                         tx, ty,
-                        f"• {kw}",
-                        fontsize=5.35,
+                        kw,
+                        fontsize=fs_fail_t3,
                         fontweight="bold",
                         color="#991B1B",
                         va="center", ha="left"
@@ -1371,16 +1453,16 @@ def render_desktop_agent_anatomy_megachart():
             # =================================================================
             # CASE B: Full 3-Tier Active Architectural Cell
             # =================================================================
-            gap_t1_t2 = 0.0017
-            gap_t2_t3 = 0.0014
-            avail_h = row_h - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
-            t1_h = avail_h * 0.390
+            gap_t1_t2 = 0.0022
+            gap_t2_t3 = 0.0018
+            avail_h = rh - pad_top - pad_bot - gap_t1_t2 - gap_t2_t3
+            t1_h = avail_h * 0.380
             t2_h = avail_h * 0.365
-            t3_h = avail_h * 0.245
+            t3_h = avail_h * 0.255
 
             # --- TIER 1: Top 3 H1 Pills ---
-            t1_top_y = y0 + row_h - pad_top
-            pill_gap = 0.0015
+            t1_top_y = ry + rh - pad_top
+            pill_gap = 0.0018
             ph = (t1_h - 2 * pill_gap) / 3.0
             for idx_1, kw in enumerate(top_h1[:3]):
                 px = x_left
@@ -1392,14 +1474,14 @@ def render_desktop_agent_anatomy_megachart():
                     boxstyle="round,pad=0.0,rounding_size=0.0022",
                     facecolor=col["h1_bg"],
                     edgecolor=col["pill_edge"],
-                    linewidth=1.15
+                    linewidth=1.10
                 )
                 ax.add_patch(pill)
 
                 ax.text(
                     px + pw / 2, py + ph / 2,
                     kw,
-                    fontsize=11.4,
+                    fontsize=8.2 if len(kw) > 36 else 8.7,
                     fontweight="bold",
                     color=col["h1_txt"],
                     va="center", ha="center"
@@ -1412,8 +1494,8 @@ def render_desktop_agent_anatomy_megachart():
 
             ax.plot(
                 [x_left + t2_col_w, x_left + t2_col_w],
-                [t2_top_y - t2_h + 0.0005, t2_top_y - 0.0005],
-                color="#CBD5E1", linewidth=0.8
+                [t2_top_y - t2_h + 0.0006, t2_top_y - 0.0006],
+                color="#CBD5E1", linewidth=0.75
             )
 
             for idx_2, kw in enumerate(mid_norm[:8]):
@@ -1421,19 +1503,20 @@ def render_desktop_agent_anatomy_megachart():
                 sc = idx_2 % 2
                 if sc == 0 and sr % 2 == 1:
                     stripe = FancyBboxPatch(
-                        (x_left, t2_top_y - (sr + 1) * t2_row_h + 0.00012),
-                        inner_w, t2_row_h - 0.00024,
+                        (x_left, t2_top_y - (sr + 1) * t2_row_h + 0.00015),
+                        inner_w, t2_row_h - 0.00030,
                         boxstyle="round,pad=0.0,rounding_size=0.001",
                         facecolor=col["t2_bg"], edgecolor="none"
                     )
                     ax.add_patch(stripe)
 
-                tx = x_left + sc * t2_col_w + 0.0015
+                tx = x_left + sc * t2_col_w + 0.0011
                 ty = t2_top_y - (sr + 0.5) * t2_row_h
+                fs_t2 = 4.15 if len(kw) > 37 else (4.45 if len(kw) > 33 else (4.75 if len(kw) > 29 else 5.05))
                 ax.text(
                     tx, ty,
                     kw,
-                    fontsize=6.15 if len(kw) > 34 else 6.45,
+                    fontsize=fs_t2,
                     fontweight="bold",
                     color=col["t2_txt"],
                     va="center", ha="left"
@@ -1445,7 +1528,7 @@ def render_desktop_agent_anatomy_megachart():
             t3_col_w = inner_w / 3.0
 
             t3_band = FancyBboxPatch(
-                (x_left, y0 + pad_bot),
+                (x_left, ry + pad_bot),
                 inner_w, t3_h,
                 boxstyle="round,pad=0.0,rounding_size=0.0018",
                 facecolor=col["t3_bg"],
@@ -1457,20 +1540,21 @@ def render_desktop_agent_anatomy_megachart():
             for c_div in (1, 2):
                 ax.plot(
                     [x_left + c_div * t3_col_w, x_left + c_div * t3_col_w],
-                    [y0 + pad_bot + 0.0005, t3_top_y - 0.0005],
-                    color="#CBD5E1", linewidth=0.55
+                    [ry + pad_bot + 0.0006, t3_top_y - 0.0006],
+                    color="#CBD5E1", linewidth=0.50
                 )
 
             for idx_3, kw in enumerate(bot_small[:12]):
                 sr = idx_3 // 3
                 sc = idx_3 % 3
-                tx = x_left + sc * t3_col_w + 0.0011
+                tx = x_left + sc * t3_col_w + 0.0008
                 ty = t3_top_y - (sr + 0.5) * t3_row_h
+                fs_t3 = 2.65 if len(kw) > 36 else (2.85 if len(kw) > 31 else (3.10 if len(kw) > 26 else 3.40))
 
                 ax.text(
                     tx, ty,
                     kw,
-                    fontsize=4.20 if len(kw) > 32 else 4.45,
+                    fontsize=fs_t3,
                     fontweight="bold",
                     color=col["t3_txt"],
                     va="center", ha="left"
@@ -1485,199 +1569,145 @@ def render_desktop_agent_anatomy_megachart():
 
 def render_mobile_agent_anatomy_chart():
     """
-    Smartphone Portrait Mini Chart (9.5 x 20.0 in @ 300 DPI) for the 7-Layer Agent Stack.
+    Smartphone Landscape Mini Chart (19.5 x 9.0 in @ 300 DPI — 19.5:9 Mobile Landscape)
+    flowing from LEFT to RIGHT (Layers 1 -> 7) with simplified 2-tier cells for mobile screens.
     """
     plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "Helvetica"]
 
-    fig = plt.figure(figsize=(9.5, 20.0), dpi=300, facecolor="#0F172A")
-    ax = fig.add_axes([0.003, 0.002, 0.994, 0.996])
+    fig = plt.figure(figsize=(19.5, 9.0), dpi=300, facecolor="#0F172A")
+    ax = fig.add_axes([0.003, 0.004, 0.994, 0.992])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
 
     bg_canvas = FancyBboxPatch(
-        (0.001, 0.0005), 0.998, 0.999,
+        (0.001, 0.001), 0.998, 0.998,
         boxstyle="round,pad=0.0,rounding_size=0.005",
         facecolor="#E2E8F0", edgecolor="#0F172A", linewidth=1.2
     )
     ax.add_patch(bg_canvas)
 
-    hdr_y = 0.922
-    hdr_h = 0.075
+    hdr_y = 0.908
+    hdr_h = 0.086
     hdr_box = FancyBboxPatch(
-        (0.005, hdr_y), 0.990, hdr_h,
-        boxstyle="round,pad=0.0,rounding_size=0.006",
-        facecolor="#0F172A", edgecolor="#1E293B", linewidth=1.6
+        (0.004, hdr_y), 0.992, hdr_h,
+        boxstyle="round,pad=0.0,rounding_size=0.005",
+        facecolor="#0F172A", edgecolor="#1E293B", linewidth=1.5
     )
     ax.add_patch(hdr_box)
 
     ax.text(
-        0.015, hdr_y + hdr_h * 0.79,
+        0.012, hdr_y + hdr_h * 0.70,
         "ANATOMY OF AI AGENTS 2026",
-        fontsize=21.5, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+        fontsize=21.0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
     )
     ax.text(
-        0.985, hdr_y + hdr_h * 0.79,
-        "www.arianprabowo.com",
-        fontsize=10.5, fontweight="bold", color="#38BDF8", va="center", ha="right"
+        0.013, hdr_y + hdr_h * 0.35,
+        "www.arianprabowo.com  ·  7-Layer OSI-Style Stack (Roitman arXiv:2606.24937)",
+        fontsize=7.6, fontweight="bold", color="#38BDF8", va="center", ha="left"
     )
 
     ax.plot(
-        [0.014, 0.986], [hdr_y + hdr_h * 0.60, hdr_y + hdr_h * 0.60],
+        [0.418, 0.418], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.2
     )
 
     ax.text(
-        0.014, hdr_y + hdr_h * 0.38,
-        "What runs under an AI agent in 2026? A 7-layer OSI-style stack\n"
-        "from GPU silicon (L1) & uv/PyTorch/JAX (L2) to Data/RAG (L3),\n"
-        "Model Arch/RLVR (L4), MCP/Memory (L5), Harness² (L6) & Swarms (L7).",
-        fontsize=6.7, fontweight="bold", color="#FEF08A", va="center", ha="left",
-        linespacing=1.09
+        0.428, hdr_y + hdr_h * 0.58,
+        "What runs under an AI agent in 2026? A 7-layer left-to-right stack:\n"
+        "GPU silicon (L1) → uv/PyTorch/JAX (L2) → Data/RAG (L3) →\n"
+        "Arch/RLVR (L4) → MCP/Memory (L5) → Harness² (L6) → Swarms (L7).",
+        fontsize=6.5, fontweight="bold", color="#FEF08A", va="center", ha="left",
+        linespacing=1.15
     )
 
     ax.plot(
-        [0.515, 0.515], [hdr_y + hdr_h * 0.19, hdr_y + hdr_h * 0.56],
+        [0.735, 0.735], [hdr_y + hdr_h * 0.24, hdr_y + hdr_h * 0.91],
         color="#334155", linewidth=1.2
     )
 
     ax.text(
-        0.525, hdr_y + hdr_h * 0.38,
-        "① TRACE: Follow Layers 1 → 7 from silicon to swarms\n"
+        0.745, hdr_y + hdr_h * 0.58,
+        "① TRACE LEFT → RIGHT: Follow Layers 1 → 7 across columns\n"
         "② BUILD: Top 3 pills = flagship primitives & frameworks\n"
-        "③ HARDEN: Audit FAILURE MODES & TRAPS on the right",
-        fontsize=6.6, fontweight="bold", color="#93C5FD", va="center", ha="left",
-        linespacing=1.11
+        "③ HARDEN: Audit FAILURE MODES & TRAPS on bottom row",
+        fontsize=6.3, fontweight="bold", color="#93C5FD", va="center", ha="left",
+        linespacing=1.18
     )
-
-    ax.text(
-        0.500, hdr_y + hdr_h * 0.08,
-        f"*Based on Roitman 'Hitchhiker's Guide to Agentic AI' (arXiv:2606.24937, June 2026) · Arian Prabowo · {LAST_UPDATED_STR}",
-        fontsize=4.2, fontweight="bold", color="#94A3B8", va="center", ha="center"
-    )
-
-    col_hdr_y = 0.878
-    col_hdr_h = 0.041
-
-    left_x0 = 0.005
-    left_w = 0.165
-
-    col_gap = 0.0045
-    active_x0 = left_x0 + left_w + col_gap
-    active_col_w = 0.207
-    sep_x = active_x0 + 3 * active_col_w + 2 * col_gap + 0.0045
-    obs_x0 = sep_x + 0.0045
-    obs_w = 0.995 - obs_x0
-
-    col_geoms = [
-        (active_x0 + 0 * (active_col_w + col_gap), active_col_w),
-        (active_x0 + 1 * (active_col_w + col_gap), active_col_w),
-        (active_x0 + 2 * (active_col_w + col_gap), active_col_w),
-        (obs_x0, obs_w),
-    ]
 
     ax.plot(
-        [sep_x, sep_x], [0.004, col_hdr_y + col_hdr_h],
-        color="#DC2626", linewidth=1.5, linestyle=(0, (5, 3)), alpha=0.65
+        [0.010, 0.990], [hdr_y + hdr_h * 0.20, hdr_y + hdr_h * 0.20],
+        color="#1E293B", linewidth=0.9
     )
 
-    lhdr = FancyBboxPatch(
-        (left_x0, col_hdr_y), left_w, col_hdr_h,
-        boxstyle="round,pad=0.0,rounding_size=0.005",
-        facecolor="#0F172A", edgecolor="#334155", linewidth=1.4
-    )
-    ax.add_patch(lhdr)
     ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.65,
-        "OSI LAYER",
-        fontsize=11.8, fontweight="bold", color="#FFFFFF", va="center", ha="center"
-    )
-    ax.text(
-        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.23,
-        "PDU & Book Ch.",
-        fontsize=6.0, fontweight="bold", color="#94A3B8", va="center", ha="center"
+        0.500, hdr_y + hdr_h * 0.095,
+        f"*Based on Roitman 'The Hitchhiker's Guide to Agentic AI' (arXiv:2606.24937, June 2026) · Arian Prabowo · {LAST_UPDATED_STR}",
+        fontsize=4.6, fontweight="bold", color="#94A3B8", va="center", ha="center"
     )
 
-    mobile_col_titles = {
-        "primitives_arch": ("PRIMITIVES &\nARCHITECTURE", "Math · Topologies"),
-        "frameworks_stack": ("FRAMEWORKS &\nPROTOCOLS", "Packages · SDKs"),
-        "ops_evals_security": ("SCALING, EVALS\n& SECURITY", "Oracles · Sandboxes"),
-        "failure_modes": ("FAILURE MODES\n& TRAPS", "What Breaks Here"),
-    }
-
-    for c_idx, col in enumerate(COLUMNS):
-        cx, cw = col_geoms[c_idx]
-        is_fail = col["key"] == "failure_modes"
-        m_title, m_sub = mobile_col_titles[col["key"]]
-        chdr = FancyBboxPatch(
-            (cx, col_hdr_y), cw, col_hdr_h,
-            boxstyle="round,pad=0.0,rounding_size=0.005",
-            facecolor=col["hdr_bg"], edgecolor="#0F172A", linewidth=1.2
-        )
-        ax.add_patch(chdr)
-        ax.text(
-            cx + cw / 2, col_hdr_y + col_hdr_h * 0.64,
-            m_title,
-            fontsize=8.8 if not is_fail else 8.6,
-            fontweight="bold", color="#FFFFFF", va="center", ha="center",
-            linespacing=0.98
-        )
-        ax.text(
-            cx + cw / 2, col_hdr_y + col_hdr_h * 0.16,
-            m_sub,
-            fontsize=5.3,
-            fontweight="bold", color="#FEE2E2" if is_fail else "#E2E8F0", va="center", ha="center"
-        )
-
-    top_y = 0.873
-    bot_y = 0.004
+    left_x0 = 0.004
+    left_w = 0.090
+    col_gap = 0.0032
+    active_x0 = left_x0 + left_w + col_gap
     n_layers = len(STACK_LAYERS)
-    row_gap = 0.0036
-    row_h = (top_y - bot_y - (n_layers - 1) * row_gap) / n_layers
+    layer_col_w = (0.996 - active_x0 - (n_layers - 1) * col_gap) / n_layers
 
-    mobile_layer_names = {
-        1: "PHYSICAL &\nSILICON",
-        2: "ENV, PACKAGES,\nPYTHON & TENSOR",
-        3: "DATA, TOKENS\n& RAG",
-        4: "MODEL ARCH &\nREASONING RL",
-        5: "CONTEXT, MEMORY,\nTOOLS & MCP",
-        6: "AGENT HARNESS,\nLOOP & GRAPH",
-        7: "MULTI-AGENT\nMESH & UI",
-    }
+    col_hdr_y = 0.802
+    col_hdr_h = 0.100
 
-    for r_idx, ly in enumerate(STACK_LAYERS):
-        y0 = top_y - (r_idx + 1) * row_h - r_idx * row_gap
+    corner_box = FancyBboxPatch(
+        (left_x0, col_hdr_y), left_w, col_hdr_h,
+        boxstyle="round,pad=0.0,rounding_size=0.004",
+        facecolor="#0F172A", edgecolor="#334155", linewidth=1.3
+    )
+    ax.add_patch(corner_box)
+    ax.text(
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.68,
+        "OSI STACK",
+        fontsize=8.6, fontweight="bold", color="#FFFFFF", va="center", ha="center"
+    )
+    ax.text(
+        left_x0 + left_w / 2, col_hdr_y + col_hdr_h * 0.32,
+        "L1 → L7\n(Left to Right)",
+        fontsize=6.2, fontweight="bold", color="#FEF08A", va="center", ha="center",
+        linespacing=1.08
+    )
+
+    for l_idx, ly in enumerate(STACK_LAYERS):
+        lx = active_x0 + l_idx * (layer_col_w + col_gap)
 
         lbox_body = FancyBboxPatch(
-            (left_x0, y0), left_w, row_h,
-            boxstyle="round,pad=0.0,rounding_size=0.005",
-            facecolor="#0F172A", edgecolor="#334155", linewidth=1.5
+            (lx, col_hdr_y), layer_col_w, col_hdr_h,
+            boxstyle="round,pad=0.0,rounding_size=0.004",
+            facecolor="#0F172A", edgecolor="#334155", linewidth=1.3
         )
         ax.add_patch(lbox_body)
 
-        inset_b = 0.0018
-        banner_h = row_h * 0.340
+        inset_b = 0.0014
+        banner_h = col_hdr_h * 0.48
         lbox_top = FancyBboxPatch(
-            (left_x0 + inset_b, y0 + row_h - banner_h - inset_b),
-            left_w - 2 * inset_b, banner_h,
-            boxstyle="round,pad=0.0,rounding_size=0.004",
-            facecolor="#1E293B", edgecolor=ly["accent"], linewidth=1.4
+            (lx + inset_b, col_hdr_y + col_hdr_h - banner_h - inset_b),
+            layer_col_w - 2 * inset_b, banner_h,
+            boxstyle="round,pad=0.0,rounding_size=0.003",
+            facecolor="#1E293B", edgecolor=ly["accent"], linewidth=1.2
         )
         ax.add_patch(lbox_top)
 
-        b_top_y = y0 + row_h - inset_b
+        b_top_y = col_hdr_y + col_hdr_h - inset_b
+        badge_label = f"{ly['badge']} →" if l_idx < n_layers - 1 else f"{ly['badge']} ★"
         ax.text(
-            left_x0 + 0.006, b_top_y - banner_h * 0.22,
-            ly["badge"],
-            fontsize=11.0, fontweight="bold", color="#FFFFFF", va="center", ha="left"
+            lx + 0.004, b_top_y - banner_h * 0.33,
+            badge_label,
+            fontsize=8.6, fontweight="bold", color="#FFFFFF", va="center", ha="left"
         )
 
-        bar_total_w = 0.062
-        bar_gap = 0.0014
+        bar_total_w = 0.042
+        bar_gap = 0.0010
         seg_w = (bar_total_w - 6 * bar_gap) / 7.0
-        seg_h = banner_h * 0.15
-        bar_x_start = left_x0 + left_w - 0.006 - bar_total_w
-        bar_y = b_top_y - banner_h * 0.22 - seg_h / 2.0
+        seg_h = banner_h * 0.22
+        bar_x_start = lx + layer_col_w - 0.004 - bar_total_w
+        bar_y = b_top_y - banner_h * 0.33 - seg_h / 2.0
         for b_i in range(7):
             bx_i = bar_x_start + b_i * (seg_w + bar_gap)
             is_lit = b_i < ly["layer"]
@@ -1686,121 +1716,138 @@ def render_mobile_agent_anatomy_chart():
                 boxstyle="round,pad=0.0,rounding_size=0.001",
                 facecolor=ly["accent"] if is_lit else "#334155",
                 edgecolor=ly["accent"] if is_lit else "#475569",
-                linewidth=0.5
+                linewidth=0.45
             )
             ax.add_patch(seg_patch)
 
         ax.text(
-            left_x0 + left_w / 2, b_top_y - banner_h * 0.72,
-            mobile_layer_names[ly["layer"]],
-            fontsize=7.8,
-            fontweight="bold", color="#FEF08A", va="center", ha="center",
-            linespacing=0.95
+            lx + layer_col_w / 2, b_top_y - banner_h * 0.77,
+            ly["name"],
+            fontsize=5.5 if len(ly["name"]) >= 25 else 5.9,
+            fontweight="bold", color="#FEF08A", va="center", ha="center"
         )
 
-        desc_wrapped = textwrap.fill(ly["desc"], width=24)
-        osi_wrapped = textwrap.fill(f"• {ly['osi_map']}", width=24)
-        ref_wrapped = textwrap.fill(f"• {ly['book_ref']}", width=24)
-
-        body_top_y = y0 + (row_h - banner_h - inset_b) * 0.95
+        osi_short = textwrap.fill(f"{ly['osi_map']} · {ly['book_ref']}", width=38)
         ax.text(
-            left_x0 + 0.005,
-            body_top_y,
-            desc_wrapped,
-            fontsize=5.45,
-            fontweight="bold",
-            color="#F8FAFC",
-            va="top",
-            ha="left",
-            linespacing=1.04,
-        )
-
-        n_desc_lines = desc_wrapped.count("\n") + 1
-        bullet_body = f"{osi_wrapped}\n{ref_wrapped}"
-        ax.text(
-            left_x0 + 0.005,
-            body_top_y - n_desc_lines * 0.0056 - 0.0015,
-            bullet_body,
-            fontsize=5.15,
+            lx + 0.0035,
+            col_hdr_y + (col_hdr_h - banner_h) * 0.50,
+            osi_short,
+            fontsize=4.4,
             fontweight="bold",
             color="#93C5FD",
-            va="top",
+            va="center",
             ha="left",
-            linespacing=1.03,
+            linespacing=1.08,
         )
 
-        for c_idx, col in enumerate(COLUMNS):
-            cx, cw = col_geoms[c_idx]
-            is_fail = col["key"] == "failure_modes"
+    top_y = 0.796
+    active_row_h = 0.205
+    fail_row_h = 0.160
+    row_gap = 0.0040
+    fail_sep_gap = 0.0070
+
+    row_geoms = [
+        (top_y - 1 * active_row_h - 0 * row_gap, active_row_h),
+        (top_y - 2 * active_row_h - 1 * row_gap, active_row_h),
+        (top_y - 3 * active_row_h - 2 * row_gap, active_row_h),
+        (top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap - fail_row_h, fail_row_h),
+    ]
+
+    sep_y = top_y - 3 * active_row_h - 2 * row_gap - fail_sep_gap * 0.5
+    ax.plot(
+        [left_x0, 0.996], [sep_y, sep_y],
+        color="#DC2626", linewidth=1.4, linestyle=(0, (5, 3)), alpha=0.75
+    )
+
+    mobile_row_titles = {
+        "primitives_arch": ("PRIMITIVES &\nARCHITECTURE", "Math · Topologies"),
+        "frameworks_stack": ("FRAMEWORKS &\nPROTOCOLS", "Packages · SDKs"),
+        "ops_evals_security": ("SCALING, EVALS\n& SECURITY", "Oracles · Sandboxes"),
+        "failure_modes": ("FAILURE MODES\n& TRAPS", "What Breaks Here"),
+    }
+
+    for r_idx, col in enumerate(COLUMNS):
+        ry, rh = row_geoms[r_idx]
+        is_fail = col["key"] == "failure_modes"
+        m_title, m_sub = mobile_row_titles[col["key"]]
+
+        rbox = FancyBboxPatch(
+            (left_x0, ry), left_w, rh,
+            boxstyle="round,pad=0.0,rounding_size=0.004",
+            facecolor=col["hdr_bg"], edgecolor="#0F172A", linewidth=1.3
+        )
+        ax.add_patch(rbox)
+        ax.text(
+            left_x0 + left_w / 2, ry + rh * 0.60,
+            m_title,
+            fontsize=6.5,
+            fontweight="bold", color="#FFFFFF", va="center", ha="center",
+            linespacing=1.05
+        )
+        ax.text(
+            left_x0 + left_w / 2, ry + rh * 0.25,
+            m_sub,
+            fontsize=4.8,
+            fontweight="bold", color="#FEE2E2" if is_fail else "#E2E8F0", va="center", ha="center"
+        )
+
+        for l_idx, ly in enumerate(STACK_LAYERS):
+            cx = active_x0 + l_idx * (layer_col_w + col_gap)
+            cw = layer_col_w
 
             cell_data = ly["cells"][col["key"]]
             top_h1 = cell_data["h1"]
             mid_norm = cell_data["normal"]
 
             cbox = FancyBboxPatch(
-                (cx, y0), cw, row_h,
-                boxstyle="round,pad=0.0,rounding_size=0.005",
+                (cx, ry), cw, rh,
+                boxstyle="round,pad=0.0,rounding_size=0.004",
                 facecolor=col["cell_bg"],
                 edgecolor=col["cell_edge"],
-                linewidth=1.4 if not is_fail else 1.5,
+                linewidth=1.3 if not is_fail else 1.4,
                 linestyle="--" if is_fail else "-"
             )
             ax.add_patch(cbox)
 
-            pad_x = 0.0030
-            pad_top = 0.0024
-            pad_bot = 0.0020
+            pad_x = 0.0022
+            pad_top = 0.0028
+            pad_bot = 0.0024
             inner_w = cw - 2 * pad_x
             x_left = cx + pad_x
 
-            gap_t1_t2 = 0.0018
-            avail_h = row_h - pad_top - pad_bot - gap_t1_t2
+            gap_t1_t2 = 0.0020
+            avail_h = rh - pad_top - pad_bot - gap_t1_t2
             t1_h = avail_h * 0.54
             t2_h = avail_h * 0.46
 
-            t1_top_y = y0 + row_h - pad_top
-            pill_gap = 0.0016
+            t1_top_y = ry + rh - pad_top
+            pill_gap = 0.0018
             ph = (t1_h - 2 * pill_gap) / 3.0
-            wrap_w_h1 = 23 if is_fail else 25
             for idx_1, kw in enumerate(top_h1[:3]):
                 px = x_left
                 pw = inner_w
                 py = t1_top_y - (idx_1 + 1) * ph - idx_1 * pill_gap
                 pill = FancyBboxPatch(
                     (px, py), pw, ph,
-                    boxstyle="round,pad=0.0,rounding_size=0.003",
+                    boxstyle="round,pad=0.0,rounding_size=0.0022",
                     facecolor=col["h1_bg"],
                     edgecolor=col["pill_edge"],
-                    linewidth=1.05,
+                    linewidth=0.95,
                     linestyle="--" if is_fail else "-"
                 )
                 ax.add_patch(pill)
 
-                kw_multiline = textwrap.fill(kw, width=wrap_w_h1)
-                n_pill_lines = kw_multiline.count("\n") + 1
-                pill_fs = 6.3 if n_pill_lines >= 3 else (7.0 if is_fail else 7.3)
                 ax.text(
                     px + pw / 2, py + ph / 2,
-                    kw_multiline,
-                    fontsize=pill_fs,
+                    kw,
+                    fontsize=5.3 if len(kw) > 35 else 5.6,
                     fontweight="bold",
                     color=col["h1_txt"],
-                    va="center", ha="center",
-                    linespacing=0.96
+                    va="center", ha="center"
                 )
-
-            div_y = t1_top_y - t1_h - gap_t1_t2 * 0.5
-            ax.plot(
-                [x_left + 0.001, x_left + inner_w - 0.001],
-                [div_y, div_y],
-                color="#FCA5A5" if is_fail else col["div_col"],
-                linewidth=0.85,
-                linestyle="--" if is_fail else "-"
-            )
 
             t2_top_y = t1_top_y - t1_h - gap_t1_t2
             t2_row_h = t2_h / 4.0
-            wrap_w_t2 = 25 if is_fail else 27
 
             for idx_2, kw in enumerate(mid_norm[:4]):
                 if idx_2 % 2 == 1:
@@ -1815,15 +1862,13 @@ def render_mobile_agent_anatomy_chart():
                     ax.add_patch(stripe)
 
                 ty = t2_top_y - (idx_2 + 0.5) * t2_row_h
-                kw_t2_multiline = textwrap.fill(kw, width=wrap_w_t2)
                 ax.text(
-                    x_left + 0.0020, ty,
-                    kw_t2_multiline,
-                    fontsize=5.95 if is_fail else 6.15,
+                    x_left + 0.0018, ty,
+                    f"• {kw}",
+                    fontsize=4.55,
                     fontweight="bold",
                     color=col["t2_txt"],
-                    va="center", ha="left",
-                    linespacing=0.96
+                    va="center", ha="left"
                 )
 
     fig.savefig(OUT_MOBILE_PNG, dpi=300, facecolor=fig.get_facecolor())
