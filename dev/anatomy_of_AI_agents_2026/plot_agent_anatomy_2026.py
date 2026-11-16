@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Generate the 2026 Agent Anatomy Megachart ("ANATOMY OF AI AGENTS 2026"):
-  1. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026.png        (46.8 x 21.6 in @ 300 DPI — ISO A0-Width 19.5:9 Landscape)
+  1. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026.png        (46.8 x 21.6 in @ 300 DPI: ISO A0-Width 19.5:9 Landscape)
   2. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026.pdf        (Vector PDF)
-  3. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026_mobile.png (26.0 x 12.0 in @ 300 DPI — Mobile 19.5:9 Landscape)
+  3. dev/anatomy_of_AI_agents_2026/anatomy_of_AI_agents_2026_mobile.png (26.0 x 12.0 in @ 300 DPI: Mobile 19.5:9 Landscape)
   4. dev/anatomy_of_AI_agents_2026/2026 11 07 anatomy_of_AI_agents_2026.md
 
 Strict Golden Ratio Typography Rule anchored at H2 = 24.00 pt (φ = 1.61803398875):
@@ -1124,7 +1124,7 @@ for _st in STACK_STAGES:
 
 def render_desktop_agent_anatomy_megachart():
     """
-    ISO A0-Width Landscape Megachart (46.8 x 21.6 in @ 300 DPI — exact 19.5:9 Mobile-Landscape
+    ISO A0-Width Landscape Megachart (46.8 x 21.6 in @ 300 DPI: exact 19.5:9 Mobile-Landscape
     Aspect Ratio, width = 46.8 in = 1188.7 mm ≈ 1189 mm ISO A0 landscape width).
 
     Strict Unskipped 5-Level Golden Ratio Typographic Hierarchy anchored at H2 = 24.00 pt:
@@ -1638,7 +1638,7 @@ def render_desktop_agent_anatomy_megachart():
 
 def render_mobile_agent_anatomy_chart():
     """
-    Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI — exact 19.5:9 Mobile Landscape)
+    Smartphone Landscape Mini Chart (26.0 x 12.0 in @ 300 DPI: exact 19.5:9 Mobile Landscape)
     scaled proportionally by (26.0 / 46.8 = 5/9) from the H2 = 24.00 pt Golden Ratio hierarchy:
       • M_H0 = H0 * (26.0 / 46.8) ≈ 34.91 pt
       • M_H1 = H1 * (26.0 / 46.8) ≈ 21.57 pt
@@ -2113,9 +2113,9 @@ def render_mobile_agent_anatomy_chart():
 
 def write_agent_anatomy_markdown():
     lines = [
-        f"![Anatomy of AI Agents 2026 — 10 Stages x 4 Organisms Megachart]({OUT_DEV_PNG.name})",
+        f"![Anatomy of AI Agents 2026: 10 Stages x 4 Organisms Megachart]({OUT_DEV_PNG.name})",
         "",
-        f"![Anatomy of AI Agents 2026 — Mobile Landscape Mini Chart]({OUT_MOBILE_PNG.name})",
+        f"![Anatomy of AI Agents 2026: Mobile Landscape Mini Chart]({OUT_MOBILE_PNG.name})",
         "",
         "# ANATOMY OF AI AGENTS 2026 (`10 Stages: 1. Silicon → 10. Swarms` × `4 Organisms: LLM · RAG · Multimodal · Embodied`)",
         "",
@@ -2133,7 +2133,7 @@ def write_agent_anatomy_markdown():
     for st in STACK_STAGES:
         st_num = st["stage"]
         col0 = (
-            f"**{STAGE_H1_TITLES[st_num]}** — *{STAGE_FULL_NAMES[st_num]}*<br>"
+            f"**{STAGE_H1_TITLES[st_num]}**: *{STAGE_FULL_NAMES[st_num]}*<br>"
             f"{st['desc']}<br>"
             f"• **{st['core_unit']}**<br>"
             f"• **{st['book_ref']}**"
@@ -2164,14 +2164,14 @@ def write_agent_anatomy_markdown():
     for st in STACK_STAGES:
         st_num = st["stage"]
         lines.extend([
-            f"### {STAGE_H1_TITLES[st_num]} — {STAGE_FULL_NAMES[st_num]}",
+            f"### {STAGE_H1_TITLES[st_num]}: {STAGE_FULL_NAMES[st_num]}",
             "",
             f"{st['desc']}",
             "",
             f"* **Core Unit of Compute / State:** `{st['core_unit']}`",
             f"* **Primary Reference (`arXiv:2606.24937`):** {st['book_ref']}",
             "",
-            "| Organism (`Short` — *Full Name*) | Brand-Agnostic Category (`H2 = 24pt`) | Brand-Agnostic Mechanisms (`H3 = 14.83pt`) | `⚙ Sub-Category ▸ Products & OSS` (`H4 = 9.17pt`) | `⚠ Anti-Patterns & Traps` (`H4 = 9.17pt`) |",
+            "| Organism (`Short`: *Full Name*) | Brand-Agnostic Category (`H2 = 24pt`) | Brand-Agnostic Mechanisms (`H3 = 14.83pt`) | `⚙ Sub-Category ▸ Products & OSS` (`H4 = 9.17pt`) | `⚠ Anti-Patterns & Traps` (`H4 = 9.17pt`) |",
             "| :--- | :--- | :--- | :--- | :--- |",
         ])
         for org in ORGANISMS:
